@@ -1,6 +1,6 @@
 <%-- 
-    Document   : spam_mail_list.jsp
-    Created on : 2021. 5. 4., 오후 1:00:07
+    Document   : bookmarked_mail.jsp
+    Created on : 2021. 5. 4., 오후 2:31:09
     Author     : gleyd
 --%>
 
@@ -13,7 +13,7 @@
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
     <body>
-        <jsp:directive.include file="header_spam_mail.jspf" />
+        <jsp:directive.include file="header_bookmarked_mail.jspf" />
         <hr>
 
         <div id="sidebar">
@@ -24,6 +24,5 @@
             <h2>HelloWorld</h2>
         </div>
 
-        <jsp:directive.include file="footer_hwi.jspf" />
-    </body>
+        <jsp:directive.include file="footer_hwi.jspf" />    </body>
 </html>
