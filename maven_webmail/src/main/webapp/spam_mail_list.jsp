@@ -22,7 +22,7 @@
         </div>
 
         <div id="msgBody">
-            helloWorld
+           git hub 수정용
         </div>
 
         <jsp:directive.include file="footer_hwi.jspf" />
