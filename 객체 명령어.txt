@@ -1,0 +1,9 @@
+--도커 실행
+$ docker run -dp 25:25 -p 110:110 -p 4555:4555 -p 5901:5901  --name ljm-james-2.3.2  ljm-james:2.3.2 
+--도커 접속하는 방법 / 실행안할시 로그인 불가능
+$ docker exec ljm-james-2.3.2 /app/james.sh
+
+--root
+telnet localhost 4555
+
+admin 추가해야지 들어갈수잇음
