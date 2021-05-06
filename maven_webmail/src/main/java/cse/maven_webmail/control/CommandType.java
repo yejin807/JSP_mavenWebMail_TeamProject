@@ -7,7 +7,7 @@ package cse.maven_webmail.control;
 
 public class CommandType {
 
-    public final static int READ_MENU = 1;
+    public static final int READ_MENU = 1;
     public final static int WRITE_MENU = 2;
 
     public final static int ADD_USER_MENU = 3;
