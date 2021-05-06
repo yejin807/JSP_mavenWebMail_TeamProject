@@ -1,0 +1,18 @@
+SMAP
+spam_005fmail_005flist_jsp.java
+JSP
+*S JSP
+*F
++ 0 spam_mail_list.jsp
+spam_mail_list.jsp
++ 1 header_spam_mail.jspf
+header_spam_mail.jspf
++ 2 footer_hwi.jspf
+footer_hwi.jspf
+*L
+5,13:122,0
+1#1,4:123,0
+17#0,12:124,0
+1#2,9:125,0
+28#0,4:126,0
+*E
