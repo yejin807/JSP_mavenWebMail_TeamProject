@@ -12,12 +12,12 @@
 <!DOCTYPE html>
 
 <%
-            if (session.isNew()) {
-                session.setAttribute("host", application.getInitParameter("host"));   // should be modified if you change the POP3 server
-                session.setAttribute("debug", "false");
-                //session.setAttribute("pageno", "1");
-                //session.setMaxInactiveInterval(session.getMaxInactiveInterval() * 2);
-            }
+    if (session.isNew()) {
+        session.setAttribute("host", application.getInitParameter("host"));   // should be modified if you change the POP3 server
+        session.setAttribute("debug", "false");
+        //session.setAttribute("pageno", "1");
+        //session.setMaxInactiveInterval(session.getMaxInactiveInterval() * 2);
+    }
 %>
 
 <html>
@@ -33,11 +33,16 @@
 
 
         <div id="login_form">
-            <form method="POST" action="Login.do?menu=<%= CommandType.LOGIN %>">
+            <form method="POST" action="Login.do?menu=<%= CommandType.LOGIN%>">
                 사용자: <input type="text" name="userid" size="20"> <br />
                 암&nbsp;&nbsp;&nbsp;호: <input type="password" name="passwd" size="20"> <br /> <br />
                 <input type="submit" value="로그인" name="B1">&nbsp;&nbsp;&nbsp;
                 <input type="reset" value="다시 입력" name="B2">
+            </form>                
+        </div>
+        <div id="join_form">
+            <form action="join.jsp" method="POST">
+                <input type="submit" value="회원가입" name="B3">
             </form>
         </div>
 
