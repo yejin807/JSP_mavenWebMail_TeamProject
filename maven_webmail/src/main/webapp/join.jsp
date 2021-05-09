@@ -19,15 +19,15 @@
         <form action="#">
             <p>
                 <label for="id">ID: </label> 
-                <input id="id" type="text" name="id">
+                <input id="id" type="text" name="id" maxlength="10">
             </p>
             <p>
                 <label for="passwd">비밀번호: </label> 
-                <input id="passwd" type="text" name="passwd">
+                <input id="passwd" type="text" name="passwd" maxlength="20">
             </p> 
             <p>
                 <label for="passwd_check">비밀번호 확인: </label> 
-                <input id="passwd_check" type="text" name="passwd_check">
+                <input id="passwd_check" type="text" name="passwd_check" maxlength="20">
             </p>
             <p>
                 <label for="username">이름: </label> 
