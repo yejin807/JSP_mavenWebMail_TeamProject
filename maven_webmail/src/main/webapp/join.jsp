@@ -8,6 +8,15 @@
 <%@page import="cse.maven_webmail.control.CommandType"%>
 
 <!DOCTYPE html>
+
+<script type="text/javascript">
+    <!--
+    function gohome(){
+        window.location = "/maven_webmail/"
+    }
+    -->
+</script>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,6 +52,7 @@
             </p>
             <p>
                 <input type="submit" value="회원가입"/>
+                <input type="button" value="나가기" onClick="location.href='<%= getServletContext().getInitParameter("HomeDirectory") %>'"/>
             </p>
         </form>
         <%@include file="footer_kwang.jspf"%>
