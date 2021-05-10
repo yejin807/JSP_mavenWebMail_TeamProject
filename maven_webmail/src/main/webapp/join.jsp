@@ -22,6 +22,7 @@
             <p>
                 <label for="id">ID: </label> 
                 <input id="id" type="text" name="id" maxlength="20">
+                <font color="red">  * 4글자 이상</font>
             </p>
             <p>
                 <label for="password">비밀번호: </label> 
