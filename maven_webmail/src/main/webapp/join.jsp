@@ -9,13 +9,6 @@
 
 <!DOCTYPE html>
 
-<script type="text/javascript">
-    <!--
-    function gohome(){
-        window.location = "/maven_webmail/"
-    }
-    -->
-</script>
 
 <html>
     <head>
@@ -25,18 +18,18 @@
     </head>
     <body>
         <%@include file="header.jspf"%>
-        <form action="#">
+        <form  action="join_handler.do?menu=<%= CommandType.JOIN%>" method="POST"> 
             <p>
                 <label for="id">ID: </label> 
-                <input id="id" type="text" name="id" maxlength="10">
+                <input id="id" type="text" name="id" maxlength="20">
             </p>
             <p>
-                <label for="passwd">비밀번호: </label> 
-                <input id="passwd" type="text" name="passwd" maxlength="20">
+                <label for="password">비밀번호: </label> 
+                <input id="password" type="text" name="password" maxlength="20">
             </p> 
             <p>
-                <label for="passwd_check">비밀번호 확인: </label> 
-                <input id="passwd_check" type="text" name="passwd_check" maxlength="20">
+                <label for="password_check">비밀번호 확인: </label> 
+                <input id="password_check" type="text" name="password_check" maxlength="20">
             </p>
             <p>
                 <label for="username">이름: </label> 
@@ -51,10 +44,11 @@
                 <input id="phone" type="text" name="phone">
             </p>
             <p>
-                <input type="submit" value="회원가입"/>
+                <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
                 <input type="button" value="나가기" onClick="location.href='<%= getServletContext().getInitParameter("HomeDirectory") %>'"/>
             </p>
         </form>
+
         <%@include file="footer_kwang.jspf"%>
     </body>
 </html>
