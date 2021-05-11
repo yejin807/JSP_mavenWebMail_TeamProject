@@ -85,7 +85,7 @@ public class JoinHandler extends HttpServlet {
                     && username != null && username.length() > 2 && birth != null && phone != null && phone.length() > 12) {
                 //db에 한글, 영문 저장이 몇 글자?? 혹은 그 차이 알기 db 연결하고 확인하기
                 if (agent.joinUser(userid, password)) {
-                    addDBUser(request, response, out); //DB추가
+                    addDBUser(request, response, out); //DB추가함수
                     out.println(getUserRegistrationSuccessPopUp());
                 } else {
                     out.println(getUserRegistrationFailurePopUp());

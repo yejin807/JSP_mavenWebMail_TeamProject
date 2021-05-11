@@ -31,7 +31,6 @@
         <%-- <jsp:include page="header.jspf" /> --%>
         <%@include file="header.jspf"%>
 
-
         <div id="login_form">
             <form method="POST" action="Login.do?menu=<%= CommandType.LOGIN%>">
                 사용자: <input type="text" name="userid" size="20"> <br />
