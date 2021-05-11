@@ -14,7 +14,6 @@
     </head>
     <body>
         <br> <br> 
-
         <span style="color: indigo">
             <strong>사용자: <%= session.getAttribute("userid") %> </strong>
         </span> <br> <br>

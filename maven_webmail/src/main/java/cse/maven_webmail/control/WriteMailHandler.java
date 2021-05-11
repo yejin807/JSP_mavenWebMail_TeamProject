@@ -49,6 +49,7 @@ public class WriteMailHandler extends HttpServlet {
                     break;
             }
         } catch (Exception ex) {
+            if(out != null)
             out.println(ex.toString());
         } finally {
             if(out != null)
