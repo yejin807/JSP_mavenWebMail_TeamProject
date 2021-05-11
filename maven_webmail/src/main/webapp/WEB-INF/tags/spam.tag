@@ -24,22 +24,56 @@
     password="${password}"
     user="${user}" />
 
-<sql:query var="rs" dataSource="${dataSrc}">
-     Select word from ${table} where email='${email}' and is_email=0 
-    <%--Select word from ${table} where is_email = 0 --%>
-</sql:query>
+<link type="text/css" rel="stylesheet" href="css/main_style.css" />
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>스팸으로 등록된 단어</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="row" items="${rs.rows}">
+<br><br><br>
+
+<div id="spam_word">gggg</div>
+<div id="spam_email">eeeee</div>
+
+<div id="spam_word">
+
+    <sql:query var="rs" dataSource="${dataSrc}">
+        Select word from ${table} where email='${email}' and is_email=0 
+        <%--Select word from ${table} where is_email = 0 --%>
+    </sql:query>
+
+    <table border="1">
+        <thead>
             <tr>
-                <td>${row.word}</td>
+                <th>스팸으로 등록된 단어</th>
             </tr>
-        </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <c:forEach var="row" items="${rs.rows}">
+                <tr>
+                    <td>${row.word}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
+
+<div id="spam_email]">
+    <sql:query var="rs" dataSource="${dataSrc}">
+        Select word from ${table} where email='${email}' and is_email=1
+        <%--Select word from ${table} where is_email = 0 --%>
+    </sql:query>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>스팸으로 등록된 이메일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="row" items="${rs.rows}">
+                <tr>
+                    <td>${row.word}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
+</div>

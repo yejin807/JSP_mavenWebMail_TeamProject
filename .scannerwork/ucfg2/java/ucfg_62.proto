@@ -1,16 +1,16 @@
 
-Fcse.maven_webmail.model.MessageParser#getCcAddress()Ljava/lang/String;é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java® ®("1*±
-1é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java© ©(Ï
-È
-é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java© ©(
-%0java.lang.String"__id*8*6'
-%cse.maven_webmail.model.MessageParser"
-	ccAddress"´
-é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java© ©(
+;cse.maven_webmail.model.SmtpAgent#getTo()Ljava/lang/String;á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SmtpAgent.java9 9("1*ë
+1á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SmtpAgent.java: :(⁄
+◊
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SmtpAgent.java: :(
+%0java.lang.String"__id*-*+#
+!cse.maven_webmail.model.SmtpAgent"
+to"§
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SmtpAgent.java: :(
 
-%0java.lang.StringB)'
-%cse.maven_webmail.model.MessageParser
+%0java.lang.StringB%#
+!cse.maven_webmail.model.SmtpAgent

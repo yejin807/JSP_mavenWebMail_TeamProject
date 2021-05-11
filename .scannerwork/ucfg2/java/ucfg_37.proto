@@ -1,17 +1,25 @@
 
-Acse.maven_webmail.model.Pop3Agent#getPassword()Ljava/lang/String;â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java≥ ≥("1*ù
-1â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java¥ ¥(‚
-ﬂ
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java¥ ¥(
-%0java.lang.String"__id*3*1#
-!cse.maven_webmail.model.Pop3Agent"
-
-password"¶
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java¥ ¥(
-
-%0java.lang.StringB%#
+4cse.maven_webmail.model.Pop3Agent#deleteMessage(IZ)Zá
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java5 5( "12*£
+11á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java9 9("í
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java9 9(
+""*í
+12á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java6 6(¯
+ı
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java8 8(
+%0boolean"3cse.maven_webmail.model.Pop3Agent#connectToStore()Z*%#
+!cse.maven_webmail.model.Pop3Agent*
+11
+1*¢
+1á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaO O("í
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaO O(
+"":
+"":
+""B%#
 !cse.maven_webmail.model.Pop3Agent

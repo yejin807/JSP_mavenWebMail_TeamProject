@@ -1,16 +1,124 @@
 
->cse.maven_webmail.model.FormParser#getBody()Ljava/lang/String;à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java* *("1*ó
-1à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java+ +(ﬁ
+Ycse.maven_webmail.control.JoinHandler#getUserRegistrationSuccessPopUp()Ljava/lang/String;é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javañ ñ(2"1*Ä3
+1é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaó ó(-Â
+‚
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaó ó(. 
+alertMessagejava.lang.String"__id*'%
+#ÌöåÏõêÍ∞ÄÏûÖÏóê ÏÑ±Í≥µÌñàÏäµÎãàÎã§.Ã…
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaò) ò(6
+%0java.lang.StringBuilder"java.lang.StringBuilderﬁ
 €
-à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java+ +(
-%0java.lang.String"__id*0*.$
-"cse.maven_webmail.model.FormParser"
-body"•
-à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java+ +(
-
-%0java.lang.StringB&$
-"cse.maven_webmail.model.FormParser
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaò% ò(8
+%1"!java.lang.StringBuilder#<init>()V*
+
+%0java.lang.StringBuilder‰
+·
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaò ò(9'
+successPopUpjava.lang.StringBuilder"__id*
+
+%0java.lang.StringBuilder”–
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaô ô(%
+%2java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+
+<html>2append(Ljava/lang/String;)”–
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaö ö(%
+%3java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+
+<head>2append(Ljava/lang/String;)Ì
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaú ú(6
+%4java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*'%
+#<title>Î©îÏùº Ï†ÑÏÜ° Í≤∞Í≥º</title>2append(Ljava/lang/String;)ñì
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaù ù(h
+%5java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*MK
+I<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />2append(Ljava/lang/String;)‘—
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaû û(&
+%6java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*	
+</head>2append(Ljava/lang/String;)ÎË
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaü ü(=
+%7java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*" 
+<body onload=\"goMainMenu()\">2append(Ljava/lang/String;)ÓÎ
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java† †(@
+%8java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*%#
+!<script type=\"text/javascript\">2append(Ljava/lang/String;)‰·
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java° °(6
+%9java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+function goMainMenu() {2append(Ljava/lang/String;)÷”
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java¢ ¢('
+%10java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+
+alert(\"2append(Ljava/lang/String;)ÏÈ
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java£ £()
+%11java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*"
+ 
+alertMessagejava.lang.String2append(Ljava/lang/String;)”–
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java§ §($
+%12java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*	
+\"); 2append(Ljava/lang/String;)ÔÏ
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java• •(@
+%13java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*%#
+!window.location = \"index.jsp\"; 2append(Ljava/lang/String;)⁄◊
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java¶ ¶(+
+%14java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+}  </script>2append(Ljava/lang/String;)‹Ÿ
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaß ß(-
+%15java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*)
+'
+successPopUpjava.lang.StringBuilder*
+</body></html>2append(Ljava/lang/String;)öó
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java® ®(&
+%16java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*)
+'
+successPopUpjava.lang.StringBuilder2
+toString()"¨
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.java® ®('
+
+%16java.lang.StringB)'
+%cse.maven_webmail.control.JoinHandler

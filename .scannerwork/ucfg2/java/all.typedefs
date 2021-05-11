@@ -1158,7 +1158,15 @@ valueOf(I)/java.lang.Integer#valueOf(I)Ljava/lang/Integer;5
 toUnsignedString(I)7java.lang.Integer#toUnsignedString(I)Ljava/lang/String;J
 toStringUTF16(II)5java.lang.Integer#toStringUTF16(II)Ljava/lang/String;=
 compareUnsigned(II)&java.lang.Integer#compareUnsigned(II)I%
-max(II)java.lang.Integer#max(II)Iè
+max(II)java.lang.Integer#max(II)I›
+%cse.maven_webmail.control.JoinHandlerHttpServletp
+getDifferentFailurePopUp()Rcse.maven_webmail.control.JoinHandler#getDifferentFailurePopUp()Ljava/lang/String;;
+<init>()/cse.maven_webmail.control.JoinHandler#<init>()V\
+getServletInfo()Hcse.maven_webmail.control.JoinHandler#getServletInfo()Ljava/lang/String;n
+getAccurateFailurePopUp()Qcse.maven_webmail.control.JoinHandler#getAccurateFailurePopUp()Ljava/lang/String;~
+!getUserRegistrationSuccessPopUp()Ycse.maven_webmail.control.JoinHandler#getUserRegistrationSuccessPopUp()Ljava/lang/String;~
+!getUserRegistrationFailurePopUp()Ycse.maven_webmail.control.JoinHandler#getUserRegistrationFailurePopUp()Ljava/lang/String;h
+getEmptyFailurePopUp()Ncse.maven_webmail.control.JoinHandler#getEmptyFailurePopUp()Ljava/lang/String;è
 "cse.maven_webmail.model.FormParserjava.lang.ObjectQ
 getSubject()Acse.maven_webmail.model.FormParser#getSubject()Ljava/lang/String;S
 getRequest()Ccse.maven_webmail.model.FormParser#getRequest()LHttpServletRequest;f
@@ -1302,7 +1310,19 @@ nanoTime()java.lang.System#nanoTime()Jt
 loadLibrary(Ljava/lang/String;)1java.lang.System#loadLibrary(Ljava/lang/String;)VF
 load(Ljava/lang/String;)*java.lang.System#load(Ljava/lang/String;)V 
 (cse.maven_webmail.model.MessageFormatterjava.lang.Objectb
-<init>(Ljava/lang/String;)Dcse.maven_webmail.model.MessageFormatter#<init>(Ljava/lang/String;)Vv
+<init>(Ljava/lang/String;)Dcse.maven_webmail.model.MessageFormatter#<init>(Ljava/lang/String;)VÃ
+%cse.maven_webmail.model.UserJoinAgentjava.lang.Object‡
+.joinUser(Ljava/lang/String;Ljava/lang/String;)Ucse.maven_webmail.model.UserJoinAgent#joinUser(Ljava/lang/String;Ljava/lang/String;)Z=
+	connect()0cse.maven_webmail.model.UserJoinAgent#connect()Z7
+quit()-cse.maven_webmail.model.UserJoinAgent#quit()Z…
+-<init>(Ljava/lang/String;ILjava/lang/String;)Tcse.maven_webmail.model.UserJoinAgent#<init>(Ljava/lang/String;ILjava/lang/String;)V
+MimeMessagejava.lang.Object±
+"cse.maven_webmail.model.NewMessageMimeMessageD
+setBookmark(Z)2cse.maven_webmail.model.NewMessage#setBookmark(Z)V8
+isSpam(),cse.maven_webmail.model.NewMessage#isSpam()Z<
+
+setSpam(Z).cse.maven_webmail.model.NewMessage#setSpam(Z)V@
+isBookmark()0cse.maven_webmail.model.NewMessage#isBookmark()Zv
 %cse.maven_webmail.control.CommandTypejava.lang.Object;
 <init>()/cse.maven_webmail.control.CommandType#<init>()V¢
 !cse.maven_webmail.model.SmtpAgentjava.lang.ObjectY
@@ -1555,7 +1575,18 @@ _jspInit()-org.apache.jsp.admin_005fmenu_jsp#_jspInit()VS
 getPackageImports()Dorg.apache.jsp.admin_005fmenu_jsp#getPackageImports()Ljava/util/Set;A
 _jspDestroy()0org.apache.jsp.admin_005fmenu_jsp#_jspDestroy()VW
 getClassImports()Borg.apache.jsp.admin_005fmenu_jsp#getClassImports()Ljava/util/Set;{
-_jsp_getInstanceManager()^org.apache.jsp.admin_005fmenu_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;û
+_jsp_getInstanceManager()^org.apache.jsp.admin_005fmenu_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;Ý
+org.apache.jsp.join_jsp*org.apache.jasper.runtime.JspSourceImports,org.apache.jasper.runtime.JspSourceDependent%org.apache.jasper.runtime.HttpJspBase1
+
+_jspInit()#org.apache.jsp.join_jsp#_jspInit()VI
+getDependants()6org.apache.jsp.join_jsp#getDependants()Ljava/util/Map;Õ
+\_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)uorg.apache.jsp.join_jsp#_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V-
+<init>()!org.apache.jsp.join_jsp#<init>()Vn
+_jsp_getExpressionFactory()Oorg.apache.jsp.join_jsp#_jsp_getExpressionFactory()Ljavax/el/ExpressionFactory;Q
+getPackageImports():org.apache.jsp.join_jsp#getPackageImports()Ljava/util/Set;7
+_jspDestroy()&org.apache.jsp.join_jsp#_jspDestroy()VM
+getClassImports()8org.apache.jsp.join_jsp#getClassImports()Ljava/util/Set;q
+_jsp_getInstanceManager()Torg.apache.jsp.join_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;û
 org.apache.jsp.footer_jspf*org.apache.jasper.runtime.JspSourceImports,org.apache.jasper.runtime.JspSourceDependent%org.apache.jasper.runtime.HttpJspBase4
 
 _jspInit()&org.apache.jsp.footer_jspf#_jspInit()VL
@@ -1897,4 +1928,15 @@ _jspInit()%org.apache.jsp.footer_jsp#_jspInit()VK
 getPackageImports()<org.apache.jsp.footer_jsp#getPackageImports()Ljava/util/Set;9
 _jspDestroy()(org.apache.jsp.footer_jsp#_jspDestroy()VO
 getClassImports():org.apache.jsp.footer_jsp#getClassImports()Ljava/util/Set;s
-_jsp_getInstanceManager()Vorg.apache.jsp.footer_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;
+_jsp_getInstanceManager()Vorg.apache.jsp.footer_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;à
+$org.apache.jsp.footer_005fkwang_jspf*org.apache.jasper.runtime.JspSourceImports,org.apache.jasper.runtime.JspSourceDependent%org.apache.jasper.runtime.HttpJspBase>
+
+_jspInit()0org.apache.jsp.footer_005fkwang_jspf#_jspInit()VV
+getDependants()Corg.apache.jsp.footer_005fkwang_jspf#getDependants()Ljava/util/Map;ã
+\_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)‚org.apache.jsp.footer_005fkwang_jspf#_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V:
+<init>().org.apache.jsp.footer_005fkwang_jspf#<init>()V{
+_jsp_getExpressionFactory()\org.apache.jsp.footer_005fkwang_jspf#_jsp_getExpressionFactory()Ljavax/el/ExpressionFactory;^
+getPackageImports()Gorg.apache.jsp.footer_005fkwang_jspf#getPackageImports()Ljava/util/Set;D
+_jspDestroy()3org.apache.jsp.footer_005fkwang_jspf#_jspDestroy()VZ
+getClassImports()Eorg.apache.jsp.footer_005fkwang_jspf#getClassImports()Ljava/util/Set;~
+_jsp_getInstanceManager()aorg.apache.jsp.footer_005fkwang_jspf#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;

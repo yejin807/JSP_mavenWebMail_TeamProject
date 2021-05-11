@@ -1,17 +1,16 @@
 
-Eorg.apache.jsp.bookmarked_005fmail_jsp#getDependants()Ljava/util/Map;Å
-wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java-8 -(E"1*å
-1Å
-wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java. .(‰
-·
-Å
-wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java. .(
-%0java.util.Map"__id*@*>(
-&org.apache.jsp.bookmarked_005fmail_jsp"
-_jspx_dependants"õ
-Å
-wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java. .(
+Porg.apache.jsp.sidebar_005fadmin_005fmenu_jsp#getPackageImports()Ljava/util/Set;à
+~C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fmenu_jsp.java-) -(:"1*Á
+1à
+~C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fmenu_jsp.java. .(!±
+Æ
+à
+~C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fmenu_jsp.java. .(!
+%0java.util.Set"__id*
+"""¢
+à
+~C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fmenu_jsp.java. .("
 
-%0java.util.Map:
-%jsp_contextB*(
-&org.apache.jsp.bookmarked_005fmail_jsp
+%0java.util.Set:
+%jsp_contextB1/
+-org.apache.jsp.sidebar_005fadmin_005fmenu_jsp

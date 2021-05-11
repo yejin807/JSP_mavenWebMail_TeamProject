@@ -1,6 +1,6 @@
- +<%-- 
-    Document   : main_menu.jsp
-    Author     : jongmin
++<%-- 
+   Document   : main_menu.jsp
+   Author     : jongmin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 
 <jsp:useBean id="pop3" scope="page" class="cse.maven_webmail.model.Pop3Agent" />
 <%
-            pop3.setHost((String) session.getAttribute("host"));
-            pop3.setUserid((String) session.getAttribute("userid"));
-            pop3.setPassword((String) session.getAttribute("password"));
+    pop3.setHost((String) session.getAttribute("host"));
+    pop3.setUserid((String) session.getAttribute("userid"));
+    pop3.setPassword((String) session.getAttribute("password"));
 %>
 
 <html>
@@ -24,12 +24,15 @@
     <body>
         <jsp:include page="header.jsp" />
 
+        <a href="spam_settings.jsp"> 스팸 설정 </a>
+
+
         <div id="sidebar">
             <jsp:include page="sidebar_menu.jsp" />
         </div>
 
         <div id="main">
-            <%= pop3.getMessageList() %>
+            <%= pop3.getMessageList()%>
         </div>
 
         <jsp:include page="footer.jsp" />

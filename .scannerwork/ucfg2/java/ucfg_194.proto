@@ -1,17 +1,16 @@
 
-Horg.apache.jsp.mail_005fsend_005fform_jsp#getDependants()Ljava/util/Map;Ñ
-zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java)8 )(E"1*ò
-1Ñ
-zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java* *(Í
-Á
-Ñ
-zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java* *(
-%0java.util.Map"__id*C*A+
-)org.apache.jsp.mail_005fsend_005fform_jsp"
-_jspx_dependants"û
-Ñ
-zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java* *(
+Iorg.apache.jsp.bookmarked_005fmail_jsp#getPackageImports()Ljava/util/Set;Å
+wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java1) 1(:"1*“
+1Å
+wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java2 2(!™
+ß
+Å
+wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java2 2(!
+%0java.util.Set"__id*
+"""õ
+Å
+wC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java2 2("
 
-%0java.util.Map:
-%jsp_contextB-+
-)org.apache.jsp.mail_005fsend_005fform_jsp
+%0java.util.Set:
+%jsp_contextB*(
+&org.apache.jsp.bookmarked_005fmail_jsp

@@ -1,17 +1,16 @@
 
-Aorg.apache.jsp.delete_005fuser_jsp#getDependants()Ljava/util/Map;}
-sC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\delete_005fuser_jsp.java+8 +(E"1*ù
-1}
-sC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\delete_005fuser_jsp.java, ,(Û
-Ø
-}
-sC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\delete_005fuser_jsp.java, ,(
-%0java.util.Map"__id*<*:$
-"org.apache.jsp.delete_005fuser_jsp"
-_jspx_dependants"–
-}
-sC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\delete_005fuser_jsp.java, ,(
+Lorg.apache.jsp.spam_005fmail_005flist_jsp#getPackageImports()Ljava/util/Set;„
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\spam_005fmail_005flist_jsp.java1) 1(:"1*Û
+1„
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\spam_005fmail_005flist_jsp.java2 2(!­
+ª
+„
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\spam_005fmail_005flist_jsp.java2 2(!
+%0java.util.Set"__id*
+"""ž
+„
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\spam_005fmail_005flist_jsp.java2 2("
 
-%0java.util.Map:
-%jsp_contextB&$
-"org.apache.jsp.delete_005fuser_jsp
+%0java.util.Set:
+%jsp_contextB-+
+)org.apache.jsp.spam_005fmail_005flist_jsp

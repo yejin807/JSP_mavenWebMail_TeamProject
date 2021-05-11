@@ -1,17 +1,16 @@
 
-9org.apache.jsp.footer_jspf#getDependants()Ljava/util/Map;u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java'8 '(E"1*Ù
-1u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java( ((Ë
-È
-u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java( ((
-%0java.util.Map"__id*4*2
-org.apache.jsp.footer_jspf"
-_jspx_dependants"Ž
-u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java( ((
+Oorg.apache.jsp.header_005fspam_005fmail_jspf#getPackageImports()Ljava/util/Set;‡
+}C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java+) +(:"1*ä
+1‡
+}C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java, ,(!°
+­
+‡
+}C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java, ,(!
+%0java.util.Set"__id*
+"""¡
+‡
+}C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java, ,("
 
-%0java.util.Map:
-%jsp_contextB
-org.apache.jsp.footer_jspf
+%0java.util.Set:
+%jsp_contextB0.
+,org.apache.jsp.header_005fspam_005fmail_jspf

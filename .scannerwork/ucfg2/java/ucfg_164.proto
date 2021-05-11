@@ -1,16 +1,74 @@
 
-[org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp#getClassImports()Ljava/util/Set;–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java/) /(8"1*‘
-1–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java0 0( ¿
-¼
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java0 0( 
-%0java.util.Set"__id*
-"""°
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java0 0(!
-
-%0java.util.Set:
-%jsp_contextB><
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp
+jorg.apache.jsp.header_005fbookmarked_005fmail_jspf#_jsp_getExpressionFactory()Ljavax/el/ExpressionFactory;Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java3$ 3(="5*±
+2Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7" 7(.Æ
+Ã
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7" 7(."
+%2javax.servlet.jsp.JspFactory"__id*
+""ÊÇ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7H 7(Z!
+%3javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;*64
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf2getServletConfig()Á¾
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7H 7(n"
+%4javax.servlet.ServletContext"Mjavax.servlet.ServletConfig#getServletContext()Ljavax/servlet/ServletContext;*#
+!
+%3javax.servlet.ServletConfig2getServletContext()ÉÆ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7" 7(o-
+%5'javax.servlet.jsp.JspApplicationContext"~javax.servlet.jsp.JspFactory#getJspApplicationContext(Ljavax/servlet/ServletContext;)Ljavax/servlet/jsp/JspApplicationContext;*$
+"
+%2javax.servlet.jsp.JspFactory*$
+"
+%4javax.servlet.ServletContext28getJspApplicationContext(Ljavax/servlet/ServletContext;)ÜÙ
+
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7" 7(† 
+%6javax.el.ExpressionFactory"Zjavax.servlet.jsp.JspApplicationContext#getExpressionFactory()Ljavax/el/ExpressionFactory;*/
+-
+%5'javax.servlet.jsp.JspApplicationContext2getExpressionFactory()
+
+
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java7
+ 7(†O4
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf"
+_el_expressionfactory"__id*"
+ 
+%6javax.el.ExpressionFactory*
+1*®
+3Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java6 6(!
+Œ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java6 6(! 
+%1javax.el.ExpressionFactory"__id*Q*O4
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf"
+_el_expressionfactory*
+2
+1*®
+5Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java4 4(
+Œ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java4 4( 
+%0javax.el.ExpressionFactory"__id*Q*O4
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf"
+_el_expressionfactory*
+3
+1*Þ
+1Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java; ;( 
+Œ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java; ;(  
+%7javax.el.ExpressionFactory"__id*Q*O4
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf"
+_el_expressionfactory"µ
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java; ;(!"
+ 
+%7javax.el.ExpressionFactory:
+%jsp_contextB64
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf
