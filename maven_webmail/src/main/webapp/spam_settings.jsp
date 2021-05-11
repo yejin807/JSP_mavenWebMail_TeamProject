@@ -1,0 +1,46 @@
+<%-- 
+    Document   : spam_adder
+    Created on : 2021. 5. 10., 오후 6:44:07
+    Author     : gleyd
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags" prefix="spamtag"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>주메뉴 화면</title>
+        <link type="text/css" rel="stylesheet" href="css/main_style.css" />
+    </head>
+    <body>
+        <jsp:directive.include file="header_spam_mail.jspf" />
+        <hr>
+
+        <div id="sidebar">
+            <a href="main_menu.jsp"> 이전 메뉴로 </a>
+        </div>
+
+        <div id="spam_word_adder">
+            <form method="POST">
+                스팸으로 추가할 단어 : <input type="text" name="word" value="" maxlength="50"/> 
+                이메일 인가요? <input type="checkbox" name="isEmail" value="false"/>
+                <input type="submit" value="추가하기"/>
+            </form>
+        </div>
+        
+        <%= session.getAttribute("userid") %> 입니다.
+        
+        
+        
+        <c:catch var="error">
+            <spamtag:spam user="jdbctester" password="1895" schema="webmail" table="spam" email="${sessionScope.userid}"/>
+        </c:catch>
+        ${empty error? "<noerror/>":error}
+
+
+        <jsp:directive.include file="footer_hwi.jspf" />
+    </body>
+</html>

@@ -22,9 +22,12 @@
         </div>
 
         <div id="msgBody">
-           git hub 수정용
+            <a href="spam_settings.jsp"> 스팸 설정 </a>
+            <%-- TODO : 스팸 메시지함 테이블 보여주긩.--%>
         </div>
 
-        <jsp:directive.include file="footer_hwi.jspf" />
-    </body>
+    </div>
+
+    <jsp:directive.include file="footer_hwi.jspf" />
+</body>
 </html>
