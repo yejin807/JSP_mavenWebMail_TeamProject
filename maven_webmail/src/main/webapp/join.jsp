@@ -22,11 +22,12 @@
             <p>
                 <label for="id">ID: </label> 
                 <input id="id" type="text" name="id" maxlength="20">
-                <font color="red">  * 4글자 이상</font>
+                <font color="red">  * 5글자 이상</font>
             </p>
             <p>
                 <label for="password">비밀번호: </label> 
                 <input id="password" type="text" name="password" maxlength="20">
+                <font color="red">  * 6글자 이상</font>
             </p> 
             <p>
                 <label for="password_check">비밀번호 확인: </label> 
@@ -37,12 +38,13 @@
                 <input id="username" type="text" name="username">
             </p>
             <p>
-                <label for="age">나이: </label>
-                <input id="age" type="text" name="age">
+                <label for="birth">생일: </label>
+                <input id="birth" type="text" name="birth" maxlength="8">
+                <font color="red">  * 예) 900203</font>
             </p>
             <p>
                 <label for="phone">전화번호: </label>
-                <input id="phone" type="text" name="phone">
+                <input id="phone" type="text" name="phone" maxlength="16">
             </p>
             <p>
                 <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;

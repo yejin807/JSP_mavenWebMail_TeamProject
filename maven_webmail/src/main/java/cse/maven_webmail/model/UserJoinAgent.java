@@ -17,7 +17,7 @@ import java.util.Properties;
 
 /**
  *
- * @author wmdwj
+ * @author kwangmin
  */
 public class UserJoinAgent {
     private String server;
