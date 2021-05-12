@@ -24,10 +24,10 @@
         </div>
 
         <div id="spam_word_adder">
-            <form method="POST">
+            <form action="spam_database.do"  >
                 스팸으로 추가할 단어 : <input type="text" name="word" value="" maxlength="50"/> 
-                이메일 인가요? <input type="checkbox" name="isEmail" value="false"/>
-                <input type="submit" value="추가하기"/>
+                이메일 인가요?         <input type="checkbox" name="isEmail" value="1"/>
+                                      <input type="submit" value="추가하기"/>
             </form>
         </div>
         

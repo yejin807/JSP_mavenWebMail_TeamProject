@@ -11,3 +11,13 @@ admin 추가해야지 들어갈수잇음
 ------------
 자바메일 구현참조
 https://javaee.github.io/javamail/FAQ#localprovs
+
+
+CREATE TABLE `spam` (
+  `email` varchar(50) NOT NULL,
+  `word` varchar(50) NOT NULL,
+  `is_email` tinyint NOT NULL,
+  PRIMARY KEY (`email`,`word`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES ('test2', 'eee', '0');

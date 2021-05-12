@@ -5,6 +5,7 @@
 --%>
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%@tag import="cse.maven_webmail.control.CommandType" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -15,6 +16,8 @@
 <%@attribute name="schema" required="true"%>
 <%@attribute name="table" required="true"%>
 <%@attribute name="email" required="true"%>
+<%-- TODO 수정 --%>
+<%-- <%@attribute name="JDBC" rtexprvalue="<% CommandType.JdbcDriver %>" %> --%>
 
 <%-- any content can be specified here e.g.: --%>
 <sql:setDataSource 
