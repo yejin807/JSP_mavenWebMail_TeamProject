@@ -23,10 +23,7 @@
 
     <body>
         <jsp:include page="header.jsp" />
-
-        <a href="spam_settings.jsp"> 스팸 설정 </a>
-
-
+        
         <div id="sidebar">
             <jsp:include page="sidebar_menu.jsp" />
         </div>
