@@ -59,7 +59,7 @@ public class Pop3Agent {
 
         try {
             // Folder 설정
-//            Folder folder = store.getDefaultFolder();
+//          Folder folder = store.getDefaultFolder();
             Folder folder = store.getFolder("INBOX");
             folder.open(Folder.READ_WRITE);
 
@@ -79,7 +79,40 @@ public class Pop3Agent {
             return status;
         }
     }
+//----delete 메시지 기반 수정중
+    //메인 화면에있는 삭제버튼 누를시 휴지통으로 이동함
+    public boolean TMessage(int msgid, boolean Tremoves) {
+        boolean status = false;
 
+        if (!connectToStore()) {
+            return status;
+        }
+
+        try {
+            // Folder 설정
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            // Message에 DELETED flag 설정
+            Message msg = folder.getMessage(msgid);
+            msg.setFlag(Flags.Flag.DELETED, Tremoves);
+
+            // 폴더에서 메시지 삭제
+            // Message [] expungedMessage = folder.expunge();
+            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
+           
+            //folder.close(true);  // expunge == true --
+            //store.close();                          --
+            status = true;
+        } catch (Exception ex) {
+            System.out.println("flag Message() error: " + ex);
+        } finally {
+            return status;
+        }
+    }
+    
+    
+//----
     /*
      * 페이지 단위로 메일 목록을 보여주어야 함.
      */
@@ -116,6 +149,46 @@ public class Pop3Agent {
             return result;
         }
     }
+    
+    //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
+    // trash.can.jsp에 (휴지통 페이지) 가져가서 보여줄것.
+     public String get_TMessageList() {
+        String result = "";
+        Message[] messages = null;
+
+        if (!connectToStore()) {  // 3.1
+            System.err.println("POP3 connection failed!");
+            return "POP3 연결이 되지 않아 메일목록을 볼 수 없습니다.";
+        }
+
+        try {
+            // 메일 폴더 열기
+            Folder folder = store.getFolder("INBOX");  // 3.2
+            folder.open(Folder.READ_ONLY);  // 3.3
+
+            // 현재 수신한 메시지 모두 가져오기
+            messages = folder.getMessages();      // 3.4
+            FetchProfile fp = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            
+            //delete flag가 꽂혀있는 메일만 가져오기?? 이게맞냐
+            fp.add(FetchProfile.Item.FLAGS);
+            folder.fetch(messages, fp);
+
+            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            result = formatter.get_TMessageTable(messages);   // 3.6
+
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.get_TMessageList() : exception = " + ex);
+            result = "Pop3Agent.get_TMessageList() : exception = " + ex;
+        } finally {
+            return result;
+        }
+    }
+    
+    //--------
 
     public String getMessage(int n) {
         String result = "POP3  서버 연결이 되지 않아 메시지를 볼 수 없습니다.";

@@ -20,8 +20,50 @@ public class MessageFormatter {
     public MessageFormatter(String userid) {
         this.userid = userid;
     }
-
+    
+// 메인화면 테이블 -------------------------
     public String getMessageTable(Message[] messages) {
+        StringBuilder buffer = new StringBuilder();
+
+        // 메시지 제목 보여주기
+        buffer.append("<table>");  // table start
+        buffer.append("<tr> "
+                + " <th> No. </td> "
+                + " <th> 보낸 사람 </td>"
+                + " <th> 제목 </td>     "
+                + " <th> 보낸 날짜 </td>   "
+                + " <th> 삭제 </td>   "
+                + " </tr>");
+
+        for (int i = messages.length - 1; i >= 0; i--) {
+            MessageParser parser = new MessageParser(messages[i], userid);
+            parser.parse(false);  // envelope 정보만 필요
+            // 메시지 헤더 포맷
+            // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
+            buffer.append("<tr> "
+                    + " <td id=no>" + (i + 1) + " </td> "
+                    + " <td id=sender>" + parser.getFromAddress() + "</td>"
+                    + " <td id=subject> "
+                    + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                    + parser.getSubject() + "</a> </td>"
+                    + " <td id=date>" + parser.getSentDate() + "</td>"
+                    + " <td id=move>"
+                    + "<a href=ReadMail.do?menu="
+                    + CommandType.MAIL_REMOVE_COMMAND //바꾼부분--메일을 휴지통으로 이동-//
+                    + "&msgid=" + (i + 1) + "> 휴지통 </a>" + "</td>"
+                    + " </tr>");
+        }
+        buffer.append("</table>");
+
+        return buffer.toString();
+//        return "MessageFormatter 테이블 결과";
+    }
+    
+    
+    //-------------------------
+    // trash_can.jsp 파일로 delete 플래그가
+    //꽂힌 메일만을 보여주어야하는 테이블. 여기서 완전삭제 가능!
+     public String get_TMessageTable(Message[] messages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -48,8 +90,8 @@ public class MessageFormatter {
                     + " <td id=date>" + parser.getSentDate() + "</td>"
                     + " <td id=delete>"
                     + "<a href=ReadMail.do?menu="
-                    + CommandType.DELETE_MAIL_COMMAND //-----------//
-                    + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
+                    + CommandType.DELETE_MAIL_COMMAND //완전삭제-//
+                    + "&msgid=" + (i + 1) + "> 완전삭제 </a>" + "</td>"
                     + " </tr>");
         }
         buffer.append("</table>");
@@ -57,7 +99,7 @@ public class MessageFormatter {
         return buffer.toString();
 //        return "MessageFormatter 테이블 결과";
     }
-
+//--------------------------
     public String getMessage(Message message) {
         StringBuilder buffer = new StringBuilder();
 
