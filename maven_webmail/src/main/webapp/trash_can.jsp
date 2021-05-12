@@ -25,7 +25,7 @@
         </div>
 
          <div id="msgBody">
-           뭐 어캐하는대
+           화아면
         </div>
 
         <jsp:include page="footer.jsp" />
