@@ -26,6 +26,7 @@
 
          <div id="msgBody">
            화아면
+        
         </div>
 
         <jsp:include page="footer.jsp" />

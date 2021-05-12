@@ -48,7 +48,7 @@ public class MessageFormatter {
                     + " <td id=date>" + parser.getSentDate() + "</td>"
                     + " <td id=delete>"
                     + "<a href=ReadMail.do?menu="
-                    + CommandType.DELETE_MAIL_COMMAND
+                    + CommandType.DELETE_MAIL_COMMAND //-----------//
                     + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
                     + " </tr>");
         }

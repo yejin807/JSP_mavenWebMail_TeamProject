@@ -7,3 +7,7 @@ $ docker exec ljm-james-2.3.2 /app/james.sh
 telnet localhost 4555
 
 admin 추가해야지 들어갈수잇음
+
+------------
+자바메일 구현참조
+https://javaee.github.io/javamail/FAQ#localprovs
