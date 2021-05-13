@@ -23,8 +23,10 @@ import cse.maven_webmail.model.Pop3Agent;
  */
 public class ReadMailHandler extends HttpServlet {
 
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -40,27 +42,37 @@ public class ReadMailHandler extends HttpServlet {
         switch (select) {
             case CommandType.DELETE_MAIL_COMMAND:
                 try (PrintWriter out = response.getWriter()) {
-                    deleteMessage(request);
-                    response.sendRedirect("main_menu.jsp");
-                }
-                break;
-                 //-------------
-                case CommandType.MAIL_REMOVE_COMMAND:
+                deleteMessage(request);
+                response.sendRedirect("main_menu.jsp");
+            }
+            break;
+            //-------------
+            case CommandType.MAIL_REMOVE_COMMAND:
                 try (PrintWriter out = response.getWriter()) {
-                    moveMsgBin(request);
-                    response.sendRedirect("main_menu.jsp"); //수행 후 돌아가는 화면
-                }
-                break;
-                //-----
+                moveMsgBin(request);
+                response.sendRedirect("main_menu.jsp"); //수행 후 돌아가는 화면
+            }
+            break;
+            //-----
             case CommandType.DOWNLOAD_COMMAND: // 파일 다운로드 처리
                 download(request, response);
                 break;
 
+            case CommandType.SET_BOOKMARK: // 북마크설정
+                bookmarkMessage(request);
+                response.sendRedirect("main_menu.jsp");
+                break;
+
+            case CommandType.CANCLE_BOOKMARK: // 북마크취소
+                cancelBookmarking(request);
+                response.sendRedirect("bookmarked_mail.jsp");
+                break;
+
             default:
                 try (PrintWriter out = response.getWriter()) {
-                    out.println("없는 메뉴를 선택하셨습니다. 어떻게 이 곳에 들어오셨나요?");
-                }
-                break;
+                out.println("없는 메뉴를 선택하셨습니다. 어떻게 이 곳에 들어오셨나요?");
+            }
+            break;
 
         }
     }
@@ -81,11 +93,10 @@ public class ReadMailHandler extends HttpServlet {
             //String fileName = URLDecoder.decode(request.getParameter("filename"), "utf-8");
 
             // download할 파일 읽기
-
             // 윈도우즈 환경 사용시
             String downloadDir = "C:/temp/download/";
             if (System.getProperty("os.name").equals("Linux")) {
-                downloadDir = request.getServletContext().getRealPath("/WEB-INF") 
+                downloadDir = request.getServletContext().getRealPath("/WEB-INF")
                         + File.separator + "download";
                 File f = new File(downloadDir);
                 if (!f.exists()) {
@@ -127,18 +138,15 @@ public class ReadMailHandler extends HttpServlet {
     }
 
     //-----
-
     //딜리트 플래그 잇는ㄱ애를 기봄메시지 테이블에서 빼야하는데 안빼줘서 모든게 다뜬다
     //무브 빈에서는 그냥 플래그만 주면됨. 무브빈 역할이 끝나고 테이블을 다시 불러오면 딜리트 플래그ㄹ가 있는 애들이 안뜰테니 삭제할 필요는 없음
     // 무브 빈에서 스트링 배열에 저장하는것은 해주ㅓ야함 저장되는 형태가
     //메시지 자체여야함. 디비를 연결하든 배열을 연결하든 연결연결을 해야됨
-    
     // 휴지통테이블 불러오는 데서는  스트링 배열을 가져와서 테이블로 뿌려주면됨 
     //----------------------------------------
-    
-      // 메일을 휴지통으로 보내기
-        private boolean moveMsgBin(HttpServletRequest request) {
-            
+    // 메일을 휴지통으로 보내기
+    private boolean moveMsgBin(HttpServletRequest request) {
+
         int msgid = Integer.parseInt((String) request.getParameter("msgid"));
 
         HttpSession httpSession = request.getSession();
@@ -151,10 +159,39 @@ public class ReadMailHandler extends HttpServlet {
         return status;
     }
     //----------
-    
+
+    /*TODO : bookmark 메시지 설정 */
+    private boolean bookmarkMessage(HttpServletRequest request) {
+        int msgid = Integer.parseInt((String) request.getParameter("msgid"));
+
+        HttpSession httpSession = request.getSession();
+        String host = (String) httpSession.getAttribute("host");
+        String userid = (String) httpSession.getAttribute("userid");
+        String password = (String) httpSession.getAttribute("password");
+
+        Pop3Agent pop3 = new Pop3Agent(host, userid, password);
+        boolean status = pop3.bookmarkMessage(msgid);
+        return status;
+    }
+
+    /*TODO : bookmark 메시지 설정 */
+    private boolean cancelBookmarking(HttpServletRequest request) {
+        int msgid = Integer.parseInt((String) request.getParameter("msgid"));
+
+        HttpSession httpSession = request.getSession();
+        String host = (String) httpSession.getAttribute("host");
+        String userid = (String) httpSession.getAttribute("userid");
+        String password = (String) httpSession.getAttribute("password");
+
+        Pop3Agent pop3 = new Pop3Agent(host, userid, password);
+        boolean status = pop3.cancelBookmarking(msgid);
+        return status;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -166,8 +203,9 @@ public class ReadMailHandler extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -179,8 +217,9 @@ public class ReadMailHandler extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override
