@@ -39,11 +39,12 @@
                 <input type="submit" value="로그인" name="B1">&nbsp;&nbsp;&nbsp;
                 <input type="reset" value="다시 입력" name="B2">
                 &nbsp;&nbsp;
-                <form action="join.jsp" method="POST">
-                    <input type="submit" value="회원가입" name="B3">
-                </form>
-            </form>                
-
+            </form> 
+        </div>
+        <div align="center">
+            <form action="join.jsp" method="POST">
+                <input type="submit" value="회원가입" name="B3">
+            </form>
         </div>
 
 

@@ -27,25 +27,35 @@
             <form name="AddUser" action="UserAdmin.do?menu=<%= CommandType.ADD_USER_COMMAND%>"
                   method="POST">
                 <table border="0" align="left">
-                    <tr>
-                        <td>사용자 ID</td>
-                        <td> <input type="text" name="id" value="" size="20" />  </td>
-                    </tr>
-                    <tr>
-                        <td>암호 </td>
-                        <td> <input type="password" name="password" value="" /> </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="등록" name="register" />
-                            <input type="reset" value="초기화" name="reset" />
-                        </td>
-                    </tr>
-                </table>
-
+                <tr>
+                    <td>사용자 ID</td>
+                    <td> <input type="text" name="id" maxlength="20"/>  </td>
+                </tr>
+                <tr>
+                    <td>암호</td>
+                    <td> <input type="password" name="password" maxlength="20"/> </td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td> <input type="text" name="username"/> </td>
+                </tr>
+                <tr>
+                    <td>생일</td>
+                    <td> <input type="text" name="birth" maxlength="8"/> </td>
+                </tr>
+                <tr>
+                    <td>전화번호</td>
+                    <td> <input type="text" name="phone" maxlength="16"/> </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="나가기" onClick="location.href = '<%= getServletContext().getInitParameter("HomeDirectory")%>'"/>
+                    </td>
+                </tr>
+            </table>
             </form>
         </div>
-
         <jsp:include page="footer.jsp" />
     </body>
 </html>

@@ -59,7 +59,7 @@ td#subject {
 
 #login_form {
     text-align: center;
-    margin: 100px 10px 100px 10px;
+    margin: 100px 10px 0px 10px;
 }
 
 #login_fail {

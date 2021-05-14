@@ -72,6 +72,7 @@ public class JoinHandler extends HttpServlet {
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
             String phone = request.getParameter("phone");
+            out.println("회원 정보" + "<br>");
             out.println("userid = " + userid + "<br>");
             out.println("password = " + password + "<br>");
             out.println("password_check = " + password_check + "<br>");

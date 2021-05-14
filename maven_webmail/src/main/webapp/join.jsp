@@ -17,40 +17,52 @@
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
     <body>
-        <%@include file="header.jspf"%>
-        <form  action="join_handler.do?menu=<%= CommandType.JOIN%>" method="POST"> 
-            <p>
-                <label for="id">ID: </label> 
-                <input id="id" type="text" name="id" maxlength="20">
-                <font color="red">  * 5글자 이상</font>
-            </p>
-            <p>
-                <label for="password">비밀번호: </label> 
-                <input id="password" type="text" name="password" maxlength="20">
-                <font color="red">  * 6글자 이상</font>
-            </p> 
-            <p>
-                <label for="password_check">비밀번호 확인: </label> 
-                <input id="password_check" type="text" name="password_check" maxlength="20">
-            </p>
-            <p>
-                <label for="username">이름: </label> 
-                <input id="username" type="text" name="username">
-            </p>
-            <p>
-                <label for="birth">생일: </label>
-                <input id="birth" type="text" name="birth" maxlength="8">
-                <font color="red">  * 예) 900203</font>
-            </p>
-            <p>
-                <label for="phone">전화번호: </label>
-                <input id="phone" type="text" name="phone" maxlength="16">
-            </p>
-            <p>
-                <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
-                <input type="button" value="나가기" onClick="location.href='<%= getServletContext().getInitParameter("HomeDirectory") %>'"/>
-            </p>
-        </form>
+        <%@include file="header.jspf"%> <br>
+        <div class="join_form">
+            <div id="join">
+                <form  action="join_handler.do?menu=<%= CommandType.JOIN%>" method="POST"> 
+                    <table border="0" align="left">
+                        <tr>
+                            <td>ID</td>
+                            <td> <input type="text" name="id" maxlength="20"/>  </td>
+                        </tr>
+                        <tr>
+                            <td>암호</td>
+                            <td> <input type="password" name="password" maxlength="20"/> </td>
+                        </tr>
+                        <tr>
+                            <td>암호 확인</td>
+                            <td> <input type="password" name="password_check" maxlength="20"/> </td>
+                        </tr>
+                        <tr>
+                            <td>이름</td>
+                            <td> <input type="text" name="username"/> </td>
+                        </tr>
+                        <tr>
+                            <td>생일</td>
+                            <td> <input type="text" name="birth" maxlength="8"/> </td>
+                        </tr>
+                        <tr>
+                            <td>전화번호</td>
+                            <td> <input type="text" name="phone" maxlength="16"/> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
+                                <input type="button" value="나가기" onClick="location.href = '<%= getServletContext().getInitParameter("HomeDirectory")%>'"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div id="constraint_text">
+                <font color="red">* 다음의 형식으로 입력하세요.</font> <br>
+                &nbsp;&nbsp;ID: 5자 이상 <br>
+                &nbsp;&nbsp;암호: 6자 이상 <br>
+                &nbsp;&nbsp;생일: 예)900202 <br>
+                &nbsp;&nbsp;전화번호: 010-xxxx-xxxx <br> <br>
+            </div>
+        </div>
 
         <%@include file="footer_kwang.jspf"%>
     </body>

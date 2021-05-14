@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.UserAdminAgent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -75,6 +78,7 @@ public class UserAdminHandler extends HttpServlet {
             // if (addUser successful)  사용자 등록 성공 팦업창
             // else 사용자 등록 실패 팝업창
             if (agent.addUser(userid, password)) {
+                addDBUser(request, response, out); //DB추가함수
                 out.println(getUserRegistrationSuccessPopUp());
             } else {
                 out.println(getUserRegistrationFailurePopUp());
@@ -83,6 +87,49 @@ public class UserAdminHandler extends HttpServlet {
         } catch (Exception ex) {
             out.println("시스템 접속에 실패했습니다.");
         }
+    }
+
+    private void addDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+        //db 변수
+        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
+        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
+        final String User = "jdbctester";
+        final String Password = "43319521";
+
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            //1. JDBC 드라이버 객체
+            Class.forName(JdbcDriver);
+
+            //2. DB 연결
+            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+
+            //3. PreparedStatement 생성
+            String sql = "INSERT INTO webmail_system.userinfo values(?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            //4. SQL문 완성
+            request.setCharacterEncoding("UTF-8"); // 한글 인식
+            String id = request.getParameter("id"); // 주키
+            if (!(id == null) && !id.equals("")) {
+                String username = request.getParameter("username");
+                String birth = request.getParameter("birth");
+                String phone = request.getParameter("phone");
+                pstmt.setString(1, id);
+                pstmt.setString(2, username);
+                pstmt.setString(3, birth);
+                pstmt.setString(4, phone);
+                //5. 실행
+                pstmt.executeUpdate();
+
+            }
+            //6. 자원해제
+            pstmt.close();
+            conn.close();
+        } catch (Exception ex) {
+            out.println("오류 : " + ex.getMessage());
+        }
+
     }
 
     private String getUserRegistrationSuccessPopUp() {
