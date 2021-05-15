@@ -33,6 +33,9 @@ public class CommandType {
     public static final int SET_BOOKMARK = 801;
     public static final int CANCLE_BOOKMARK = 800;
 
+    public static final int DELETE_SPAM_WORD_COMMAND = 901;
+    public static final int DELETE_SPAM_EMAIL_COMMAND = 902;
+
     public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
     public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
     public static final String User = "jdbctester";

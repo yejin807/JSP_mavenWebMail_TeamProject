@@ -8,6 +8,7 @@ package cse.maven_webmail.model;
 import java.util.Properties;
 import javax.mail.FetchProfile;
 import javax.mail.Flags;
+
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -232,9 +233,10 @@ public class Pop3Agent {
             Folder folder = store.getFolder("INBOX");
             folder.open(Folder.READ_WRITE);
 
-            // Message에 DELETED flag 설정
+            // Message에 bookmark flag 설정
             Message msg = folder.getMessage(msgid);
             msg.setFlag(Flags.Flag.USER, true);
+            
 
             // 폴더에서 메시지 삭제
             // Message [] expungedMessage = folder.expunge();
@@ -267,7 +269,7 @@ public class Pop3Agent {
 
             // Message에 DELETED flag 설정
             Message msg = folder.getMessage(msgid);
-            msg.setFlag(Flags.Flag.FLAGGED, false);
+            msg.setFlag(Flags.Flag.USER, false);
 
             // 폴더에서 메시지 삭제
             // Message [] expungedMessage = folder.expunge();

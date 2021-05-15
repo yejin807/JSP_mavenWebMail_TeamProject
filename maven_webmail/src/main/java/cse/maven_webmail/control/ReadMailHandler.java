@@ -59,8 +59,11 @@ public class ReadMailHandler extends HttpServlet {
                 break;
 
             case CommandType.SET_BOOKMARK: // 북마크설정
+                try (PrintWriter out = response.getWriter()) {
                 bookmarkMessage(request);
+                out.println("<script>alert('북마크 설정이 되었습니다.');</script>");
                 response.sendRedirect("main_menu.jsp");
+                }
                 break;
 
             case CommandType.CANCLE_BOOKMARK: // 북마크취소

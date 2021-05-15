@@ -31,9 +31,6 @@
 
 <br><br><br>
 
-<div id="spam_word">gggg</div>
-<div id="spam_email">eeeee</div>
-
 <div id="spam_word">
 
     <sql:query var="rs" dataSource="${dataSrc}">
@@ -45,12 +42,15 @@
         <thead>
             <tr>
                 <th>스팸으로 등록된 단어</th>
+                <th>삭제</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="row" items="${rs.rows}">
                 <tr>
                     <td>${row.word}</td>
+                    <%-- commandtype 로 하지않고 true/ false로 넣어주기. &word=${rs.rows}로 값도 넘겨줘야함--%>
+                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_WORD_COMMAND%>&spamword="${rs.rows}">삭제</a></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -68,12 +68,14 @@
         <thead>
             <tr>
                 <th>스팸으로 등록된 이메일</th>
+                <th>삭제</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="row" items="${rs.rows}">
                 <tr>
                     <td>${row.word}</td>
+                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_EMAIL_COMMAND%>&spamword="${rs.rows}">삭제</a></td>
                 </tr>
             </c:forEach>
         </tbody>

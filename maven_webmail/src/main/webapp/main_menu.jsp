@@ -23,11 +23,11 @@
 
     <body>
         <jsp:include page="header.jsp" />
-        
+
         <div id="sidebar">
             <jsp:include page="sidebar_menu.jsp" />
         </div>
-
+        
         <div id="main">
             <%= pop3.getMessageList()%>
         </div>

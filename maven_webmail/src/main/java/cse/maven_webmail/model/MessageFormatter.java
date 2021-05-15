@@ -24,7 +24,7 @@ public class MessageFormatter {
     public MessageFormatter(String userid) {
         this.userid = userid;
     }
-    
+
 // 메인화면 테이블 -------------------------
     public String getMessageTable(Message[] messages) {
         StringBuilder buffer = new StringBuilder();
@@ -37,7 +37,7 @@ public class MessageFormatter {
                 + " <th> 제목 </td>     "
                 + " <th> 보낸 날짜 </td>   "
                 + " <th> 삭제 </td>   "
-                                + " <th> 즐겨찾기</td>   "
+                + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
         for (int i = messages.length - 1; i >= 0; i--) {
@@ -67,12 +67,11 @@ public class MessageFormatter {
         return buffer.toString();
 //        return "MessageFormatter 테이블 결과";
     }
-    
-    
+
     //-------------------------
     // trash_can.jsp 파일로 delete 플래그가
     //꽂힌 메일만을 보여주어야하는 테이블. 여기서 완전삭제 가능!
-     public String get_TMessageTable(Message[] messages) {
+    public String get_TMessageTable(Message[] messages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -109,6 +108,7 @@ public class MessageFormatter {
 //        return "MessageFormatter 테이블 결과";
     }
 //--------------------------
+
     public String getMessage(Message message) {
         StringBuilder buffer = new StringBuilder();
 
@@ -135,7 +135,7 @@ public class MessageFormatter {
 
         return buffer.toString();
     }
-    
+
     /*
     * 즐겨찾기
      */
@@ -157,7 +157,7 @@ public class MessageFormatter {
 
             try {
                 //북마크 된 message만 가져옴
-                if (!(messages[i].getFlags().contains(Flags.Flag.FLAGGED))) {
+                if (!(messages[i].getFlags().contains(Flags.Flag.USER))) {
 
                     System.out.println(" success get bookmarked messages ");
                     MessageParser parser = new MessageParser(messages[i], userid);
@@ -180,13 +180,13 @@ public class MessageFormatter {
                             + CommandType.CANCLE_BOOKMARK //-----------//
                             + "&msgid=" + (i + 1) + "> 취소 </a>" + "</td>"
                             + " </tr>");
-                    buffer.append(i + " : " + messages[i].getFlags().contains(Flags.Flag.FLAGGED) + "<br>");
+                    buffer.append(i + " : " + messages[i].getFlags().contains(Flags.Flag.USER) + "<br>");
                 } else {
-                    System.out.println(" failed get bookmarked messages ");
+                    //로깅처리
                 }
 
             } catch (MessagingException ex) {
-                Logger.getLogger(MessageFormatter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
                 buffer.append("<br><h1>" + ex + "</h1><br>");
             }
             System.out.println(i + " : trying to get messages ");
@@ -196,7 +196,7 @@ public class MessageFormatter {
         return buffer.toString();
 //        return "MessageFormatter 테이블 결과";
     }
-    
+
     public void setRequest(HttpServletRequest request) {
         this.request = request;
     }

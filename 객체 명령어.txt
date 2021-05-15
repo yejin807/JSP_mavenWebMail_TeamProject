@@ -21,3 +21,20 @@ CREATE TABLE `spam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES ('test2', 'eee', '0');
+
+---------------------
+Tomcat Server.xml 수정했음
+
+spam.tag에서 다음 코드 오류남
+                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_COMMAND%>&spamword="${rs.rows}">삭제</a></td>
+이유 : ${rs.rows}에서 
+java.lang.IllegalArgumentException: 요청 타겟에서 유효하지 않은 문자가 발견되었습니다. 유효한 문자들은 RFC 7230과 RFC 3986에 정의되어 있습니다.
+오류남. 톰캣에서 사용할수없는 문자열이있기때문.
+Tomcat폴더 중 server.xml에 추가 relaxedQueryChars="${}[]()^|&quot;" 
+
+결과:
+
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" 
+               relaxedQueryChars="${}[]()^|&quot;" />

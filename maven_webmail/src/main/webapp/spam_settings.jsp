@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="cse.maven_webmail.control.CommandType"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="spamtag"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -31,12 +32,8 @@
             </form>
         </div>
         
-        <%= session.getAttribute("userid") %> 입니다.
-        
-        
-        
         <c:catch var="error">
-            <spamtag:spam user="jdbctester" password="1895" schema="webmail" table="spam" email="${sessionScope.userid}"/>
+                <spamtag:spam user="<%=CommandType.User%>" password="<%=CommandType.Password%>" schema="webmail" table="spam" email="${sessionScope.userid}"/>
         </c:catch>
         ${empty error? "<noerror/>":error}
 
