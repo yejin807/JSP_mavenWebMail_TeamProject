@@ -92,7 +92,7 @@
                     </tr>
                     <tr>
                         <td>첨부 파일</td>
-                        <td> <input type="file" name="file1"  size="80">  </td>
+                        <td> <input type="file" name="file1"  multiple size="80" > 
                     </tr>
                     <tr>
                         <td colspan="2">
