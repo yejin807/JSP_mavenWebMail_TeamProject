@@ -49,130 +49,101 @@ public class SpamDatabaseHandler extends HttpServlet {
 
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
+        //word가 아니라 command 추가로 바꿔야할듯.
+        String word = request.getParameter("word");
+        String spamword = request.getParameter("spamword");
+        String isEmail = request.getParameter("isEmail");
+        String sql = "null이에요.";
 
-        String sql = null;
+        PrintWriter out = response.getWriter();
 
-        try ( PrintWriter out = response.getWriter()) {
-
+        try {
+            //infoHTML(out, select);
+            //
+            if (!(word == null) && !(word.equals(""))) {
+                insertSpamCommand(userid, word, isEmail);
+                response.sendRedirect("spam_settings.jsp");
+            }
             //스팸단어 삭제 기능
             if ((request.getParameter("command") != null) && (request.getParameter("spamword") != null)) {
-                try {
-                    //int select = Integer.parseInt((String) request.getParameter("delete"));
-                    int select = Integer.parseInt((String) request.getParameter("command"));
-                    switch (select) {
-                        case CommandType.DELETE_SPAM_WORD_COMMAND:
-                            //sql = "delete from webmail.spam where email=\"a\" and word=\"ee\" and is_email=0;";
-                            sql = "delete from webmail.spam where email=" + userid + "and word=" + (String) request.getParameter("spamword") + "and is_email=0;";
-                            deleteSpamCommand(out, sql);
+                //int select = Integer.parseInt((String) request.getParameter("delete"));
+                int select = Integer.parseInt((String) request.getParameter("command"));
+                switch (select) {
+                    case CommandType.DELETE_SPAM_WORD_COMMAND:
+                        deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_FALSE);
+                        //response.sendRedirect("spam_settings.jsp");
+                        break;
+                    case CommandType.DELETE_SPAM_EMAIL_COMMAND:
+                        deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_TRUE);
+                        //response.sendRedirect("spam_settings.jsp");
+                        break;
 
-                            break;
-                        case CommandType.DELETE_SPAM_EMAIL_COMMAND:
-                            sql = "delete from webmail.spam where email=\"a\" and word=\"ee\" and is_email=1;";
-                            //deleteSpamCommand(out, sql);
-                            break;
-                    }
-                    response.sendRedirect("spam_settings.jsp");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(SpamDatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(SpamDatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            /*
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SpamDatabaseHandler</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SpamDatabaseHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-
-            out.println((String) session.getAttribute("userid"));
-
-            //DB 객체 생성
-            Class.forName(JdbcDriver);
-            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
-
-            //stmt
-            sql = "INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES (?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-
-            //sql문 완성
-            request.setCharacterEncoding("UTF-8");
-            String word = request.getParameter("word");
-            String isEmail = request.getParameter("isEmail");
-
-            if (!(word == null) && !(word.equals(""))) {
-
-                out.println("null아닙니니당.");
-                if (isEmail == null) { //스팸 단어를 추가하는 것이면
-                    pstmt.setString(1, userid);
-                    pstmt.setString(2, word);
-                    pstmt.setInt(3, 0);
-
-                    out.println("<br>");
-                    out.println("userid : " + userid + "입니다.");
-                    out.println("<br>");
-                    out.println("word : " + word + "입니다.");
-                    out.println("<br>");
-                    out.println("int : 0 입니다.");
-                    out.println("<br>");
-
-                } else {//스팸 이메일을 추가하는 것이면
-                    pstmt.setString(1, userid);
-                    pstmt.setString(2, word);
-                    pstmt.setInt(3, 1);
-
-                    out.println("<br>");
-                    out.println("userid : " + userid + "입니다.");
-                    out.println("<br>");
-                    out.println("word : " + word + "입니다.");
-                    out.println("<br>");
-                    out.println("int : 1 입니다.");
-                    out.println("<br>");
-                }
-                pstmt.executeUpdate();
-                out.println("insert완료..?.");
-
-                response.sendRedirect("spam_settings.jsp");
-            } else {
-                out.println("null입니당.");
-                response.sendRedirect("spam_settings.jsp");
-            }
-
-            out.println("<br>코드완료");
-            //out.println(request.getParameter("word"));
-            //out.println(request.getParameter("isEmail"));
-
-            pstmt.close();
-            conn.close();
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SpamDatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(SpamDatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-
+                request.setAttribute("command", null);
+            } //end 스팸단어 조건 
+            response.sendRedirect("spam_settings.jsp");
+        } catch (Exception ex) {// end try
+            out.println("exception : " + ex);
         }
-             */
+    }
 
-        }
+    private void infoHTML(PrintWriter out, String str) {
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Servlet SpamDatabaseHandler</title>");
+        out.println("</head>");
+
+        out.println("<body>");
+        out.println("00");
+        out.println(".." + str + ",,");
+        out.println("00");
+        out.println("<p> <a href=\"spam_settings.jsp\"> 원상복구 </a> </p>");
+        out.println("</body>");
+
+        out.println("</html>");
 
     }
 
-    private void deleteSpamCommand(PrintWriter out, String sql) throws ClassNotFoundException, SQLException {
+    private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
+        Class.forName(JdbcDriver);
+        Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+
+        String sql = "INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES (?,?,?)";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        if (isEmail == null) { //스팸 단어를 추가하는 것이면
+            pstmt.setString(1, userid);
+            pstmt.setString(2, word);
+            pstmt.setInt(3, 0);
+        } else {
+            pstmt.setString(1, userid);
+            pstmt.setString(2, word);
+            pstmt.setInt(3, 1);
+        }
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        conn.close();
+        //sql문 완성
+    }
+
+    private void deleteSpamCommand(String email, String word, int isEmail) throws ClassNotFoundException, SQLException {
         // 참고 : https://doublesprogramming.tistory.com/60
         Class.forName(JdbcDriver);
         Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
-        
+        /*        infoHTML(out, email);
+        infoHTML(out, word);
+        infoHTML(out, Integer.toString(isEmail)); */
+
+        String sql = "DELETE FROM `webmail`.`spam` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        
+        pstmt.setString(1, email);
+        pstmt.setString(2, word);
+        pstmt.setInt(3, isEmail);
+
         pstmt.executeUpdate();
         pstmt.close();
         conn.close();
-
         //sql문 완성
     }
 

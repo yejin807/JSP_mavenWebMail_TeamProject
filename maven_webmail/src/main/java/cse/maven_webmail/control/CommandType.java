@@ -35,6 +35,9 @@ public class CommandType {
 
     public static final int DELETE_SPAM_WORD_COMMAND = 901;
     public static final int DELETE_SPAM_EMAIL_COMMAND = 902;
+    
+    public static final int IS_EMAIL_TRUE = 1;
+    public static final int IS_EMAIL_FALSE = 0;
 
     public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
     public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";

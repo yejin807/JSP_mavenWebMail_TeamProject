@@ -50,7 +50,7 @@
                 <tr>
                     <td>${row.word}</td>
                     <%-- commandtype 로 하지않고 true/ false로 넣어주기. &word=${rs.rows}로 값도 넘겨줘야함--%>
-                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_WORD_COMMAND%>&spamword="${rs.rows}">삭제</a></td>
+                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_WORD_COMMAND%>&spamword=${row.word}>삭제</a></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -75,7 +75,7 @@
             <c:forEach var="row" items="${rs.rows}">
                 <tr>
                     <td>${row.word}</td>
-                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_EMAIL_COMMAND%>&spamword="${rs.rows}">삭제</a></td>
+                    <td id="delete_spam_word"><a href=spam_database.do?command=<%=CommandType.DELETE_SPAM_EMAIL_COMMAND%>&spamword=${row.word}>삭제</a></td>
                 </tr>
             </c:forEach>
         </tbody>
