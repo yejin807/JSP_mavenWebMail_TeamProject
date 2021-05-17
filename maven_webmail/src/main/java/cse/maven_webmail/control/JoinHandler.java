@@ -158,21 +158,59 @@ public class JoinHandler extends HttpServlet {
         try {
             UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
             if (checkPassword(request, response, out)) {
-                if(agent.secessionUser(userid)){
+                if (agent.secessionUser(userid)) {
                     //탈퇴 완료 팝업
+                    delDBUser(request, response, out);
                     out.println(getSecessionPopUp());
                 } else {
                     //탈퇴 실패 팝업
                     out.println(getSecessionFailPopUp());
                 }
-            } else{
+            } else {
                 out.println(getSecessionFailPopUp());
             }
         } catch (Exception ex) {
             System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
         }
     }
-    
+
+    private void delDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+        //db 변수
+        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
+        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
+        final String User = "jdbctester";
+        final String Password = "43319521";
+
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            //1. JDBC 드라이버 객체
+            Class.forName(JdbcDriver);
+
+            //2. DB 연결
+            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+
+            //3. PreparedStatement 생성
+            String sql = "DELETE FROM webmail_system.userinfo WHERE USER_ID=(?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            //4. SQL문 완성
+            request.setCharacterEncoding("UTF-8"); // 한글 인식
+            String userid = request.getParameter("userid"); // 주키
+            if (!(userid == null) && !userid.equals("")) {
+                pstmt.setString(1, userid);
+                //5. 실행
+                pstmt.executeUpdate();
+
+            }
+            //6. 자원해제
+            pstmt.close();
+            conn.close();
+        } catch (Exception ex) {
+            out.println("오류 : " + ex.getMessage());
+        }
+
+    }
+
     //탈퇴 전 비밀번호 체크
     private boolean checkPassword(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         String host = (String) request.getSession().getAttribute("host");
@@ -183,7 +221,7 @@ public class JoinHandler extends HttpServlet {
         // Check the login information is valid using <<model>>Pop3Agent.
         Pop3Agent pop3Agent = new Pop3Agent(host, userid, password);
         boolean status = pop3Agent.validate();
-        
+
         return status;
     }
 
@@ -291,7 +329,7 @@ public class JoinHandler extends HttpServlet {
         successPopUp.append("</body></html>");
         return successPopUp.toString();
     }
-    
+
     private String getSecessionPopUp() {
         String alertMessage = "회원탈퇴가 완료 됐습니다.";
         StringBuilder successPopUp = new StringBuilder();
@@ -312,7 +350,7 @@ public class JoinHandler extends HttpServlet {
         successPopUp.append("</body></html>");
         return successPopUp.toString();
     }
-    
+
     private String getSecessionFailPopUp() {
         String alertMessage = "비밀번호를 정확하게 입력해주세요.";
         StringBuilder successPopUp = new StringBuilder();
