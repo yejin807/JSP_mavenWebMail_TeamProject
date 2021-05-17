@@ -29,7 +29,7 @@
             <table border="0" align="left">
                 <tr>
                     <td>ID</td>
-                    <td> <%= session.getAttribute("userid")%>  </td>
+                    <td> <input type="text" name="userid" value="<%= session.getAttribute("userid")%>" readonly/>  </td>
                 </tr>
                 <tr>
                     <td>비밀번호</td>

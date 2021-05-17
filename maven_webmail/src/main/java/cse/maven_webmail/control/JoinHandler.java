@@ -5,12 +5,14 @@
  */
 package cse.maven_webmail.control;
 
+import cse.maven_webmail.model.Pop3Agent;
 import cse.maven_webmail.model.UserJoinAgent;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +48,7 @@ public class JoinHandler extends HttpServlet {
                     break;
 
                 case CommandType.SECESSION:
-//                        deleteUser(request, response, out);
+                    deleteUser(request, response, out);
                     break;
 
                 default:
@@ -67,7 +69,7 @@ public class JoinHandler extends HttpServlet {
         try {
             UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
             String userid = request.getParameter("id");  // for test
-            String password = request.getParameter("password");// for test
+            String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
@@ -146,6 +148,43 @@ public class JoinHandler extends HttpServlet {
             out.println("오류 : " + ex.getMessage());
         }
 
+    }
+
+    //회원탈퇴
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+        String server = "127.0.0.1";
+        int port = 4555;
+        String userid = request.getParameter("userid");  // for test
+        try {
+            UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
+            if (checkPassword(request, response, out)) {
+                if(agent.secessionUser(userid)){
+                    //탈퇴 완료 팝업
+                    out.println(getSecessionPopUp());
+                } else {
+                    //탈퇴 실패 팝업
+                    out.println(getSecessionFailPopUp());
+                }
+            } else{
+                out.println(getSecessionFailPopUp());
+            }
+        } catch (Exception ex) {
+            System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
+        }
+    }
+    
+    //탈퇴 전 비밀번호 체크
+    private boolean checkPassword(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+        String host = (String) request.getSession().getAttribute("host");
+        String userid = request.getParameter("userid");
+        String password = request.getParameter("password");
+        out.println(userid); //test
+        out.println(password);
+        // Check the login information is valid using <<model>>Pop3Agent.
+        Pop3Agent pop3Agent = new Pop3Agent(host, userid, password);
+        boolean status = pop3Agent.validate();
+        
+        return status;
     }
 
     private String getUserRegistrationSuccessPopUp() {
@@ -252,20 +291,50 @@ public class JoinHandler extends HttpServlet {
         successPopUp.append("</body></html>");
         return successPopUp.toString();
     }
-//    private void deleteUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-//        String server = "127.0.0.1";
-//        int port = 4555;
-//        try {
-//            UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
-//            String[] deleteUserList = request.getParameterValues("selectedUsers");
-//            agent.deleteUsers(deleteUserList);
-//            response.sendRedirect("admin_menu.jsp");
-//        } catch (Exception ex) {
-//            System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
-//        }
-//    }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    private String getSecessionPopUp() {
+        String alertMessage = "회원탈퇴가 완료 됐습니다.";
+        StringBuilder successPopUp = new StringBuilder();
+        successPopUp.append("<html>");
+        successPopUp.append("<head>");
 
+        successPopUp.append("<title>메일 전송 결과</title>");
+        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
+        successPopUp.append("</head>");
+        successPopUp.append("<body onload=\"goMainMenu()\">");
+        successPopUp.append("<script type=\"text/javascript\">");
+        successPopUp.append("function goMainMenu() {");
+        successPopUp.append("alert(\"");
+        successPopUp.append(alertMessage);
+        successPopUp.append("\"); ");
+        successPopUp.append("window.location = \"index.jsp\"; ");
+        successPopUp.append("}  </script>");
+        successPopUp.append("</body></html>");
+        return successPopUp.toString();
+    }
+    
+    private String getSecessionFailPopUp() {
+        String alertMessage = "비밀번호를 정확하게 입력해주세요.";
+        StringBuilder successPopUp = new StringBuilder();
+        successPopUp.append("<html>");
+        successPopUp.append("<head>");
+
+        successPopUp.append("<title>메일 전송 결과</title>");
+        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
+        successPopUp.append("</head>");
+        successPopUp.append("<body onload=\"goMainMenu()\">");
+        successPopUp.append("<script type=\"text/javascript\">");
+        successPopUp.append("function goMainMenu() {");
+        successPopUp.append("alert(\"");
+        successPopUp.append(alertMessage);
+        successPopUp.append("\"); ");
+        successPopUp.append("window.location = \"secession.jsp\"; ");
+        successPopUp.append("}  </script>");
+        successPopUp.append("</body></html>");
+        return successPopUp.toString();
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -20,6 +20,7 @@ import java.util.Properties;
  * @author kwangmin
  */
 public class UserJoinAgent {
+
     private String server;
     private int port;
     Socket socket = null;
@@ -141,41 +142,41 @@ public class UserJoinAgent {
 //        return userList;
 //    } // parseUserList()
 //
-//    public boolean deleteUsers(String[] userList) {
-//        byte[] messageBuffer = new byte[1024];
-//        String command;
-//        String recvMessage;
-//        boolean status = false;
-//
-//        if (!isConnected) {
-//            return status;
-//        }
-//
-//        try {
-//            for (String userId : userList) {
-//                // 1: "deluser" 명령 송신
-//                command = "deluser " + userId + EOL;
-//                os.write(command.getBytes());
-//                System.out.println(command);
-//
-//                // 2: 응답 메시지 수신
-//                java.util.Arrays.fill(messageBuffer, (byte) 0);
-//                is.read(messageBuffer);
-//
-//                // 3: 응답 메시지 분석
-//                recvMessage = new String(messageBuffer);
-//                System.out.println(recvMessage);
-//                if (recvMessage.contains("deleted")) {
-//                    status = true;
-//                }
-//            }
-//            quit();
-//        } catch (Exception ex) {
-//            System.err.println(ex);
-//        } finally {
-//            return status;
-//        }
-//    }  // deleteUsers()
+    public boolean secessionUser(String userId) {
+        byte[] messageBuffer = new byte[1024];
+        String command;
+        String recvMessage;
+        boolean status = false;
+
+        if (!isConnected) {
+            return status;
+        }
+
+        try {
+            // 1: "deluser" 명령 송신
+            command = "deluser " + userId + EOL;
+            os.write(command.getBytes());
+            System.out.println(command);
+
+            // 2: 응답 메시지 수신
+            java.util.Arrays.fill(messageBuffer, (byte) 0);
+            is.read(messageBuffer);
+
+            // 3: 응답 메시지 분석
+            recvMessage = new String(messageBuffer);
+            System.out.println(recvMessage);
+            if (recvMessage.contains("deleted")) {
+                status = true;
+            }
+            quit();
+            System.out.flush();  // for test
+            socket.close();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } finally {
+            return status;
+        }
+    }  // deleteUsers()
 //
 //    public boolean verify(String userid) {
 //        boolean status = false;
@@ -243,7 +244,7 @@ public class UserJoinAgent {
         }
         return returnVal;
     }  // connect()
-    
+
     public boolean quit() {
         byte[] messageBuffer = new byte[1024];
         boolean status = false;
