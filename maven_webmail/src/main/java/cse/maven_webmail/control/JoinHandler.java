@@ -38,7 +38,6 @@ public class JoinHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             request.setCharacterEncoding("UTF-8");
             int select = Integer.parseInt((String) request.getParameter("menu"));
 
@@ -68,7 +67,7 @@ public class JoinHandler extends HttpServlet {
 
         try {
             UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
-            String userid = request.getParameter("id");  // for test
+            String userid = request.getParameter("userid");  // for test
             String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
             String username = request.getParameter("username");
@@ -86,15 +85,14 @@ public class JoinHandler extends HttpServlet {
             // else 사용자 등록 실패 팝업창
             if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && password_check != null
                     && username != null && username.length() > 2 && birth != null && phone != null && phone.length() > 12) {
-                //db에 한글, 영문 저장이 몇 글자?? 혹은 그 차이 알기 db 연결하고 확인하기
                 if (agent.joinUser(userid, password)) {
                     addDBUser(request, response, out); //DB추가함수
                     out.println(getUserRegistrationSuccessPopUp());
                 } else {
                     out.println(getUserRegistrationFailurePopUp());
                 }
-            } else if (userid.equals(" ") || password.equals(" ") || password_check.equals(" ") || username.equals(" ")
-                    || birth.equals(" ") || phone.equals(" ")) {
+            } else if (userid.equals("") || password.equals("") || password_check.equals("")
+                    || username.equals("") || birth.equals("") || phone.equals("")) {
                 out.println(getEmptyFailurePopUp());
             } else if (!password.equals(password_check)) {
                 out.println(getDifferentFailurePopUp());
@@ -107,6 +105,7 @@ public class JoinHandler extends HttpServlet {
         }
     }
 
+    //DB추가
     private void addDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         //db 변수
         final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
@@ -128,12 +127,12 @@ public class JoinHandler extends HttpServlet {
 
             //4. SQL문 완성
             request.setCharacterEncoding("UTF-8"); // 한글 인식
-            String id = request.getParameter("id"); // 주키
-            if (!(id == null) && !id.equals("")) {
+            String userid = request.getParameter("userid"); // 주키
+            if (!(userid == null) && !userid.equals("")) {
                 String username = request.getParameter("username");
                 String birth = request.getParameter("birth");
                 String phone = request.getParameter("phone");
-                pstmt.setString(1, id);
+                pstmt.setString(1, userid);
                 pstmt.setString(2, username);
                 pstmt.setString(3, birth);
                 pstmt.setString(4, phone);
@@ -174,6 +173,7 @@ public class JoinHandler extends HttpServlet {
         }
     }
 
+    //DB에서 삭제
     private void delDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         //db 변수
         final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
