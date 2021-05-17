@@ -89,59 +89,6 @@ public class UserJoinAgent {
         }
     }
 
-//    public List<String> getUserList() {
-//        List<String> userList = new LinkedList<String>();
-//        byte[] messageBuffer = new byte[1024];
-//
-//        if (!isConnected) {
-//            return userList;
-//        }
-//
-//        try {
-//            // 1: "listusers" 명령 송신
-//            String command = "listusers " + EOL;
-//            os.write(command.getBytes());
-//
-//            // 2: "listusers" 명령에 대한 응답 수신
-//            java.util.Arrays.fill(messageBuffer, (byte) 0);
-//            is.read(messageBuffer);
-//
-//            // 3: 응답 메시지 처리
-//            String recvMessage = new String(messageBuffer);
-//            System.out.println(recvMessage);
-//            userList = parseUserList(recvMessage);
-//
-//            quit();
-//        } catch (Exception ex) {
-//            System.err.println(ex);
-//        } finally {
-//            return userList;
-//        }
-//    }  // getUserList()
-//
-//    private List<String> parseUserList(String message) {
-//        List<String> userList = new LinkedList<String>();
-//
-//        // 1: 줄 단위로 나누기
-//        String[] lines = message.split(EOL);
-//        // 2: 첫 번째 줄에는 등록된 사용자 수에 대한 정보가 있음.
-//        //    예) Existing accounts 7
-//        String[] firstLine = lines[0].split(" ");
-//        int numberOfUsers = Integer.parseInt(firstLine[2]);
-//
-//        // 3: 두 번째 줄부터는 각 사용자 ID 정보를 보여줌.
-//        //    예) user: admin
-//        for (int i = 1; i <= numberOfUsers; i++) {
-//            // 3.1: 한 줄을 구분자 " "로 나눔.
-//            String[] userLine = lines[i].split(" ");
-//            // 3.2 사용자 ID가 관리자 ID와 일치하는 지 여부 확인
-//            if (!userLine[1].equals(ADMIN_ID)) {
-//                userList.add(userLine[1]);
-//            }
-//        }
-//        return userList;
-//    } // parseUserList()
-//
     public boolean secessionUser(String userId) {
         byte[] messageBuffer = new byte[1024];
         String command;
@@ -176,32 +123,7 @@ public class UserJoinAgent {
         } finally {
             return status;
         }
-    }  // deleteUsers()
-//
-//    public boolean verify(String userid) {
-//        boolean status = false;
-//        byte[] messageBuffer = new byte[1024];
-//
-//        try {
-//            // --> verify userid
-//            String verifyCommand = "verify " + userid;
-//            os.write(verifyCommand.getBytes());
-//
-//            // read the result for verify command
-//            // <-- User userid exists   or
-//            // <-- User userid does not exist
-//            is.read(messageBuffer);
-//            String recvMessage = new String(messageBuffer);
-//            if (recvMessage.contains("exists")) {
-//                status = true;
-//            }
-//
-//            quit();  // quit command
-//        } catch (IOException ex) {
-//        } finally {
-//            return status;
-//        }
-//    }
+    }
 
     private boolean connect() throws Exception {
         byte[] messageBuffer = new byte[1024];
@@ -243,7 +165,7 @@ public class UserJoinAgent {
             returnVal = false;
         }
         return returnVal;
-    }  // connect()
+    }
 
     public boolean quit() {
         byte[] messageBuffer = new byte[1024];

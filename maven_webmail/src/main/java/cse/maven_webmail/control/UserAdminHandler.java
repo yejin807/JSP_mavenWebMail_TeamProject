@@ -64,7 +64,8 @@ public class UserAdminHandler extends HttpServlet {
             System.err.println(ex.toString());
         }
     }
-
+    
+    //addUser
     private void addUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         String server = "127.0.0.1";
         int port = 4555;
@@ -88,7 +89,8 @@ public class UserAdminHandler extends HttpServlet {
             out.println("시스템 접속에 실패했습니다.");
         }
     }
-
+    
+    //add DB
     private void addDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         //db 변수
         final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
@@ -122,6 +124,60 @@ public class UserAdminHandler extends HttpServlet {
                 //5. 실행
                 pstmt.executeUpdate();
 
+            }
+            //6. 자원해제
+            pstmt.close();
+            conn.close();
+        } catch (Exception ex) {
+            out.println("오류 : " + ex.getMessage());
+        }
+
+    }
+    
+    //del User
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+        String server = "127.0.0.1";
+        int port = 4555;
+        try {
+            UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
+            String[] deleteUserList = request.getParameterValues("selectedUsers");
+            if (agent.deleteUsers(deleteUserList)) {
+                delDBUser(request, response, out, deleteUserList);
+            }
+            response.sendRedirect("admin_menu.jsp");
+        } catch (Exception ex) {
+            System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
+        }
+    }
+    
+    //del DB
+    private void delDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String[] userList) {
+        //db 변수
+        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
+        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
+        final String User = "jdbctester";
+        final String Password = "43319521";
+
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            //1. JDBC 드라이버 객체
+            Class.forName(JdbcDriver);
+
+            //2. DB 연결
+            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+
+            //3. PreparedStatement 생성
+            String sql = "DELETE FROM webmail_system.userinfo WHERE USER_ID=(?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            //4. SQL문 완성
+            for (String userid : userList) {
+                request.setCharacterEncoding("UTF-8"); // 한글 인식
+                if (!(userid == null) && !userid.equals("")) {
+                    pstmt.setString(1, userid);
+                    //5. 실행
+                    pstmt.executeUpdate();
+                }
             }
             //6. 자원해제
             pstmt.close();
@@ -172,19 +228,6 @@ public class UserAdminHandler extends HttpServlet {
         successPopUp.append("}  </script>");
         successPopUp.append("</body></html>");
         return successPopUp.toString();
-    }
-
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        String server = "127.0.0.1";
-        int port = 4555;
-        try {
-            UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
-            String[] deleteUserList = request.getParameterValues("selectedUsers");
-            agent.deleteUsers(deleteUserList);
-            response.sendRedirect("admin_menu.jsp");
-        } catch (Exception ex) {
-            System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
-        }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

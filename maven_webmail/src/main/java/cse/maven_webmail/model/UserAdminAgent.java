@@ -198,7 +198,7 @@ public class UserAdminAgent {
         } finally {
             return status;
         }
-    }  // deleteUsers()
+    }
 
     public boolean verify(String userid) {
         boolean status = false;
