@@ -6,8 +6,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cse.maven_webmail.control.CommandType" %>
 <%@page import="cse.maven_webmail.model.UserAdminAgent" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
 <%@page errorPage="ErrorPage.jsp"%>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 
 <script type="text/javascript">
@@ -30,7 +32,6 @@
         <jsp:include page="header.jsp" />
         <%
             String userid = (String) session.getAttribute("userid");
-
             if (userid.equals("admin")) {
         %>
         <div id="sidebar">
@@ -40,21 +41,13 @@
 
         <div id="main">
             <h2> 삭제할 사용자를 선택해 주세요. </h2> <br>
-
-            <!-- 아래 코드는 위와 같이 Java Beans와 JSTL을 이용하는 코드로 바꾸어져야 함 -->
-            <%
-                String cwd = this.getServletContext().getRealPath(".");
-                UserAdminAgent agent = new UserAdminAgent("localhost", 4555, cwd);
-            %>
             <form name="DeleteUser" action="UserAdmin.do?menu=<%=CommandType.DELETE_USER_COMMAND%>"
                   method="POST">
-                <%
-                    for (String userId : agent.getUserList()) {
-                        out.print("<input type=checkbox name=\"selectedUsers\" value=\"" + userId + "\" />");
-                        out.println(userId + " <br>");
-                    }
-                %>
-                <br>
+                <c:catch var="errorReason">
+                    <mytags:dellistusers user="jdbctester" password="43319521"
+                                      schema="webmail_system" table="userinfo" />
+                </c:catch>
+                ${empty errorReason ? "<noerror/>" : errorReason}<br>
                 <input type="submit" value="제거" name="delete_command" onClick ="return getConfirmResult()"/>
                 <input type="reset" value="선택 전부 취소" />
             </form>
