@@ -5,6 +5,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="cse.maven_webmail.control.CommandType" %>
+<%@page import="java.sql.*"%>
+<%@page import="javax.servlet.*"%>
 
 <%
     String ctx = request.getContextPath();    //콘텍스트명 얻어오기.
@@ -42,7 +44,7 @@
                       bUseModeChanger : false,
                       
                       fOnBeforeUnload : function(){
-                   
+                          
               }
                   },
                   fCreator: "createSEditor2"
@@ -53,9 +55,13 @@
                   oEditors.getById["cont"].exec("UPDATE_CONTENTS_FIELD", []);
                   $("#main").submit();
               });    
+              $("#save").click(function(){
+                  oEditors.getById["cont"].exec("UPDATE_CONTENTS_FIELD", []);
+                  $("#main").submit();
+              });    
         });
         </script>
-
+        
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
     <body>
@@ -63,47 +69,76 @@
 
         <div id="sidebar">
             <jsp:include page="sidebar_previous_menu.jsp" />
+            
         </div>
             
         <div id="main">
-            <form id="frm" enctype="multipart/form-data" method="POST"
+            <form id="frm" enctype="multipart/form-data" method="POST" name="frm"
                   action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" >
                 <table>
+                    <%
+                        String to = request.getParameter("to") == null ? "" : request.getParameter("to");
+                        String cc = request.getParameter("cc") == null ? "" : request.getParameter("cc");
+                        String subj = request.getParameter("subj") == null ? "" : request.getParameter("subj");
+                        String text = request.getParameter("text") == null ? "" : request.getParameter("text");
+                        String temp = request.getParameter("temp") == null ? "" : request.getParameter("temp");
+                    %>
                     <tr>
                         <td> 수신 </td>
-                        <td> <input type="text" name="to" size="80"
-                                    value=<%=request.getParameter("recv") == null ? "" : request.getParameter("recv")%>>  </td>
+                        <td> <input type="text" id="to" name="to" size="80"
+                                    value=<%=to%>>  </td>
                     </tr>
                     <tr>
                         <td>참조</td>
-                        <td> <input type="text" name="cc" size="80">  </td>
+                        <td> <input type="text" id="cc" name="cc" size="80" value="<%=cc%>">  </td>
                     </tr>
                     <tr>
                         <td> 메일 제목 </td>
-                        <td> <input type="text" name="subj" size="80"  >  </td>
+                        <td> <input type="text" id="subj" name="subj" size="80" value="<%=subj%>">  </td>
                     </tr>
                     <tr>
                         <td colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</td>
                     </tr>
                     <tr>  <%-- TextArea    --%>
                         <td colspan="2">
-                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; "></textarea>
+                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; "><%=text%></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>첨부 파일</td>
                         <td> <input type="file" name="file1"  multiple size="80" > 
                     </tr>
+                    <input type="text" name="temp" id="temp" value="temp" value="<%=temp%>" hidden>
                     <tr>
-                        <td colspan="2">
-                            <input type="submit" id="submit" value="메일 보내기">
+                        <td colspan="4">
+                            <input type="submit" id="submit" value="메일 보내기" onclick="sendSubmit()">
                             <input type="reset" value="다시 입력">
+                            <input type="submit" id="save" value="임시저장" onclick="saveSubmit();">
+                            <input type="submit" value="불러오기">
                         </td>
                     </tr>
                 </table>
             </form>
-        </div>
 
+            <script type="text/javascript">
+                function saveSubmit() {
+                    frm.action = "temp_mail_save.jsp";
+                    frm.encoding = "application/x-www-form-urlencoded";
+                    frm.submit(); 
+                    cnt++;
+                }
+            </script>
+                    
+            <script type="text/javascript">
+                function sendSubmit() {
+                    frm.action = "WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>";
+                    frm.encoding = "multipart/form-data";
+                    frm.submit(); 
+                    cnt=0;
+                }
+            </script>   
+        </div>
+                    
         <jsp:include page="footer.jsp" />
     </body>
 </html>
