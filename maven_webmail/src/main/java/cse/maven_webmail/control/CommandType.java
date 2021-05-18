@@ -4,6 +4,8 @@
  */
 package cse.maven_webmail.control;
 
+import javax.mail.Flags;
+
 public class CommandType {
 
     private CommandType() {
@@ -38,9 +40,12 @@ public class CommandType {
     
     public static final int IS_EMAIL_TRUE = 1;
     public static final int IS_EMAIL_FALSE = 0;
-
+    
+    //쓰렉이.................... 메소드안에서만 flag값이 살아있네.....
+    public static final Flags bookmarkFlag = new Flags("bookmarked");
+    
     public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
     public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
-    public static final String User = "jdbctester";
-    public static final String Password = "1895";
+    public static final String JdbcUser = "jdbctester";
+    public static final String JdbcPassword = "1895";
 }

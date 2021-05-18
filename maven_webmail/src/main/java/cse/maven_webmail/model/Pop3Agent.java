@@ -8,13 +8,16 @@ package cse.maven_webmail.model;
 import java.util.Properties;
 import javax.mail.FetchProfile;
 import javax.mail.Flags;
-
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.servlet.http.HttpServletRequest;
 
+import cse.maven_webmail.control.CommandType;
+
+//https://pythonq.com/so/java/824272 javaflag 사용
+//즐겨찾기 flag 설정안해줘도 false로 기본값이던데, MessageList에서 for문으로 flag없으면 false로 추가햇 ㅓ 넣어줘야하나?
 /**
  *
  * @author jongmin
@@ -137,6 +140,17 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.ENVELOPE);
             folder.fetch(messages, fp);
 
+            FetchProfile fpFlags = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.FLAGS);
+            folder.fetch(messages, fpFlags);
+
+            /*
+            //즐겨찾기 flag가 없는 경우, 즐겨찾기 flag추가.
+            for(Message msg : messages){
+                if( )
+            }
+             */
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             result = formatter.getMessageTable(messages);   // 3.6
 
@@ -217,110 +231,6 @@ public class Pop3Agent {
         }
     }
 
-    /*
-    * TODO : bookmark할 flag설정
-     */
-    public boolean bookmarkMessage(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            // Folder 설정
-//            Folder folder = store.getDefaultFolder();
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            // Message에 bookmark flag 설정
-            Message msg = folder.getMessage(msgid);
-            msg.setFlag(Flags.Flag.USER, true);
-            
-
-            // 폴더에서 메시지 삭제
-            // Message [] expungedMessage = folder.expunge();
-            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            System.out.println("bookmarkMessage() error: " + ex);
-        } finally {
-            return status;
-        }
-    }
-
-    /*
-    * TODO : bookmark할 flag설정
-     */
-    public boolean cancelBookmarking(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            // Folder 설정
-//            Folder folder = store.getDefaultFolder();
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            // Message에 DELETED flag 설정
-            Message msg = folder.getMessage(msgid);
-            msg.setFlag(Flags.Flag.USER, false);
-
-            // 폴더에서 메시지 삭제
-            // Message [] expungedMessage = folder.expunge();
-            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            System.out.println("cancelBookmarking() error: " + ex);
-        } finally {
-            return status;
-        }
-    }
-
-    /*
-    * TODO : bookmark된 메일 리스트 보여줘야함
-     */
-    public String getBookmarkMessageList() {
-        String result = "";
-        Message[] messages = null;
-
-        if (!connectToStore()) {  // 3.1
-            System.err.println("POP3 connection failed!");
-            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
-        }
-
-        try {
-            // 메일 폴더 열기
-            Folder folder = store.getFolder("INBOX");  // 3.2
-            folder.open(Folder.READ_ONLY);  // 3.3
-
-            // 현재 수신한 메시지 모두 가져오기
-            messages = folder.getMessages();      // 3.4
-            FetchProfile fp = new FetchProfile();
-            // From, To, Cc, Bcc, ReplyTo, Subject & Date
-            fp.add(FetchProfile.Item.ENVELOPE);
-            folder.fetch(messages, fp);
-
-            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            result = formatter.getBookmarkedMessageTable(messages);   // 3.6
-
-            folder.close(true);  // 3.7
-            store.close();       // 3.8
-        } catch (Exception ex) {
-            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
-            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
-        } finally {
-            return result;
-        }
-    }
-
     private boolean connectToStore() {
         boolean status = false;
         Properties props = System.getProperties();
@@ -372,5 +282,162 @@ public class Pop3Agent {
         this.request = request;
     }
 
+    public String getBookmarkMessageList() {
+        //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
+        String result = "";
+        Message[] messages = null;
+
+        if (!connectToStore()) {  // 3.1
+            System.err.println("POP3 connection failed!");
+            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
+        }
+
+        try {
+            // 메일 폴더 열기
+            Folder folder = store.getFolder("INBOX");  // 3.2
+            folder.open(Folder.READ_ONLY);  // 3.3
+
+            // 현재 수신한 메시지 모두 가져오기
+            messages = folder.getMessages();      // 3.4
+            FetchProfile fp = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.ENVELOPE);
+            folder.fetch(messages, fp);
+            
+            //즐겨찾기 message filter
+    //      for (Message msg : messages){
+          //  msg.get
+      //      }
+
+            //즐겨찾기 flag추가
+            //TODO : 스팸flag추가
+//            Flags bookmarkFlag = new Flags("bookmarked");
+//            folder.setFlags(messages, bookmarkFlag, false);
+            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            result = formatter.getBookmarkedMessageTable(messages);   // 3.6
+
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
+            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
+        } finally {
+            return result;
+        }
+    }
+    
+    
 }  // class Pop3Agent
 
+/*
+    public boolean bookmarkMessage(int msgid) {
+        boolean status = false;
+
+        if (!connectToStore()) {
+            return status;
+        }
+
+        try {
+            Folder folder = store.getFolder("INBOX");
+            
+            //folder.addMessageChangedListener(l);
+            folder.open(Folder.READ_ONLY);
+
+            // Message에 bookmarked flag 설정
+            Message msg = folder.getMessage(msgid);
+
+            msg.setFlags(CommandType.bookmarkFlag, true);
+            msg.saveChanges();
+
+            // Message [] expungedMessage = folder.expunge();
+            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
+            folder.close();  // expunge == true
+            store.close();
+            status = true;
+        } catch (Exception ex) {
+            //https://stackoverflow.com/questions/20194923/illegalwriteexception-when-trying-to-write-flags-in-javamail-imap
+            System.out.println("bookmarkMessage() error : " + ex);
+        } 
+        finally {
+            return status;
+        }
+    }
+
+    public boolean cancelBookmarking(int msgid) {
+        boolean status = false;
+
+        if (!connectToStore()) {
+            return status;
+        }
+
+        try {
+            // Folder 설정
+//            Folder folder = store.getDefaultFolder();
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            // Message에 DELETED flag 설정
+            Message msg = folder.getMessage(msgid);
+           // msg.setFlag(Flags.Flag.USER, false);
+
+            // 폴더에서 메시지 삭제
+            // Message [] expungedMessage = folder.expunge();
+            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
+            folder.close(true);  // expunge == true
+            store.close();
+            status = true;
+        } catch (Exception ex) {
+            System.out.println("cancelBookmarking() error: " + ex);
+        } finally {
+            return status;
+        }
+    }
+ */
+
+/*
+
+    public String getBookmarkMessageList() {
+        //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
+        String result = "";
+        Message[] messages = null;
+
+        if (!connectToStore()) {  // 3.1
+            System.err.println("POP3 connection failed!");
+            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
+        }
+
+        try {
+            // 메일 폴더 열기
+            Folder folder = store.getFolder("INBOX");  // 3.2
+            folder.open(Folder.READ_ONLY);  // 3.3
+
+            // 현재 수신한 메시지 모두 가져오기
+            messages = folder.getMessages();      // 3.4
+            FetchProfile fp = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.ENVELOPE);
+            folder.fetch(messages, fp);
+            
+            //즐겨찾기 message filter
+    //      for (Message msg : messages){
+          //  msg.get
+      //      }
+
+            //즐겨찾기 flag추가
+            //TODO : 스팸flag추가
+//            Flags bookmarkFlag = new Flags("bookmarked");
+//            folder.setFlags(messages, bookmarkFlag, false);
+            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            result = formatter.getBookmarkedMessageTable(messages);   // 3.6
+
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
+            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
+        } finally {
+            return result;
+        }
+    }
+
+*/

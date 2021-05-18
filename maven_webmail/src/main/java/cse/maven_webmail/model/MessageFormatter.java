@@ -7,7 +7,6 @@ package cse.maven_webmail.model;
 import cse.maven_webmail.control.CommandType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Flags;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -109,6 +108,71 @@ public class MessageFormatter {
     }
 //--------------------------
 
+    /*
+    * 즐겨찾기
+     */
+    public String getBookmarkedMessageTable(Message[] messages) {
+        StringBuilder buffer = new StringBuilder();
+
+        // 메시지 제목 보여주기
+        buffer.append("<table>");  // table start
+        buffer.append("<tr> "
+                + " <th> No. </td> "
+                + " <th> 보낸 사람 </td>"
+                + " <th> 제목 </td>     "
+                + " <th> 보낸 날짜 </td>   "
+                + " <th> 메일삭제 </td>   "
+                + " <th> 즐겨찾기</td>   "
+                + " </tr>");
+
+        for (int i = messages.length - 1; i >= 0; i--) {
+
+            try {
+             
+                //북마크 된 message만 가져옴
+                if (i == 6) {
+                    messages[i].setFlags(CommandType.bookmarkFlag, true);
+                }
+                   buffer.append(i + " : " + messages[i].getFlags().contains("bookmarked") + "<br>");
+
+                System.out.println(" success get bookmarked messages ");
+                MessageParser parser = new MessageParser(messages[i], userid);
+                parser.parse(false);  // envelope 정보만 필요
+                // 메시지 헤더 포맷
+                // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
+                buffer.append("<tr> "
+                        + " <td id=no>" + (i + 1) + " </td> "
+                        + " <td id=sender>" + parser.getFromAddress() + "</td>"
+                        + " <td id=subject> "
+                        + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                        + parser.getSubject() + "</a> </td>"
+                        + " <td id=date>" + parser.getSentDate() + "</td>"
+                        + " <td id=delete>"
+                        + "<a href=ReadMail.do?menu="
+                        + CommandType.DELETE_MAIL_COMMAND //-----------//
+                        + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
+                        + " <td id=delete>"
+                        + "<a href=ReadMail.do?menu="
+                        + CommandType.CANCLE_BOOKMARK //-----------//
+                        + "&msgid=" + (i + 1) + "> 취소 </a>" + "</td>"
+                        + " </tr>");
+                //    buffer.append(i + " : " + messages[i].getFlags().contains("bookmarked") + "<br>");
+                /* } else {
+                    //로깅처리
+                }*/
+
+            } catch (Exception ex) {
+                Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
+                buffer.append("<br><h1>" + ex + "</h1><br>");
+            }
+            System.out.println(i + " : trying to get messages ");
+        }
+        buffer.append("</table>");
+
+        return buffer.toString();
+//        return "MessageFormatter 테이블 결과";
+    }
+
     public String getMessage(Message message) {
         StringBuilder buffer = new StringBuilder();
 
@@ -136,68 +200,8 @@ public class MessageFormatter {
         return buffer.toString();
     }
 
-    /*
-    * 즐겨찾기
-     */
-    public String getBookmarkedMessageTable(Message[] messages) {
-        StringBuilder buffer = new StringBuilder();
-
-        // 메시지 제목 보여주기
-        buffer.append("<table>");  // table start
-        buffer.append("<tr> "
-                + " <th> No. </td> "
-                + " <th> 보낸 사람 </td>"
-                + " <th> 제목 </td>     "
-                + " <th> 보낸 날짜 </td>   "
-                + " <th> 메일삭제 </td>   "
-                + " <th> 즐겨찾기</td>   "
-                + " </tr>");
-
-        for (int i = messages.length - 1; i >= 0; i--) {
-
-            try {
-                //북마크 된 message만 가져옴
-                if (!(messages[i].getFlags().contains(Flags.Flag.USER))) {
-
-                    System.out.println(" success get bookmarked messages ");
-                    MessageParser parser = new MessageParser(messages[i], userid);
-                    parser.parse(false);  // envelope 정보만 필요
-                    // 메시지 헤더 포맷
-                    // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
-                    buffer.append("<tr> "
-                            + " <td id=no>" + (i + 1) + " </td> "
-                            + " <td id=sender>" + parser.getFromAddress() + "</td>"
-                            + " <td id=subject> "
-                            + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
-                            + parser.getSubject() + "</a> </td>"
-                            + " <td id=date>" + parser.getSentDate() + "</td>"
-                            + " <td id=delete>"
-                            + "<a href=ReadMail.do?menu="
-                            + CommandType.DELETE_MAIL_COMMAND //-----------//
-                            + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
-                            + " <td id=delete>"
-                            + "<a href=ReadMail.do?menu="
-                            + CommandType.CANCLE_BOOKMARK //-----------//
-                            + "&msgid=" + (i + 1) + "> 취소 </a>" + "</td>"
-                            + " </tr>");
-                    buffer.append(i + " : " + messages[i].getFlags().contains(Flags.Flag.USER) + "<br>");
-                } else {
-                    //로깅처리
-                }
-
-            } catch (MessagingException ex) {
-                Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
-                buffer.append("<br><h1>" + ex + "</h1><br>");
-            }
-            System.out.println(i + " : trying to get messages ");
-        }
-        buffer.append("</table>");
-
-        return buffer.toString();
-//        return "MessageFormatter 테이블 결과";
-    }
-
     public void setRequest(HttpServletRequest request) {
         this.request = request;
     }
+
 }

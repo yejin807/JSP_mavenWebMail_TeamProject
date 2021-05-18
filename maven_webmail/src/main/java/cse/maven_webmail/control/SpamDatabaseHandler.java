@@ -23,16 +23,11 @@ import cse.maven_webmail.control.CommandType;
 import java.sql.ResultSet;
 
 /**
- *
+ * TODO : CommandType으로 전부 교체
  * @author gleyd
  */
 @WebServlet(name = "SpamDatabaseHandler", urlPatterns = {"/spam_database.do"})
 public class SpamDatabaseHandler extends HttpServlet {
-
-    private final String JdbcDriver = CommandType.JdbcDriver;
-    private final String JdbcUrl = CommandType.JdbcUrl;
-    private final String User = CommandType.User;
-    private final String Password = CommandType.Password;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,7 +72,6 @@ public class SpamDatabaseHandler extends HttpServlet {
                         deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_TRUE);
                         //response.sendRedirect("spam_settings.jsp");
                         break;
-
                 }
                 request.setAttribute("command", null);
             } //end 스팸단어 조건 
@@ -106,10 +100,10 @@ public class SpamDatabaseHandler extends HttpServlet {
     }
 
     private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
-        Class.forName(JdbcDriver);
-        Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+        Class.forName(CommandType.JdbcDriver);
+        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
-        String sql = "INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES (?,?,?)";
+        String sql = "INSERT INTO `webmail`.`spam_setting` (`email`, `word`, `is_email`) VALUES (?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         if (isEmail == null) { //스팸 단어를 추가하는 것이면
             pstmt.setString(1, userid);
@@ -129,13 +123,13 @@ public class SpamDatabaseHandler extends HttpServlet {
 
     private void deleteSpamCommand(String email, String word, int isEmail) throws ClassNotFoundException, SQLException {
         // 참고 : https://doublesprogramming.tistory.com/60
-        Class.forName(JdbcDriver);
-        Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+        Class.forName(CommandType.JdbcDriver);
+        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
         /*        infoHTML(out, email);
         infoHTML(out, word);
         infoHTML(out, Integer.toString(isEmail)); */
 
-        String sql = "DELETE FROM `webmail`.`spam` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
+        String sql = "DELETE FROM `webmail`.`spam_setting` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, email);
         pstmt.setString(2, word);

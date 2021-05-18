@@ -18,7 +18,13 @@ CREATE TABLE `spam` (
   `word` varchar(50) NOT NULL,
   `is_email` tinyint NOT NULL,
   PRIMARY KEY (`email`,`word`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `webmail`.`bookmark` (
+  `email` VARCHAR(50) NOT NULL,
+  `msgid` INT(10) NOT NULL,
+  PRIMARY KEY (`email`, `msgid`));
+
 
 INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES ('test2', 'eee', '0');
 

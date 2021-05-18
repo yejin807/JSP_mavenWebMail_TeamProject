@@ -25,6 +25,9 @@
             <a href="spam_settings.jsp"> 스팸 설정 </a>
             <%-- TODO : 스팸 메시지함 테이블 보여주긩.--%>
         </div>
+        
+        <a href=show_message.jsp?msgid=" + 4 + " title=\"메일 보기\"></a> 
+        
 
     </div>
 
