@@ -128,14 +128,6 @@ public class MessageFormatter {
         for (int i = messages.length - 1; i >= 0; i--) {
 
             try {
-             
-                //북마크 된 message만 가져옴
-                if (i == 6) {
-                    messages[i].setFlags(CommandType.bookmarkFlag, true);
-                }
-                   buffer.append(i + " : " + messages[i].getFlags().contains("bookmarked") + "<br>");
-
-                System.out.println(" success get bookmarked messages ");
                 MessageParser parser = new MessageParser(messages[i], userid);
                 parser.parse(false);  // envelope 정보만 필요
                 // 메시지 헤더 포맷
@@ -165,7 +157,7 @@ public class MessageFormatter {
                 Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
                 buffer.append("<br><h1>" + ex + "</h1><br>");
             }
-            System.out.println(i + " : trying to get messages ");
+            System.out.println(i + " :                                                       trying to get messages ");
         }
         buffer.append("</table>");
 

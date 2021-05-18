@@ -29,10 +29,12 @@
             <a href="main_menu.jsp"> 이전 메뉴로 </a>
         </div>
 
-
+<%--
         <div id="main">
-            <%= pop3.getBookmarkMessageList()%>
+            <%= pop3.getBookmarkedMessageList()%>
         </div>
+--%>        
+        <%= pop3.testBookmarkMsgAgent_readDB() %>
 
         <jsp:directive.include file="footer_hwi.jspf" />    </body>
 </html>

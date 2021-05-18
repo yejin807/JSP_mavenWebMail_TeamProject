@@ -23,7 +23,7 @@ import cse.maven_webmail.model.BookmarkMessageAgent;
  * @author jongmin
  */
 public class ReadMailHandler extends HttpServlet {
-    
+
     private BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
 
     /**
@@ -41,7 +41,7 @@ public class ReadMailHandler extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         int select = Integer.parseInt((String) request.getParameter("menu"));
-                HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("userid");
 
         switch (select) {
@@ -66,10 +66,9 @@ public class ReadMailHandler extends HttpServlet {
             case CommandType.SET_BOOKMARK: // 북마크설정
                 try (PrintWriter out = response.getWriter()) {
                     int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-                    bookmarkMessageAgent.setEmail(userid);
-                    if (bookmarkMessageAgent.addBookmarking(msgid)){
+                    if (bookmarkMessageAgent.addBookmarking(userid, msgid)){
                         //bookmarking 성공
-                        out.println("<script>alert('북마크 설정이 되었습니다.');</script>");
+                        out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');</script>");
                         out.println(bookmarkMessageAgent.showBookmarkingList());
                     }
                     else{
@@ -81,25 +80,24 @@ public class ReadMailHandler extends HttpServlet {
                         out.println("ReadmailHandler.cancelBookmarking error : " + ex);
                 }
                 break;
-
+             
             case CommandType.CANCLE_BOOKMARK: // 북마크취소
                 try (PrintWriter out = response.getWriter()) {
-                    int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-                    if (bookmarkMessageAgent.cancelBookmarking(msgid)){
-                        //bookmarking 성공
-                        out.println("<script>alert('북마크 설정이 취소되었습니다.');</script>");
-                        out.println(bookmarkMessageAgent.showBookmarkingList());
-                    }
-                    else{
-                        out.println("<script>alert('북마크 취소가 실패했습니다.');</script>");
-                    }
-                    //response.sendRedirect("main_menu.jsp");
-                    } catch (Exception ex) {
-                        PrintWriter out = response.getWriter();
-                        out.println("ReadmailHandler.cancelBookmarking error : " + ex);
-                    }
-                //response.sendRedirect("bookmarked_mail.jsp");
-                break;
+                int msgid = Integer.parseInt((String) request.getParameter("msgid"));
+                if (bookmarkMessageAgent.cancelBookmarking(userid, msgid)) {
+                    //bookmarking 성공
+                    out.println("<script>alert('북마크 설정이 취소되었습니다.');</script>");
+                    out.println(bookmarkMessageAgent.showBookmarkingList());
+                } else {
+                    out.println("<script>alert('북마크 취소가 실패했습니다.');</script>");
+                }
+                //response.sendRedirect("main_menu.jsp");
+            } catch (Exception ex) {
+                PrintWriter out = response.getWriter();
+                out.println("ReadmailHandler.cancelBookmarking error : " + ex);
+            }
+            //response.sendRedirect("bookmarked_mail.jsp");
+            break;
             default:
                 try (PrintWriter out = response.getWriter()) {
                 out.println("없는 메뉴를 선택하셨습니다. 어떻게 이 곳에 들어오셨나요?");
@@ -191,8 +189,19 @@ public class ReadMailHandler extends HttpServlet {
         return status;
     }
     //----------
+/*
+    
+    case CommandType.SET_BOOKMARK: // 북마크설정
+                try (PrintWriter out = response.getWriter()) {
+                bookmarkMessage(request);
+                //response.sendRedirect("main_menu.jsp");
+            } catch (Exception ex) {
+                PrintWriter out = response.getWriter();
+                out.println("ReadmailHandler.cancelBookmarking error : " + ex);
+            }
+            break;
 
-/*    private boolean bookmarkMessage(HttpServletRequest request) {
+    private boolean bookmarkMessage(HttpServletRequest request) {
         int msgid = Integer.parseInt((String) request.getParameter("msgid"));
 
         HttpSession httpSession = request.getSession();
@@ -201,11 +210,12 @@ public class ReadMailHandler extends HttpServlet {
         String password = (String) httpSession.getAttribute("password");
 
         Pop3Agent pop3 = new Pop3Agent(host, userid, password);
-      //  boolean status = pop3.bookmarkMessage(msgid);
-     //   return status;
-     return false;
+        boolean status = pop3.bookmarkMessage(msgid);
+        return status;
+        //return false;
     }
 
+    
     private boolean cancelBookmarking(HttpServletRequest request) {
         int msgid = Integer.parseInt((String) request.getParameter("msgid"));
 
@@ -219,7 +229,8 @@ public class ReadMailHandler extends HttpServlet {
         //return status;
         return false;
     }
-*/
+
+     */
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -14,10 +14,9 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.servlet.http.HttpServletRequest;
 
-import cse.maven_webmail.control.CommandType;
-
 //https://pythonq.com/so/java/824272 javaflag 사용
-//즐겨찾기 flag 설정안해줘도 false로 기본값이던데, MessageList에서 for문으로 flag없으면 false로 추가햇 ㅓ 넣어줘야하나?
+//todo : getBookmarkedMessageList 에서 북마크된 메일 추려내기.
+//q북마크디비agent삭제
 /**
  *
  * @author jongmin
@@ -30,6 +29,7 @@ public class Pop3Agent {
     private Store store;
     private String exceptionType;
     private HttpServletRequest request;
+    private BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
 
     public Pop3Agent() {
     }
@@ -282,7 +282,7 @@ public class Pop3Agent {
         this.request = request;
     }
 
-    public String getBookmarkMessageList() {
+    public String getBookmarkedMessageList() {
         //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
         String result = "";
         Message[] messages = null;
@@ -303,18 +303,10 @@ public class Pop3Agent {
             // From, To, Cc, Bcc, ReplyTo, Subject & Date
             fp.add(FetchProfile.Item.ENVELOPE);
             folder.fetch(messages, fp);
-            
-            //즐겨찾기 message filter
-    //      for (Message msg : messages){
-          //  msg.get
-      //      }
 
-            //즐겨찾기 flag추가
-            //TODO : 스팸flag추가
-//            Flags bookmarkFlag = new Flags("bookmarked");
-//            folder.setFlags(messages, bookmarkFlag, false);
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            result = formatter.getBookmarkedMessageTable(messages);   // 3.6
+            //Message[] newMessages = filterBookmarkedMessage(messages);
+            //result = formatter.getBookmarkedMessageTable(messages);   // 3.6
 
             folder.close(true);  // 3.7
             store.close();       // 3.8
@@ -325,11 +317,71 @@ public class Pop3Agent {
             return result;
         }
     }
-    
-    
+
+    private Message[] filterBookmarkedMessage(Message[] messages) {
+        Message[] bookmarkedMessages = null;
+
+        return bookmarkedMessages;
+    }
+
+    public String testBookmarkMsgAgent_readDB() {
+        bookmarkMessageAgent.getBookmarkMessageList(userid);
+        return bookmarkMessageAgent.showBookmarkingList();
+
+    }
+
 }  // class Pop3Agent
 
 /*
+public boolean bookmarkMessage(int msgid) {
+
+        boolean status = false;
+
+        if (!connectToStore()) {
+            return status;
+        }
+
+        try {
+            Folder folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+
+            Message oldMsg = folder.getMessage(msgid);
+            int newMsgNum = oldMsg.getMessageNumber();
+            Message newMsg = folder.getMessage(newMsgNum);
+            oldMsg.setFlag(Flags.Flag.DELETED, true);
+
+            folder.close(true);  // expunge == true
+            store.close();
+            status = true;
+            //oldMsgfolder에서 삭제.
+            
+            //bookmarked 플래그 newMsg에 추가.
+            Flags bookmarkFlag = new Flags("bookmarked");
+            newMsg.setFlags(bookmarkFlag, true);
+            newMsg.saveChanges();            
+
+            folder = store.getFolder("INBOX");
+            folder.open(Folder.READ_WRITE);
+            
+            //Message리스트 마지막에 newMsg 추가. 및 folder에 appendMessage해줌.
+            //기존의 Message에 덧붙여서 '가나가나다'가 될수도.
+            Message[] newMessages= folder.getMessages();
+            newMessages[newMessages.length+1] = newMsg;
+            folder.appendMessages(newMessages);
+            
+            System.out.println("newMsgbookmarkedFlag : " + newMsg.getFlags().contains("bookmarked"));
+            
+            folder.close(true);  // expunge == true
+            store.close();
+            status = true;
+        } catch (Exception ex) {
+            System.out.println("deleteMessage() error: " + ex);
+        } finally {
+            return status;
+        }
+    }
+
+
     public boolean bookmarkMessage(int msgid) {
         boolean status = false;
 
@@ -394,7 +446,7 @@ public class Pop3Agent {
     }
  */
 
-/*
+ /*
 
     public String getBookmarkMessageList() {
         //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
@@ -440,4 +492,4 @@ public class Pop3Agent {
         }
     }
 
-*/
+ */
