@@ -106,47 +106,50 @@ public class FormParser {
             if(currentFolder.matches(".*\\.*")){
                 currentFolder = currentFolder.replace("\\","/");
             }
-            
             checkFolder(currentFolder);
-                       
-            // 1. 디스크 기반 파일 항목에 대한 팩토리 생성
-            DiskFileItemFactory diskFactory = new DiskFileItemFactory();
-            // 2. 팩토리 제한사항 설정
-            diskFactory.setSizeThreshold(MAX_MEMORY_SIZE);
-            diskFactory.setRepository(new File(UPLOAD_TEMP_DIR));
-            // 3. 파일 업로드 핸들러 생성
-            ServletFileUpload upload = new ServletFileUpload(diskFactory);
-            upload.setSizeMax(MAX_UPLOAD_SIZE);
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
             
-            // 4. request 객체 파싱
-            List<FileItem> fileItems = upload.parseRequest(request); // List -> List<FileItem> 
-            Iterator i = fileItems.iterator();
-            while (i.hasNext()) {
-                FileItem fi = (FileItem) i.next();
-                if (fi.isFormField()) {  // 5. 폼 필드 처리
-                    String fieldName = fi.getFieldName();
-                    String item = fi.getString("UTF-8");
+            if( isMultipart ){
+                      
+                // 1. 디스크 기반 파일 항목에 대한 팩토리 생성
+                DiskFileItemFactory diskFactory = new DiskFileItemFactory();
+                // 2. 팩토리 제한사항 설정
+                diskFactory.setSizeThreshold(MAX_MEMORY_SIZE);
+                diskFactory.setRepository(new File(UPLOAD_TEMP_DIR));
+                // 3. 파일 업로드 핸들러 생성
+                ServletFileUpload upload = new ServletFileUpload(diskFactory);
+                upload.setSizeMax(MAX_UPLOAD_SIZE);
 
-                    if (fieldName.equals("to")) {
-                        setToAddress(item);  // 200102 LJM - @ 이후의 서버 주소 제거
-                    } else if (fieldName.equals("cc")) {
-                        setCcAddress(item);
-                    } else if (fieldName.equals("subj")) {
-                        setSubject(item);
-                    } else if (fieldName.equals("body")) {
-                        setBody(item);
-                    }
-                } else {  // 6. 첨부 파일 처리
-                    
-                    if (fi.getName() != null && !fi.getName().equals("")) {
-                        // 절대 경로 저장
-                        setFileName(currentFolder + UPLOAD_DIR + fi.getName()); // this.fileName  전체 경로 
-                        File file = new File(fileName);
-                        // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
-                        //if (fileName != null) {
-                            fi.write(file);
-                        //
-                    
+                // 4. request 객체 파싱
+                List<FileItem> fileItems = upload.parseRequest(request); // List -> List<FileItem> 
+                Iterator i = fileItems.iterator();
+                while (i.hasNext()) {
+                    FileItem fi = (FileItem) i.next();
+                    if (fi.isFormField()) {  // 5. 폼 필드 처리
+                        String fieldName = fi.getFieldName();
+                        String item = fi.getString("UTF-8");
+
+                        if (fieldName.equals("to")) {
+                            setToAddress(item);  // 200102 LJM - @ 이후의 서버 주소 제거
+                        } else if (fieldName.equals("cc")) {
+                            setCcAddress(item);
+                        } else if (fieldName.equals("subj")) {
+                            setSubject(item);
+                        } else if (fieldName.equals("body")) {
+                            setBody(item);
+                        }
+                    } else {  // 6. 첨부 파일 처리
+
+                        if (fi.getName() != null && !fi.getName().equals("")) {
+                            // 절대 경로 저장
+                            setFileName(currentFolder + UPLOAD_DIR + fi.getName()); // this.fileName  전체 경로 
+                            File file = new File(fileName);
+                            // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
+                            //if (fileName != null) {
+                             fi.write(file);
+                            //
+
+                        }
                     }
                 }
             }
