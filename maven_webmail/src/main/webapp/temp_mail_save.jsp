@@ -36,9 +36,10 @@
             String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
             final String User = "jdbctester";
             final String Password = "0000";
-            int count = Integer.parseInt(request.getParameter("cnt"));
+            //int count = Integer.parseInt(request.getParameter("cnt"));
             response.setContentType("text/html;charset=UTF-8");
             
+            int count =1; //임시저장 SQL 경로 강제. 추후 UPDATE문 활용예쩡
             try{
                 Class.forName(JdbcDriver);
                 
