@@ -112,6 +112,7 @@ public class MessageFormatter {
     * 즐겨찾기
      */
     public String getBookmarkedMessageTable(Message[] messages) {
+        
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -133,7 +134,7 @@ public class MessageFormatter {
                 // 메시지 헤더 포맷
                 // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
                 buffer.append("<tr> "
-                        + " <td id=no>" + (i + 1) + " </td> "
+                        + " <td id=no>" + (messages[i].getMessageNumber()) + " </td> "
                         + " <td id=sender>" + parser.getFromAddress() + "</td>"
                         + " <td id=subject> "
                         + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
@@ -157,7 +158,8 @@ public class MessageFormatter {
                 Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
                 buffer.append("<br><h1>" + ex + "</h1><br>");
             }
-            System.out.println(i + " :                                                       trying to get messages ");
+            System.out.println(Integer.toString(i) + " :                                                       trying to get messages ");
+
         }
         buffer.append("</table>");
 

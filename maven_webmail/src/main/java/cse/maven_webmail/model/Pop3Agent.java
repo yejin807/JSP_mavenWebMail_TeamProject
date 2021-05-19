@@ -5,6 +5,7 @@
  */
 package cse.maven_webmail.model;
 
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.FetchProfile;
 import javax.mail.Flags;
@@ -283,7 +284,6 @@ public class Pop3Agent {
     }
 
     public String getBookmarkedMessageList() {
-        //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
         String result = "";
         Message[] messages = null;
 
@@ -304,9 +304,14 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.ENVELOPE);
             folder.fetch(messages, fp);
 
+            FetchProfile fpFlags = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.FLAGS);
+            folder.fetch(messages, fpFlags);
+
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            //Message[] newMessages = filterBookmarkedMessage(messages);
-            //result = formatter.getBookmarkedMessageTable(messages);   // 3.6
+            Message[] bookmarkedMessages = filterBookmarkedMessage(messages);
+            result = formatter.getBookmarkedMessageTable(bookmarkedMessages);   // 3.6
 
             folder.close(true);  // 3.7
             store.close();       // 3.8
@@ -319,15 +324,21 @@ public class Pop3Agent {
     }
 
     private Message[] filterBookmarkedMessage(Message[] messages) {
-        Message[] bookmarkedMessages = null;
+        ArrayList<Integer> bookmarkMsgID = bookmarkMessageAgent.getBookmarkMessageList(userid);
+        Message[] bookmarkedMessages = new Message[bookmarkMsgID.size()];   //declare Message list for bookmarked mail number
+        for (int i = 0; i < bookmarkMsgID.size(); i++) {
+            bookmarkedMessages[i] = messages[bookmarkMsgID.get(i)-1];
+            System.out.println("Pop3Agent.filterBookmarkedMessage() : bookmarkMsg " + Integer.toString(i) + " id = " + bookmarkMsgID.get(i));
+        }
 
         return bookmarkedMessages;
     }
 
     public String testBookmarkMsgAgent_readDB() {
         bookmarkMessageAgent.getBookmarkMessageList(userid);
-        return bookmarkMessageAgent.showBookmarkingList();
-
+        ArrayList<Integer> bookmarkMsgID = bookmarkMessageAgent.getBookmarkMessageList(userid);
+        //return bookmarkMessageAgent.showBookmarkingList();
+        return Integer.toString(bookmarkMsgID.size());
     }
 
 }  // class Pop3Agent
