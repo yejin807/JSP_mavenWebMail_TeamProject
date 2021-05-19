@@ -55,7 +55,7 @@ public class MessageFormatter {
                     + "<a href=ReadMail.do?menu="
                     + CommandType.MAIL_REMOVE_COMMAND //-----------//
                     + "&msgid=" + (i + 1) + "> 휴지통 </a>" + "</td>"
-                    + " <td id=delete>"
+                    + " <td id=setBookmarking>"
                     + "<a href=ReadMail.do?menu="
                     + CommandType.SET_BOOKMARK //-----------//
                     + "&msgid=" + (i + 1) + "> 설정 </a>" + "</td>"
@@ -108,9 +108,6 @@ public class MessageFormatter {
     }
 //--------------------------
 
-    /*
-    * 즐겨찾기
-     */
     public String getBookmarkedMessageTable(Message[] messages) {
         
         StringBuilder buffer = new StringBuilder();
@@ -144,7 +141,7 @@ public class MessageFormatter {
                         + "<a href=ReadMail.do?menu="
                         + CommandType.DELETE_MAIL_COMMAND //-----------//
                         + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
-                        + " <td id=delete>"
+                        + " <td id=cancelBookmarking>"
                         + "<a href=ReadMail.do?menu="
                         + CommandType.CANCLE_BOOKMARK //-----------//
                         + "&msgid=" + messages[i].getMessageNumber() + "> 취소 </a>" + "</td>"
@@ -162,11 +159,53 @@ public class MessageFormatter {
 
         }
         buffer.append("</table>");
-
         return buffer.toString();
-//        return "MessageFormatter 테이블 결과";
     }
 
+        public String getSpammedMessageTable(Message[] messages) {
+        
+        StringBuilder buffer = new StringBuilder();
+
+        // 메시지 제목 보여주기
+        buffer.append("<table>");  // table start
+        buffer.append("<tr> "
+                + " <th> No. </td> "
+                + " <th> 보낸 사람 </td>"
+                + " <th> 제목 </td>     "
+                + " <th> 보낸 날짜 </td>   "
+                + " <th> 메일삭제 </td>   "
+                + " </tr>");
+
+        for (int i = messages.length - 1; i >= 0; i--) {
+
+            try {
+                MessageParser parser = new MessageParser(messages[i], userid);
+                parser.parse(false);  // envelope 정보만 필요
+                // 메시지 헤더 포맷
+                // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
+                buffer.append("<tr> "
+                        + " <td id=no>" + (messages[i].getMessageNumber()) + " </td> "
+                        + " <td id=sender>" + parser.getFromAddress() + "</td>"
+                        + " <td id=subject> "
+                        + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                        + parser.getSubject() + "</a> </td>"
+                        + " <td id=date>" + parser.getSentDate() + "</td>"
+                        + " <td id=delete>"
+                        + "<a href=ReadMail.do?menu="
+                        + CommandType.DELETE_MAIL_COMMAND //-----------//
+                        + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
+                        + " </tr>");
+            } catch (Exception ex) {
+                Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);
+                buffer.append("<br><h1>" + ex + "</h1><br>");
+            }
+            System.out.println(Integer.toString(i) + " :                                                       trying to get messages ");
+
+        }
+        buffer.append("</table>");
+        return buffer.toString();
+    }
+    
     public String getMessage(Message message) {
         StringBuilder buffer = new StringBuilder();
 

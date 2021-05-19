@@ -12,19 +12,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author gleyd
  */
 public class BookmarkMessageAgent {
 
-    private final static Logger LOG = Logger.getGlobal();
 
     private static BookmarkMessageAgent uniqueInstance = new BookmarkMessageAgent();
-    private ArrayList<Integer> bookmarkMsgID = new ArrayList<Integer>();
-    private String email = null;
+    private ArrayList<Integer> bookmarkMsgId = new ArrayList<Integer>();
+    private String userid = null;
 
     private BookmarkMessageAgent() {
     }
@@ -39,8 +36,8 @@ public class BookmarkMessageAgent {
 
         try {
             setEmail(userid);
-            if (!bookmarkMsgID.contains(Integer.valueOf(msgid))) {
-                bookmarkMsgID.add(msgid);
+            if (!bookmarkMsgId.contains(Integer.valueOf(msgid))) {
+                bookmarkMsgId.add(msgid);
                 result = insertBookmarkMsgID(msgid);
                 status = true;
 
@@ -63,8 +60,8 @@ public class BookmarkMessageAgent {
 
             String sql = "INSERT INTO `webmail`.`bookmark_list` (`email`, `msgid`) VALUES (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            if (email != null || !(email.equals(""))) { //email 값이 null이 아니면.
-                pstmt.setString(1, email);
+            if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
+                pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
@@ -86,8 +83,8 @@ public class BookmarkMessageAgent {
         result +="try canceling Bookmarking";
         try {
             setEmail(userid);
-            if (bookmarkMsgID.contains(Integer.valueOf(msgid))) {
-                bookmarkMsgID.remove(Integer.valueOf(msgid));
+            if (bookmarkMsgId.contains(Integer.valueOf(msgid))) {
+                bookmarkMsgId.remove(Integer.valueOf(msgid));
                 result = deleteBookmarkMsgID(msgid);
                 status = true;
 
@@ -109,18 +106,18 @@ public class BookmarkMessageAgent {
             Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
             result += "\ntry deleteBookmarking";
 
-            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + email;
+            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + userid;
             result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
             String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            if (email != null || !(email.equals(""))) { //email 값이 null이 아니면.
-                if (email != null || !(email.equals(""))) { //email 값이 null이 아니면.
-                    pstmt.setString(1, email);
+            if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
+                if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
+                    pstmt.setString(1, userid);
                     pstmt.setInt(2, msgid);
                 }
                 pstmt.executeUpdate();
 
-                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + email;
+                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + userid;
                 result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
                 result += "\n end deleteBookmarking";
 
@@ -136,17 +133,17 @@ public class BookmarkMessageAgent {
     }
 
     private void setEmail(String email) {
-        this.email = email;
+        this.userid = email;
     }
 
     public ArrayList<Integer> getBookmarkMessageList(String userid) {
-        bookmarkMsgID = null;
-        bookmarkMsgID = new ArrayList<Integer>();
+        bookmarkMsgId = null;
+        bookmarkMsgId = new ArrayList<Integer>();
         setEmail(userid);
         System.out.println("BookmarkMessageAgent.getBookmarkMessageList : ");
 
-        bookmarkMsgID = readBookmarkMsgData();
-        return bookmarkMsgID;
+        bookmarkMsgId = readBookmarkMsgData();
+        return bookmarkMsgId;
     }
 
     private ArrayList<Integer> readBookmarkMsgData() {
@@ -156,12 +153,12 @@ public class BookmarkMessageAgent {
 
             String sql = "select msgid from webmail.bookmark_list where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);
+            pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
-                bookmarkMsgID.add(buf_msgid);
+                bookmarkMsgId.add(buf_msgid);
             }
 
             rs.close();
@@ -171,13 +168,13 @@ public class BookmarkMessageAgent {
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.readBookmarkMsgData Error : " + ex);
         } finally {
-            return bookmarkMsgID;
+            return bookmarkMsgId;
         }
     }
 
     public String showBookmarkingList() {
         String result = "";
-        for (int list : bookmarkMsgID) {
+        for (int list : bookmarkMsgId) {
             result += Integer.toString(list) + " ";
         }
         result += "<br><br><p> <a href=\"bookmarked_mail.jsp\"> 즐겨찾기함 </a> </p>";

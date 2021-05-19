@@ -21,13 +21,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.control.CommandType;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * TODO : CommandType으로 전부 교체
+ *
  * @author gleyd
  */
 @WebServlet(name = "SpamDatabaseHandler", urlPatterns = {"/spam_database.do"})
-public class SpamDatabaseHandler extends HttpServlet {
+public class SpamSettingDatabaseHandler extends HttpServlet {
+
+    private ArrayList<String> spamWord = null;
+    private ArrayList<String> spamEmail = null;
+    
+    private String userid = null;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +50,7 @@ public class SpamDatabaseHandler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession();
-        String userid = (String) session.getAttribute("userid");
+        userid = (String) session.getAttribute("userid");
         //word가 아니라 command 추가로 바꿔야할듯.
         String word = request.getParameter("word");
         String spamword = request.getParameter("spamword");
@@ -78,6 +85,62 @@ public class SpamDatabaseHandler extends HttpServlet {
             response.sendRedirect("spam_settings.jsp");
         } catch (Exception ex) {// end try
             out.println("exception : " + ex);
+        }
+    }
+
+    public ArrayList<String> getSpamWord() {
+        return spamWord;
+    }
+
+    public ArrayList<String> getSpamEmail() {
+        return spamEmail;
+    }
+
+    public String getSpamSettingData(String userid) {
+        String result = "";
+        this.userid = userid;
+        spamWord = new ArrayList<String>();
+        spamEmail = new ArrayList<String>();
+        try {
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+
+            //spam단어 읽어오기
+            String sql = "select word from webmail.spam_setting where email =? and is_email=0";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userid); 
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+                spamWord.add(rs.getString("word"));
+                result += "<br><br>getSpamSettingData , word : "+rs.getString("word");
+            }
+            System.out.println("getSpamSettingData.userid : "+userid);
+            System.out.println("getSpamSettingData : "+result);
+            
+            //spam이메일 읽어오기
+            
+            //spam단어 읽어오기
+            sql = "select word from webmail.spam_setting where email =? and is_email=1";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userid); 
+
+            rs = pstmt.executeQuery();
+            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+                spamEmail.add(rs.getString("word"));
+                result += "<br><br>getSpamSettingData , email : "+rs.getString("word");
+            }
+            System.out.println("getSpamSettingData.userid : "+userid);
+            System.out.println("getSpamSettingData : "+result);
+            
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+        } catch (Exception ex) {
+            System.out.println("SpamSettingDatabaseHandler.getSpamSettingData Error : " + ex);
+        } finally {
+            return result;
         }
     }
 

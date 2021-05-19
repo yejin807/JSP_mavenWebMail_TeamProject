@@ -28,7 +28,9 @@ CREATE TABLE `webmail`.`spam_list` (
   `email` VARCHAR(50) NOT NULL,
   `msgid` INT NOT NULL,
   PRIMARY KEY (`email`, `msgid`));
-
+ALTER TABLE `webmail`.`spam_list` 
+ADD COLUMN `word` VARCHAR(50) NOT NULL AFTER `msgid`,
+ADD COLUMN `is_email` TINYINT NOT NULL AFTER `word`;
 
 INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES ('test2', 'eee', '0');
 

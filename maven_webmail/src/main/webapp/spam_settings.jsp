@@ -21,7 +21,7 @@
         <hr>
 
         <div id="sidebar">
-            <a href="main_menu.jsp"> 이전 메뉴로 </a>
+            <jsp:include page="sidebar_menu.jsp" />
         </div>
 
         <div id="spam_word_adder">

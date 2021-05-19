@@ -5,6 +5,7 @@
  */
 package cse.maven_webmail.model;
 
+import cse.maven_webmail.control.SpamSettingDatabaseHandler;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.FetchProfile;
@@ -327,11 +328,157 @@ public class Pop3Agent {
         ArrayList<Integer> bookmarkMsgID = bookmarkMessageAgent.getBookmarkMessageList(userid);
         Message[] bookmarkedMessages = new Message[bookmarkMsgID.size()];   //declare Message list for bookmarked mail number
         for (int i = 0; i < bookmarkMsgID.size(); i++) {
-            bookmarkedMessages[i] = messages[bookmarkMsgID.get(i)-1];
+            bookmarkedMessages[i] = messages[bookmarkMsgID.get(i) - 1];
             System.out.println("Pop3Agent.filterBookmarkedMessage() : bookmarkMsg " + Integer.toString(i) + " id = " + bookmarkMsgID.get(i));
         }
 
         return bookmarkedMessages;
+    }
+
+    //todo 나중에 지워야함
+    public String getSpamSettingData() {
+        String result = "";
+        String q1, q2, q3, q4, q5;
+        q1 = "spam@spam";
+        q2 = "fkqfqspam@spamfqfq";
+        q3 = "eee닫람ㄹ랃단어";
+        q4 = "(광고ㅎㄷㅎㅁㅎㅁ";
+        q5 = "(광고)라ㅓ비ㅏ러발";
+        SpamSettingDatabaseHandler spamSettingData = new SpamSettingDatabaseHandler();
+        result += spamSettingData.getSpamSettingData(userid) + "\n";
+
+        ArrayList<String> spamWord = spamSettingData.getSpamWord();
+        ArrayList<String> spamEmail = spamSettingData.getSpamEmail();
+
+        for (int i = 0; i < spamEmail.size(); i++) {
+            result += Integer.toString(i) + "번째 단어 체크 : " + spamEmail.get(i);
+            if (q1.contains(spamEmail.get(i))) {
+                result += "<br><br>q1에는 스팸이메일가 있네요. 스팸임!<br><br>";
+            } else {
+                result += "q1에는 스팸이메일가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!<br><br>";
+            }
+            if (q2.contains(spamEmail.get(i))) {
+                result += "q2는 스팸이메일가 있네요. 스팸임!\n<br>";
+            } else {
+                result += "q2에는 스팸이메일가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!<br>\n";
+            }
+            if (q5.contains(spamEmail.get(i))) {
+                result += "5는 스팸이메일가 있네요. 스팸임!<br>\n";
+            } else {
+                result += "5에는 스팸이메일가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!<br><br>";
+            }
+        }
+
+        for (int i = 0; i < spamWord.size(); i++) {
+            result += Integer.toString(i) + "번째 단어 체크 : " + spamWord.get(i);
+            if (q3.contains(spamWord.get(i))) {
+                result += "\nq3에는 스팸단어가 있네요. 스팸임!\n<br><br>";
+            } else {
+                result += "\nq3에는 스팸단어가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!\n<br><br>";
+            }
+            if (q4.contains(spamWord.get(i))) {
+                result += "\nq4는 스팸단어가 있네요. 스팸임!\n<br><br>";
+            } else {
+                result += "\nq4에는 스팸단어가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!\n<br><br>";
+            }
+            if (q5.contains(spamWord.get(i))) {
+                result += "\n5는 스팸단어가 있네요. 스팸임!\n<br><br>";
+            } else {
+                result += "\nq5에는 스팸단어가 없네요. 노ㅗ노노노노ㅗ노노노ㅗㄴ스팸임!\n<br><br>";
+            }
+        }
+
+        return result;
+    }
+
+    public String getSpamMessageList() {
+        String result = "";
+        Message[] messages = null;
+
+        if (!connectToStore()) {  // 3.1
+            System.err.println("POP3 connection failed!");
+            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
+        }
+
+        try {
+            // 메일 폴더 열기
+            Folder folder = store.getFolder("INBOX");  // 3.2
+            folder.open(Folder.READ_ONLY);  // 3.3
+
+            // 현재 수신한 메시지 모두 가져오기
+            messages = folder.getMessages();      // 3.4
+            FetchProfile fp = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.ENVELOPE);
+            folder.fetch(messages, fp);
+
+            FetchProfile fpFlags = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.FLAGS);
+            folder.fetch(messages, fpFlags);
+
+            Message[] spamMessages = filterSpamMessage(messages);
+            //Message[] spamMessages = filterSpamMessage(messages);
+            //result = formatter.getBookmarkedMessageTable(spamMessages);   // 3.6
+
+            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            //todo 삭제만 있는 messageFormatter써야함.
+            result = formatter.getBookmarkedMessageTable(spamMessages);   // 3.6
+
+            //result = formatter.getMessageTable(messages);   // 3.6
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
+            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
+        } finally {
+            return result;
+        }
+    }
+
+    //todo : spam 변수로 변경.
+    private Message[] filterSpamMessage(Message[] messages) {
+        SpamSettingDatabaseHandler spamSettingData = new SpamSettingDatabaseHandler();
+        ArrayList<Message> spamMessages = new ArrayList<Message>();
+
+        try {
+            spamSettingData.getSpamSettingData(userid);
+            System.out.println("Pop3Agent.filterSpamMessage.userid : " + userid);
+
+            ArrayList<String> spamWord = spamSettingData.getSpamWord();
+            ArrayList<String> spamEmail = spamSettingData.getSpamEmail();
+
+            for (int i = 0; i < messages.length; i++) {
+                System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.subject : " + messages[i].getSubject() + " start test");
+                messages[i].getSubject();
+                for (int j = 0; j < spamWord.size(); j++) {
+                }
+
+                System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.from : " + messages[i].getFrom()[0].toString() + " start test");
+                messages[i].getFrom()[0].toString();
+                for (int j = 0; j < spamEmail.size(); j++) {
+                    if ((messages[i].getFrom()[0].toString()).equals(spamEmail.get(j))) { //spamEmail에 저장된 이메일에게서 메일이 왔었다면.
+                        System.out.println(Integer.toString(j) + " spamEmail" + spamEmail.get(j));
+
+                    } else {
+                        System.out.println(Integer.toString(j) + " spamEmail" + spamEmail.get(j));
+                    }
+                }
+            }
+
+            /*
+        
+        Message[] spamMessages = new Message[bookmarkMsgID.size()];   //declare Message list for bookmarked mail number
+        for (int i = 0; i < bookmarkMsgID.size(); i++) {
+            spamMessages[i] = messages[bookmarkMsgID.get(i) - 1];
+            System.out.println("Pop3Agent.filterBookmarkedMessage() : bookmarkMsg " + Integer.toString(i) + " id = " + bookmarkMsgID.get(i));
+        }
+             */
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.filterSpamMessage Error: " + ex);
+        } finally {
+            return spamMessages;
+        }
     }
 
     public String testBookmarkMsgAgent_readDB() {
