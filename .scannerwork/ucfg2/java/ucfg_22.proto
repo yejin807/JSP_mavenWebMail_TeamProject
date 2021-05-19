@@ -1,9 +1,16 @@
 
-Hcse.maven_webmail.control.JoinHandler#getServletInfo()Ljava/lang/String;é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaÆ Æ( "1*ø
-1é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaØ Ø(""®
-é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/JoinHandler.javaØ Ø(#
-Short descriptionB)'
-%cse.maven_webmail.control.JoinHandler
+Ccse.maven_webmail.model.FormParser#getToAddress()Ljava/lang/String;à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java\ \("1*ú
+1à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java] ](„
+‡
+à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java] ](
+%0java.lang.String"__id*5*3$
+"cse.maven_webmail.model.FormParser"
+	toAddress"•
+à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java] ](
+
+%0java.lang.StringB&$
+"cse.maven_webmail.model.FormParser

@@ -1,17 +1,16 @@
 
-Ecse.maven_webmail.model.MessageParser#getSentDate()Ljava/lang/String;
-C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaÀ À("1*°
-1
-C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaÁ Á(ë
-è
-
-C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaÁ Á(
-%0java.lang.String"__id*7*5'
-%cse.maven_webmail.model.MessageParser"
-
-sentDate"«
-
-C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaÁ Á(
-
-%0java.lang.StringB)'
-%cse.maven_webmail.model.MessageParser
+`cse.maven_webmail.model.SpamMessageAgent#getInstance()Lcse/maven_webmail/model/SpamMessageAgent;
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java# (."1*ì
+1
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java (
+Š
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java (.
+%0(cse.maven_webmail.model.SpamMessageAgent"__id*@*>*
+(cse.maven_webmail.model.SpamMessageAgent"
+uniqueInstance"Ä
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java (0
+.
+%0(cse.maven_webmail.model.SpamMessageAgentB,"*
+(cse.maven_webmail.model.SpamMessageAgent

@@ -1,17 +1,17 @@
 
-Bcse.maven_webmail.model.FormParser#getFileName()Ljava/lang/String;à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java: :("1*õ
-1à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java; ;(‚
-ﬂ
-à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java; ;(
-%0java.lang.String"__id*4*2$
-"cse.maven_webmail.model.FormParser"
-
-fileName"•
-à
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java; ;(
-
-%0java.lang.StringB&$
-"cse.maven_webmail.model.FormParser
+-cse.maven_webmail.model.Pop3Agent#validate()Zá
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java, ,("5*ç
+5á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java0 0(#¯
+ı
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java0 0(%
+%0boolean"3cse.maven_webmail.model.Pop3Agent#connectToStore()Z*%#
+!cse.maven_webmail.model.Pop3Agent*
+1*¢
+1á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java6 6("í
+á
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java6 6(
+""B%#
+!cse.maven_webmail.model.Pop3Agent

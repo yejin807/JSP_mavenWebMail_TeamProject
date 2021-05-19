@@ -1,110 +1,16 @@
 
-Bcse.maven_webmail.model.UserAdminAgent#verify(Ljava/lang/String;)Zè
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÀ À("11*•
-3è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java› ›(àÖ
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java› ›(
-%9boolean".cse.maven_webmail.model.UserAdminAgent#quit()Z**(
-&cse.maven_webmail.model.UserAdminAgent2quit()*
-1*£
-6è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÿ ÿ(;÷
-”
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÿ ÿ(;
-recvMessagejava.lang.String"__id*
+>cse.maven_webmail.model.FormParser#getBody()Ljava/lang/String;à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java4 4("1*ó
+1à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java5 5(ﬁ
+€
+à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java5 5(
+%0java.lang.String"__id*0*.$
+"cse.maven_webmail.model.FormParser"
+body"•
+à
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.java5 5(
 
-%6java.lang.String≠™
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaŸ Ÿ(.
-%8boolean"4java.lang.String#contains(Ljava/lang/CharSequence;)Z*!
-
-recvMessagejava.lang.String*
-
-exists2"contains(Ljava/lang/CharSequence;)*
-3*Õ
-7è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÿ, ÿ(9øº
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÿ% ÿ(+
-%6java.lang.String"java.lang.StringÓ
-Î
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÿ! ÿ(:
-%7"java.lang.String#<init>([B)V*
-
-%6java.lang.String*
-
-messageBufferbyte[]*
-6*ã
-8è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java◊ ◊(Í
-Á
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java◊ ◊(
-%4java.io.InputStream"__id*2*0(
-&cse.maven_webmail.model.UserAdminAgent"
-isÅ˛
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java◊ ◊("	
-%5int"java.io.InputStream#read([B)I*
-
-%4java.io.InputStream*
-
-messageBufferbyte[]2read([B)*
-7*ò
-9è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java“ “(.˚¯
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java“ “(.
-
-%3void"java.io.OutputStream#write([B)V*
-
-%1java.io.OutputStream*
-
-%2byte[]2	write([B)*
-8*ø
-10è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java—# —(,‚
-ﬂ
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java—# —(5
-%0java.lang.String"__concat*	
-verify *
-
-useridjava.lang.Stringÿ
-’
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java— —(6!
-verifyCommandjava.lang.String"__id*
-
-%0java.lang.StringÎ
-Ë
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java“ “(
-%1java.io.OutputStream"__id*2*0(
-&cse.maven_webmail.model.UserAdminAgent"
-osÛ
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java“ “(-
-%2byte[]"java.lang.String#getBytes()[B*#
-!
-verifyCommandjava.lang.String2
-getBytes()*
-9*€
-11è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÃ Ã(º
-π
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.javaÕ Õ(.
-messageBufferbyte[]"__id*
-""*
-10*≤
-1è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java‡ ‡("ö
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/UserAdminAgent.java‡ ‡(
-"":
-useridjava.lang.StringB*(
-&cse.maven_webmail.model.UserAdminAgent
+%0java.lang.StringB&$
+"cse.maven_webmail.model.FormParser

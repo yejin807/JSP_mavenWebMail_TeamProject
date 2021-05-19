@@ -1,9 +1,16 @@
 
-Icse.maven_webmail.control.LoginHandler#getServletInfo()Ljava/lang/String;è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaá á( "1*¡
-1è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaà à(""©
-è
-ÇC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaà à(#
-Short descriptionB*(
-&cse.maven_webmail.control.LoginHandler
+hcse.maven_webmail.model.BookmarkMessageAgent#getInstance()Lcse/maven_webmail/model/BookmarkMessageAgent;ì
+àC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java' (2"1*Ñ
+1ì
+àC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java (ô
+ñ
+ì
+àC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java (2
+%0,cse.maven_webmail.model.BookmarkMessageAgent"__id*D*B.
+,cse.maven_webmail.model.BookmarkMessageAgent"
+uniqueInstance"Ã
+ì
+àC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java (4
+2
+%0,cse.maven_webmail.model.BookmarkMessageAgentB0".
+,cse.maven_webmail.model.BookmarkMessageAgent

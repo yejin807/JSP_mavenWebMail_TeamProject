@@ -1,16 +1,25 @@
 
-Acse.maven_webmail.model.FormParser#getSubject()Ljava/lang/String;ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaJ J("1*š
-1ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaK K(á
-Þ
-ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaK K(
-%0java.lang.String"__id*3*1$
-"cse.maven_webmail.model.FormParser"	
-subject"¥
-ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaK K(
-
-%0java.lang.StringB&$
-"cse.maven_webmail.model.FormParser
+/cse.maven_webmail.model.Pop3Agent#TMessage(IZ)Z‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaZ Z("10*¢
+9‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java^ ^("’
+‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java^ ^(
+""*‘
+10‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java[ [(ø
+õ
+‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java] ](
+%0boolean"3cse.maven_webmail.model.Pop3Agent#connectToStore()Z*%#
+!cse.maven_webmail.model.Pop3Agent*
+9
+1*¢
+1‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javas s("’
+‡
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javas s(
+"":
+"":
+""B%#
+!cse.maven_webmail.model.Pop3Agent

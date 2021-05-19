@@ -1,16 +1,9 @@
 
-?cse.maven_webmail.model.Pop3Agent#getUserid()Ljava/lang/String;â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaª ª("1*õ
-1â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaº º(‡
-›
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaº º(
-%0java.lang.String"__id*1*/#
-!cse.maven_webmail.model.Pop3Agent"
-userid"¶
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaº º(
-
-%0java.lang.StringB%#
-!cse.maven_webmail.model.Pop3Agent
+Wcse.maven_webmail.control.SpamSettingDatabaseHandler#getServletInfo()Ljava/lang/String;ù
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.java≥ ≥( "1*›
+1ù
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.java¥ ¥(""∑
+ù
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.java¥ ¥(#
+Short descriptionB86
+4cse.maven_webmail.control.SpamSettingDatabaseHandler
