@@ -83,6 +83,7 @@ public class ReadMailHandler extends HttpServlet {
             case CommandType.CANCLE_BOOKMARK: // 북마크취소
                 try (PrintWriter out = response.getWriter()) {
                 int msgid = Integer.parseInt((String) request.getParameter("msgid"));
+                System.out.println("request.getParameter msgid  : " + Integer.toString(msgid));
                 if (bookmarkMessageAgent.cancelBookmarking(userid, msgid)) {
                     //bookmarking 성공
                     out.println("<script>alert('북마크 설정이 취소되었습니다.');</script>");

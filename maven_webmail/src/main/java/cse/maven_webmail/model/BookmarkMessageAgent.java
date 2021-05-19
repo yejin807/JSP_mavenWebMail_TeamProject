@@ -83,7 +83,7 @@ public class BookmarkMessageAgent {
     public boolean cancelBookmarking(String userid, int msgid) {
         boolean status = false;
         String result = "";
-
+        result +="try canceling Bookmarking";
         try {
             setEmail(userid);
             if (bookmarkMsgID.contains(Integer.valueOf(msgid))) {
@@ -101,12 +101,16 @@ public class BookmarkMessageAgent {
     }
 
     private String deleteBookmarkMsgID(int msgid) {
-        String result = null;
+        String result = null;            result += "\ntry deleteBookmarking" +Integer.toString(msgid);
+
 
         try {
             Class.forName(CommandType.JdbcDriver);
             Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            result += "\ntry deleteBookmarking";
 
+            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + email;
+            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
             String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if (email != null || !(email.equals(""))) { //email 값이 null이 아니면.
@@ -115,6 +119,10 @@ public class BookmarkMessageAgent {
                     pstmt.setInt(2, msgid);
                 }
                 pstmt.executeUpdate();
+
+                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + email;
+                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
+                result += "\n end deleteBookmarking";
 
                 pstmt.close();
                 conn.close();

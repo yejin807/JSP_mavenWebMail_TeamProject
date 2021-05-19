@@ -147,7 +147,7 @@ public class MessageFormatter {
                         + " <td id=delete>"
                         + "<a href=ReadMail.do?menu="
                         + CommandType.CANCLE_BOOKMARK //-----------//
-                        + "&msgid=" + (i + 1) + "> 취소 </a>" + "</td>"
+                        + "&msgid=" + messages[i].getMessageNumber() + "> 취소 </a>" + "</td>"
                         + " </tr>");
                 //    buffer.append(i + " : " + messages[i].getFlags().contains("bookmarked") + "<br>");
                 /* } else {
