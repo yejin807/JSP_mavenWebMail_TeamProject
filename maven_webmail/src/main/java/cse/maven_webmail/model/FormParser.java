@@ -12,8 +12,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-
-
 /**
  * 책임: enctype이 multipart/form-data인 HTML 폼에 있는 각 필드와 파일 정보 추출
  *
@@ -29,26 +27,27 @@ public class FormParser {
     private String fileName = null;
     private final String UPLOAD_DIR = "WEB-INF/upload/";
     private final String UPLOAD_TEMP_DIR = "WEB-INF/temp/";
-    private final int MAX_MEMORY_SIZE = 1000*1024*1024;
-    private final int MAX_UPLOAD_SIZE = 1000*1024*1024;
+    private final int MAX_MEMORY_SIZE = 10 * 1024 * 1024;
+    private final int MAX_UPLOAD_SIZE = 20 * 1024 * 1024;
 
     public FormParser(HttpServletRequest request) {
         this.request = request;
     }
-    
-    private void checkFolder(String baseFolder){
+
+    private void checkFolder(String baseFolder) {
+        System.out.println("baseFolder = " + baseFolder);
 
         File uf = new File(baseFolder + UPLOAD_DIR);
-        if( !uf.exists()){
+        if (!uf.exists()) {
             uf.mkdir();
         }
-        
+
         File tf = new File(baseFolder + UPLOAD_TEMP_DIR);
-        if(!tf.exists()){
+        if (!tf.exists()) {
             tf.mkdir();
         }
     }
-    
+
     public String getBody() {
         return body;
     }
@@ -99,18 +98,24 @@ public class FormParser {
 
     public void parse() {
         try {
-            
+
             request.setCharacterEncoding("UTF-8");
             String currentFolder = request.getServletContext().getRealPath("/");
-            
-            if(currentFolder.matches(".*\\.*")){
-                currentFolder = currentFolder.replace("\\","/");
+            //System.out.println("Current Folder 위치 : " + currentFolder);
+
+            if (currentFolder.matches(".*\\.*")) {
+                currentFolder = currentFolder.replace("\\", "\\\\");
             }
+
+            //System.out.println("Current Folder 수정된 위치 : " + currentFolder);
+
             checkFolder(currentFolder);
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-            
-            if( isMultipart ){
-                      
+
+            //System.out.println("isMultipart isMultipart = : " + isMultipart);
+
+            if (isMultipart) {
+
                 // 1. 디스크 기반 파일 항목에 대한 팩토리 생성
                 DiskFileItemFactory diskFactory = new DiskFileItemFactory();
                 // 2. 팩토리 제한사항 설정
@@ -125,8 +130,14 @@ public class FormParser {
                 Iterator i = fileItems.iterator();
                 while (i.hasNext()) {
                     FileItem fi = (FileItem) i.next();
+                    //System.out.println("Content type : " + fi.getContentType());
+
                     if (fi.isFormField()) {  // 5. 폼 필드 처리
+                        System.out.println("filename = " + fi.getFieldName());
+                        System.out.println(":" + fi.getString("UTF-8") + "<br>");
                         String fieldName = fi.getFieldName();
+
+                        //todo 주석처리
                         String item = fi.getString("UTF-8");
 
                         if (fieldName.equals("to")) {
@@ -139,20 +150,25 @@ public class FormParser {
                             setBody(item);
                         }
                     } else {  // 6. 첨부 파일 처리
-
+                        System.out.println("첨부파일  처리 시작");
                         if (fi.getName() != null && !fi.getName().equals("")) {
+                            //System.out.println("file name  = " + fi.getName());
                             // 절대 경로 저장
-                            setFileName(currentFolder + UPLOAD_DIR + fi.getName()); // this.fileName  전체 경로 
-                            File file = new File(fileName);
-                            // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
-                            //if (fileName != null) {
-                             fi.write(file);
-                            //
+                            //setFileName(currentFolder + UPLOAD_DIR + fi.getName()); // this.fileName  전체 경로 
+                            //File file = new File(fileName);
+                            File file = new File(currentFolder + UPLOAD_DIR + fi.getName());
+                            //System.out.printf("파일 저장 경로 = %s <br>", file.getCanonicalPath());
 
+                            // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
+                            fi.write(file);
+
+                        } else {
+                            System.out.println("파일이름이없습니다");
                         }
                     }
                 }
-            }
+            } 
+
         } catch (Exception ex) {
             System.out.println("FormParser.parse() : exception = " + ex);
         }
