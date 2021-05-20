@@ -461,13 +461,13 @@ public class Pop3Agent {
 //                allMessages[i].getSubject();
                 for (int j = 0; j < spamWord.size(); j++) {
                     System.out.println(Integer.toString(j) + " spamWord : " + spamWord.get(j));
-                    if (allMessages[i].getSubject().contains(spamWord.get(j))) {//i번째 메일 제목에 j번째 스팸단어가 포함되어 있다면,
+                    if (allMessages[i].getSubject().contains(spamWord.get(j))) {//i번째 메일 제목에 j번째 스팸단어가 포함되어 있다Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")면,
                         System.out.println("Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                        //bufMessages.add(i, allMessages[i]);
+                        bufMessages.add(allMessages[i]);
                         addStatus = true;
                     } else {
                         System.out.println("Pop3Agent.filterSpamMessage.spamWord : " + spamWord.get(j) + "스팸아님");
-                    }
+                    }/*
                     if (addStatus) {  //스팸메시지를 추가해야하면
 
                         count++;
@@ -475,7 +475,7 @@ public class Pop3Agent {
                         System.out.println("Pop3Agent.filterSpamMessage.addStatus true라서 : " + i + "번째 메시지를 추가합니다.");
                     }
                     addStatus = false;
-
+*/
                 } //end for spamWord
 
                 System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.from : " + allMessages[i].getFrom()[0].toString() + " start test");
@@ -485,18 +485,18 @@ public class Pop3Agent {
                     if ((allMessages[i].getFrom()[0].toString()).equals(spamEmail.get(j))) { //spamEmail에 저장된 이메일에게서 메일이 왔었다면.
                         System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                         addStatus = true;
-                        //bufMessages.add(i, allMessages[i]);
+                        bufMessages.add(allMessages[i]);
                     } else {
                         System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " 스팸아님");
-                    }
+                    }/*
                     if (addStatus) {  //스팸메시지를 추가해야하면
 
                         count++;
-                        bufMessages.add(count, allMessages[i]);
+                        //bufMessages.add(count, allMessages[i]);
                         System.out.println("Pop3Agent.filterSpamMessage.addStatus true라서 : " + i + "번째 메시지를 추가합니다.");
                     }
                     addStatus = false;
-
+*/
                 } //end for spamEmail
 
             } //end for
