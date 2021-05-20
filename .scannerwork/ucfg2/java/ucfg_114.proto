@@ -1,16 +1,16 @@
 
-Borg.apache.jsp.add_005fuser_jsp#getPackageImports()Ljava/util/Set;z
-pC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\add_005fuser_jsp.java-) -(:"1*∫
-1z
-pC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\add_005fuser_jsp.java. .(!¢
-ü
-z
-pC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\add_005fuser_jsp.java. .(!
-%0java.util.Set"__id*
-"""ì
-z
-pC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\add_005fuser_jsp.java. .("
-
-%0java.util.Set:
-%jsp_contextB#!
-org.apache.jsp.add_005fuser_jsp
+Dcse.maven_webmail.model.MessageParser#getSubject()Ljava/lang/String;é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java» »("1*Ø
+1é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(Í
+Á
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(
+%0java.lang.String"__id*6*4'
+%cse.maven_webmail.model.MessageParser"	
+subject"´
+é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(
+
+%0java.lang.StringB)'
+%cse.maven_webmail.model.MessageParser

@@ -1,16 +1,59 @@
 
-=org.apache.jsp.footer_jspf#getPackageImports()Ljava/util/Set;u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java+) +(:"1*´
-1u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java, ,(!ù
-ö
-u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java, ,(!
-%0java.util.Set"__id*
-"""é
-u
-kC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jspf.java, ,("
-
-%0java.util.Set:
-%jsp_contextB
-org.apache.jsp.footer_jspf
+Torg.apache.jsp.join_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaF+ F(B"5*˜
+2r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaJ! J($íè
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaJe J(w!
+%2javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;*
+org.apache.jsp.join_jsp2getServletConfig()É
+Ä
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaJ! J(x'
+%3!org.apache.tomcat.InstanceManager"Öorg.apache.jasper.runtime.InstanceManagerFactory#getInstanceManager(Ljavax/servlet/ServletConfig;)Lorg/apache/tomcat/InstanceManager;*4"2
+0org.apache.jasper.runtime.InstanceManagerFactory*#
+!
+%2javax.servlet.ServletConfig›
+⁄
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaJ
+ J(x3
+org.apache.jsp.join_jsp"
+_jsp_instancemanager"__id*)
+'
+%3!org.apache.tomcat.InstanceManager*
+1*ﬂ
+3r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaI I( ›
+⁄
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaI I( '
+%1!org.apache.tomcat.InstanceManager"__id*5*3
+org.apache.jsp.join_jsp"
+_jsp_instancemanager*
+2
+1*ﬂ
+5r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaG G(›
+⁄
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaG G('
+%0!org.apache.tomcat.InstanceManager"__id*5*3
+org.apache.jsp.join_jsp"
+_jsp_instancemanager*
+3
+1*˘
+1r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaN N(›
+⁄
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaN N('
+%4!org.apache.tomcat.InstanceManager"__id*5*3
+org.apache.jsp.join_jsp"
+_jsp_instancemanager"ü
+r
+hC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\join_jsp.javaN N( )
+'
+%4!org.apache.tomcat.InstanceManager:
+%jsp_contextB
+org.apache.jsp.join_jsp
