@@ -7,16 +7,9 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*"%> <!-- 데이터베이스-->
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
 
-<!--지움
-<jsp:useBean id="pop3" scope="page" class="cse.maven_webmail.model.Pop3Agent" />
-<%
-    pop3.setHost((String) session.getAttribute("host"));
-    pop3.setUserid((String) session.getAttribute("userid"));
-    pop3.setPassword((String) session.getAttribute("password"));
-%> 
---!>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitiona1//EN" 
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,68 +20,25 @@
         <title>휴지통</title>
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
-
     <body>
         <jsp:include page="header.jsp" />
 
         <div id="sidebar">
-            <a href="main_menu.jsp"> 이전 메뉴로 </a>
+        <a href="main_menu.jsp"> 메인메뉴로 </a>
+        <p> <a href="write_mail.jsp"> 메일 쓰기 </a> </p>
+        <p> <a href="spam_mail_list.jsp"> 스팸메일함 </a> </p>
+        <p> <a href="bookmarked_mail.jsp"> 즐겨찾기함 </a> </p>
         </div>
-
-         <div id="msgBody">
-             화아면
-             </div>
-     
-            <%
-            final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
-            final String JdbcUrl = "jdbc:mysql://localhost:3306/goto_bin";
-            final String User = "jdbctester";
-            final String Password = "12345*";
-            
-            try {
-            // 1. JDBC 드라이버 적재
-            Class.forName(JdbcDriver);
-            // 2. Connection 객체생성
-            Connection conn = DriverManager.getConnection
-                               (JdbcUrl, User, Password);
-            // 3. Statement 객체생성
-            Statement stmt = conn.createStatement();
-            // 4. SQL 질의 쿼리실행
-            String sql = "SELECT * FROM bin";
-            ResultSet rs = stmt.executeQuery(sql); 
-            %>
-            <table border =" "1" >
-                <thead>
-                    <tr>
-                        <th>보낸 사람</th>
-                        <th>보낸날짜</th>
-                        <th>제목</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                 <%
-                 while (rs.next()){ //휴지통 테이블에서 보여줄것
-                 out.println("<tr>");
-                 out.println("<td>" + rs.getString("send_person")+ "</td>");
-                 out.println("<td>" + rs.getString("send_date")+ "</td>");
-                 out.println("<td>" + rs.getString("m_title")+ "</td>");
-                 }
-                 
-                     rs.close();
-                     stmt.close();
-                     conn.close();
-                 %>
-                </tbody>
-            </table>
-                <% 
-                    } catch (Exception ex){
-                    out.println("오류발생. (발생오류:"
-                                                    + ex.getMessage()+ ")");
-                    }
-                            
-                %>
+        
+        <!-- bin DB와 연결/ bin테이블 보여줌-->
+        <c:catch var= "errorReason">
+            <%--<mytags:trashbin user="jdbctester" password="12345*"
+                        schema="goto_bin" table="bin" />--%>
+            <mytags:trashbin user="jdbctester" password="1895"
+                        schema="goto_bin" table="bin" />
+        </c:catch>
+       
+        ${empty errorReason?"<noerror/>" : errorReason}
 
         <jsp:include page="footer.jsp" />
 

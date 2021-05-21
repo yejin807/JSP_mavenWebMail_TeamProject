@@ -34,6 +34,12 @@ ADD COLUMN `is_email` TINYINT NOT NULL AFTER `word`;
 
 INSERT INTO `webmail`.`spam` (`email`, `word`, `is_email`) VALUES ('test2', 'eee', '0');
 
+CREATE TABLE `goto_bin`.`bin` (
+  `mail_num` VARCHAR(45) NULL,
+  `send_person` VARCHAR(45) NULL,
+  `send_date` VARCHAR(45) NULL,
+  `m_title` VARCHAR(45) NULL);
+
 ---------------------
 Tomcat Server.xml 수정했음
 
