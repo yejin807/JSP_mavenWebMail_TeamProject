@@ -32,9 +32,7 @@
         
         <!-- bin DB와 연결/ bin테이블 보여줌-->
         <c:catch var= "errorReason">
-            <%--<mytags:trashbin user="jdbctester" password="12345*"
-                        schema="goto_bin" table="bin" />--%>
-            <mytags:trashbin user="jdbctester" password="1895"
+            <mytags:trashbin user="jdbctester" password="12345*"
                         schema="goto_bin" table="bin" />
         </c:catch>
        

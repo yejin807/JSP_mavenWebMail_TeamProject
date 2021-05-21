@@ -24,7 +24,7 @@
                    password="${password}" />
 
 <sql:query var ="rs" dataSource = "${dataSrc}">
-    SELECT mail_num, send_person, send_date, m_title
+    SELECT send_person, send_date, m_title
     FROM ${table}
    
 </sql:query>
@@ -32,7 +32,7 @@
     <table border ="1">
         <thead>
             <tr>
-                 <th>메일 넘버</th>
+               
                  <th>보낸 사람</th>
                  <th>제목</th>
                  <th>보낸 날짜</th>
@@ -42,10 +42,9 @@
         <tbody>
             <c:forEach var="row" items="${rs.rows}">
                 <tr>
-                    <td>${row.mail_num}</td>
-                    <td>${row.send_person}</td>
-                    <td>${row.send_date}</td>
+                    <td>${row.send_person}</td>         
                     <td>${row.m_title}</td>
+                    <td>${row.send_date}</td>
                 </tr>
             </c:forEach>
         </tbody>

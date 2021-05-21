@@ -15,6 +15,7 @@ import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.servlet.http.HttpServletRequest;
+import cse.maven_webmail.model.VinMessageHandler;
 
 //https://pythonq.com/so/java/824272 javaflag 사용
 //todo : getBookmarkedMessageList 에서 북마크된 메일 추려내기.
@@ -165,12 +166,11 @@ public class Pop3Agent {
             return result;
         }
     }
-
+    
     // 메인 화면에있는 삭제 버튼 누를시 그 메일을 DB로 보내고
 // 선택한 메일은 메인 화면에서는 없어져야 함.
 // public boolean Go_to_trash(int msgid) {
     public Message Go_to_trash(int msgid) {
-                    System.out.println("Go_to_trash() 동작동작: connectToStore   error");
 
         boolean status = false;
         Message newMsg = null;
@@ -189,6 +189,9 @@ public class Pop3Agent {
             msg.setFlag(Flags.Flag.DELETED, true);
 
             newMsg = msg;
+            
+            VinMessageHandler vinMessageHandler = new VinMessageHandler(newMsg, userid);
+            vinMessageHandler.addMessageBin();
 
             folder.close(true); //expunge == true 메시지 삭제
             store.close();
@@ -196,7 +199,6 @@ public class Pop3Agent {
 
         } catch (Exception ex) {
             System.out.println("get bin Message() error: " + ex);
-
         }
         return newMsg;
     }
@@ -211,6 +213,51 @@ public class Pop3Agent {
         }
 
         return result;
+    }
+    
+    public String get_VinMessageList() {
+        String result = "";
+        Message[] messages = null;
+
+        if (!connectToStore()) {  // 3.1
+            System.err.println("POP3 connection failed!");
+            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
+        }
+
+        try {
+            // 메일 폴더 열기
+            Folder folder = store.getFolder("INBOX");  // 3.2
+            folder.open(Folder.READ_ONLY);  // 3.3
+
+            // 현재 수신한 메시지 모두 가져오기
+            messages = folder.getMessages();      // 3.4
+            FetchProfile fp = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.ENVELOPE);
+            folder.fetch(messages, fp);
+
+            FetchProfile fpFlags = new FetchProfile();
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+            fp.add(FetchProfile.Item.FLAGS);
+            folder.fetch(messages, fpFlags);
+
+            /*
+            //즐겨찾기 flag가 없는 경우, 즐겨찾기 flag추가.
+            for(Message msg : messages){
+                if( )
+            }
+             */
+            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            result = formatter.getMessageTable(messages);   // 3.6
+
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
+        } catch (Exception ex) {
+            System.out.println("Pop3Agent.getMessageList() : exception = " + ex);
+            result = "Pop3Agent.getMessageList() : exception = " + ex;
+        } finally {
+            return result;
+        }
     }
     
         //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
