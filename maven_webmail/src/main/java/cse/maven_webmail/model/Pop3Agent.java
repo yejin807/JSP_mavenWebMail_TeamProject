@@ -166,54 +166,7 @@ public class Pop3Agent {
         }
     }
 
-    // 메인 화면에있는 삭제 버튼 누를시 그 메일을 DB로 보내고
-// 선택한 메일은 메인 화면에서는 없어져야 함.
-// public boolean Go_to_trash(int msgid) {
-    public Message Go_to_trash(int msgid) {
-                    System.out.println("Go_to_trash() 동작동작: connectToStore   error");
-
-        boolean status = false;
-        Message newMsg = null;
-
-        if (!connectToStore()) {
-            System.out.println("Go_to_trash() error: connectToStore   error");
-        }
-        try {
-            // Folder 설정
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            Message msg = folder.getMessage(msgid);
-            // Message에 DELETED flag true로 설정
-            //삭제플래그 true 설정
-            msg.setFlag(Flags.Flag.DELETED, true);
-
-            newMsg = msg;
-
-            folder.close(true); //expunge == true 메시지 삭제
-            store.close();
-            status = true;
-
-        } catch (Exception ex) {
-            System.out.println("get bin Message() error: " + ex);
-
-        }
-        return newMsg;
-    }
-
-    public String checkMsgAlive(Message newMsg) {
-        String result = "";
-
-        if (newMsg == null) {
-            result = "99999999999999999999999999999newMsg 증발했다. 안타깝ㅋ";
-        } else {
-            result = "99999999999999999999999999999999newMSg 살아잇어어어어 ㅊㅊㅋㅊㅋ db연결하셈";
-        }
-
-        return result;
-    }
-    
-        //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
+    //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
     // trash.can.jsp에 (휴지통 페이지) 가져가서 보여줄것.
     public String get_TMessageList() {
         String result = "";
@@ -232,52 +185,22 @@ public class Pop3Agent {
             // 현재 수신한 메시지 모두 가져오기
             messages = folder.getMessages();      // 3.4
             FetchProfile fp = new FetchProfile();
-            // From, To, Cc, Bcc, ReplyTo, Subject & Date           
-            //delete flag가 꽂혀있는 메일만 가져오기?? 이게맞냐     
-            fp.add(FetchProfile.Item.FLAGS); //메시지 플래그에 대한 정보를 가져옴
+            // From, To, Cc, Bcc, ReplyTo, Subject & Date
+
+            //delete flag가 꽂혀있는 메일만 가져오기?? 이게맞냐
+            fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fp);
-            //http://geronimo.apache.org/maven/specs/geronimo-javamail_1.4_spec/1.6/apidocs/javax/mail/FetchProfile.Item.html#FLAGS
-            // 플래그 관련 https://docs.oracle.com/javaee/6/api/javax/mail/Flags.html        
+
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             result = formatter.get_TMessageTable(messages);   // 3.6
 
-            //  folder.close(true);  // 3.7
-            // store.close();       // 3.8
+            folder.close(true);  // 3.7
+            store.close();       // 3.8
         } catch (Exception ex) {
             System.out.println("Pop3Agent.get_TMessageList() : exception = " + ex);
             result = "Pop3Agent.get_TMessageList() : exception = " + ex;
         } finally {
             return result;
-        }
-    }
-
-    // 폴더를 닫아서 삭제 플래그를 완성시킬것
-    // 전체삭제
-    public boolean delete_TMessage(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            // Folder 설정
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            // Message에 DELETED flag 설정
-            Message msg = folder.getMessage(msgid);
-            //플래그가 설정되어있을시
-            if (msg.isSet(Flags.Flag.DELETED)) {
-                // 폴더에서 메시지 삭제
-                folder.close(true);  // expunge == true
-                store.close();
-                status = true;
-            }
-        } catch (Exception ex) {
-            System.out.println("deleteMessage() error: " + ex);
-        } finally {
-            return status;
         }
     }
 
@@ -517,6 +440,8 @@ public class Pop3Agent {
         SpamSettingDatabaseHandler spamSettingData = new SpamSettingDatabaseHandler();
         ArrayList<Message> bufMessages = new ArrayList<Message>();
         Message[] spamMessages = null;
+        int count = 0;
+        boolean addStatus = false;
 
         try {
             spamSettingData.getSpamSettingData(userid);
@@ -529,6 +454,8 @@ public class Pop3Agent {
 
             //전체 메시지에 대한 
             for (int i = 0; i < allMessages.length; i++) {
+                addStatus = false;
+
                 System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.subject : " + allMessages[i].getSubject() + " start test");
 
 //                allMessages[i].getSubject();
@@ -537,6 +464,7 @@ public class Pop3Agent {
                     if (allMessages[i].getSubject().contains(spamWord.get(j))) {//i번째 메일 제목에 j번째 스팸단어가 포함되어 있다Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")면,
                         System.out.println("Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                         bufMessages.add(allMessages[i]);
+                        addStatus = true;
                     } else {
                         System.out.println("Pop3Agent.filterSpamMessage.spamWord : " + spamWord.get(j) + "스팸아님");
                     }/*
@@ -556,6 +484,7 @@ public class Pop3Agent {
                 for (int j = 0; j < spamEmail.size(); j++) {
                     if ((allMessages[i].getFrom()[0].toString()).equals(spamEmail.get(j))) { //spamEmail에 저장된 이메일에게서 메일이 왔었다면.
                         System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                        addStatus = true;
                         bufMessages.add(allMessages[i]);
                     } else {
                         System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " 스팸아님");
