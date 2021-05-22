@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.FormParser;
 import cse.maven_webmail.model.SmtpAgent;
-
 /**
  *
  * @author jongmin
@@ -82,7 +81,7 @@ public class WriteMailHandler extends HttpServlet {
         if (fileName != null) {
             agent.setFile1(fileName);
         }
-
+        
         // 5. 메일 전송 권한 위임
         if (agent.sendMessage()) {
             status = true;

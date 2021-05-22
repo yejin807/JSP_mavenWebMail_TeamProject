@@ -6,6 +6,7 @@ package cse.maven_webmail.model;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 import javax.activation.DataHandler;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -27,10 +28,11 @@ public class MessageParser {
     private String sentDate;
     private String subject;
     private String body;
-    private String fileName;
-    private String downloadTempDir = "C:/temp/download/";
+    private String fileName; 
+    private String downloadTempDir = "C:/temp/download/"; // temp 폴더 필요
     private String userid;
-
+    private String fnames =""; //추가
+    
     public MessageParser(Message message, String userid) {
         this.message = message;
         this.userid = userid;
@@ -101,6 +103,8 @@ public class MessageParser {
                 DataHandler dh = p.getDataHandler();
                 FileOutputStream fos = new FileOutputStream(tempUserDir + File.separator + filename);
                 dh.writeTo(fos);
+                
+                fnames += (fileName + "?"); // 파일이름 저장
                 fos.flush();
                 fos.close();
             }
@@ -141,6 +145,8 @@ public class MessageParser {
             System.out.println(body);
             System.out.println("---------------------------------");
             System.out.println("첨부파일: " + fileName);
+            for( String i : fnames.split("\\?") )
+                System.out.println("this is message parser" + i);         
         }
     }
 
@@ -160,7 +166,7 @@ public class MessageParser {
     public String getBody() {
         return body;
     }
-
+    
     public void setBody(String body) {
         this.body = body;
     }
@@ -212,4 +218,9 @@ public class MessageParser {
     public void setToAddress(String toAddress) {
         this.toAddress = toAddress;
     }
+    
+    public String getFilenames() {
+        return fnames;
+    }
+
 }

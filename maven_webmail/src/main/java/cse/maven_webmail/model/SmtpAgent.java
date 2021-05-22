@@ -6,6 +6,7 @@ package cse.maven_webmail.model;
 
 import com.sun.mail.smtp.SMTPMessage;
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -140,30 +141,39 @@ public class SmtpAgent {
 
             Multipart mp = new MimeMultipart();
             mp.addBodyPart(mbp);
-
+            
+            // 파싱
+            String[] names = this.file1.split("\\?");
             // 첨부 파일 추가
-            if (this.file1 != null) {
+             // this.file1 -> path
+             
+            for ( String f : names ){
+                if (f != null) {  
                 MimeBodyPart a1 = new MimeBodyPart();
-                DataSource src = new FileDataSource(this.file1);
-                a1.setDataHandler(new DataHandler(src));
-                int index = this.file1.lastIndexOf('/');
-                String fileName = this.file1.substring(index + 1);
+                //DataSource src = new FileDataSource(f);
+                //a1.setDataHandler(new DataHandler(src));
+                a1.attachFile(f);
+                int index = f.lastIndexOf('/');
+                String fileName = f.substring(index + 1);
                 // "B": base64, "Q": quoted-printable
-                a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
+                //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
+                System.out.println("add file in messasge  "  + f);
                 mp.addBodyPart(a1);
             }
+            }
             msg.setContent(mp);
-
+            
             // 메일 전송
             Transport.send(msg);
-
+            for ( String n :  names ){
             // 메일 전송 완료되었으므로 서버에 저장된
             // 첨부 파일 삭제함
             if (this.file1 != null) {
-                File f = new File(this.file1);
+                File f = new File(n);
                 if (!f.delete()) {
                     System.err.println(this.file1 + " 파일 삭제가 제대로 안 됨.");
                 }
+            }
             }
             status = true;
         } catch (Exception ex) {
