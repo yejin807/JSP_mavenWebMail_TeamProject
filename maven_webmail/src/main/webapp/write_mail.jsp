@@ -114,25 +114,31 @@
                             <input type="submit" id="submit" value="메일 보내기" onclick="sendSubmit()">
                             <input type="reset" value="다시 입력">
                             <input type="submit" id="save" value="임시저장" onclick="saveSubmit();">
-                            <input type="submit" value="불러오기">
+                            <input type="submit" value="불러오기" onclick="loadSubmit();">
                         </td>
                     </tr>
                 </table>
             </form>
 
             <script type="text/javascript">
+                
                 function saveSubmit() {
-                    frm.action = "temp_mail_save.jsp";
-                    frm.encoding = "application/x-www-form-urlencoded";
-                    frm.submit(); 
-                    cnt++;
+                        frm.action = "temp_mail_save.jsp";
+                        frm.encoding = "application/x-www-form-urlencoded";
+                        frm.submit(); 
+                        cnt++;
                 }
-            </script>
-                    
-            <script type="text/javascript">
+
                 function sendSubmit() {
                     frm.action = "WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>";
                     frm.encoding = "multipart/form-data";
+                    frm.submit(); 
+                    cnt=0;
+                }
+                
+                function loadSubmit() {
+                    frm.action = "TempMail.do?menu=<%= CommandType.LOAD_MAIL_COMMAND%>";
+                    frm.encoding = "application/x-www-form-urlencoded";
                     frm.submit(); 
                     cnt=0;
                 }
