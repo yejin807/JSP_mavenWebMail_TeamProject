@@ -65,6 +65,39 @@
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
     <body>
+        <%
+        String userid = (String) session.getAttribute("userid");
+        final String JdbcDriver = "com.mysql.jdbc.Driver";
+        String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
+        final String User = "jdbctester";
+        final String Password = "0000";
+        response.setContentType("text/html;charset=UTF-8");
+        String DBemail = null;
+        String DBtitle = null;
+        String DBcont = null;
+
+        try{
+            Class.forName(JdbcDriver);
+            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT * FROM tempmail WHERE user='"+userid+"';";
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                DBemail = rs.getString("email");
+                DBtitle = rs.getString("title");
+                DBcont = rs.getString("content");
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (Exception ex) {
+            out.println("오류가 발생했습니다. (발생 오류: "+ ex.getMessage() + ")");
+          }
+        %>
         <jsp:include page="header.jsp" />
 
         <div id="sidebar">
@@ -82,7 +115,8 @@
                         String subj = request.getParameter("subj") == null ? "" : request.getParameter("subj");
                         String text = request.getParameter("text") == null ? "" : request.getParameter("text");
                         String temp = request.getParameter("temp") == null ? "" : request.getParameter("temp");
-                    %>
+                        %>
+                        
                     <tr>
                         <td> 수신 </td>
                         <td> <input type="text" id="to" name="to" size="80"
@@ -101,7 +135,7 @@
                     </tr>
                     <tr>  <%-- TextArea    --%>
                         <td colspan="2">
-                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; "><%=text%></textarea>
+                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; " ><%=text%><%=DBcont%></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -114,36 +148,40 @@
                             <input type="submit" id="submit" value="메일 보내기" onclick="sendSubmit()">
                             <input type="reset" value="다시 입력">
                             <input type="submit" id="save" value="임시저장" onclick="saveSubmit();">
-                            <input type="submit" value="불러오기" onclick="loadSubmit();">
+                            <input type="button" value="불러오기" onclick="loadMail();">
                         </td>
                     </tr>
                 </table>
             </form>
 
             <script type="text/javascript">
+                var DBemail = "<%=DBemail%>";
+                var DBtitle = "<%=DBtitle%>";
+                var DBcontent = "<%=DBcont%>";
+                var text = "<%=text%>";
                 
                 function saveSubmit() {
-                        frm.action = "temp_mail_save.jsp";
-                        frm.encoding = "application/x-www-form-urlencoded";
-                        frm.submit(); 
-                        cnt++;
+                    frm.action = "temp_mail_save.jsp";
+                    frm.encoding = "application/x-www-form-urlencoded";
+                    frm.submit();
                 }
 
                 function sendSubmit() {
                     frm.action = "WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>";
                     frm.encoding = "multipart/form-data";
-                    frm.submit(); 
-                    cnt=0;
+                    frm.submit();
                 }
                 
-                function loadSubmit() {
-                    frm.action = "TempMail.do?menu=<%= CommandType.LOAD_MAIL_COMMAND%>";
-                    frm.encoding = "application/x-www-form-urlencoded";
-                    frm.submit(); 
-                    cnt=0;
+                function loadMail(){
+                    document.getElementById("to").value = DBemail;
+                    document.getElementById("subj").value = DBtitle;
+                    document.getElementById("cont").value = DBcont;
+                    text = DBcontent;
+                    frm.submit();
                 }
             </script>   
         </div>
+                    
                     
         <jsp:include page="footer.jsp" />
     </body>

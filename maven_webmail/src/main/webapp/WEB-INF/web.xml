@@ -30,10 +30,6 @@
         <servlet-name>JoinHandler</servlet-name>
         <servlet-class>cse.maven_webmail.control.JoinHandler</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>TempMailHandler</servlet-name>
-        <servlet-class>cse.maven_webmail.control.TempMailHandler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginHandler</servlet-name>
         <url-pattern>/Login.do</url-pattern>
@@ -53,10 +49,6 @@
     <servlet-mapping>
         <servlet-name>JoinHandler</servlet-name>
         <url-pattern>/join_handler.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TempMailHandler</servlet-name>
-        <url-pattern>/TempMail.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
