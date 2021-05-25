@@ -120,7 +120,8 @@ public class UserAdminHandler extends HttpServlet {
                     out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
                 }
             } else {
-                out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
+                //양식에 맞지않음
+                out.println(getPopUp("정보를 정확하게 입력해주세요.", "add_user.jsp"));
             }
             out.flush();
         } catch (Exception ex) {
@@ -162,7 +163,7 @@ public class UserAdminHandler extends HttpServlet {
                     out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
                 }
             } else {
-                out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
+                out.println(getPopUp("정보를 정확하게 입력해주세요.", "join.jsp"));
             }
             out.flush();
         } catch (Exception ex) {
