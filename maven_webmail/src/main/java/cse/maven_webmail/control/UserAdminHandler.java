@@ -108,19 +108,19 @@ public class UserAdminHandler extends HttpServlet {
             out.flush();
             // if (addUser successful)  사용자 등록 성공 팦업창
             // else 사용자 등록 실패 팝업창
-            if (userid.equals("null") || userid == null || password.equals("null") || password == null
-                    || username.equals("null") || username == null || birth.equals("null") || birth == null || phone.equals("null") || phone == null) {
-                out.println(getEmptyFailurePopUp());
+            if (userid.equals("") || userid == null || password.equals("") || password == null
+                    || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
+                out.println(getPopUp("모든 정보를 입력해주세요.", "add_user.jsp"));
             } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && username != null
                     && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
                 if (agent.addUser(userid, password)) {
                     addDBUser(request, response, out); //DB추가함수
-                    out.println(getUserRegistrationSuccessPopUp());
+                    out.println(getPopUp("정보 추가에 성공했습니다.", "admin_menu.jsp"));
                 } else {
-                    out.println(getUserRegistrationFailurePopUp());
+                    out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
                 }
             } else {
-                out.println(getAccurateFailurePopUp());
+                out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
             }
             out.flush();
         } catch (Exception ex) {
@@ -148,21 +148,21 @@ public class UserAdminHandler extends HttpServlet {
             out.println("phone = " + phone + "<br>");
             out.flush();
 
-            if (userid.equals("null") || userid == null || password.equals("null") || password == null
-                    || username.equals("null") || username == null || birth.equals("null") || birth == null || phone.equals("null") || phone == null) {
-                out.println(getEmptyFailurePopUp());
+            if (userid.equals("") || userid == null || password.equals("") || password == null
+                    || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
+                out.println(getPopUp("모든 정보를 입력해주세요.", "join.jsp"));
             } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && password_check != null && username != null
                     && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
                 if (!password.equals(password_check)) {
-                    out.println(getDifferentFailurePopUp());
+                    out.println(getPopUp("암호가 일치하지 않습니다.", "join.jsp"));
                 } else if (agent.addUser(userid, password)) {
                     addDBUser(request, response, out); //DB추가함수
-                    out.println(getUserJoinSuccessPopUp());
+                    out.println(getPopUp("회원가입에 성공했습니다.", "index.jsp"));
                 } else {
-                    out.println(getUserJoinFailurePopUp());
+                    out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
                 }
             } else {
-                out.println(getAccurateFailurePopUp());
+                out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
             }
             out.flush();
         } catch (Exception ex) {
@@ -261,15 +261,13 @@ public class UserAdminHandler extends HttpServlet {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             if (checkPassword(request, response, out)) {
                 if (agent.secessionUser(userid)) {
-                    //탈퇴 완료 팝업
                     delDBUser(request, response, out);
-                    out.println(getSecessionPopUp());
+                    out.println(getPopUp("회원탈퇴가 완료됐습니다.", "index.jsp"));
                 } else {
-                    //탈퇴 실패 팝업
-                    out.println(getSecessionFailPopUp());
+                    out.println(getPopUp("회원탈퇴를 실패했습니다.", "main_menu.jsp"));
                 }
             } else {
-                out.println(getSecessionFailPopUp());
+                out.println(getPopUp("회원탈퇴를 실패했습니다.", "main_menu.jsp"));
             }
         } catch (Exception ex) {
             System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
@@ -322,8 +320,7 @@ public class UserAdminHandler extends HttpServlet {
         return status;
     }
 
-    private String getUserRegistrationSuccessPopUp() {
-        String alertMessage = "사용자 등록이 성공했습니다.";
+    private String getPopUp(String alertMessage, String send) {
         StringBuilder successPopUp = new StringBuilder();
         successPopUp.append("<html>");
         successPopUp.append("<head>");
@@ -337,180 +334,14 @@ public class UserAdminHandler extends HttpServlet {
         successPopUp.append("alert(\"");
         successPopUp.append(alertMessage);
         successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"admin_menu.jsp\"; ");
+//        successPopUp.append("window.location = \"admin_menu.jsp\"; ");
+        successPopUp.append("window.location = \"");
+        successPopUp.append(send);
+        successPopUp.append("\"; ");
         successPopUp.append("}  </script>");
         successPopUp.append("</body></html>");
         return successPopUp.toString();
     }
-
-    private String getUserRegistrationFailurePopUp() {
-        String alertMessage = "사용자 등록이 실패했습니다.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"admin_menu.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getUserJoinSuccessPopUp() {
-        String alertMessage = "회원가입에 성공했습니다.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"index.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getUserJoinFailurePopUp() {
-        String alertMessage = "회원가입에 실패했습니다. 관리자에게 문의해주세요.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"join.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getEmptyFailurePopUp() {
-        String alertMessage = "모든 정보를 입력해주세요.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"join.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getDifferentFailurePopUp() {
-        String alertMessage = "비밀번호와 비밀번호 확인이 일치하지 않습니다.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"join.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getAccurateFailurePopUp() {
-        String alertMessage = "모든 정보를 정확하게 입력해주세요.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"join.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getSecessionPopUp() {
-        String alertMessage = "회원탈퇴가 완료 됐습니다.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"index.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
-    private String getSecessionFailPopUp() {
-        String alertMessage = "비밀번호를 정확하게 입력해주세요.";
-        StringBuilder successPopUp = new StringBuilder();
-        successPopUp.append("<html>");
-        successPopUp.append("<head>");
-
-        successPopUp.append("<title>메일 전송 결과</title>");
-        successPopUp.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />");
-        successPopUp.append("</head>");
-        successPopUp.append("<body onload=\"goMainMenu()\">");
-        successPopUp.append("<script type=\"text/javascript\">");
-        successPopUp.append("function goMainMenu() {");
-        successPopUp.append("alert(\"");
-        successPopUp.append(alertMessage);
-        successPopUp.append("\"); ");
-        successPopUp.append("window.location = \"secession.jsp\"; ");
-        successPopUp.append("}  </script>");
-        successPopUp.append("</body></html>");
-        return successPopUp.toString();
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
