@@ -106,18 +106,13 @@ public class FormParser {
 
          request.setCharacterEncoding("UTF-8");
          String currentFolder = request.getServletContext().getRealPath("/");
-         //System.out.println("Current Folder 위치 : " + currentFolder);
 
          if (currentFolder.matches(".*\\\\.*")) {
              currentFolder = currentFolder.replace("\\\\", "\\\\\\\\");
          }
 
-         //System.out.println("Current Folder 수정된 위치 : " + currentFolder);
-
          checkFolder(currentFolder);
          boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
-         //System.out.println("isMultipart isMultipart = : " + isMultipart);
 
          if (isMultipart) {
 
@@ -135,7 +130,6 @@ public class FormParser {
              Iterator i = fileItems.iterator();
              while (i.hasNext()) {
                  FileItem fi = (FileItem) i.next();
-                 //System.out.println("Content type : " + fi.getContentType());
 
                  if (fi.isFormField()) {  // 5. 폼 필드 처리
                      System.out.println("filename = " + fi.getFieldName());
@@ -165,13 +159,13 @@ public class FormParser {
 
                          File file = new File(currentFolder + UPLOAD_DIR + fi.getName());
                          System.out.println("파일 저장 경로 = "+ file.getCanonicalPath());
-
                          // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
                          fi.write(file);
-
-                     } else {
-                         System.out.println("파일이름이없습니다");
+                     }else{
+                         fileName = null;
                      }
+                         
+                     
                  }
              }
          }

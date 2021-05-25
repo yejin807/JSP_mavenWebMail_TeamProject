@@ -142,38 +142,36 @@ public class SmtpAgent {
             Multipart mp = new MimeMultipart();
             mp.addBodyPart(mbp);
             
-            // 파싱
-            String[] names = this.file1.split("\\?");
-            // 첨부 파일 추가
-             // this.file1 -> path
-             
-            for ( String f : names ){
-                if (f != null) {  
-                MimeBodyPart a1 = new MimeBodyPart();
-                //DataSource src = new FileDataSource(f);
-                //a1.setDataHandler(new DataHandler(src));
-                a1.attachFile(f);
-                int index = f.lastIndexOf('/');
-                String fileName = f.substring(index + 1);
-                // "B": base64, "Q": quoted-printable
-                //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
-                System.out.println("add file in messasge  "  + f);
-                mp.addBodyPart(a1);
+            
+            if (this.file1 != null) {  
+                for ( String f : this.file1.split("\\?") ){// 파싱
+                    MimeBodyPart a1 = new MimeBodyPart();
+                    //DataSource src = new FileDataSource(f);
+                    //a1.setDataHandler(new DataHandler(src));
+                    a1.attachFile(f);
+                    int index = f.lastIndexOf('/');
+                    String fileName = f.substring(index + 1);
+                    // "B": base64, "Q": quoted-printable
+                    //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
+                    System.out.println("add file in messasge  "  + f);
+                    mp.addBodyPart(a1);
+                }
             }
-            }
+            
             msg.setContent(mp);
             
             // 메일 전송
             Transport.send(msg);
-            for ( String n :  names ){
+            
             // 메일 전송 완료되었으므로 서버에 저장된
             // 첨부 파일 삭제함
             if (this.file1 != null) {
+                for ( String n :  this.file1.split("\\?") ){
                 File f = new File(n);
                 if (!f.delete()) {
                     System.err.println(this.file1 + " 파일 삭제가 제대로 안 됨.");
                 }
-            }
+                }
             }
             status = true;
         } catch (Exception ex) {
