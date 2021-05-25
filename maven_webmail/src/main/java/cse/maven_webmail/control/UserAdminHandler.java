@@ -37,7 +37,7 @@ public class UserAdminHandler extends HttpServlet {
     int port = 4555;
     //db 변수
     final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
-    final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
+    final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTimezone=Asia/Seoul"; //중요
     final String User = "jdbctester";
     final String Password = "43319521";
 
@@ -181,7 +181,7 @@ public class UserAdminHandler extends HttpServlet {
             Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
-            String sql = "INSERT INTO webmail_system.userinfo values(?,?,?,?)";
+            String sql = "INSERT INTO webmail.userinfo values(?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성
@@ -233,7 +233,7 @@ public class UserAdminHandler extends HttpServlet {
             Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
-            String sql = "DELETE FROM webmail_system.userinfo WHERE USER_ID=(?)";
+            String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성
@@ -287,7 +287,7 @@ public class UserAdminHandler extends HttpServlet {
             Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
-            String sql = "DELETE FROM webmail_system.userinfo WHERE USER_ID=(?)";
+            String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성

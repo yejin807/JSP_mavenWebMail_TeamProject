@@ -24,7 +24,7 @@
                    password="${password}"/>
 
 <sql:query var="rs" dataSource="${dataSrc}">
-    SELECT USER_ID, USER_NAME, BIRTH, PHONE FROM ${schema}.${table}
+    SELECT USER_ID, USER_NAME, BIRTH, PHONE FROM ${table}
 </sql:query>
 
 <table border="1">

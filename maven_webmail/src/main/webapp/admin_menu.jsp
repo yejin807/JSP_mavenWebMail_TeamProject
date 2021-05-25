@@ -32,7 +32,7 @@
             <!-- 아래 코드는 위와 같이 Java Beans와 JSTL을 이용하는 코드로 바꾸어져야 함 -->
             <c:catch var="errorReason">
                 <mytags:listusers user="jdbctester" password="43319521"
-                                  schema="webmail_system" table="userinfo" />
+                                  schema="webmail" table="userinfo" />
             </c:catch>
             ${empty errorReason ? "<noerror/>" : errorReason} 
             <%

@@ -45,7 +45,7 @@
                   method="POST">
                 <c:catch var="errorReason">
                     <mytags:dellistusers user="jdbctester" password="43319521"
-                                      schema="webmail_system" table="userinfo" />
+                                      schema="webmail" table="userinfo" />
                 </c:catch>
                 ${empty errorReason ? "<noerror/>" : errorReason}<br>
                 <input type="submit" value="제거" name="delete_command" onClick ="return getConfirmResult()"/>
