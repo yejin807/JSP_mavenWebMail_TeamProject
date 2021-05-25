@@ -25,7 +25,7 @@
             <p><a href="Login.do?menu=<%= CommandType.LOGOUT%>">로그아웃</a></p>
         </div>
 
-        <form  action="join_handler.do?menu=<%= CommandType.SECESSION%>" method="POST"> 
+        <form  action="UserAdmin.do?menu=<%= CommandType.SECESSION%>" method="POST"> 
             <table border="0" align="left">
                 <tr>
                     <td>ID</td>

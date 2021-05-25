@@ -20,7 +20,7 @@
         <%@include file="header.jspf"%> <br>
         <div class="join_form">
             <div id="join">
-                <form  action="join_handler.do?menu=<%= CommandType.JOIN%>" method="POST"> 
+                <form  action="UserAdmin.do?menu=<%= CommandType.JOIN%>" method="POST"> 
                     <table border="0" align="left">
                         <tr>
                             <td>ID</td>

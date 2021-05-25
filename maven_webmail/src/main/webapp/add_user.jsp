@@ -35,7 +35,7 @@
                 <table border="0" align="left">
                     <tr>
                         <td>사용자 ID</td>
-                        <td> <input type="text" name="id" maxlength="20"/>  </td>
+                        <td> <input type="text" name="userid" maxlength="20"/>  </td>
                     </tr>
                     <tr>
                         <td>암호</td>
