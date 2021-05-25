@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.UserAdminAgent;
-import cse.maven_webmail.model.UserJoinAgent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -132,7 +131,7 @@ public class UserAdminHandler extends HttpServlet {
     //회원가입
     private void joinUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         try {
-            UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
+            UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             String userid = request.getParameter("userid");  // for test
             String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
@@ -156,7 +155,7 @@ public class UserAdminHandler extends HttpServlet {
                     && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
                 if (!password.equals(password_check)) {
                     out.println(getDifferentFailurePopUp());
-                } else if (agent.joinUser(userid, password)) {
+                } else if (agent.addUser(userid, password)) {
                     addDBUser(request, response, out); //DB추가함수
                     out.println(getUserJoinSuccessPopUp());
                 } else {
@@ -259,7 +258,7 @@ public class UserAdminHandler extends HttpServlet {
     private void secessionUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
         String userid = request.getParameter("userid");  // for test
         try {
-            UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
+            UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             if (checkPassword(request, response, out)) {
                 if (agent.secessionUser(userid)) {
                     //탈퇴 완료 팝업

@@ -16,7 +16,7 @@ import java.util.Properties;
 
 /**
  *
- * @author jongmin
+ * @author jongmin - 수정 : 김광민
  */
 public class UserAdminAgent {
 
@@ -26,9 +26,9 @@ public class UserAdminAgent {
     InputStream is = null;
     OutputStream os = null;
     boolean isConnected = false;
-    private String ROOT_ID;  //  = "root";
-    private String ROOT_PASSWORD;  // = "root";
-    private String ADMIN_ID; //  = "admin";
+    private String ROOT_ID="root";  //  = "root";
+    private String ROOT_PASSWORD="root";  // = "root";
+    private String ADMIN_ID="admin"; //  = "admin";
     private final String EOL = "\r\n";
     String cwd;
 
@@ -38,7 +38,7 @@ public class UserAdminAgent {
         this.port = port;  // 4555
         this.cwd = cwd;
 
-        initialize();
+//        initialize();
 
         socket = new Socket(server, port);
         is = socket.getInputStream();
@@ -47,26 +47,26 @@ public class UserAdminAgent {
         isConnected = connect();
     }
 
-    private void initialize() {
-        // property 읽는 방법 맞는지? getClass().getResourceAsStream() 사용해 보면...
-        Properties props = new Properties();
-        String propertyFile =  this.cwd + "/WEB-INF/classes/config/system.properties";
-        propertyFile = propertyFile.replace("\\", "/");
-        System.out.printf("prop path = %s%n", propertyFile);
-
-        try (BufferedInputStream bis =
-                new BufferedInputStream(
-                        new FileInputStream(propertyFile))) {
-            props.load(bis);
-            ROOT_ID = props.getProperty("root_id");
-            ROOT_PASSWORD = props.getProperty("root_password");
-            ADMIN_ID = props.getProperty("admin_id");
-            System.out.printf("ROOT_ID = %s\nROOT_PASS = %s\n", ROOT_ID, ROOT_PASSWORD);
-        } catch (IOException ioe) {
-            System.out.println("UserAdminAgent: 초기화 실패 - " + ioe.getMessage());
-        }
-
-    }
+//    private void initialize() {
+//        // property 읽는 방법 맞는지? getClass().getResourceAsStream() 사용해 보면...
+//        Properties props = new Properties();
+//        String propertyFile =  this.cwd + "/WEB-INF/classes/config/system.properties";
+//        propertyFile = propertyFile.replace("\\", "/");
+//        System.out.printf("prop path = %s%n", propertyFile);
+//
+//        try (BufferedInputStream bis =
+//                new BufferedInputStream(
+//                        new FileInputStream(propertyFile))) {
+//            props.load(bis);
+//            ROOT_ID = props.getProperty("root_id");
+//            ROOT_PASSWORD = props.getProperty("root_password");
+//            ADMIN_ID = props.getProperty("admin_id");
+//            System.out.printf("ROOT_ID = %s\nROOT_PASS = %s\n", ROOT_ID, ROOT_PASSWORD);
+//        } catch (IOException ioe) {
+//            System.out.println("UserAdminAgent: 초기화 실패 - " + ioe.getMessage());
+//        }
+//
+//    }
 
     // return value:
     //   - true: addUser operation successful
@@ -109,60 +109,60 @@ public class UserAdminAgent {
             // 5: 상태 반환
             return status;
         }
-    }  // addUser()
+    }
 
-    public List<String> getUserList() {
-        List<String> userList = new LinkedList<String>();
-        byte[] messageBuffer = new byte[1024];
-
-        if (!isConnected) {
-            return userList;
-        }
-
-        try {
-            // 1: "listusers" 명령 송신
-            String command = "listusers " + EOL;
-            os.write(command.getBytes());
-
-            // 2: "listusers" 명령에 대한 응답 수신
-            java.util.Arrays.fill(messageBuffer, (byte) 0);
-            is.read(messageBuffer);
-
-            // 3: 응답 메시지 처리
-            String recvMessage = new String(messageBuffer);
-            System.out.println(recvMessage);
-            userList = parseUserList(recvMessage);
-
-            quit();
-        } catch (Exception ex) {
-            System.err.println(ex);
-        } finally {
-            return userList;
-        }
-    }  // getUserList()
-
-    private List<String> parseUserList(String message) {
-        List<String> userList = new LinkedList<String>();
-
-        // 1: 줄 단위로 나누기
-        String[] lines = message.split(EOL);
-        // 2: 첫 번째 줄에는 등록된 사용자 수에 대한 정보가 있음.
-        //    예) Existing accounts 7
-        String[] firstLine = lines[0].split(" ");
-        int numberOfUsers = Integer.parseInt(firstLine[2]);
-
-        // 3: 두 번째 줄부터는 각 사용자 ID 정보를 보여줌.
-        //    예) user: admin
-        for (int i = 1; i <= numberOfUsers; i++) {
-            // 3.1: 한 줄을 구분자 " "로 나눔.
-            String[] userLine = lines[i].split(" ");
-            // 3.2 사용자 ID가 관리자 ID와 일치하는 지 여부 확인
-            if (!userLine[1].equals(ADMIN_ID)) {
-                userList.add(userLine[1]);
-            }
-        }
-        return userList;
-    } // parseUserList()
+//    public List<String> getUserList() {
+//        List<String> userList = new LinkedList<String>();
+//        byte[] messageBuffer = new byte[1024];
+//
+//        if (!isConnected) {
+//            return userList;
+//        }
+//
+//        try {
+//            // 1: "listusers" 명령 송신
+//            String command = "listusers " + EOL;
+//            os.write(command.getBytes());
+//
+//            // 2: "listusers" 명령에 대한 응답 수신
+//            java.util.Arrays.fill(messageBuffer, (byte) 0);
+//            is.read(messageBuffer);
+//
+//            // 3: 응답 메시지 처리
+//            String recvMessage = new String(messageBuffer);
+//            System.out.println(recvMessage);
+//            userList = parseUserList(recvMessage);
+//
+//            quit();
+//        } catch (Exception ex) {
+//            System.err.println(ex);
+//        } finally {
+//            return userList;
+//        }
+//    }  // getUserList()
+//
+//    private List<String> parseUserList(String message) {
+//        List<String> userList = new LinkedList<String>();
+//
+//        // 1: 줄 단위로 나누기
+//        String[] lines = message.split(EOL);
+//        // 2: 첫 번째 줄에는 등록된 사용자 수에 대한 정보가 있음.
+//        //    예) Existing accounts 7
+//        String[] firstLine = lines[0].split(" ");
+//        int numberOfUsers = Integer.parseInt(firstLine[2]);
+//
+//        // 3: 두 번째 줄부터는 각 사용자 ID 정보를 보여줌.
+//        //    예) user: admin
+//        for (int i = 1; i <= numberOfUsers; i++) {
+//            // 3.1: 한 줄을 구분자 " "로 나눔.
+//            String[] userLine = lines[i].split(" ");
+//            // 3.2 사용자 ID가 관리자 ID와 일치하는 지 여부 확인
+//            if (!userLine[1].equals(ADMIN_ID)) {
+//                userList.add(userLine[1]);
+//            }
+//        }
+//        return userList;
+//    } // parseUserList()
 
     public boolean deleteUsers(String[] userList) {
         byte[] messageBuffer = new byte[1024];
@@ -193,6 +193,43 @@ public class UserAdminAgent {
                 }
             }
             quit();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } finally {
+            return status;
+        }
+    }
+    
+    
+    public boolean secessionUser(String userId) {
+        byte[] messageBuffer = new byte[1024];
+        String command;
+        String recvMessage;
+        boolean status = false;
+
+        if (!isConnected) {
+            return status;
+        }
+
+        try {
+            // 1: "deluser" 명령 송신
+            command = "deluser " + userId + EOL;
+            os.write(command.getBytes());
+            System.out.println(command);
+
+            // 2: 응답 메시지 수신
+            java.util.Arrays.fill(messageBuffer, (byte) 0);
+            is.read(messageBuffer);
+
+            // 3: 응답 메시지 분석
+            recvMessage = new String(messageBuffer);
+            System.out.println(recvMessage);
+            if (recvMessage.contains("deleted")) {
+                status = true;
+            }
+            quit();
+            System.out.flush();  // for test
+            socket.close();
         } catch (Exception ex) {
             System.err.println(ex);
         } finally {
