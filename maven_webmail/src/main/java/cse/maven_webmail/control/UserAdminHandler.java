@@ -33,6 +33,15 @@ public class UserAdminHandler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    //제임스 서버 변수
+    String server = "127.0.0.1";
+    int port = 4555;
+    //db 변수
+    final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
+    final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
+    final String User = "jdbctester";
+    final String Password = "43319521";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -84,22 +93,35 @@ public class UserAdminHandler extends HttpServlet {
 
     //(관리자 메뉴) 사용자 추가
     private void addUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        String server = "127.0.0.1";
-        int port = 4555;
         try {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             String userid = request.getParameter("userid");  // for test
             String password = request.getParameter("password");// for test
+            String username = request.getParameter("username");
+            String birth = request.getParameter("birth");
+            String phone = request.getParameter("phone");
+
             out.println("userid = " + userid + "<br>");
             out.println("password = " + password + "<br>");
+            out.println("username = " + username + "<br>");
+            out.println("birth = " + birth + "<br>");
+            out.println("phone = " + phone + "<br>");
             out.flush();
             // if (addUser successful)  사용자 등록 성공 팦업창
             // else 사용자 등록 실패 팝업창
-            if (agent.addUser(userid, password)) {
-                addDBUser(request, response, out); //DB추가함수
-                out.println(getUserRegistrationSuccessPopUp());
+            if (userid.equals("null") || userid == null || password.equals("null") || password == null
+                    || username.equals("null") || username == null || birth.equals("null") || birth == null || phone.equals("null") || phone == null) {
+                out.println(getEmptyFailurePopUp());
+            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && username != null
+                    && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
+                if (agent.addUser(userid, password)) {
+                    addDBUser(request, response, out); //DB추가함수
+                    out.println(getUserRegistrationSuccessPopUp());
+                } else {
+                    out.println(getUserRegistrationFailurePopUp());
+                }
             } else {
-                out.println(getUserRegistrationFailurePopUp());
+                out.println(getAccurateFailurePopUp());
             }
             out.flush();
         } catch (Exception ex) {
@@ -109,10 +131,6 @@ public class UserAdminHandler extends HttpServlet {
 
     //회원가입
     private void joinUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        //제임스 서버 변수
-        String server = "127.0.0.1";
-        int port = 4555;
-
         try {
             UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
             String userid = request.getParameter("userid");  // for test
@@ -121,6 +139,7 @@ public class UserAdminHandler extends HttpServlet {
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
             String phone = request.getParameter("phone");
+
             out.println("회원 정보" + "<br>");
             out.println("userid = " + userid + "<br>");
             out.println("password = " + password + "<br>");
@@ -129,21 +148,20 @@ public class UserAdminHandler extends HttpServlet {
             out.println("birth = " + birth + "<br>");
             out.println("phone = " + phone + "<br>");
             out.flush();
-            // if (addUser successful)  사용자 등록 성공 팦업창
-            // else 사용자 등록 실패 팝업창
-            if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && password_check != null
-                    && username != null && username.length() > 2 && birth != null && phone != null && phone.length() > 12) {
-                if (agent.joinUser(userid, password)) {
+
+            if (userid.equals("null") || userid == null || password.equals("null") || password == null
+                    || username.equals("null") || username == null || birth.equals("null") || birth == null || phone.equals("null") || phone == null) {
+                out.println(getEmptyFailurePopUp());
+            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && password_check != null && username != null
+                    && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
+                if (!password.equals(password_check)) {
+                    out.println(getDifferentFailurePopUp());
+                } else if (agent.joinUser(userid, password)) {
                     addDBUser(request, response, out); //DB추가함수
                     out.println(getUserJoinSuccessPopUp());
                 } else {
-                    out.println(getUserSecessionFailurePopUp());
+                    out.println(getUserJoinFailurePopUp());
                 }
-            } else if (userid.equals("") || password.equals("") || password_check.equals("")
-                    || username.equals("") || birth.equals("") || phone.equals("")) {
-                out.println(getEmptyFailurePopUp());
-            } else if (!password.equals(password_check)) {
-                out.println(getDifferentFailurePopUp());
             } else {
                 out.println(getAccurateFailurePopUp());
             }
@@ -155,12 +173,6 @@ public class UserAdminHandler extends HttpServlet {
 
     //(관리자 메뉴) DB 사용자 추가
     private void addDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        //db 변수
-        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
-        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
-        final String User = "jdbctester";
-        final String Password = "43319521";
-
         response.setContentType("text/html;charset=UTF-8");
         try {
             //1. JDBC 드라이버 객체
@@ -199,13 +211,11 @@ public class UserAdminHandler extends HttpServlet {
 
     //(관리자 메뉴) 유저 삭제
     private void deleteUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        String server = "127.0.0.1";
-        int port = 4555;
         try {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             String[] deleteUserList = request.getParameterValues("selectedUsers");
             if (agent.deleteUsers(deleteUserList)) {
-                delDBUser(request, response, out, deleteUserList);
+                delListDBUser(request, response, out, deleteUserList);
             }
             response.sendRedirect("admin_menu.jsp");
         } catch (Exception ex) {
@@ -214,13 +224,7 @@ public class UserAdminHandler extends HttpServlet {
     }
 
     //(관리자 메뉴) DB 삭제
-    private void delDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String[] userList) {
-        //db 변수
-        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
-        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
-        final String User = "jdbctester";
-        final String Password = "43319521";
-
+    private void delListDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String[] userList) {
         response.setContentType("text/html;charset=UTF-8");
         try {
             //1. JDBC 드라이버 객체
@@ -253,8 +257,6 @@ public class UserAdminHandler extends HttpServlet {
 
     //회원탈퇴
     private void secessionUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        String server = "127.0.0.1";
-        int port = 4555;
         String userid = request.getParameter("userid");  // for test
         try {
             UserJoinAgent agent = new UserJoinAgent(server, port, this.getServletContext().getRealPath("."));
@@ -277,12 +279,6 @@ public class UserAdminHandler extends HttpServlet {
 
     //(회원탈퇴)DB에서 삭제
     private void delDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        //db 변수
-        final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
-        final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail_system?serverTimezone=Asia/Seoul"; //중요
-        final String User = "jdbctester";
-        final String Password = "43319521";
-
         response.setContentType("text/html;charset=UTF-8");
         try {
             //1. JDBC 드라이버 객체
@@ -390,8 +386,8 @@ public class UserAdminHandler extends HttpServlet {
         return successPopUp.toString();
     }
 
-    private String getUserSecessionFailurePopUp() {
-        String alertMessage = "회원가입에 실패했습니다.";
+    private String getUserJoinFailurePopUp() {
+        String alertMessage = "회원가입에 실패했습니다. 관리자에게 문의해주세요.";
         StringBuilder successPopUp = new StringBuilder();
         successPopUp.append("<html>");
         successPopUp.append("<head>");
