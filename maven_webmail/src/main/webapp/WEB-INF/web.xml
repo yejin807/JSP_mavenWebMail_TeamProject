@@ -26,10 +26,6 @@
         <servlet-name>ReadMailHandler</servlet-name>
         <servlet-class>cse.maven_webmail.control.ReadMailHandler</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>JoinHandler</servlet-name>
-        <servlet-class>cse.maven_webmail.control.JoinHandler</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>LoginHandler</servlet-name>
         <url-pattern>/Login.do</url-pattern>
@@ -45,10 +41,6 @@
     <servlet-mapping>
         <servlet-name>ReadMailHandler</servlet-name>
         <url-pattern>/ReadMail.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>JoinHandler</servlet-name>
-        <url-pattern>/join_handler.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
