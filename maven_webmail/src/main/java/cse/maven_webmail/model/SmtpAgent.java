@@ -6,6 +6,7 @@ package cse.maven_webmail.model;
 
 import com.sun.mail.smtp.SMTPMessage;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import javax.activation.DataHandler;
@@ -134,7 +135,8 @@ public class SmtpAgent {
             // msg.setSubject(MimeUtility.encodeText(this.subj, "euc-kr", "B"));
             msg.setSubject(this.subj);
             msg.setHeader("User-Agent", "LJM-WM/0.1");
-
+            msg.setSentDate(new Date());
+            
             // body
             MimeBodyPart mbp = new MimeBodyPart();
             mbp.setText(this.body);
@@ -152,7 +154,7 @@ public class SmtpAgent {
                     int index = f.lastIndexOf('/');
                     String fileName = f.substring(index + 1);
                     // "B": base64, "Q": quoted-printable
-                    //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
+                    //a1.setFileName(MimeUtility.encodeText(ileName, "UTF-8", "B"));
                     System.out.println("add file in messasge  "  + f);
                     mp.addBodyPart(a1);
                 }

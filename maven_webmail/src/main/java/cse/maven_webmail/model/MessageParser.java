@@ -29,7 +29,7 @@ public class MessageParser {
     private String subject;
     private String body;
     private String fileName; 
-    private String downloadTempDir = "C:/temp/download/"; // temp 폴더 필요
+    private String downloadTempDir; //= "/WEB-INF/download/"; // temp 폴더 필요
     private String userid;
     private String fnames =""; //추가
     
@@ -40,14 +40,14 @@ public class MessageParser {
     
     public MessageParser(Message message, String userid, HttpServletRequest request) {
         this(message, userid);
-        if (System.getProperty("os.name").equals("Linux")) {
-            downloadTempDir = request.getServletContext().getRealPath("/WEB-INF")
-                    + File.separator + "download";
-            File f = new File(downloadTempDir);
-            if (!f.exists()) {
-                f.mkdir();
-            }
+        //if (System.getProperty("os.name").equals("Linux")) {
+        downloadTempDir = request.getServletContext().getRealPath("/WEB-INF")
+                + File.separator + "download";
+        File f = new File(downloadTempDir);
+        if (!f.exists()) {
+            f.mkdir();
         }
+        
     }
 
     public boolean parse(boolean parseBody) {

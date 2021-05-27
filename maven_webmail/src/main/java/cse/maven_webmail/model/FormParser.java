@@ -107,9 +107,9 @@ public class FormParser {
          request.setCharacterEncoding("UTF-8");
          String currentFolder = request.getServletContext().getRealPath("/");
 
-         if (currentFolder.matches(".*\\\\.*")) {
-             currentFolder = currentFolder.replace("\\\\", "\\\\\\\\");
-         }
+         if(currentFolder.matches(".*\\.*")){
+                currentFolder = currentFolder.replace("\\","/");
+            }
 
          checkFolder(currentFolder);
          boolean isMultipart = ServletFileUpload.isMultipartContent(request);
