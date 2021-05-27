@@ -125,23 +125,20 @@ public class ReadMailHandler extends HttpServlet {
 
             // download할 파일 읽기
             // 윈도우즈 환경 사용시
-            String downloadDir = "C:/temp/download/";
-            if (System.getProperty("os.name").equals("Linux")) {
-                downloadDir = request.getServletContext().getRealPath("/WEB-INF")
+            String downloadDir = request.getServletContext().getRealPath("/WEB-INF")
                         + File.separator + "download";
                 File f = new File(downloadDir);
                 if (!f.exists()) {
                     f.mkdir();
                 }
-            }
 
             response.setHeader("Content-Disposition", "attachment; filename="
                     + URLEncoder.encode(fileName, "UTF-8") + ";");
 
-            File f = new File(downloadDir + File.separator + userid + File.separator + fileName);
-            byte[] b = new byte[(int) f.length()];
+            File file = new File(downloadDir + File.separator + userid + File.separator + fileName);
+            byte[] b = new byte[(int) file.length()];
             // try-with-resource 문은 fis를 명시적으로 close해 주지 않아도 됨.
-            try (FileInputStream fis = new FileInputStream(f)) {
+            try (FileInputStream fis = new FileInputStream(file)) {
                 fis.read(b);
             };
 
