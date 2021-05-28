@@ -69,11 +69,10 @@ public class ReadMailHandler extends HttpServlet {
                 int msgid = Integer.parseInt((String) request.getParameter("msgid"));
                 if (bookmarkMessageAgent.addMessage(msgid)) {
                     //bookmarking 성공
-                    out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');</script>");
+                    out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');location.href='main_menu.jsp'</script>");
                 } else {
-                    out.println("<script>alert('북마크 설정이 실패했습니다.');</script>");
+                    out.println("<script>alert('북마크 설정이 실패했습니다.');location.href='main_menu.jsp'</script>");
                 }
-                response.sendRedirect("main_menu.jsp");
             } catch (Exception ex) {
                 PrintWriter out = response.getWriter();
                 out.println("ReadmailHandler.cancelBookmarking error : " + ex);
@@ -85,11 +84,10 @@ public class ReadMailHandler extends HttpServlet {
                 System.out.println("request.getParameter msgid  : " + Integer.toString(msgid));
                 if (bookmarkMessageAgent.removeMessage(msgid)) {
                     //bookmarking 성공
-                    out.println("<script>alert('북마크 설정이 취소되었습니다.');</script>");
+                    out.println("<script>alert('북마크 설정이 취소되었습니다.');location.href='bookmarked_mail.jsp'</script>");
                 } else {
-                    out.println("<script>alert('북마크 취소가 실패했습니다.');</script>");
+                    out.println("<script>alert('북마크 취소가 실패했습니다.');location.href='bookmarked_mail.jsp'</script>");
                 }
-                response.sendRedirect("bookmarked_mail.jsp");
             } catch (Exception ex) {
                 PrintWriter out = response.getWriter();
                 out.println("ReadmailHandler.cancelBookmarking error : " + ex);

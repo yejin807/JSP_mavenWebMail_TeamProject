@@ -1,6 +1,7 @@
 <%-- 
    Document   : main_menu.jsp
    Author     : jongmin
+location.href='index.jsp'
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
