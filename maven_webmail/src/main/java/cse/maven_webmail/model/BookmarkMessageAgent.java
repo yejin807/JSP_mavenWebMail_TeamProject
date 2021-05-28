@@ -11,50 +11,141 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.mail.Message;
 
 /**
  *
  * @author gleyd
  */
-public class BookmarkMessageAgent {
-
+public class BookmarkMessageAgent extends MessageAgent {
 
     private static BookmarkMessageAgent uniqueInstance = new BookmarkMessageAgent();
-    private ArrayList<Integer> bookmarkMsgId = new ArrayList<Integer>();
-    private String userid = null;
+    private static String userid = null;
+    private boolean needInitialize = true;
+
+    public String getUserid() {
+        System.out.println("BookmarkMessageAgent needInitialize setting =" + needInitialize);
+        return userid;
+    }
 
     private BookmarkMessageAgent() {
+    }
+
+    public static BookmarkMessageAgent getInstance(String userid) {
+        BookmarkMessageAgent.userid = userid;
+        System.out.println("BookmarkMessageAgent userid setting =" + BookmarkMessageAgent.userid);
+
+        return uniqueInstance;
     }
 
     public static BookmarkMessageAgent getInstance() {
         return uniqueInstance;
     }
 
-    public boolean addBookmarking(String userid, int msgid) {
+    protected boolean setMsgIdList() {
+
         boolean status = false;
-        String result = "";
+        System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 시도.");
 
-        try {
-            setEmail(userid);
-            if (!bookmarkMsgId.contains(Integer.valueOf(msgid))) {
-                bookmarkMsgId.add(msgid);
-                result = insertBookmarkMsgID(msgid);
-                status = true;
-
-                System.out.println(result);
-
-            }
-        } catch (Exception ex) {
-            System.out.println("BookmarkMessageAgent.addBookmarkMessage error : " + ex);
-        } finally {
+        //만약 유저아이디 값이 설정이 안되어있다면 return fale;
+        if (isUserIdNull()) {
+            System.out.println("BookmarkMessageAgent.SetMsgId에서 유저아이디 설정이 안되어있음.");
+            System.out.println("userid setting =" + userid);
             return status;
         }
-    }
-
-    private String insertBookmarkMsgID(int msgid) {
-        String result = null;
 
         try {
+            super.setNeedUpdate(false);
+            super.resetMsgIdList();
+            System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
+
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+
+            String sql = "select msgid from webmail.bookmark_list where email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userid);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+                int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
+                super.addMsgId(buf_msgid);
+            }
+
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+            System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 성공. 생성된 MsgID크기=" + super.getMsgIdList().size());
+
+            status = true;
+            return status;
+
+        } catch (Exception ex) {
+            System.out.println("BookmarkMessageAgent.setMsgIdList Error : " + ex);
+        }
+        return status;
+    }
+
+    public ArrayList<Message> getMessageList(ArrayList<Message> messages) {
+        ArrayList<Message> bookmarkedMessages = null;
+
+        try {
+            //처음실행이면 MsgIdList초기화.
+            if (needInitialize) {
+                System.out.println("BookmarkmessageAgent.getMessageList need Initialize");
+                System.out.println("BookmarkmessageAgent.getMessageList userid=" + userid);
+                setMsgIdList();
+                needInitialize = false;
+            }
+            System.out.println("BookmarkmessageAgent.getMessageList end Initialize");
+            System.out.println("BookmarkmessageAgent.getMessageList userid=" + userid);
+
+            if (super.isNeedUpdate()) {     //북마크 메시지의 업데이트가 필요하면
+                System.out.println("BookmarkMessageAgent.getMessageList isNeedUpdate가 필요합니다. value=." + super.isNeedUpdate());
+
+                if (setMsgIdList()) {               //북마크 메시지 리스트를 세팅하는것이 실패했으면
+                    System.out.println("setMsgId성공했음했음..");
+
+                    bookmarkedMessages = filter(messages, super.getMsgIdList());
+                    return bookmarkedMessages;
+                } else {                            //북마크 메시지들의 리스트를 세팅하는 것이 성공햇으면
+                    System.out.println("setMsgI 실패햇씁니다아아ㅏ했음했음..");
+                }
+            } else {                         //북마크 메시지의 업데이트가 필요없으면
+                System.out.println("BookmarkMessageAgent.getMessageList isNeedUpdate가 필요없습합니다. value=." + super.isNeedUpdate());
+
+                bookmarkedMessages = filter(messages, super.getMsgIdList());
+                return bookmarkedMessages;
+            }
+        } catch (Exception ex) {
+            System.out.println("BookmarkMessageAgent.getMessageList Error" + ex);
+        }
+        return bookmarkedMessages;
+    }
+
+    protected ArrayList<Message> filter(ArrayList<Message> messages, ArrayList<Integer> msgIdList) {
+        ArrayList<Message> bookmarkedMessages = new ArrayList<Message>();
+        for (int i = 0; i < msgIdList.size(); i++) {
+            bookmarkedMessages.add(messages.get(i));
+            System.out.println("Pop3Agent.getMessageList() : bookmarkMsg " + Integer.toString(i) + " id = " + msgIdList.get(i));
+        }
+        System.out.println("end filterling");
+
+        return bookmarkedMessages;
+    }
+
+    protected boolean insertMsgId(int msgid) {
+        boolean status = false;
+
+        try {
+
+            if (isUserIdNull()) {
+                System.out.println("BookmarkMessageAgent.insertMsgId에서 유저아이디 설정이 안되어있음.");
+                System.out.println("userid setting =" + userid);
+
+                return status;
+            }
             Class.forName(CommandType.JdbcDriver);
             Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
@@ -65,49 +156,32 @@ public class BookmarkMessageAgent {
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
-
             pstmt.close();
             conn.close();
             //sql문 완성
 
+            status = true;
+            return status;
         } catch (Exception ex) {
-            result = "BookmarkMessageAgent.insertBookmarkMsgID error : " + ex;
+            System.out.println("BookmarkMessageAgent.insertMsgId error : " + ex);
         }
-
-        return result;
+        return status;
     }
 
-    public boolean cancelBookmarking(String userid, int msgid) {
+    protected boolean deleteMsgId(int msgid) {
         boolean status = false;
-        String result = "";
-        result +="try canceling Bookmarking";
-        try {
-            setEmail(userid);
-            if (bookmarkMsgId.contains(Integer.valueOf(msgid))) {
-                bookmarkMsgId.remove(Integer.valueOf(msgid));
-                result = deleteBookmarkMsgID(msgid);
-                status = true;
 
-                System.out.println(result);
-            }
-        } catch (Exception ex) {
-            System.out.println("BookmarkMessageAgent.cancelBookmarking error : " + ex);
-        } finally {
+        if (isUserIdNull()) {
+            System.out.println("BookmarkMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
+            System.out.println("userid setting =" + userid);
+
             return status;
         }
-    }
-
-    private String deleteBookmarkMsgID(int msgid) {
-        String result = null;            result += "\ntry deleteBookmarking" +Integer.toString(msgid);
-
 
         try {
             Class.forName(CommandType.JdbcDriver);
             Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
-            result += "\ntry deleteBookmarking";
 
-            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + userid;
-            result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
             String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
@@ -116,36 +190,80 @@ public class BookmarkMessageAgent {
                     pstmt.setInt(2, msgid);
                 }
                 pstmt.executeUpdate();
-
-                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID email : " + userid;
-                result += "\nBookmarkMessageAgent.deleteBookmarkMsgID msgid : " + Integer.toString(msgid);
-                result += "\n end deleteBookmarking";
-
                 pstmt.close();
                 conn.close();
                 //sql문 완성
+
+                status = true;
+                return status;
             }
         } catch (Exception ex) {
-            result = "BookmarkMessageAgent.deleteBookmarkMsgID error : " + ex;
-        } finally {
-            return result;
+            System.out.println("BookmarkMessageAgent.deleteMsgId error : " + ex);
+        }
+        return status;
+    }
+
+    //todo 이미 추가된 메시지입니다. 메시지 넘겨주기.
+    public boolean addMessage(int msgid) {
+        boolean status = false;
+
+        try {
+            if (!super.getMsgIdList().contains(Integer.valueOf(msgid))) {        //msgIdList에 추가된 적 없는 메시지 번호이면
+                super.addMsgId(msgid);
+                status = insertMsgId(msgid);
+                super.setNeedUpdate(true);
+                return status;
+            }
+            /*else {                                                        //msgIdList에 추가된 적 있는 메시지 번호이면
+                status = true;
+                return status;
+
+            }*/
+        } catch (Exception ex) {
+            System.out.println("BookmarkMessageAgent.addMessage error : " + ex);
+        }
+        return status;
+
+    }
+
+    public boolean removeMessage(int msgid) {
+        boolean status = false;
+        try {
+            if (super.getMsgIdList().contains(Integer.valueOf(msgid))) {           //msgIdList에 존재하는 메시지번호이면
+                super.removeMsgId(msgid);
+                status = deleteMsgId(msgid);
+                super.setNeedUpdate(true);
+                return status;
+            }
+        } catch (Exception ex) {
+            System.out.println("BookmarkMessageAgent.removeMessage error : " + ex);
+        }
+        return status;
+
+    }
+
+    private boolean isUserIdNull() {
+        if (userid == null || userid.equals("")) {
+            return true;
+        } else {
+            return false;
         }
     }
+}//end BookmarkMessageAgent
 
-    private void setEmail(String email) {
-        this.userid = email;
-    }
-
-    public ArrayList<Integer> getBookmarkMessageList(String userid) {
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+/*
+    public ArrayList<Integer> getMessageList(String userid) {
         bookmarkMsgId = null;
         bookmarkMsgId = new ArrayList<Integer>();
-        setEmail(userid);
+        setUserid(userid);
         System.out.println("BookmarkMessageAgent.getBookmarkMessageList : ");
 
         bookmarkMsgId = readBookmarkMsgData();
         return bookmarkMsgId;
     }
-
+ */
+ /*
     private ArrayList<Integer> readBookmarkMsgData() {
         try {
             Class.forName(CommandType.JdbcDriver);
@@ -170,8 +288,8 @@ public class BookmarkMessageAgent {
         } finally {
             return bookmarkMsgId;
         }
-    }
-
+    }*/
+ /*
     public String showBookmarkingList() {
         String result = "";
         for (int list : bookmarkMsgId) {
@@ -186,11 +304,11 @@ public class BookmarkMessageAgent {
         }
         str.append("<br><br><p> <a href=\"main_menu.jsp\"> 즐겨찾기함 </a> </p>");
         return str;
-         */
-    }
-}
+ */
+ /*    }
+}*/
 
-/*
+ /*
     buffer.append(i + " : " +messages[i].getFlags().contains("bookmarked") +"<br>");
     
      //if (!(messages[i].getFlags().contains("bookmarked"))) {

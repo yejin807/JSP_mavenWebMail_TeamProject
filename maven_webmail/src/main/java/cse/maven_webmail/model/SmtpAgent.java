@@ -118,7 +118,6 @@ public class SmtpAgent {
             msg.setFrom(new InternetAddress(this.userid));  // 200102 LJM - 테스트 목적으로 수정
             //msg.setFrom(new InternetAddress("jongmin@deu.ac.kr"));
 
-
             // setRecipient() can be called repeatedly if ';' or ',' exists
             if (this.to.indexOf(';') != -1) {
                 this.to = this.to.replaceAll(";", ",");
@@ -136,17 +135,16 @@ public class SmtpAgent {
             msg.setSubject(this.subj);
             msg.setHeader("User-Agent", "LJM-WM/0.1");
             msg.setSentDate(new Date());
-            
+
             // body
             MimeBodyPart mbp = new MimeBodyPart();
             mbp.setText(this.body);
 
             Multipart mp = new MimeMultipart();
             mp.addBodyPart(mbp);
-            
-            
-            if (this.file1 != null) {  
-                for ( String f : this.file1.split("\\?") ){// 파싱
+
+            if (this.file1 != null) {
+                for (String f : this.file1.split("\\?")) {// 파싱
                     MimeBodyPart a1 = new MimeBodyPart();
                     //DataSource src = new FileDataSource(f);
                     //a1.setDataHandler(new DataHandler(src));
@@ -155,24 +153,24 @@ public class SmtpAgent {
                     String fileName = f.substring(index + 1);
                     // "B": base64, "Q": quoted-printable
                     //a1.setFileName(MimeUtility.encodeText(ileName, "UTF-8", "B"));
-                    System.out.println("add file in messasge  "  + f);
+                    System.out.println("add file in messasge  " + f);
                     mp.addBodyPart(a1);
                 }
             }
-            
+
             msg.setContent(mp);
-            
+
             // 메일 전송
             Transport.send(msg);
-            
+
             // 메일 전송 완료되었으므로 서버에 저장된
             // 첨부 파일 삭제함
             if (this.file1 != null) {
-                for ( String n :  this.file1.split("\\?") ){
-                File f = new File(n);
-                if (!f.delete()) {
-                    System.err.println(this.file1 + " 파일 삭제가 제대로 안 됨.");
-                }
+                for (String n : this.file1.split("\\?")) {
+                    File f = new File(n);
+                    if (!f.delete()) {
+                        System.err.println(this.file1 + " 파일 삭제가 제대로 안 됨.");
+                    }
                 }
             }
             status = true;

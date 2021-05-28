@@ -5,6 +5,7 @@
 package cse.maven_webmail.model;
 
 import cse.maven_webmail.control.CommandType;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -25,7 +26,7 @@ public class MessageFormatter {
     }
 
 // 메인화면 테이블 -------------------------
-    public String getMessageTable(Message[] messages) {
+    public String getMessageTable(ArrayList<Message> messages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -39,8 +40,8 @@ public class MessageFormatter {
                 + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
-        for (int i = messages.length - 1; i >= 0; i--) {
-            MessageParser parser = new MessageParser(messages[i], userid);
+        for (int i = messages.size() - 1; i >= 0; i--) {
+            MessageParser parser = new MessageParser(messages.get(i), userid);
             parser.parse(false);  // envelope 정보만 필요
             // 메시지 헤더 포맷
             // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
@@ -108,8 +109,9 @@ public class MessageFormatter {
     }
 //--------------------------
 
-    public String getBookmarkedMessageTable(Message[] messages) {
-        
+    public String getBookmarkedMessageTable(ArrayList<Message> messages) {
+        BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
+        ArrayList<Integer> msgIdList = bookmarkMessageAgent.getMsgIdList();
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -123,15 +125,15 @@ public class MessageFormatter {
                 + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
-        for (int i = messages.length - 1; i >= 0; i--) {
+        for (int i = messages.size() - 1; i >= 0; i--) {
 
             try {
-                MessageParser parser = new MessageParser(messages[i], userid);
+                MessageParser parser = new MessageParser(messages.get(i), userid);
                 parser.parse(false);  // envelope 정보만 필요
                 // 메시지 헤더 포맷
                 // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
                 buffer.append("<tr> "
-                        + " <td id=no>" + (messages[i].getMessageNumber()) + " </td> "
+                        + " <td id=no>" + msgIdList.get(i) + " </td> "
                         + " <td id=sender>" + parser.getFromAddress() + "</td>"
                         + " <td id=subject> "
                         + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
@@ -144,7 +146,7 @@ public class MessageFormatter {
                         + " <td id=cancelBookmarking>"
                         + "<a href=ReadMail.do?menu="
                         + CommandType.CANCLE_BOOKMARK //-----------//
-                        + "&msgid=" + messages[i].getMessageNumber() + "> 취소 </a>" + "</td>"
+                        + "&msgid=" + msgIdList.get(i) + "> 취소 </a>" + "</td>"
                         + " </tr>");
                 //    buffer.append(i + " : " + messages[i].getFlags().contains("bookmarked") + "<br>");
                 /* } else {
@@ -162,8 +164,8 @@ public class MessageFormatter {
         return buffer.toString();
     }
 
-        public String getSpammedMessageTable(Message[] messages) {
-        
+    public String getSpammedMessageTable(Message[] messages) {
+
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -205,7 +207,7 @@ public class MessageFormatter {
         buffer.append("</table>");
         return buffer.toString();
     }
-    
+
     public String getMessage(Message message) {
         StringBuilder buffer = new StringBuilder();
 
@@ -221,7 +223,7 @@ public class MessageFormatter {
 
         buffer.append(parser.getBody());
         //String attachedFile =  parser.getFileName();
-         for ( String attachedFile :  parser.getFilenames().split("\\?")){
+        for (String attachedFile : parser.getFilenames().split("\\?")) {
             if (attachedFile != null) {
                 buffer.append("<br> <hr> 첨부파일: <a href=ReadMail.do?menu="
                         + CommandType.DOWNLOAD_COMMAND
@@ -231,7 +233,7 @@ public class MessageFormatter {
             }
         }
         return buffer.toString();
-         
+
     }
 
     public void setRequest(HttpServletRequest request) {

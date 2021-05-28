@@ -67,15 +67,14 @@ public class ReadMailHandler extends HttpServlet {
             case CommandType.SET_BOOKMARK: // 북마크설정
                 try (PrintWriter out = response.getWriter()) {
                     int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-                    if (bookmarkMessageAgent.addBookmarking(userid, msgid)){
+                    if (bookmarkMessageAgent.addMessage(msgid)){
                         //bookmarking 성공
                         out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');</script>");
-                        out.println(bookmarkMessageAgent.showBookmarkingList());
                     }
                     else{
                         out.println("<script>alert('북마크 설정이 실패했습니다.');</script>");
                     }
-                    //response.sendRedirect("main_menu.jsp");
+                    response.sendRedirect("main_menu.jsp");
                     }catch (Exception ex) {
                         PrintWriter out = response.getWriter();
                         out.println("ReadmailHandler.cancelBookmarking error : " + ex);
@@ -85,14 +84,13 @@ public class ReadMailHandler extends HttpServlet {
                 try (PrintWriter out = response.getWriter()) {
                 int msgid = Integer.parseInt((String) request.getParameter("msgid"));
                 System.out.println("request.getParameter msgid  : " + Integer.toString(msgid));
-                if (bookmarkMessageAgent.cancelBookmarking(userid, msgid)) {
+                if (bookmarkMessageAgent.removeMessage(msgid)) {
                     //bookmarking 성공
                     out.println("<script>alert('북마크 설정이 취소되었습니다.');</script>");
-                    out.println(bookmarkMessageAgent.showBookmarkingList());
                 } else {
                     out.println("<script>alert('북마크 취소가 실패했습니다.');</script>");
                 }
-                //response.sendRedirect("main_menu.jsp");
+                response.sendRedirect("bookmarked_mail.jsp");
             } catch (Exception ex) {
                 PrintWriter out = response.getWriter();
                 out.println("ReadmailHandler.cancelBookmarking error : " + ex);
