@@ -71,7 +71,7 @@ public class MessageFormatter {
     //-------------------------
     // trash_can.jsp 파일로 delete 플래그가
     //꽂힌 메일만을 보여주어야하는 테이블. 여기서 완전삭제 가능!
-    public String get_TMessageTable(Message[] messages) {
+  /*  public String get_TMessageTable(Message[] messages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -107,7 +107,8 @@ public class MessageFormatter {
         return buffer.toString();
 //        return "MessageFormatter 테이블 결과";
     }
-//--------------------------
+    */
+
 
     public String getBookmarkedMessageTable(ArrayList<Message> messages) {
         BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();

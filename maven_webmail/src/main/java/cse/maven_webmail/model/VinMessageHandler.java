@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.mail.Message;
 import cse.maven_webmail.model.MessageParser;
+import java.sql.SQLException;
 
 /**
  *
@@ -60,6 +61,27 @@ public class VinMessageHandler {
             System.out.println("VinMessageHandler.AddMessageBin error : " + ex);
         }
     
+    
     }
 
+     private void deleteVinMessage(String send_person, String m_title, String send_date) throws ClassNotFoundException, SQLException {
+        // 참고 : https://doublesprogramming.tistory.com/60
+        Class.forName(CommandType.JdbcDriver);
+        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+        /*        infoHTML(out, email);
+        infoHTML(out, word);
+        infoHTML(out, Integer.toString(isEmail)); */
+
+        String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?) and (`send_date` = ?)";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, send_person);
+        pstmt.setString(2, m_title);
+        pstmt.setString(3, send_date);
+
+        pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+        //sql문 완성
+    }
+    
 }

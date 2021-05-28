@@ -295,7 +295,7 @@ public class Pop3Agent {
 
     //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
     // trash.can.jsp에 (휴지통 페이지) 가져가서 보여줄것.
-    public String get_TMessageList() {
+   /* public String get_TMessageList() {
         String result = "";
         Message[] messages = null;
 
@@ -360,9 +360,8 @@ public class Pop3Agent {
             return status;
         }
     }
-
-    //--------
-    public String getMessage(int n) {
+*/
+     public String getMessage(int n) {
         String result = "POP3  서버 연결이 되지 않아 메시지를 볼 수 없습니다.";
 
         if (!connectToStore()) {

@@ -154,19 +154,13 @@ public class ReadMailHandler extends HttpServlet {
         String host = (String) httpSession.getAttribute("host");
         String userid = (String) httpSession.getAttribute("userid");
         String password = (String) httpSession.getAttribute("password");
-
+        //System.out.println();
         Pop3Agent pop3 = new Pop3Agent(host, userid, password);
         boolean status = pop3.deleteMessage(msgid, true);
         return status;
     }
 
-    //-----
-    //딜리트 플래그 잇는ㄱ애를 기봄메시지 테이블에서 빼야하는데 안빼줘서 모든게 다뜬다
-    //무브 빈에서는 그냥 플래그만 주면됨. 무브빈 역할이 끝나고 테이블을 다시 불러오면 
-    // 딜리트 플래그ㄹ가 있는 애들이 안뜰테니 삭제할 필요는 없음
-    // 무브 빈에서 스트링 배열에 저장하는것은 해주ㅓ야함 저장되는 형태가
-    //메시지 자체여야함. 디비를 연결하든 배열을 연결하든 연결연결을 해야됨
-    // 휴지통테이블 불러오는 데서는  스트링 배열도는 디비을 가져와서 테이블로 뿌려주면됨 
+    
     //----------------------------------------
     // 메일을 디비로 보내고 메인화면에있는건 삭제
     //void->boolean으로 해줘야함

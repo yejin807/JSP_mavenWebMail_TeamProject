@@ -36,6 +36,7 @@
                  <th>보낸 사람</th>
                  <th>제목</th>
                  <th>보낸 날짜</th>
+                 <th>삭제</th>
                 
             </tr>
         </thead>
@@ -45,6 +46,8 @@
                     <td>${row.send_person}</td>         
                     <td>${row.m_title}</td>
                     <td>${row.send_date}</td>
+                    <td> <a href=ReadMail.do?menu=CommandType.DELETE_MAIL_COMMAND&sendPerson=${row.send_person}>삭제</td>
+                                                              <!-- 값을 sendPerson에 집어넣는다?-->
                 </tr>
             </c:forEach>
         </tbody>
