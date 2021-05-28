@@ -5,6 +5,7 @@
 --%>
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
+<%@tag import="cse.maven_webmail.control.CommandType" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -46,7 +47,8 @@
                     <td>${row.send_person}</td>         
                     <td>${row.m_title}</td>
                     <td>${row.send_date}</td>
-                    <td> <a href=ReadMail.do?menu=CommandType.DELETE_MAIL_COMMAND&sendPerson=${row.send_person}>삭제</td>
+                    <td> <a href=ReadMail.do?menu=<%=CommandType.DELETE_MAIL_COMMAND%>&sendPerson=${row.send_person}&mTitle=${row.m_title}>삭제</td>
+                    <%--&sendDate=${row.send_date}--%>
                                                               <!-- 값을 sendPerson에 집어넣는다?-->
                 </tr>
             </c:forEach>

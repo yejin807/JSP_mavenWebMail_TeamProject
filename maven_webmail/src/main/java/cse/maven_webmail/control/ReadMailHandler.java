@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.Pop3Agent;
 import cse.maven_webmail.model.BookmarkMessageAgent;
+import cse.maven_webmail.model.VinMessageHandler;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 
 /**
@@ -37,7 +41,7 @@ public class ReadMailHandler extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
 
         request.setCharacterEncoding("UTF-8");
@@ -47,13 +51,23 @@ public class ReadMailHandler extends HttpServlet {
 
         switch (select) {
             case CommandType.DELETE_MAIL_COMMAND:
+                VinMessageHandler vinMessageHandler = new VinMessageHandler();
                 try (PrintWriter out = response.getWriter()) {
-                deleteMessage(request);
-                response.sendRedirect("main_menu.jsp");
-            }
-            break;
+                    //deleteMessage(request);
+                    String send_person = request.getParameter("sendPerson");
+                    String m_title = request.getParameter("mTitle");
+                    //String send_date = request.getParameter("sendDate");
+                    
+                    System.out.println("@@@@@@@@커맨드값가져와짐ㅡㅡㅡㅡㅡ " + send_person);
+
+                    
+                    //vinMessageHandler.deleteVinMessage(send_person, m_title, send_date);
+                    //vinMessageHandler.deleteVinMessage(send_person, m_title, send_date);
+                    response.sendRedirect("main_menu.jsp");
+                }
+                break;
             //-------------
-            case CommandType.MAIL_REMOVE_COMMAND:
+            case CommandType.MAIL_REMOVE_COMMAND: //메일 이동 커맨드 메인메뉴 ->휴지통
                 try (PrintWriter out = response.getWriter()) {
                 moveMsgBin(request);
                 response.sendRedirect("main_menu.jsp"); //수행 후 돌아가는 화면
@@ -154,13 +168,13 @@ public class ReadMailHandler extends HttpServlet {
         String host = (String) httpSession.getAttribute("host");
         String userid = (String) httpSession.getAttribute("userid");
         String password = (String) httpSession.getAttribute("password");
+        
         //System.out.println();
         Pop3Agent pop3 = new Pop3Agent(host, userid, password);
         boolean status = pop3.deleteMessage(msgid, true);
         return status;
     }
 
-    
     //----------------------------------------
     // 메일을 디비로 보내고 메인화면에있는건 삭제
     //void->boolean으로 해줘야함
@@ -235,7 +249,13 @@ public class ReadMailHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadMailHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReadMailHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -249,7 +269,13 @@ public class ReadMailHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadMailHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReadMailHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

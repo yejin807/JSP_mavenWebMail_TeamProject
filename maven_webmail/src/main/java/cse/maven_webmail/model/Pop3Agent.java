@@ -39,7 +39,7 @@ public class Pop3Agent {
     private Store store;
     private String exceptionType;
     private HttpServletRequest request;
-    private BookmarkMessageAgent bookmarkMessageAgent=BookmarkMessageAgent.getInstance();
+    private BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
 
     public Pop3Agent() {
     }
@@ -159,7 +159,7 @@ public class Pop3Agent {
             folder.fetch(messages, fpFlags);
 
             //alignMessagesByTime(messages);
-                    ArrayList<Message> alignedMessages = new ArrayList<Message>();
+            ArrayList<Message> alignedMessages = new ArrayList<Message>();
             alignedMessages = sortMessagesByTime(messages);
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
@@ -295,7 +295,7 @@ public class Pop3Agent {
 
     //-------- delete 플래그가 꽂힌 메시지만 테이블형식으로 리스트처럼 보여주는 그거-----------//
     // trash.can.jsp에 (휴지통 페이지) 가져가서 보여줄것.
-   /* public String get_TMessageList() {
+    /* public String get_TMessageList() {
         String result = "";
         Message[] messages = null;
 
@@ -360,8 +360,8 @@ public class Pop3Agent {
             return status;
         }
     }
-*/
-     public String getMessage(int n) {
+     */
+    public String getMessage(int n) {
         String result = "POP3  서버 연결이 되지 않아 메시지를 볼 수 없습니다.";
 
         if (!connectToStore()) {
@@ -467,13 +467,13 @@ public class Pop3Agent {
             // From, To, Cc, Bcc, ReplyTo, Subject & Date
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
-            
+
             ArrayList<Message> alignedMessages = new ArrayList<Message>();
             alignedMessages = sortMessagesByTime(messages);
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             ArrayList<Message> bookmarkedMessages = bookmarkMessageAgent.getMessageList(alignedMessages);
-            System.out.println("bookmarkedMessages size : "+bookmarkedMessages.size());
+            System.out.println("bookmarkedMessages size : " + bookmarkedMessages.size());
             result = formatter.getBookmarkedMessageTable(bookmarkedMessages);   // 3.6
             folder.close(true);  // 3.7
             store.close();       // 3.8

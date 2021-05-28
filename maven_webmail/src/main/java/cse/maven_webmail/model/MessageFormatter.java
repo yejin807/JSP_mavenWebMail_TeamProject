@@ -26,7 +26,7 @@ public class MessageFormatter {
     }
 
 // 메인화면 테이블 -------------------------
-    public String getMessageTable(ArrayList<Message> messages) {
+    public String getMessageTable(ArrayList<Message> alignedMessages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -40,8 +40,8 @@ public class MessageFormatter {
                 + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
-        for (int i = messages.size() - 1; i >= 0; i--) {
-            MessageParser parser = new MessageParser(messages.get(i), userid);
+        for (int i = alignedMessages.size() - 1; i >= 0; i--) {
+            MessageParser parser = new MessageParser(alignedMessages.get(i), userid);
             parser.parse(false);  // envelope 정보만 필요
             // 메시지 헤더 포맷
             // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
@@ -49,13 +49,13 @@ public class MessageFormatter {
                     + " <td id=no>" + (i + 1) + " </td> "
                     + " <td id=sender>" + parser.getFromAddress() + "</td>"
                     + " <td id=subject> "
-                    + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                    + " <a href=show_message.jsp?msgid=" + alignedMessages.get(i).getMessageNumber() + " title=\"메일 보기\"> "
                     + parser.getSubject() + "</a> </td>"
                     + " <td id=date>" + parser.getSentDate() + "</td>"
                     + " <td id=move>"
                     + "<a href=ReadMail.do?menu="
                     + CommandType.MAIL_REMOVE_COMMAND //-----------//
-                    + "&msgid=" + (i + 1) + "> 휴지통 </a>" + "</td>"
+                    + "&msgid=" + alignedMessages.get(i).getMessageNumber() + "> 휴지통 </a>" + "</td>"
                     + " <td id=setBookmarking>"
                     + "<a href=ReadMail.do?menu="
                     + CommandType.SET_BOOKMARK //-----------//
@@ -110,7 +110,7 @@ public class MessageFormatter {
     */
 
 
-    public String getBookmarkedMessageTable(ArrayList<Message> messages) {
+    public String getBookmarkedMessageTable(ArrayList<Message> bookmarkedMessages) {
         BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
         ArrayList<Integer> msgIdList = bookmarkMessageAgent.getMsgIdList();
         StringBuilder buffer = new StringBuilder();
@@ -126,10 +126,10 @@ public class MessageFormatter {
                 + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
-        for (int i = messages.size() - 1; i >= 0; i--) {
+        for (int i = bookmarkedMessages.size() - 1; i >= 0; i--) {
 
             try {
-                MessageParser parser = new MessageParser(messages.get(i), userid);
+                MessageParser parser = new MessageParser(bookmarkedMessages.get(i), userid);
                 parser.parse(false);  // envelope 정보만 필요
                 // 메시지 헤더 포맷
                 // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
