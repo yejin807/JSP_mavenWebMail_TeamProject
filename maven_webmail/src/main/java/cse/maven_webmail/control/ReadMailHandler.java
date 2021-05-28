@@ -66,20 +66,19 @@ public class ReadMailHandler extends HttpServlet {
 
             case CommandType.SET_BOOKMARK: // 북마크설정
                 try (PrintWriter out = response.getWriter()) {
-                    int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-                    if (bookmarkMessageAgent.addMessage(msgid)){
-                        //bookmarking 성공
-                        out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');</script>");
-                    }
-                    else{
-                        out.println("<script>alert('북마크 설정이 실패했습니다.');</script>");
-                    }
-                    response.sendRedirect("main_menu.jsp");
-                    }catch (Exception ex) {
-                        PrintWriter out = response.getWriter();
-                        out.println("ReadmailHandler.cancelBookmarking error : " + ex);
+                int msgid = Integer.parseInt((String) request.getParameter("msgid"));
+                if (bookmarkMessageAgent.addMessage(msgid)) {
+                    //bookmarking 성공
+                    out.println(/*"userid : "+userid+"님, "+msgid+"번 메일*/"<script>alert('북마크 설정이 되었습니다.');</script>");
+                } else {
+                    out.println("<script>alert('북마크 설정이 실패했습니다.');</script>");
                 }
-                break;
+                response.sendRedirect("main_menu.jsp");
+            } catch (Exception ex) {
+                PrintWriter out = response.getWriter();
+                out.println("ReadmailHandler.cancelBookmarking error : " + ex);
+            }
+            break;
             case CommandType.CANCLE_BOOKMARK: // 북마크취소
                 try (PrintWriter out = response.getWriter()) {
                 int msgid = Integer.parseInt((String) request.getParameter("msgid"));
@@ -124,11 +123,11 @@ public class ReadMailHandler extends HttpServlet {
             // download할 파일 읽기
             // 윈도우즈 환경 사용시
             String downloadDir = request.getServletContext().getRealPath("/WEB-INF")
-                        + File.separator + "download";
-                File f = new File(downloadDir);
-                if (!f.exists()) {
-                    f.mkdir();
-                }
+                    + File.separator + "download";
+            File f = new File(downloadDir);
+            if (!f.exists()) {
+                f.mkdir();
+            }
 
             response.setHeader("Content-Disposition", "attachment; filename="
                     + URLEncoder.encode(fileName, "UTF-8") + ";");
@@ -173,7 +172,7 @@ public class ReadMailHandler extends HttpServlet {
     //----------------------------------------
     // 메일을 디비로 보내고 메인화면에있는건 삭제
     //void->boolean으로 해줘야함
-   private String moveMsgBin(HttpServletRequest request) {
+    private String moveMsgBin(HttpServletRequest request) {
 
         int msgid = Integer.parseInt((String) request.getParameter("msgid"));
 
@@ -187,7 +186,6 @@ public class ReadMailHandler extends HttpServlet {
         System.out.println(pop3.checkMsgAlive(binMessage));
         return pop3.checkMsgAlive(binMessage);
         //return newMsg;
-
 
     }
     //----------

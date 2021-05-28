@@ -127,8 +127,9 @@ public class BookmarkMessageAgent extends MessageAgent {
     protected ArrayList<Message> filter(ArrayList<Message> messages, ArrayList<Integer> msgIdList) {
         ArrayList<Message> bookmarkedMessages = new ArrayList<Message>();
         for (int i = 0; i < msgIdList.size(); i++) {
-            bookmarkedMessages.add(messages.get(i));
-            System.out.println("Pop3Agent.getMessageList() : bookmarkMsg " + Integer.toString(i) + " id = " + msgIdList.get(i));
+            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages.get(msgIdList.get(i)-1));
+            bookmarkedMessages.add(messages.get(msgIdList.get(i) - 1));
+            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages.get(msgIdList.get(i)-1));
         }
         System.out.println("end filterling");
 
