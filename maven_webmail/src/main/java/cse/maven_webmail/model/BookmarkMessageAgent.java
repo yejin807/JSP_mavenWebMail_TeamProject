@@ -152,7 +152,7 @@ public class BookmarkMessageAgent extends MessageAgent {
 
             String sql = "INSERT INTO `webmail`.`bookmark_list` (`email`, `msgid`) VALUES (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
+            if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
@@ -185,19 +185,18 @@ public class BookmarkMessageAgent extends MessageAgent {
 
             String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
-                if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
-                    pstmt.setString(1, userid);
-                    pstmt.setInt(2, msgid);
-                }
-                pstmt.executeUpdate();
-                pstmt.close();
-                conn.close();
-                //sql문 완성
-
-                status = true;
-                return status;
+            if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
+                pstmt.setString(1, userid);
+                pstmt.setInt(2, msgid);
             }
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            //sql문 완성
+
+            status = true;
+            return status;
+
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.deleteMsgId error : " + ex);
         }
@@ -234,6 +233,8 @@ public class BookmarkMessageAgent extends MessageAgent {
                 super.removeMsgId(msgid);
                 status = deleteMsgId(msgid);
                 super.setNeedUpdate(true);
+                System.out.println("BookmarkMessageAgent.removeMessage message번호 지웠어요.");
+                status = true;
                 return status;
             }
         } catch (Exception ex) {
@@ -250,6 +251,54 @@ public class BookmarkMessageAgent extends MessageAgent {
             return false;
         }
     }
+
+    public void updateMsgId(int deletedMsgid) {
+        //    public abstract void updateMsgId(int msgid);
+        for (int i = 0; i > getMsgIdSize(); i++) {
+            if (getMsgIdValue(i) > deletedMsgid) {
+                System.out.println("BookmarkMessageAgent.updateMsgId index " + i + " update 해야할 값: " + getMsgIdValue(i) + " 업데이트 된 값: " + (getMsgIdValue(i) - 1));
+                updateMsgId(i, getMsgIdValue(i) - 1);
+            } else {
+                System.out.println("BookmarkMessageAgent.updateMsgId index " + i + " update 안해도됨. " + getMsgIdValue(i));
+            }
+        } //end for
+
+        boolean isSuccess = updateBookmarkDB(deletedMsgid);
+    }
+
+    private boolean updateBookmarkDB(int deletedMsgId) {
+        boolean status = false;
+        if (isUserIdNull()) {
+            System.out.println("BookmarkMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
+            System.out.println("userid setting =" + userid);
+
+            return status;
+        }
+
+        try {
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+
+            String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
+                pstmt.setString(1, userid);
+                pstmt.setInt(2, deletedMsgId);
+            }
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            //sql문 완성
+
+            status = true;
+            return status;
+
+        } catch (Exception ex) {
+            System.out.println("BookmarkMessageAgent.updateBookmarkDB error : " + ex);
+        }
+        return status;
+    }
+
 }//end BookmarkMessageAgent
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

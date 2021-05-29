@@ -37,6 +37,18 @@ public abstract class MessageAgent {
         msgIdList.remove(Integer.valueOf(msgid));
     }
 
+    protected void updateMsgId(int index, int newMsgId) {
+        msgIdList.set(index, newMsgId);
+    }
+
+    protected int getMsgIdSize() {
+        return msgIdList.size();
+    }
+
+    protected int getMsgIdValue(int index) {
+        return msgIdList.get(index);
+    }
+
     protected void resetMsgIdList() {
         msgIdList = null;
         msgIdList = new ArrayList<Integer>();
@@ -56,5 +68,7 @@ public abstract class MessageAgent {
     public abstract boolean addMessage(int msgid);
 
     public abstract boolean removeMessage(int msgid);
+
+    public abstract void updateMsgId(int msgid);
 
 }

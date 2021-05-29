@@ -53,11 +53,17 @@ public class ReadMailHandler extends HttpServlet {
             case CommandType.DELETE_MAIL_COMMAND:
                 try (PrintWriter out = response.getWriter()) {
                 deleteMessage(request);
-                boolean isSuccess = bookmarkMessageAgent.removeMessage(Integer.parseInt(request.getParameter("msgid")));
+                int msgid = Integer.parseInt(request.getParameter("msgid"));
+                                    System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+                boolean isSuccess = bookmarkMessageAgent.removeMessage(msgid);
                 if (isSuccess) {
-                    out.println("<script>alert('북마크된 메시지가 삭제되었습니다.');location.href='main_menu.jsp'</script>");
+                    out.println("<script>alert('북마크된 메시지가 삭제되었습니다.');location.href='bookmarked_mail.jsp'</script>");
+                    System.out.println(" msgID update하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    bookmarkMessageAgent.updateMsgId(msgid);
+                    System.out.println(" msgID update끝났어요~~~~~~~~갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 } else {
-                    out.println("<script>alert('북마크된 메시지 삭제가 실패했습니다.');location.href='main_menu.jsp'</script>");
+                    out.println("<script>alert('북마크된 메시지 삭제가 실패했습니다.');location.href='bookmarked_mail.jsp'</script>");
                 }
             }
             break;

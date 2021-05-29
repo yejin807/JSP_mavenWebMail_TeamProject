@@ -36,7 +36,6 @@
         </div>
         
         <div id="main">
-            <%= pop3.getSpamSettingData()%>
             <%= pop3.getSpamMessageList()%>
         </div>
 
