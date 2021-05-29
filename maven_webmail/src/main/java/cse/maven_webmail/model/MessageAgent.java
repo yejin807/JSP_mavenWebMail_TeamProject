@@ -44,10 +44,10 @@ public abstract class MessageAgent {
 
     protected abstract boolean setMsgIdList();
 
-    public abstract ArrayList<Message> getMessageList(ArrayList<Message> messages);
+    public abstract ArrayList<Message> getMessageList(Message[] messages);
     //public abstract void getMessageList(Message[] messages);
 
-    protected abstract ArrayList<Message> filter(ArrayList<Message> messages, ArrayList<Integer> msgIdList);
+    protected abstract ArrayList<Message> filter(Message[] messages, ArrayList<Integer> msgIdList);
 
     protected abstract boolean insertMsgId(int msgid);
 

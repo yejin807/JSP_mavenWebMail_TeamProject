@@ -26,7 +26,7 @@ public class MessageFormatter {
     }
 
 // 메인화면 테이블 -------------------------
-    public String getMessageTable(ArrayList<Message> alignedMessages) {
+    public String getMessageTable(Message[] alignedMessages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -40,8 +40,8 @@ public class MessageFormatter {
                 + " <th> 즐겨찾기</td>   "
                 + " </tr>");
 
-        for (int i = alignedMessages.size() - 1; i >= 0; i--) {
-            MessageParser parser = new MessageParser(alignedMessages.get(i), userid);
+        for (int i = alignedMessages.length - 1; i >= 0; i--) {
+            MessageParser parser = new MessageParser(alignedMessages[i], userid);
             parser.parse(false);  // envelope 정보만 필요
             // 메시지 헤더 포맷
             // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
@@ -49,13 +49,13 @@ public class MessageFormatter {
                     + " <td id=no>" + (i + 1) + " </td> "
                     + " <td id=sender>" + parser.getFromAddress() + "</td>"
                     + " <td id=subject> "
-                    + " <a href=show_message.jsp?msgid=" + alignedMessages.get(i).getMessageNumber() + " title=\"메일 보기\"> "
+                    + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
                     + parser.getSubject() + "</a> </td>"
                     + " <td id=date>" + parser.getSentDate() + "</td>"
                     + " <td id=move>"
                     + "<a href=ReadMail.do?menu="
                     + CommandType.MAIL_REMOVE_COMMAND //-----------//
-                    + "&msgid=" + alignedMessages.get(i).getMessageNumber() + "> 휴지통 </a>" + "</td>"
+                    + "&msgid=" + (i + 1) + "> 휴지통 </a>" + "</td>"
                     + " <td id=setBookmarking>"
                     + "<a href=ReadMail.do?menu="
                     + CommandType.SET_BOOKMARK //-----------//
@@ -71,7 +71,7 @@ public class MessageFormatter {
     //-------------------------
     // trash_can.jsp 파일로 delete 플래그가
     //꽂힌 메일만을 보여주어야하는 테이블. 여기서 완전삭제 가능!
-  /*  public String get_TMessageTable(Message[] messages) {
+    /*  public String get_TMessageTable(Message[] messages) {
         StringBuilder buffer = new StringBuilder();
 
         // 메시지 제목 보여주기
@@ -107,9 +107,7 @@ public class MessageFormatter {
         return buffer.toString();
 //        return "MessageFormatter 테이블 결과";
     }
-    */
-
-
+     */
     public String getBookmarkedMessageTable(ArrayList<Message> bookmarkedMessages) {
         BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
         ArrayList<Integer> msgIdList = bookmarkMessageAgent.getMsgIdList();
@@ -137,13 +135,13 @@ public class MessageFormatter {
                         + " <td id=no>" + msgIdList.get(i) + " </td> "
                         + " <td id=sender>" + parser.getFromAddress() + "</td>"
                         + " <td id=subject> "
-                        + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                        + " <a href=show_message.jsp?msgid=" + msgIdList.get(i) + " title=\"메일 보기\"> "
                         + parser.getSubject() + "</a> </td>"
                         + " <td id=date>" + parser.getSentDate() + "</td>"
                         + " <td id=delete>"
                         + "<a href=ReadMail.do?menu="
                         + CommandType.DELETE_MAIL_COMMAND //-----------//
-                        + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
+                        + "&msgid=" + msgIdList.get(i) + "> 삭제 </a>" + "</td>"
                         + " <td id=cancelBookmarking>"
                         + "<a href=ReadMail.do?menu="
                         + CommandType.CANCLE_BOOKMARK //-----------//

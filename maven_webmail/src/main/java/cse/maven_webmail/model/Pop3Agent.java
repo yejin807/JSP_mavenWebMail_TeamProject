@@ -158,12 +158,8 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
 
-            //alignMessagesByTime(messages);
-            ArrayList<Message> alignedMessages = new ArrayList<Message>();
-            alignedMessages = sortMessagesByTime(messages);
-
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            result = formatter.getMessageTable(alignedMessages);   // 3.6
+            result = formatter.getMessageTable(messages);   // 3.6
 
             folder.close(true);  // 3.7
             store.close();       // 3.8
@@ -173,31 +169,6 @@ public class Pop3Agent {
         } finally {
             return result;
         }
-    }
-
-    private ArrayList<Message> sortMessagesByTime(Message[] messages) {
-        ArrayList<Message> alignedMessages = new ArrayList<Message>();
-
-        try {
-            for (int i = 0; i < messages.length; i++) {
-                alignedMessages.add(messages[i]);
-            }
-            Collections.sort(alignedMessages, new Comparator<Message>() { // 익명객체 사용
-                @Override
-                public int compare(Message arg1, Message arg2) {
-                    try {
-                        // Sort Order By asc
-                        return arg1.getSentDate().compareTo(arg2.getSentDate()); // arg1 - 기준 값, arg2 - 비교 값
-                    } catch (MessagingException ex) {
-                        Logger.getLogger(Pop3Agent.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    return 0;
-                }
-            });
-        } catch (Exception ex) {
-            Logger.getLogger(Pop3Agent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return alignedMessages;
     }
 
     // 메인 화면에있는 삭제 버튼 누를시 그 메일을 DB로 보내고
@@ -468,11 +439,8 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
 
-            ArrayList<Message> alignedMessages = new ArrayList<Message>();
-            alignedMessages = sortMessagesByTime(messages);
-
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            ArrayList<Message> bookmarkedMessages = bookmarkMessageAgent.getMessageList(alignedMessages);
+            ArrayList<Message> bookmarkedMessages = bookmarkMessageAgent.getMessageList(messages);
             System.out.println("bookmarkedMessages size : " + bookmarkedMessages.size());
             result = formatter.getBookmarkedMessageTable(bookmarkedMessages);   // 3.6
             folder.close(true);  // 3.7

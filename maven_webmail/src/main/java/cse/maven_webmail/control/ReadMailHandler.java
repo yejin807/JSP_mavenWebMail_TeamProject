@@ -51,21 +51,16 @@ public class ReadMailHandler extends HttpServlet {
 
         switch (select) {
             case CommandType.DELETE_MAIL_COMMAND:
-                VinMessageHandler vinMessageHandler = new VinMessageHandler();
                 try (PrintWriter out = response.getWriter()) {
-                    //deleteMessage(request);
-                    String send_person = request.getParameter("sendPerson");
-                    String m_title = request.getParameter("mTitle");
-                    //String send_date = request.getParameter("sendDate");
-                    
-                    System.out.println("@@@@@@@@커맨드값가져와짐ㅡㅡㅡㅡㅡ " + send_person);
-
-                    
-                    //vinMessageHandler.deleteVinMessage(send_person, m_title, send_date);
-                    //vinMessageHandler.deleteVinMessage(send_person, m_title, send_date);
-                    response.sendRedirect("main_menu.jsp");
+                deleteMessage(request);
+                boolean isSuccess = bookmarkMessageAgent.removeMessage(Integer.parseInt(request.getParameter("msgid")));
+                if (isSuccess) {
+                    out.println("<script>alert('북마크된 메시지가 삭제되었습니다.');location.href='main_menu.jsp'</script>");
+                } else {
+                    out.println("<script>alert('북마크된 메시지 삭제가 실패했습니다.');location.href='main_menu.jsp'</script>");
                 }
-                break;
+            }
+            break;
             //-------------
             case CommandType.MAIL_REMOVE_COMMAND: //메일 이동 커맨드 메인메뉴 ->휴지통
                 try (PrintWriter out = response.getWriter()) {
@@ -168,7 +163,7 @@ public class ReadMailHandler extends HttpServlet {
         String host = (String) httpSession.getAttribute("host");
         String userid = (String) httpSession.getAttribute("userid");
         String password = (String) httpSession.getAttribute("password");
-        
+
         //System.out.println();
         Pop3Agent pop3 = new Pop3Agent(host, userid, password);
         boolean status = pop3.deleteMessage(msgid, true);

@@ -87,7 +87,7 @@ public class BookmarkMessageAgent extends MessageAgent {
         return status;
     }
 
-    public ArrayList<Message> getMessageList(ArrayList<Message> messages) {
+    public ArrayList<Message> getMessageList(Message[] messages) {
         ArrayList<Message> bookmarkedMessages = null;
 
         try {
@@ -124,12 +124,12 @@ public class BookmarkMessageAgent extends MessageAgent {
         return bookmarkedMessages;
     }
 
-    protected ArrayList<Message> filter(ArrayList<Message> messages, ArrayList<Integer> msgIdList) {
+    protected ArrayList<Message> filter(Message[] messages, ArrayList<Integer> msgIdList) {
         ArrayList<Message> bookmarkedMessages = new ArrayList<Message>();
         for (int i = 0; i < msgIdList.size(); i++) {
-            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages.get(msgIdList.get(i)-1));
-            bookmarkedMessages.add(messages.get(msgIdList.get(i) - 1));
-            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages.get(msgIdList.get(i)-1));
+            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages[msgIdList.get(i) - 1]);
+            bookmarkedMessages.add(messages[msgIdList.get(i) - 1]);
+            System.out.println("bookmarkedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages[msgIdList.get(i) - 1]);
         }
         System.out.println("end filterling");
 
