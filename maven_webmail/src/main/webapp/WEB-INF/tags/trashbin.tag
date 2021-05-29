@@ -47,7 +47,7 @@
                     <td>${row.send_person}</td>         
                     <td>${row.m_title}</td>
                     <td>${row.send_date}</td>
-                    <td> <a href=ReadMail.do?menu=<%=CommandType.DELETE_MAIL_COMMAND%>&sendPerson=${row.send_person}&mTitle=${row.m_title}>삭제</td>
+                    <td> <a href=ReadMail.do?menu=<%=CommandType.VIN_DBDELETE_COMMAND%>&sendPerson=${row.send_person}&mTitle=${row.m_title}>삭제</a></td>
                     <%--&sendDate=${row.send_date}--%>
                                                               <!-- 값을 sendPerson에 집어넣는다?-->
                 </tr>

@@ -24,9 +24,16 @@ public class VinMessageHandler {
     private ArrayList<Integer> VinMessageMsgid = new ArrayList<Integer>();
     private String userid = null;
     private Message newMsg = null;
+    private String send_person;
+    private String m_title;
 
     public VinMessageHandler() {
 
+    }
+
+    public VinMessageHandler(String send_person, String m_title) {
+        this.send_person = send_person;
+        this.m_title = m_title;
     }
 
     public VinMessageHandler(Message newMsg, String userid) {
@@ -35,17 +42,18 @@ public class VinMessageHandler {
         this.userid = userid;
 
     }
-    public void addMessageBin(){ 
-    try{
-    MessageParser messageparser = new MessageParser(newMsg, userid);
-    messageparser.parse(false); 
-    
+
+    public void addMessageBin() {
+        try {
+            MessageParser messageparser = new MessageParser(newMsg, userid);
+            messageparser.parse(false);
+
             Class.forName(CommandType.JdbcDriver);
             Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, "12345*");
             //집어넣을값 -  보낸사람, 보낸날짜, 제목
             String sql = "insert into goto_bin.bin ( send_person, send_date, m_title) VALUES (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-           
+
             if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, messageparser.getFromAddress()); //보낸사람
                 pstmt.setString(2, messageparser.getSentDate()); //보낸날짜
@@ -57,27 +65,31 @@ public class VinMessageHandler {
             conn.close();
             //sql문 완성
 
-    } catch(Exception ex) { //ㅇㅔ러띄움
+        } catch (Exception ex) { //에러띄움
             System.out.println("VinMessageHandler.AddMessageBin error : " + ex);
         }
-    
-    
+
     }
 
-     public void deleteVinMessage(String send_person, String m_title, String send_date) throws ClassNotFoundException, SQLException {
-        Class.forName(CommandType.JdbcDriver);
-        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+    public boolean deleteVinMessage(String send_person, String m_title) throws ClassNotFoundException, SQLException {
+        boolean status = false;
+        try {
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, "12345*");
+            String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, send_person);
+            pstmt.setString(2, m_title);
+            //  pstmt.setString(3, send_date);
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            //sql문 완성
+        } catch (Exception ex) {
+            System.out.println("88888888왜않대 " + ex);
 
-        String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?) and (`send_date` = ?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, send_person);
-        pstmt.setString(2, m_title);
-        pstmt.setString(3, send_date);
+        }
+        return status;
 
-        pstmt.executeUpdate();
-        pstmt.close();
-        conn.close();
-        //sql문 완성
     }
-    
 }

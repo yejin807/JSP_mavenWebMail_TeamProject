@@ -25,7 +25,9 @@ public class CommandType {
     public static final int DELETE_USER_COMMAND = 62;
 
     public static final int MAIL_REMOVE_COMMAND = 71;
+    public static final int VIN_DBDELETE_COMMAND = 72;
 
+      
     public static final int JOIN = 81;
     public static final int SECESSION = 82;
 

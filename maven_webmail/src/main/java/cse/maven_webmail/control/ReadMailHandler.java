@@ -19,6 +19,7 @@ import cse.maven_webmail.model.Pop3Agent;
 import cse.maven_webmail.model.BookmarkMessageAgent;
 import cse.maven_webmail.model.VinMessageHandler;
 import java.sql.SQLException;
+import static javax.ws.rs.core.Response.status;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -72,6 +73,13 @@ public class ReadMailHandler extends HttpServlet {
                 try (PrintWriter out = response.getWriter()) {
                 moveMsgBin(request);
                 response.sendRedirect("main_menu.jsp"); //수행 후 돌아가는 화면
+            }
+            break;
+            case CommandType.VIN_DBDELETE_COMMAND: //휴지통에서 선택한메일 데이터베이스에서 메일 삭제
+                try (PrintWriter out = response.getWriter()) {
+                System.out.println("VIN_DBDELETE_COMMAND ON");
+                delete_inDBMessage(request); // <-----------
+                response.sendRedirect("trash_can.jsp"); //수행 후 돌아가는 화면
             }
             break;
             //-----
@@ -195,6 +203,27 @@ public class ReadMailHandler extends HttpServlet {
         //return newMsg;
 
     }
+    private boolean delete_inDBMessage(HttpServletRequest request) {
+        boolean status = false;
+                        try {
+            System.out.println("delete_inDBMessage ON");
+            HttpSession httpSession = request.getSession();
+            String send_person = request.getParameter("sendPerson");
+            String m_title = request.getParameter("mTitle");
+            VinMessageHandler vinMessageHandler = new VinMessageHandler(send_person, m_title);
+            System.out.println("음...... sendperson " + send_person + " m_title=" + m_title);
+            boolean vinStatus = vinMessageHandler.deleteVinMessage(send_person, m_title);
+            if (vinStatus) {
+                status = true;
+            }
+            return status;
+        } catch (Exception ex) {
+            System.out.println("delete_inDBMessage ON Exception " + ex);
+        }
+        return status;
+    }
+
+
     //----------
 /*
     
