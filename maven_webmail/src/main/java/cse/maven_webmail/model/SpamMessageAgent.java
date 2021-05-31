@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class SpamMessageAgent {
 
     private static SpamMessageAgent uniqueInstance = new SpamMessageAgent();
+    private static String userid = null;
     private ArrayList<Integer> spamMsgId = new ArrayList<Integer>();
-    private String email = null;
 
     private SpamMessageAgent() {
     }
@@ -29,10 +29,15 @@ public class SpamMessageAgent {
         return uniqueInstance;
     }
 
+    public static SpamMessageAgent getInstance(String userid) {
+        SpamMessageAgent.userid = userid;
+        System.out.println("SpamMessageAgent userid setting =" + SpamMessageAgent.userid);
+        return uniqueInstance;
+    }
+
     public ArrayList<Integer> getspamMsgID(String userid) {
         spamMsgId = null;
         spamMsgId = new ArrayList<Integer>();
-        setEmail(userid);
         System.out.println("SpamMessageAgent.getspamMsgID : ");
 
         spamMsgId = readspamMsgIdData();
@@ -46,7 +51,7 @@ public class SpamMessageAgent {
 
             String sql = "select msgid from webmail.spam_list where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);
+            pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
@@ -65,24 +70,4 @@ public class SpamMessageAgent {
         }
     }
 
-    public String showSpmaMsgIdList() {
-        String result = "";
-        for (int list : spamMsgId) {
-            result += Integer.toString(list) + " ";
-        }
-        result += "<br><br><p> <a href=\"main_menu.jsp\"> 메인메뉴 </a> </p>";
-        return result;
-        /* test해볼것.
-                StringBuffer str;
-        for (int list : bookmarkMsgID) {
-            str.append(Integer.toString(list) + " ");
-        }
-        str.append("<br><br><p> <a href=\"main_menu.jsp\"> 즐겨찾기함 </a> </p>");
-        return str;
-         */
-    }
-
-    private void setEmail(String email) {
-        this.email = email;
-    }
 }

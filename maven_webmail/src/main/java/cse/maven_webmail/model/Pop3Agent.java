@@ -484,7 +484,7 @@ public class Pop3Agent {
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             //todo 삭제만 있는 messageFormatter써야함.
-//            result = formatter.getBookmarkedMessageTable(spamMessages);   // 3.6
+            result = formatter.getSpammedMessageTable(spamMessages);   // 3.6
 
             //result = formatter.getMessageTable(messages);   // 3.6
             folder.close(true);  // 3.7
