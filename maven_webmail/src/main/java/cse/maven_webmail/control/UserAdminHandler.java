@@ -43,6 +43,7 @@ public class UserAdminHandler extends HttpServlet {
     
     Connection conn = null;
     PreparedStatement pstmt = null;
+    bolean 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -128,7 +129,7 @@ public class UserAdminHandler extends HttpServlet {
             }
             out.flush();
         } catch (Exception ex) {
-            out.println("시스템 접속에 실패했습니다.");
+            out.println(getPopUp("시스템 접속에 실패했습니다.", "add_user.jsp"));
         }
     }
 
@@ -170,7 +171,7 @@ public class UserAdminHandler extends HttpServlet {
             }
             out.flush();
         } catch (Exception ex) {
-            out.println("시스템 접속에 실패했습니다.");
+            out.println(getPopUp("시스템 접속에 실패했습니다.", "join.jsp"));
         }
     }
 
@@ -241,7 +242,7 @@ public class UserAdminHandler extends HttpServlet {
     //(관리자 메뉴) DB 삭제
     private void delListDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String[] userList) {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         try {
             //1. JDBC 드라이버 객체
             Class.forName(JdbcDriver);
