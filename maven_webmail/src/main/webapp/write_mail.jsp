@@ -60,6 +60,22 @@
                   $("#main").submit();
               });    
         });
+        
+        function check_file_size(){
+            var size_limit = 20*1024*1024;
+            var oFiles = document.getElementById("input_file").files;
+            var nFiles = oFiles.length;
+            var nBytes = 0;
+            for (var nFileId = 0; nFileId < nFiles; nFileId++) {
+                nBytes += oFiles[nFileId].size;
+            }
+            if( nBytes > size_limit){
+                alert('파일 크기가 20MB를 초과하여 전송을 할 수 없습니다.');
+                return false;
+            }else{
+                return true;
+            }
+        }
         </script>
         
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
@@ -107,7 +123,8 @@
             
         <div id="main">
             <form id="frm" enctype="multipart/form-data" method="POST" name="frm"
-                  action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" >
+                  action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" 
+                  onsubmit ="return check_file_size()">
                 <table>
                     <%
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
@@ -140,7 +157,7 @@
                     </tr>
                     <tr>
                         <td>첨부 파일</td>
-                        <td> <input type="file" name="file1"  multiple size="80" > 
+                        <td> <input type="file" name="file1" id="input_file" multiple size="80" > 
                     </tr>
                     <input type="text" name="temp" id="temp" value="temp" value="<%=temp%>" hidden>
                     <tr>
