@@ -64,11 +64,11 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            //infoHTML(out, select);
-            //
-            if (!(word == null) && !(word.equals(""))) {
+            
+            if (!(word == null) && !(word.trim().length()==0)){
                 insertSpamCommand(userid, word, isEmail);
                 spamMessageAgent.setNeedUpdate(true);
+                System.out.println("추가된문자열="+word+"=");
                 response.sendRedirect("spam_settings.jsp");
             } else {
                 out.println("<script>alert('스팸처리할 단어나 이메일을 입력하세요!');location.href='spam_settings.jsp'</script>");
