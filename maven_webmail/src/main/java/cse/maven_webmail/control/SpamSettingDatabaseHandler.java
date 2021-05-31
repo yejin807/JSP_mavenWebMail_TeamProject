@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.control.CommandType;
+import cse.maven_webmail.model.SpamMessageAgent;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -33,7 +34,9 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
 
     private ArrayList<String> spamWord = null;
     private ArrayList<String> spamEmail = null;
-    
+
+    SpamMessageAgent spamMessageAgent;
+
     private String userid = null;
 
     /**
@@ -56,6 +59,7 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         String spamword = request.getParameter("spamword");
         String isEmail = request.getParameter("isEmail");
         String sql = "null이에요.";
+        spamMessageAgent = SpamMessageAgent.getInstance(userid);
 
         PrintWriter out = response.getWriter();
 
@@ -64,19 +68,23 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
             //
             if (!(word == null) && !(word.equals(""))) {
                 insertSpamCommand(userid, word, isEmail);
+                spamMessageAgent.setNeedUpdate(true);
                 response.sendRedirect("spam_settings.jsp");
             }
             //스팸단어 삭제 기능
             if ((request.getParameter("command") != null) && (request.getParameter("spamword") != null)) {
                 //int select = Integer.parseInt((String) request.getParameter("delete"));
                 int select = Integer.parseInt((String) request.getParameter("command"));
+
                 switch (select) {
                     case CommandType.DELETE_SPAM_WORD_COMMAND:
                         deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_FALSE);
+                        spamMessageAgent.setNeedUpdate(true);
                         //response.sendRedirect("spam_settings.jsp");
                         break;
                     case CommandType.DELETE_SPAM_EMAIL_COMMAND:
                         deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_TRUE);
+                        spamMessageAgent.setNeedUpdate(true);
                         //response.sendRedirect("spam_settings.jsp");
                         break;
                 }
@@ -108,31 +116,30 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
             //spam단어 읽어오기
             String sql = "select word from webmail.spam_setting where email =? and is_email=0";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userid); 
+            pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 spamWord.add(rs.getString("word"));
-                result += "<br><br>getSpamSettingData , word : "+rs.getString("word");
+                result += "<br><br>getSpamSettingData , word : " + rs.getString("word");
             }
-            System.out.println("getSpamSettingData.userid : "+userid);
-            System.out.println("getSpamSettingData : "+result);
-            
+            System.out.println("getSpamSettingData.userid : " + userid);
+            System.out.println("getSpamSettingData : " + result);
+
             //spam이메일 읽어오기
-            
             //spam단어 읽어오기
             sql = "select word from webmail.spam_setting where email =? and is_email=1";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userid); 
+            pstmt.setString(1, userid);
 
             rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 spamEmail.add(rs.getString("word"));
-                result += "<br><br>getSpamSettingData , email : "+rs.getString("word");
+                result += "<br><br>getSpamSettingData , email : " + rs.getString("word");
             }
-            System.out.println("getSpamSettingData.userid : "+userid);
-            System.out.println("getSpamSettingData : "+result);
-            
+            System.out.println("getSpamSettingData.userid : " + userid);
+            System.out.println("getSpamSettingData : " + result);
+
             rs.close();
             pstmt.close();
             conn.close();
@@ -142,24 +149,6 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         } finally {
             return result;
         }
-    }
-
-    private void infoHTML(PrintWriter out, String str) {
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet SpamDatabaseHandler</title>");
-        out.println("</head>");
-
-        out.println("<body>");
-        out.println("00");
-        out.println(".." + str + ",,");
-        out.println("00");
-        out.println("<p> <a href=\"spam_settings.jsp\"> 원상복구 </a> </p>");
-        out.println("</body>");
-
-        out.println("</html>");
-
     }
 
     private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
@@ -182,10 +171,10 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         pstmt.close();
         conn.close();
         //sql문 완성
+        getSpamSettingData(userid);
     }
 
-    private void deleteSpamCommand(String email, String word, int isEmail) throws ClassNotFoundException, SQLException {
-        // 참고 : https://doublesprogramming.tistory.com/60
+    private void deleteSpamCommand(String userid, String word, int isEmail) throws ClassNotFoundException, SQLException {
         Class.forName(CommandType.JdbcDriver);
         Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
         /*        infoHTML(out, email);
@@ -194,7 +183,7 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
 
         String sql = "DELETE FROM `webmail`.`spam_setting` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, email);
+        pstmt.setString(1, userid);
         pstmt.setString(2, word);
         pstmt.setInt(3, isEmail);
 
@@ -202,6 +191,7 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         pstmt.close();
         conn.close();
         //sql문 완성
+        getSpamSettingData(userid);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
