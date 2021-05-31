@@ -22,7 +22,7 @@
 </script>
 
 
-<html>
+<html lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>사용자 제거 화면</title>

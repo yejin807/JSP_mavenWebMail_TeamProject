@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>사용자 추가 화면</title>
@@ -56,7 +56,6 @@
                     <tr>
                         <td colspan="2">
                             <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
-                            <input type="button" value="나가기" onClick="location.href = '<%= getServletContext().getInitParameter("HomeDirectory")%>'"/>
                         </td>
                     </tr>
                 </table>

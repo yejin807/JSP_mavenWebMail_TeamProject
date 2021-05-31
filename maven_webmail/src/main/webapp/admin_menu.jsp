@@ -11,7 +11,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>사용자 관리 메뉴</title>
