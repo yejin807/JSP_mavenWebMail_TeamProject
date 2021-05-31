@@ -9,7 +9,7 @@ import cse.maven_webmail.control.CommandType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.mail.Message;
 import cse.maven_webmail.model.MessageParser;
@@ -55,9 +55,9 @@ public class VinMessageHandler {
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
-                pstmt.setString(1, messageparser.getFromAddress()); //보낸사람
-                pstmt.setString(2, messageparser.getSentDate()); //보낸날짜
-                pstmt.setString(3, messageparser.getSubject()); //제목
+                pstmt.setString(1, messageparser.getFromAddress().trim()); //보낸사람
+                pstmt.setString(2, messageparser.getSentDate().trim()); //보낸날짜
+                pstmt.setString(3, messageparser.getSubject().trim()); //제목
             }
             pstmt.executeUpdate();
 
