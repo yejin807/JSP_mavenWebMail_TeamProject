@@ -64,12 +64,15 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            //infoHTML(out, select);
-            //
-            if (!(word == null) && !(word.equals(""))) {
+            
+            if (!(word == null) && !(word.trim().length()==0)){
                 insertSpamCommand(userid, word, isEmail);
                 spamMessageAgent.setNeedUpdate(true);
+                System.out.println("추가된문자열="+word+"=");
                 response.sendRedirect("spam_settings.jsp");
+            } else {
+                out.println("<script>alert('스팸처리할 단어나 이메일을 입력하세요!');location.href='spam_settings.jsp'</script>");
+
             }
             //스팸단어 삭제 기능
             if ((request.getParameter("command") != null) && (request.getParameter("spamword") != null)) {
@@ -80,17 +83,16 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
                     case CommandType.DELETE_SPAM_WORD_COMMAND:
                         deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_FALSE);
                         spamMessageAgent.setNeedUpdate(true);
-                        //response.sendRedirect("spam_settings.jsp");
+                        response.sendRedirect("spam_settings.jsp");
                         break;
                     case CommandType.DELETE_SPAM_EMAIL_COMMAND:
                         deleteSpamCommand(userid, spamword, CommandType.IS_EMAIL_TRUE);
                         spamMessageAgent.setNeedUpdate(true);
-                        //response.sendRedirect("spam_settings.jsp");
+                        response.sendRedirect("spam_settings.jsp");
                         break;
                 }
                 request.setAttribute("command", null);
             } //end 스팸단어 조건 
-            response.sendRedirect("spam_settings.jsp");
         } catch (Exception ex) {// end try
             out.println("exception : " + ex);
         }

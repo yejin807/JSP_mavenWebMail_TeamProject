@@ -119,21 +119,3 @@ a:hover {
     padding: 10px;
     clear: left;
 }
-
-#spam_word {
-    background-color: red;
-
-    position: static;
-    width: length;
-    padding: 10px;
-
-}
-
-#spam_email {
-        background-color: blue;
-
-    position: relative;
-    right: 30px;
-    padding: 10px;
-
-}
