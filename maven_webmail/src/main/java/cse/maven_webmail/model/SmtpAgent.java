@@ -7,11 +7,7 @@ package cse.maven_webmail.model;
 import com.sun.mail.smtp.SMTPMessage;
 import java.io.File;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.Session;
@@ -19,7 +15,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
 
 /**
  *
@@ -130,8 +125,7 @@ public class SmtpAgent {
                 }
                 msg.setRecipients(Message.RecipientType.CC, this.cc);
             }
-
-            // msg.setSubject(MimeUtility.encodeText(this.subj, "euc-kr", "B"));
+            
             msg.setSubject(this.subj);
             msg.setHeader("User-Agent", "LJM-WM/0.1");
             msg.setSentDate(new Date());
@@ -146,13 +140,9 @@ public class SmtpAgent {
             if (this.file1 != null) {
                 for (String f : this.file1.split("\\?")) {// 파싱
                     MimeBodyPart a1 = new MimeBodyPart();
-                    //DataSource src = new FileDataSource(f);
-                    //a1.setDataHandler(new DataHandler(src));
                     a1.attachFile(f);
                     int index = f.lastIndexOf('/');
                     String fileName = f.substring(index + 1);
-                    // "B": base64, "Q": quoted-printable
-                    //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
                     System.out.println("add file in messasge  " + f);
                     mp.addBodyPart(a1);
                 }

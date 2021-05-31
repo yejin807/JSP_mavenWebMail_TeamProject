@@ -30,6 +30,7 @@ public class FormParser {
     private final String UPLOAD_TEMP_DIR = "WEB-INF/temp/";
     private final int MAX_MEMORY_SIZE = 20 * 1024 * 1024;
     private final int MAX_UPLOAD_SIZE = 100 * 1024 * 1024; // 100MB
+    private final String CH_ENCODE = "UTF-8";
 
     public FormParser(HttpServletRequest request) {
         this.request = request;
@@ -101,7 +102,7 @@ public class FormParser {
     public void parse() {
         try {
 
-            request.setCharacterEncoding("UTF-8");
+            request.setCharacterEncoding(CH_ENCODE);
             String currentFolder = request.getServletContext().getRealPath("/");
 
             if (currentFolder.matches(".*\\.*")) {
@@ -130,11 +131,11 @@ public class FormParser {
 
                     if (fi.isFormField()) {  // 5. 폼 필드 처리
                         System.out.println("filename = " + fi.getFieldName());
-                        System.out.println(":" + fi.getString("UTF-8") + "<br>");
+                        System.out.println(":" + fi.getString(CH_ENCODE) + "<br>");
                         String fieldName = fi.getFieldName();
 
                         //todo 주석처리
-                        String item = fi.getString("UTF-8");
+                        String item = fi.getString(CH_ENCODE);
 
                         if (fieldName.equals("to")) {
                             setToAddress(item);  // 200102 LJM - @ 이후의 서버 주소 제거

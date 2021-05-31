@@ -70,7 +70,7 @@
                 nBytes += oFiles[nFileId].size;
             }
             if( nBytes > size_limit){
-                alert('파일 크기가 20MB를 초과하여 전송을 할 수 없습니다.');
+                alert('파일 크기가 100MB를 초과하여 전송을 할 수 없습니다.');
                 return false;
             }else{
                 return true;
