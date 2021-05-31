@@ -103,8 +103,7 @@ public class UserAdminAgent {
         } catch (Exception ex) {
             System.out.println(ex.toString());
             status = false;
-        } finally {
-        }
+        } 
         // 5: 상태 반환
         return status;
     }
@@ -193,9 +192,9 @@ public class UserAdminAgent {
             quit();
         } catch (Exception ex) {
             System.err.println(ex);
-        } finally {
-            return status;
         }
+        // 5: 상태 반환
+        return status;
     }
 
     public boolean secessionUser(String userId) {
@@ -230,9 +229,9 @@ public class UserAdminAgent {
             socket.close();
         } catch (Exception ex) {
             System.err.println(ex);
-        } finally {
-            return status;
         }
+        // 5: 상태 반환
+        return status;
     }
 
     public boolean verify(String userid) {
