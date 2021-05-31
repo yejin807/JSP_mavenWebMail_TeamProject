@@ -21,7 +21,9 @@
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
     </head>
     <body>
-        <jsp:include page="header.jsp" />
+         <jsp:directive.include file="header_bmj.jspf" />
+        <hr>
+  
 
         <div id="sidebar">
         <a href="main_menu.jsp"> 메인메뉴로 </a>
@@ -38,7 +40,7 @@
        
         ${empty errorReason?"<noerror/>" : errorReason}
 
-        <jsp:include page="footer.jsp" />
+        <jsp:directive.include file="footer_bmj.jspf" />
 
     </body>
 </html>
