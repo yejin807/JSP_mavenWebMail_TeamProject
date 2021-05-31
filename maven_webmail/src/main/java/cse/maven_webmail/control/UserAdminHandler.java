@@ -40,6 +40,9 @@ public class UserAdminHandler extends HttpServlet {
     final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTimezone=Asia/Seoul"; //중요
     final String User = "jdbctester";
     final String Password = "43319521";
+    
+    Connection conn = null;
+    PreparedStatement pstmt = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -179,11 +182,11 @@ public class UserAdminHandler extends HttpServlet {
             Class.forName(JdbcDriver);
 
             //2. DB 연결
-            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
             String sql = "INSERT INTO webmail.userinfo values(?,?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성
             request.setCharacterEncoding("UTF-8"); // 한글 인식
@@ -196,15 +199,27 @@ public class UserAdminHandler extends HttpServlet {
                 pstmt.setString(2, username);
                 pstmt.setString(3, birth);
                 pstmt.setString(4, phone);
+
                 //5. 실행
                 pstmt.executeUpdate();
-
             }
-            //6. 자원해제
-            pstmt.close();
-            conn.close();
         } catch (Exception ex) {
             out.println("오류 : " + ex.getMessage());
+        } finally { //6. 자원해제
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
         }
 
     }
@@ -226,16 +241,17 @@ public class UserAdminHandler extends HttpServlet {
     //(관리자 메뉴) DB 삭제
     private void delListDBUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out, String[] userList) {
         response.setContentType("text/html;charset=UTF-8");
+
         try {
             //1. JDBC 드라이버 객체
             Class.forName(JdbcDriver);
 
             //2. DB 연결
-            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
             String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성
             for (String userid : userList) {
@@ -246,11 +262,23 @@ public class UserAdminHandler extends HttpServlet {
                     pstmt.executeUpdate();
                 }
             }
-            //6. 자원해제
-            pstmt.close();
-            conn.close();
         } catch (Exception ex) {
             out.println("오류 : " + ex.getMessage());
+        } finally { //6. 자원해제
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
         }
 
     }
@@ -298,11 +326,23 @@ public class UserAdminHandler extends HttpServlet {
                 pstmt.executeUpdate();
 
             }
-            //6. 자원해제
-            pstmt.close();
-            conn.close();
         } catch (Exception ex) {
             out.println("오류 : " + ex.getMessage());
+        } finally { //6. 자원해제
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception ex) {
+                    out.println("오류 : " + ex.getMessage());
+                }
+            }
         }
 
     }
@@ -343,6 +383,7 @@ public class UserAdminHandler extends HttpServlet {
         successPopUp.append("</body></html>");
         return successPopUp.toString();
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
