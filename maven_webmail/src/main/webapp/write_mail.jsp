@@ -62,7 +62,7 @@
         });
         
         function check_file_size(){
-            var size_limit = 20*1024*1024;
+            var size_limit = 100*1024*1024; //100MB
             var oFiles = document.getElementById("input_file").files;
             var nFiles = oFiles.length;
             var nBytes = 0;

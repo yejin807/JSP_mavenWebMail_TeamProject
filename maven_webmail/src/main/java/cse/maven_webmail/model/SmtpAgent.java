@@ -152,7 +152,7 @@ public class SmtpAgent {
                     int index = f.lastIndexOf('/');
                     String fileName = f.substring(index + 1);
                     // "B": base64, "Q": quoted-printable
-                    //a1.setFileName(MimeUtility.encodeText(ileName, "UTF-8", "B"));
+                    //a1.setFileName(MimeUtility.encodeText(fileName, "UTF-8", "B"));
                     System.out.println("add file in messasge  " + f);
                     mp.addBodyPart(a1);
                 }

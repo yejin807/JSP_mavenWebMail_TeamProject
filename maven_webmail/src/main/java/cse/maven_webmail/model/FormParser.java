@@ -28,8 +28,8 @@ public class FormParser {
     private String fileName = "";
     private final String UPLOAD_DIR = "WEB-INF/upload/";
     private final String UPLOAD_TEMP_DIR = "WEB-INF/temp/";
-    private final int MAX_MEMORY_SIZE = 10 * 1024 * 1024;
-    private final int MAX_UPLOAD_SIZE = 20 * 1024 * 1024;
+    private final int MAX_MEMORY_SIZE = 20 * 1024 * 1024;
+    private final int MAX_UPLOAD_SIZE = 100 * 1024 * 1024; // 100MB
 
     public FormParser(HttpServletRequest request) {
         this.request = request;
@@ -151,7 +151,7 @@ public class FormParser {
                             System.out.println("file name  = " + fi.getName());
                             // 절대 경로 저장
                             String abpath = currentFolder + UPLOAD_DIR + fi.getName() + "?";
-                            fileName += abpath; // this.fileName  전체 경로  // null + 경로가 되어서 잘못 인식
+                            fileName += abpath; // 파일에 추가된 전체 경로  
                             System.out.println("full path = " + fileName);
 
                             File file = new File(currentFolder + UPLOAD_DIR + fi.getName());
