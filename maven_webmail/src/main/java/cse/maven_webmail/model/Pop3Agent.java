@@ -103,7 +103,7 @@ public class Pop3Agent {
 //----delete 메시지 기반 수정중
     //메인 화면에있는 삭제버튼 누를시 휴지통으로 이동함
 
-    public boolean TMessage(int msgid, boolean Tremoves) {
+   /* public boolean TMessage(int msgid, boolean Tremoves) {
         boolean status = false;
 
         if (!connectToStore()) {
@@ -132,7 +132,10 @@ public class Pop3Agent {
         }
     }
 
-//----
+//---- 
+    */
+    
+    
     /*
      * 페이지 단위로 메일 목록을 보여주어야 함.
      */
@@ -179,7 +182,6 @@ public class Pop3Agent {
 
     // 메인 화면에있는 삭제 버튼 누를시 그 메일을 DB로 보내고
 // 선택한 메일은 메인 화면에서는 없어져야 함.
-// public boolean Go_to_trash(int msgid) {
     public Message Go_to_trash(int msgid) {
 
         boolean status = false;
@@ -217,9 +219,9 @@ public class Pop3Agent {
         String result = "";
 
         if (newMsg == null) {
-            result = "99999999999999999999999999999newMsg 증발했다. 안타깝ㅋ";
+            result = "Message dead";
         } else {
-            result = "99999999999999999999999999999999newMSg 살아잇어어어어 ㅊㅊㅋㅊㅋ db연결하셈";
+            result = "Message alive";
         }
 
         return result;
@@ -251,14 +253,8 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
 
-            /*
-            //즐겨찾기 flag가 없는 경우, 즐겨찾기 flag추가.
-            for(Message msg : messages){
-                if( )
-            }
-             */
+            
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-//            result = formatter.getMessageTable(messages);   // 3.6
 
             folder.close(true);  // 3.7
             store.close();       // 3.8
