@@ -18,7 +18,8 @@ public class CommandType {
     public static final int DELETE_USER_MENU = 4;
 
     public static final int SEND_MAIL_COMMAND = 21;
-    public static final int DELETE_MAIL_COMMAND = 41;
+    public static final int DELETE_MAIL_COMMAND_IN_BOOKMARK = 41;
+    public static final int DELETE_MAIL_COMMAND_IN_SPAM = 42;
     public static final int DOWNLOAD_COMMAND = 51;
 
     public static final int ADD_USER_COMMAND = 61;
@@ -42,9 +43,6 @@ public class CommandType {
     
     public static final int IS_EMAIL_TRUE = 1;
     public static final int IS_EMAIL_FALSE = 0;
-    
-    //쓰렉이.................... 메소드안에서만 flag값이 살아있네.....
-    public static final Flags bookmarkFlag = new Flags("bookmarked");
     
     public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
     public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";

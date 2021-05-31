@@ -40,6 +40,7 @@ public class Pop3Agent {
     private String exceptionType;
     private HttpServletRequest request;
     private BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
+    private SpamMessageAgent spamMessageAgent = SpamMessageAgent.getInstance();
 
     public Pop3Agent() {
     }
@@ -49,7 +50,11 @@ public class Pop3Agent {
         this.userid = userid;
         this.password = password;
         this.bookmarkMessageAgent = BookmarkMessageAgent.getInstance(userid);
+        this.spamMessageAgent = SpamMessageAgent.getInstance(userid);
+
         System.out.println("pop3Agent.생성자 BookmarkMessageAgent userid check == " + bookmarkMessageAgent.getUserid());
+        System.out.println("pop3Agent.생성자 SpamMessageAgent userid check == " + spamMessageAgent.getUserid());
+
     }
 
     public boolean validate() {
@@ -159,8 +164,9 @@ public class Pop3Agent {
             folder.fetch(messages, fpFlags);
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
+            //result = formatter.getMessageTable(spamMessageAgent.getMessagesWithoutSpamMsg(messages));   // 3.6
             result = formatter.getMessageTable(messages);   // 3.6
-
+            
             folder.close(true);  // 3.7
             store.close();       // 3.8
         } catch (Exception ex) {
@@ -479,11 +485,9 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
 
-            Message[] spamMessages = filterSpamMessage(messages);
-            //result = formatter.getBookmarkedMessageTable(spamMessages);   // 3.6
+            ArrayList<Message> spamMessages = spamMessageAgent.getMessageList(messages);
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            //todo 삭제만 있는 messageFormatter써야함.
             result = formatter.getSpammedMessageTable(spamMessages);   // 3.6
 
             //result = formatter.getMessageTable(messages);   // 3.6
@@ -497,252 +501,4 @@ public class Pop3Agent {
         }
     }
 
-    //todo : spam 변수로 변경, spamMessageAgent로 옮겨야할지도............
-    private Message[] filterSpamMessage(Message[] allMessages) {
-        SpamSettingDatabaseHandler spamSettingData = new SpamSettingDatabaseHandler();
-        ArrayList<Message> bufMessages = new ArrayList<Message>();
-        Message[] spamMessages = null;
-
-        try {
-            spamSettingData.getSpamSettingData(userid);
-            System.out.println("Pop3Agent.filterSpamMessage.userid : " + userid);
-
-            ArrayList<String> spamWord = spamSettingData.getSpamWord();
-            ArrayList<String> spamEmail = spamSettingData.getSpamEmail();
-
-            System.out.println("Pop3Agent.filterSpamMessage.allMessages length : " + allMessages.length + " start test");
-
-            //전체 메시지에 대한 
-            for (int i = 0; i < allMessages.length; i++) {
-                System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.subject : " + allMessages[i].getSubject() + " start test");
-
-//                allMessages[i].getSubject();
-                for (int j = 0; j < spamWord.size(); j++) {
-                    System.out.println(Integer.toString(j) + " spamWord : " + spamWord.get(j));
-                    if (allMessages[i].getSubject().contains(spamWord.get(j))) {//i번째 메일 제목에 j번째 스팸단어가 포함되어 있다Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")면,
-                        System.out.println("Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                        bufMessages.add(allMessages[i]);
-                    } else {
-                        System.out.println("Pop3Agent.filterSpamMessage.spamWord : " + spamWord.get(j) + "스팸아님");
-                    }/*
-                    if (addStatus) {  //스팸메시지를 추가해야하면
-
-                        count++;
-                        bufMessages.add(count, allMessages[i]);
-                        System.out.println("Pop3Agent.filterSpamMessage.addStatus true라서 : " + i + "번째 메시지를 추가합니다.");
-                    }
-                    addStatus = false;
-                     */
-                } //end for spamWord
-
-                System.out.println(Integer.toString(i) + " : Pop3Agent.filterSpamMessage.from : " + allMessages[i].getFrom()[0].toString() + " start test");
-
-                //        allMessages[i].getFrom()[0].toString();
-                for (int j = 0; j < spamEmail.size(); j++) {
-                    if ((allMessages[i].getFrom()[0].toString()).equals(spamEmail.get(j))) { //spamEmail에 저장된 이메일에게서 메일이 왔었다면.
-                        System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                        bufMessages.add(allMessages[i]);
-                    } else {
-                        System.out.println("Pop3Agent.filterSpamMessage.spamEmail :" + spamEmail.get(j) + " 스팸아님");
-                    }/*
-                    if (addStatus) {  //스팸메시지를 추가해야하면
-
-                        count++;
-                        //bufMessages.add(count, allMessages[i]);
-                        System.out.println("Pop3Agent.filterSpamMessage.addStatus true라서 : " + i + "번째 메시지를 추가합니다.");
-                    }
-                    addStatus = false;
-                     */
-                } //end for spamEmail
-
-            } //end for
-
-            System.out.println("Pop3Agent.filterSpamMessage mid end filtering");
-            System.out.println("Pop3Agent.filterSpamMessage bufMessages size : " + Integer.toString(bufMessages.size()));
-
-            // spamMessages = new Message[bufMessages.size()]
-            spamMessages = new Message[bufMessages.size()];
-            for (int i = 0; i < bufMessages.size(); i++) {
-                spamMessages[i] = bufMessages.get(i);
-                System.out.println("SpamMessage " + Integer.toString(i) + "추가완료");
-            }
-
-            System.out.println("Pop3Agent.filterSpamMessage ");
-
-
-            /*
-        Message[] spamMessages = new Message[bookmarkMsgID.size()];   //declare Message list for bookmarked mail number
-        for (int i = 0; i < bookmarkMsgID.size(); i++) {
-            spamMessages[i] = messages[bookmarkMsgID.get(i) - 1];
-            System.out.println("Pop3Agent.filterBookmarkedMessage() : bookmarkMsg " + Integer.toString(i) + " id = " + bookmarkMsgID.get(i));
-        }
-             */
-        } catch (Exception ex) {
-            System.out.println("Pop3Agent.filterSpamMessage Error: " + ex);
-        } finally {
-            return spamMessages;
-        }
-    }
 }  // class Pop3Agent
-
-/*
-public boolean bookmarkMessage(int msgid) {
-
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            Message oldMsg = folder.getMessage(msgid);
-            int newMsgNum = oldMsg.getMessageNumber();
-            Message newMsg = folder.getMessage(newMsgNum);
-            oldMsg.setFlag(Flags.Flag.DELETED, true);
-
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-            //oldMsgfolder에서 삭제.
-            
-            //bookmarked 플래그 newMsg에 추가.
-            Flags bookmarkFlag = new Flags("bookmarked");
-            newMsg.setFlags(bookmarkFlag, true);
-            newMsg.saveChanges();            
-
-            folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-            
-            //Message리스트 마지막에 newMsg 추가. 및 folder에 appendMessage해줌.
-            //기존의 Message에 덧붙여서 '가나가나다'가 될수도.
-            Message[] newMessages= folder.getMessages();
-            newMessages[newMessages.length+1] = newMsg;
-            folder.appendMessages(newMessages);
-            
-            System.out.println("newMsgbookmarkedFlag : " + newMsg.getFlags().contains("bookmarked"));
-            
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            System.out.println("deleteMessage() error: " + ex);
-        } finally {
-            return status;
-        }
-    }
-
-
-    public boolean bookmarkMessage(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            Folder folder = store.getFolder("INBOX");
-            
-            //folder.addMessageChangedListener(l);
-            folder.open(Folder.READ_ONLY);
-
-            // Message에 bookmarked flag 설정
-            Message msg = folder.getMessage(msgid);
-
-            msg.setFlags(CommandType.bookmarkFlag, true);
-            msg.saveChanges();
-
-            // Message [] expungedMessage = folder.expunge();
-            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
-            folder.close();  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            //https://stackoverflow.com/questions/20194923/illegalwriteexception-when-trying-to-write-flags-in-javamail-imap
-            System.out.println("bookmarkMessage() error : " + ex);
-        } 
-        finally {
-            return status;
-        }
-    }
-
-    public boolean cancelBookmarking(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            // Folder 설정
-//            Folder folder = store.getDefaultFolder();
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            // Message에 DELETED flag 설정
-            Message msg = folder.getMessage(msgid);
-           // msg.setFlag(Flags.Flag.USER, false);
-
-            // 폴더에서 메시지 삭제
-            // Message [] expungedMessage = folder.expunge();
-            // <-- 현재 지원 안 되고 있음. 폴더를 close()할 때 expunge해야 함.
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            System.out.println("cancelBookmarking() error: " + ex);
-        } finally {
-            return status;
-        }
-    }
- */
-
- /*
-
-    public String getBookmarkMessageList() {
-        //Message[] msgs = folder.search(new FlagTerm(processedFlag, false));
-        String result = "";
-        Message[] messages = null;
-
-        if (!connectToStore()) {  // 3.1
-            System.err.println("POP3 connection failed!");
-            return "POP3 연결이 되지 않아 메일 목록을 볼 수 없습니다.";
-        }
-
-        try {
-            // 메일 폴더 열기
-            Folder folder = store.getFolder("INBOX");  // 3.2
-            folder.open(Folder.READ_ONLY);  // 3.3
-
-            // 현재 수신한 메시지 모두 가져오기
-            messages = folder.getMessages();      // 3.4
-            FetchProfile fp = new FetchProfile();
-            // From, To, Cc, Bcc, ReplyTo, Subject & Date
-            fp.add(FetchProfile.Item.ENVELOPE);
-            folder.fetch(messages, fp);
-            
-            //즐겨찾기 message filter
-    //      for (Message msg : messages){
-          //  msg.get
-      //      }
-
-            //즐겨찾기 flag추가
-            //TODO : 스팸flag추가
-//            Flags bookmarkFlag = new Flags("bookmarked");
-//            folder.setFlags(messages, bookmarkFlag, false);
-            MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            result = formatter.getBookmarkedMessageTable(messages);   // 3.6
-
-            folder.close(true);  // 3.7
-            store.close();       // 3.8
-        } catch (Exception ex) {
-            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
-            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
-        } finally {
-            return result;
-        }
-    }
-
- */

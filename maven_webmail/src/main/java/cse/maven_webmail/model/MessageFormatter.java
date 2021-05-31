@@ -140,7 +140,7 @@ public class MessageFormatter {
                         + " <td id=date>" + parser.getSentDate() + "</td>"
                         + " <td id=delete>"
                         + "<a href=ReadMail.do?menu="
-                        + CommandType.DELETE_MAIL_COMMAND //-----------//
+                        + CommandType.DELETE_MAIL_COMMAND_IN_BOOKMARK //-----------//
                         + "&msgid=" + msgIdList.get(i) + "> 삭제 </a>" + "</td>"
                         + " <td id=cancelBookmarking>"
                         + "<a href=ReadMail.do?menu="
@@ -163,7 +163,9 @@ public class MessageFormatter {
         return buffer.toString();
     }
 
-    public String getSpammedMessageTable(Message[] messages) {
+    public String getSpammedMessageTable(ArrayList<Message> messages) {
+        SpamMessageAgent spamMessageAgent = SpamMessageAgent.getInstance();
+        ArrayList<Integer> msgIdList = spamMessageAgent.getMsgIdList();
 
         StringBuilder buffer = new StringBuilder();
 
@@ -171,30 +173,30 @@ public class MessageFormatter {
         buffer.append("<table>");  // table start
         buffer.append("<tr> "
                 + " <th> No. </td> "
-                + " <th> 보낸 사람 </td>"
+                + " <th> 보낸 사람 </td>" 
                 + " <th> 제목 </td>     "
                 + " <th> 보낸 날짜 </td>   "
                 + " <th> 메일삭제 </td>   "
                 + " </tr>");
 
-        for (int i = messages.length - 1; i >= 0; i--) {
+        for (int i = messages.size() - 1; i >= 0; i--) {
 
             try {
-                MessageParser parser = new MessageParser(messages[i], userid);
+                MessageParser parser = new MessageParser(messages.get(i), userid);
                 parser.parse(false);  // envelope 정보만 필요
                 // 메시지 헤더 포맷
                 // 추출한 정보를 출력 포맷 사용하여 스트링으로 만들기
                 buffer.append("<tr> "
-                        + " <td id=no>" + (messages[i].getMessageNumber()) + " </td> "
+                        + " <td id=no>" + (msgIdList.get(i)) + " </td> "
                         + " <td id=sender>" + parser.getFromAddress() + "</td>"
                         + " <td id=subject> "
-                        + " <a href=show_message.jsp?msgid=" + (i + 1) + " title=\"메일 보기\"> "
+                        + " <a href=show_message.jsp?msgid=" + msgIdList.get(i) + " title=\"메일 보기\"> "
                         + parser.getSubject() + "</a> </td>"
                         + " <td id=date>" + parser.getSentDate() + "</td>"
                         + " <td id=delete>"
                         + "<a href=ReadMail.do?menu="
-                        + CommandType.DELETE_MAIL_COMMAND //-----------//
-                        + "&msgid=" + (i + 1) + "> 삭제 </a>" + "</td>"
+                        + CommandType.DELETE_MAIL_COMMAND_IN_SPAM //-----------//
+                        + "&msgid=" + msgIdList.get(i) + "> 삭제 </a>" + "</td>"
                         + " </tr>");
             } catch (Exception ex) {
                 Logger.getLogger(MessageFormatter.class.getName()).log(Level.FINE, null, ex);

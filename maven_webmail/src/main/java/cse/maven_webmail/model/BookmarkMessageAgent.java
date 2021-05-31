@@ -42,7 +42,7 @@ public class BookmarkMessageAgent extends MessageAgent {
         return uniqueInstance;
     }
 
-    protected boolean setMsgIdList() {
+    protected boolean getMsgIdListFromDB() {
 
         boolean status = false;
         System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 시도.");
@@ -95,7 +95,7 @@ public class BookmarkMessageAgent extends MessageAgent {
             if (needInitialize) {
                 System.out.println("BookmarkmessageAgent.getMessageList need Initialize");
                 System.out.println("BookmarkmessageAgent.getMessageList userid=" + userid);
-                setMsgIdList();
+                getMsgIdListFromDB();
                 needInitialize = false;
             }
             System.out.println("BookmarkmessageAgent.getMessageList end Initialize");
@@ -104,7 +104,7 @@ public class BookmarkMessageAgent extends MessageAgent {
             if (super.isNeedUpdate()) {     //북마크 메시지의 업데이트가 필요하면
                 System.out.println("BookmarkMessageAgent.getMessageList isNeedUpdate가 필요합니다. value=." + super.isNeedUpdate());
 
-                if (setMsgIdList()) {               //북마크 메시지 리스트를 세팅하는것이 실패했으면
+                if (getMsgIdListFromDB()) {               //북마크 메시지 리스트를 세팅하는것이 실패했으면
                     System.out.println("setMsgId성공했음했음..");
 
                     bookmarkedMessages = filter(messages, super.getMsgIdList());
@@ -263,13 +263,13 @@ public class BookmarkMessageAgent extends MessageAgent {
             }
         } //end for
 
-        boolean isSuccess = updateBookmarkDB(deletedMsgid);
+        boolean isSuccess = updateBookmarkListDB(deletedMsgid);
     }
 
-    private boolean updateBookmarkDB(int deletedMsgId) {
+    private boolean updateBookmarkListDB(int deletedMsgId) {
         boolean status = false;
         if (isUserIdNull()) {
-            System.out.println("BookmarkMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
+            System.out.println("BookmarkMessageAgent.updateBookmarkListDB 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
 
             return status;
@@ -294,106 +294,9 @@ public class BookmarkMessageAgent extends MessageAgent {
             return status;
 
         } catch (Exception ex) {
-            System.out.println("BookmarkMessageAgent.updateBookmarkDB error : " + ex);
+            System.out.println("BookmarkMessageAgent.updateBookmarkListDB error : " + ex);
         }
         return status;
     }
 
 }//end BookmarkMessageAgent
-
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-/*
-    public ArrayList<Integer> getMessageList(String userid) {
-        bookmarkMsgId = null;
-        bookmarkMsgId = new ArrayList<Integer>();
-        setUserid(userid);
-        System.out.println("BookmarkMessageAgent.getBookmarkMessageList : ");
-
-        bookmarkMsgId = readBookmarkMsgData();
-        return bookmarkMsgId;
-    }
- */
- /*
-    private ArrayList<Integer> readBookmarkMsgData() {
-        try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
-
-            String sql = "select msgid from webmail.bookmark_list where email = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userid);
-
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
-                int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
-                bookmarkMsgId.add(buf_msgid);
-            }
-
-            rs.close();
-            pstmt.close();
-            conn.close();
-
-        } catch (Exception ex) {
-            System.out.println("BookmarkMessageAgent.readBookmarkMsgData Error : " + ex);
-        } finally {
-            return bookmarkMsgId;
-        }
-    }*/
- /*
-    public String showBookmarkingList() {
-        String result = "";
-        for (int list : bookmarkMsgId) {
-            result += Integer.toString(list) + " ";
-        }
-        result += "<br><br><p> <a href=\"bookmarked_mail.jsp\"> 즐겨찾기함 </a> </p>";
-        return result;
-        /* test해볼것.
-                StringBuffer str;
-        for (int list : bookmarkMsgID) {
-            str.append(Integer.toString(list) + " ");
-        }
-        str.append("<br><br><p> <a href=\"main_menu.jsp\"> 즐겨찾기함 </a> </p>");
-        return str;
- */
- /*    }
-}*/
-
- /*
-    buffer.append(i + " : " +messages[i].getFlags().contains("bookmarked") +"<br>");
-    
-     //if (!(messages[i].getFlags().contains("bookmarked"))) {
-    
-                 Flags bookmarkFlag = new Flags("bookmarked");
-            msg.setFlags(bookmarkFlag, true );
-    
- */
- /*
-    * TODO : bookmark할 flag설정
-     
-    public boolean bookmarkMessage(int msgid) {
-        boolean status = false;
-
-        if (!connectToStore()) {
-            return status;
-        }
-
-        try {
-            Folder folder = store.getFolder("INBOX");
-            folder.open(Folder.READ_WRITE);
-
-            Message msg = folder.getMessage(msgid);
-
-            //set bookmark
-            Flags bookmarkFlag = new Flags("bookmarked");
-            msg.setFlags(bookmarkFlag, true);
-
-            folder.close(true);  // expunge == true
-            store.close();
-            status = true;
-        } catch (Exception ex) {
-            System.out.println("bookmarkMessage() error: " + ex);
-        } finally {
-            return status;
-        }
-    }
- */

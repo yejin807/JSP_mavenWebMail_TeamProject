@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.Pop3Agent;
 import cse.maven_webmail.model.BookmarkMessageAgent;
+import cse.maven_webmail.model.SpamMessageAgent;
 import cse.maven_webmail.model.VinMessageHandler;
 import java.sql.SQLException;
-import static javax.ws.rs.core.Response.status;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
@@ -31,6 +31,7 @@ import javax.mail.Message;
 public class ReadMailHandler extends HttpServlet {
 
     private BookmarkMessageAgent bookmarkMessageAgent = BookmarkMessageAgent.getInstance();
+    private SpamMessageAgent spamMessageAgent = SpamMessageAgent.getInstance();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,11 +52,11 @@ public class ReadMailHandler extends HttpServlet {
         String userid = (String) session.getAttribute("userid");
 
         switch (select) {
-            case CommandType.DELETE_MAIL_COMMAND:
+            case CommandType.DELETE_MAIL_COMMAND_IN_BOOKMARK:
                 try (PrintWriter out = response.getWriter()) {
                 deleteMessage(request);
                 int msgid = Integer.parseInt(request.getParameter("msgid"));
-                                    System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 boolean isSuccess = bookmarkMessageAgent.removeMessage(msgid);
                 if (isSuccess) {
@@ -63,8 +64,32 @@ public class ReadMailHandler extends HttpServlet {
                     System.out.println(" msgID update하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     bookmarkMessageAgent.updateMsgId(msgid);
                     System.out.println(" msgID update끝났어요~~~~~~~~갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    //스팸에도 있다면 지우기
+                    spamMessageAgent.removeMessage(msgid);
+                        spamMessageAgent.updateMsgId(msgid);
                 } else {
                     out.println("<script>alert('북마크된 메시지 삭제가 실패했습니다.');location.href='bookmarked_mail.jsp'</script>");
+                }
+            }
+            break;
+            case CommandType.DELETE_MAIL_COMMAND_IN_SPAM:
+                try (PrintWriter out = response.getWriter()) {
+                deleteMessage(request);
+                spamMessageAgent.setNeedUpdate(true);
+
+                int msgid = Integer.parseInt(request.getParameter("msgid"));
+                System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+                boolean isSuccess = spamMessageAgent.removeMessage(msgid);
+                if (isSuccess) {
+                    out.println("<script>alert('스팸 메시지가 삭제되었습니다.');location.href='spam_mail_list.jsp'</script>");
+                    System.out.println(" msgID update하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    spamMessageAgent.updateMsgId(msgid);
+                    System.out.println(" msgID update끝났어요~~~~~~~~갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    bookmarkMessageAgent.removeMessage(msgid);
+                        bookmarkMessageAgent.updateMsgId(msgid);
+                } else {
+                    out.println("<script>alert('스팸 메시지 삭제가 실패했습니다.');location.href='spam_mail_list.jsp'</script>");
                 }
             }
             break;
