@@ -1,39 +1,17 @@
 
-Qcse.maven_webmail.model.Pop3Agent#testBookmarkMsgAgent_readDB()Ljava/lang/String;â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaî î(-"1*≠
-1â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaï ï(‡
-›
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaï4 ï(:
-%0java.lang.String"__id*1*/#
-!cse.maven_webmail.model.Pop3Agent"
-userid‡
-›
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javañW ñ(]
-%1java.lang.String"__id*1*/#
-!cse.maven_webmail.model.Pop3Agent"
-userid√
-¿
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javañ ñ(_$
-bookmarkMsgIDjava.util.ArrayList"__id*
-""Á‰
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaò  ò(4	
-%2int"java.util.ArrayList#size()I*&
-$
-bookmarkMsgIDjava.util.ArrayList2size()¸
-˘
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaò ò(5
-%3java.lang.String"/java.lang.Integer#toString(I)Ljava/lang/String;*"
-java.lang.Integer*
-	
-%2int"¶
-â
-}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaò ò(6
-
-%3java.lang.StringB%#
-!cse.maven_webmail.model.Pop3Agent
+Wcse.maven_webmail.control.SpamSettingDatabaseHandler#getSpamWord()Ljava/util/ArrayList;õ
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.javae e(("1*Ï
+1õ
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.javaf f(ä
+á
+õ
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.javaf f(
+%0java.util.ArrayList"__id*F*D6
+4cse.maven_webmail.control.SpamSettingDatabaseHandler"
+
+spamWord"ª
+õ
+êC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/SpamSettingDatabaseHandler.javaf f(
+
+%0java.util.ArrayListB86
+4cse.maven_webmail.control.SpamSettingDatabaseHandler

@@ -1,59 +1,16 @@
 
-Yorg.apache.jsp.secession_jsp#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaE+ E(B"5*ï
-2w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaI! I($úô
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaIe I(w!
-%2javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;* 
-org.apache.jsp.secession_jsp2getServletConfig()à
-Ö
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaI! I(x'
-%3!org.apache.tomcat.InstanceManager"Öorg.apache.jasper.runtime.InstanceManagerFactory#getInstanceManager(Ljavax/servlet/ServletConfig;)Lorg/apache/tomcat/InstanceManager;*4"2
-0org.apache.jasper.runtime.InstanceManagerFactory*#
-!
-%2javax.servlet.ServletConfigÁ
-‰
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaI
- I(x8
-org.apache.jsp.secession_jsp"
-_jsp_instancemanager"__id*)
-'
-%3!org.apache.tomcat.InstanceManager*
-1*Ó
-3w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaH H( Á
-‰
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaH H( '
-%1!org.apache.tomcat.InstanceManager"__id*:*8
-org.apache.jsp.secession_jsp"
-_jsp_instancemanager*
-2
-1*Ó
-5w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaF F(Á
-‰
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaF F('
-%0!org.apache.tomcat.InstanceManager"__id*:*8
-org.apache.jsp.secession_jsp"
-_jsp_instancemanager*
-3
-1*ç
-1w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaM M(Á
-‰
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaM M('
-%4!org.apache.tomcat.InstanceManager"__id*:*8
-org.apache.jsp.secession_jsp"
-_jsp_instancemanager"§
-w
-mC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaM M( )
-'
-%4!org.apache.tomcat.InstanceManager:
-%jsp_contextB 
-org.apache.jsp.secession_jsp
+Lorg.apache.jsp.mail_005fsend_005fform_jsp#getPackageImports()Ljava/util/Set;Ñ
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java-) -(:"1*€
+1Ñ
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java. .(!≠
+™
+Ñ
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java. .(!
+%0java.util.Set"__id*
+"""û
+Ñ
+zC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\mail_005fsend_005fform_jsp.java. .("
+
+%0java.util.Set:
+%jsp_contextB-+
+)org.apache.jsp.mail_005fsend_005fform_jsp
