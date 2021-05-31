@@ -9,10 +9,8 @@ import cse.maven_webmail.control.CommandType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.mail.Message;
-import cse.maven_webmail.model.MessageParser;
 import java.sql.SQLException;
 
 /**
@@ -80,13 +78,13 @@ public class VinMessageHandler {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, send_person);
             pstmt.setString(2, m_title);
-            //  pstmt.setString(3, send_date);
+         
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
             //sql문 완성
         } catch (Exception ex) {
-            System.out.println("88888888왜않대 " + ex);
+            System.out.println("deletevinmessage error " + ex);
 
         }
         return status;
