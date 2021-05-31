@@ -87,14 +87,30 @@ public class BookmarkMessageAgent extends MessageAgent {
             System.out.println("BookmarkMessageAgent.setMsgIdList Error : " + ex);
         } finally {
             try {
-                rs.close();
-                pstmt.close();
-                conn.close();
+                if (rs != null) {
+                    rs.close();
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    try {
+                        if (conn != null) {
+                            conn.close();
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                return status;
             }
         }
-        return status;
     }
 
     public ArrayList<Message> getMessageList(Message[] messages) {
