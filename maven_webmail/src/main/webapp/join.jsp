@@ -22,6 +22,10 @@
             <div id="join">
                 <form  action="UserAdmin.do?menu=<%= CommandType.JOIN%>" method="POST"> 
                     <table border="0" align="left">
+                        <caption> User 회원가입 </caption>
+                        <tr>
+                            <th colspan="2">정보입력</th>
+                        </tr>
                         <tr>
                             <td>ID</td>
                             <td> <input type="text" name="userid" maxlength="20"/>  </td>
@@ -56,7 +60,7 @@
                 </form>
             </div>
             <div id="constraint_text">
-                <font color="red">* 다음의 형식으로 입력하세요.</font> <br>
+                <span style="color:red">* 다음의 형식으로 입력하세요.</span> <br>
                 &nbsp;&nbsp;ID: 5자 이상 <br>
                 &nbsp;&nbsp;암호: 6자 이상 <br>
                 &nbsp;&nbsp;생일: 예)900202 <br>
