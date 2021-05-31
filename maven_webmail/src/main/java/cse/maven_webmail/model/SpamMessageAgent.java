@@ -11,7 +11,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 
 /**
@@ -48,6 +51,10 @@ public class SpamMessageAgent extends MessageAgent {
 
         System.out.println("SpamMessageAgent.SetMsgId에서 msgId Array생성 시도.");
 
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
         //만약 유저아이디 값이 설정이 안되어있다면 return fale;
         if (isUserIdNull()) {
             System.out.println("SpamMessageAgent.SetMsgId에서 유저아이디 설정이 안되어있음.");
@@ -60,33 +67,35 @@ public class SpamMessageAgent extends MessageAgent {
             super.resetMsgIdList();
             System.out.println("SpamMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "select msgid from webmail.spam_list where email = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
                 super.addMsgId(buf_msgid);
             }
 
-            rs.close();
-            pstmt.close();
-            conn.close();
-
             System.out.println("SpamMessageAgent.SetMsgId에서 msgId Array생성 성공. 생성된 MsgID크기=" + super.getMsgIdList().size());
 
             status = true;
-            return status;
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.setMsgIdList Error : " + ex);
+        } finally {
+            try {
+                rs.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SpamMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return status;
         }
-
-        return status;
     }
 
     public ArrayList<Message> getMessageList(Message[] messages) {
@@ -188,6 +197,8 @@ public class SpamMessageAgent extends MessageAgent {
 
     protected boolean insertMsgId(int msgid) {
         boolean status = false;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
 
         try {
 
@@ -197,31 +208,37 @@ public class SpamMessageAgent extends MessageAgent {
 
                 return status;
             }
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "INSERT INTO `webmail`.`spam_list` (`email`, `msgid`) VALUES (?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
             //sql문 완성
 
             status = true;
             return status;
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.insertMsgId error : " + ex);
+        } finally {
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SpamMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
 
     protected boolean deleteMsgId(int msgid) {
         boolean status = false;
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         if (isUserIdNull()) {
             System.out.println("SpamMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
@@ -230,18 +247,16 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "DELETE FROM `webmail`.`spam_list` WHERE (`email` = ?) and (`msgid` = ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
             //sql문 완성
 
             status = true;
@@ -249,12 +264,22 @@ public class SpamMessageAgent extends MessageAgent {
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.deleteMsgId error : " + ex);
+        } finally {
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SpamMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
 
     private boolean updateSpamListDB(int deletedMsgId) {
         boolean status = false;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         if (isUserIdNull()) {
             System.out.println("SpamMessageAgent.updateSpamListDB 에서 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
@@ -263,31 +288,38 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "update webmail.spam_list set msgid=msgid-1 where email=? and msgid>?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, deletedMsgId);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
             //sql문 완성
 
             status = true;
-            return status;
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.updateSpamListDB error : " + ex);
+        } finally {
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SpamMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
 
     private boolean resetSpamDB() {
         boolean status = false;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         if (isUserIdNull()) {
             System.out.println("SpamMessageAgent.updateSpamListDB 에서 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
@@ -296,17 +328,15 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "delete from webmail.spam_list where email=?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
             //sql문 완성
 
             status = true;
@@ -314,6 +344,13 @@ public class SpamMessageAgent extends MessageAgent {
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.updateSpamListDB error : " + ex);
+        } finally {
+            try {
+                pstmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(SpamMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }

@@ -44,8 +44,8 @@ public class CommandType {
     public static final int IS_EMAIL_TRUE = 1;
     public static final int IS_EMAIL_FALSE = 0;
     
-    public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
-    public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
-    public static final String JdbcUser = "jdbctester";
-    public static final String JdbcPassword = "1895";
+    public static final String JDBCDRIVER = "com.mysql.cj.jdbc.Driver";
+    public static final String JDBCURL = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
+    public static final String JDBCUSER = "jdbctester";
+    public static final String JDBCPASSWORD = "1895";
 }
