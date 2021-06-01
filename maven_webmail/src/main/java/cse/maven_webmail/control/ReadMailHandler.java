@@ -62,7 +62,7 @@ public class ReadMailHandler extends HttpServlet {
                     out.println("<script>alert('북마크된 메시지가 삭제되었습니다.');location.href='bookmarked_mail.jsp'</script>");
                     bookmarkMessageAgent.updateMsgId(msgid);
                     spamMessageAgent.removeMessage(msgid);
-                        spamMessageAgent.updateMsgId(msgid);
+                    spamMessageAgent.updateMsgId(msgid);
                 } else {
                     out.println("<script>alert('북마크된 메시지 삭제가 실패했습니다.');location.href='bookmarked_mail.jsp'</script>");
                 }
@@ -80,7 +80,7 @@ public class ReadMailHandler extends HttpServlet {
                     out.println("<script>alert('스팸 메시지가 삭제되었습니다.');location.href='spam_mail_list.jsp'</script>");
                     spamMessageAgent.updateMsgId(msgid);
                     bookmarkMessageAgent.removeMessage(msgid);
-                        bookmarkMessageAgent.updateMsgId(msgid);
+                    bookmarkMessageAgent.updateMsgId(msgid);
                 } else {
                     out.println("<script>alert('스팸 메시지 삭제가 실패했습니다.');location.href='spam_mail_list.jsp'</script>");
                 }
@@ -143,7 +143,7 @@ public class ReadMailHandler extends HttpServlet {
         }
     }
 
-    private void download(HttpServletRequest request, HttpServletResponse response) { 
+    private void download(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("application/octet-stream");
 
         ServletOutputStream sos = null;
@@ -173,7 +173,11 @@ public class ReadMailHandler extends HttpServlet {
             byte[] b = new byte[(int) file.length()];
             // try-with-resource 문은 fis를 명시적으로 close해 주지 않아도 됨.
             try (FileInputStream fis = new FileInputStream(file)) {
-                fis.read(b);
+                byte[] buffer = new byte[1024];
+                int count = 0;
+                while ((count = fis.read(b)) > 0) {
+                    // fis.read(b);
+                }
             };
 
             // 다운로드
@@ -219,15 +223,16 @@ public class ReadMailHandler extends HttpServlet {
         //return newMsg;
 
     }
+
     private boolean deleteInDBMessage(HttpServletRequest request) {
         boolean status = false;
-                        try {
+        try {
             System.out.println("delete_inDBMessage ON");
             HttpSession httpSession = request.getSession();
             String sendperson = request.getParameter("sendPerson");
             String mtitle = request.getParameter("mTitle");
             VinMessageHandler vinMessageHandler = new VinMessageHandler(sendperson, mtitle);
- 
+
             boolean vinStatus = vinMessageHandler.deleteVinMessage(sendperson, mtitle);
             if (vinStatus) {
                 status = true;
@@ -238,6 +243,7 @@ public class ReadMailHandler extends HttpServlet {
         }
         return status;
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cse.maven_webmail.control;
 
 import cse.maven_webmail.model.Pop3Agent;
@@ -37,12 +33,12 @@ public class UserAdminHandler extends HttpServlet {
     //제임스 서버 변수
     String server = "127.0.0.1";
     int port = 4555;
-    //db 변수
+    /*//db 변수
     final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
     final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTimezone=Asia/Seoul"; //중요
     final String User = "jdbctester";
-    final String Password = "1895";
-
+    final String Password = "43319521";
+*/
     Connection conn = null;
     PreparedStatement pstmt = null;
 
@@ -181,10 +177,10 @@ public class UserAdminHandler extends HttpServlet {
         boolean status = false;
         try {
             //1. JDBC 드라이버 객체
-            Class.forName(JdbcDriver);
+            Class.forName(CommandType.JDBCDRIVER);
 
             //2. DB 연결
-            conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             //3. PreparedStatement 생성
             String sql = "INSERT INTO webmail.userinfo values(?,?,?,?)";
@@ -248,10 +244,10 @@ public class UserAdminHandler extends HttpServlet {
         boolean status = false;
         try {
             //1. JDBC 드라이버 객체
-            Class.forName(JdbcDriver);
+            Class.forName(CommandType.JDBCDRIVER);
 
             //2. DB 연결
-            conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             //3. PreparedStatement 생성
             String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";
@@ -313,10 +309,10 @@ public class UserAdminHandler extends HttpServlet {
         boolean status = false;
         try {
             //1. JDBC 드라이버 객체
-            Class.forName(JdbcDriver);
+            Class.forName(CommandType.JDBCDRIVER);
 
             //2. DB 연결
-            conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             //3. PreparedStatement 생성
             String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";

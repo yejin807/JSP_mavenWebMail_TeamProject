@@ -263,10 +263,11 @@ public class BookmarkMessageAgent extends MessageAgent {
     }
 
     public void updateMsgId(int deletedMsgid) {
-        for (int i = 0; i > getMsgIdSize(); i++) {
+        for (int i = 0; i > getMsgIdSize();) {
             if (getMsgIdValue(i) > deletedMsgid) {
                 updateMsgId(i, getMsgIdValue(i) - 1);
             }
+            i++;
         }
 
         updateBookmarkListDB(deletedMsgid);
