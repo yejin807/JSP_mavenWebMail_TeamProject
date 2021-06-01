@@ -1,39 +1,0 @@
-
-/cse.maven_webmail.model.MessageParser#parse(Z)Zw
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java5 5("8*÷
-5w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java= =(ó
-ğ
-w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java= =(#
-
-%2void"6cse.maven_webmail.model.MessageParser#printMessage(Z)V*)'
-%cse.maven_webmail.model.MessageParser*
-""*
-1*ñ
-6w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java; ;(í
-ê
-w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java; ;( 
-%1"6cse.maven_webmail.model.MessageParser#getPart(LPart;)V*)'
-%cse.maven_webmail.model.MessageParser*
-""*
-5*û
-8w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java9 9(ô
-ñ
-w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java9 9( 
-%0"=cse.maven_webmail.model.MessageParser#getEnvelope(LMessage;)V*)'
-%cse.maven_webmail.model.MessageParser*
-""*
-5
-6*€
-1w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaD D("
-w
-mD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaD D(
-"":
-""B)'
-%cse.maven_webmail.model.MessageParser
