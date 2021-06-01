@@ -1,26 +1,0 @@
-
-Ccse.maven_webmail.control.LoginHandler#isAdmin(Ljava/lang/String;)Zx
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaW W("3*ð
-3x
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaX X(Ú
-×
-x
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaZ Z(,
-%0java.lang.String"__id*=*;(
-&cse.maven_webmail.control.LoginHandler"
-ADMINISTRATORŽ‹
-x
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.javaZ Z(-
-%1boolean",java.lang.String#equals(Ljava/lang/Object;)Z*
-
-useridjava.lang.String*
-
-%0java.lang.String2equals(Ljava/lang/Object;)*
-1*‚
-1x
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.java^ ^("‚
-x
-nD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/control/LoginHandler.java^ ^(
-"":
-useridjava.lang.StringB*(
-&cse.maven_webmail.control.LoginHandler
