@@ -59,8 +59,8 @@ public class BookmarkMessageAgent extends MessageAgent {
             super.resetMsgIdList();
             System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "select msgid from webmail.bookmark_list where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -147,8 +147,8 @@ public class BookmarkMessageAgent extends MessageAgent {
 
                 return status;
             }
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "INSERT INTO `webmail`.`bookmark_list` (`email`, `msgid`) VALUES (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -180,8 +180,8 @@ public class BookmarkMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -276,8 +276,8 @@ public class BookmarkMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);

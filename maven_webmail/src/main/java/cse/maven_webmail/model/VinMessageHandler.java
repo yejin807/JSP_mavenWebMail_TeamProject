@@ -72,9 +72,9 @@ public class VinMessageHandler {
         boolean status = false;
          String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?)";
  
-            Class.forName(CommandType.JdbcDriver);
+            Class.forName(CommandType.JDBCDRIVER);
             
-          try(  Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, "12345*");
+          try(  Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
             
             PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1, send_person);

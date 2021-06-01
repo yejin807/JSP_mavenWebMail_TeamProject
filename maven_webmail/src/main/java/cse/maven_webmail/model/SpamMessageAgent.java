@@ -60,8 +60,8 @@ public class SpamMessageAgent extends MessageAgent {
             super.resetMsgIdList();
             System.out.println("SpamMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "select msgid from webmail.spam_list where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -197,8 +197,8 @@ public class SpamMessageAgent extends MessageAgent {
 
                 return status;
             }
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "INSERT INTO `webmail`.`spam_list` (`email`, `msgid`) VALUES (?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -230,8 +230,8 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "DELETE FROM `webmail`.`spam_list` WHERE (`email` = ?) and (`msgid` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -263,8 +263,8 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "update webmail.spam_list set msgid=msgid-1 where email=? and msgid>?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -296,8 +296,8 @@ public class SpamMessageAgent extends MessageAgent {
         }
 
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "delete from webmail.spam_list where email=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);

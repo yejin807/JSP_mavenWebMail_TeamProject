@@ -112,8 +112,8 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         spamWord = new ArrayList<String>();
         spamEmail = new ArrayList<String>();
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             //spam단어 읽어오기
             String sql = "select word from webmail.spam_setting where email =? and is_email=0";
@@ -154,8 +154,8 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
     }
 
     private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
-        Class.forName(CommandType.JdbcDriver);
-        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+        Class.forName(CommandType.JDBCDRIVER);
+        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
         String sql = "INSERT INTO `webmail`.`spam_setting` (`email`, `word`, `is_email`) VALUES (?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -177,8 +177,8 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
     }
 
     private void deleteSpamCommand(String userid, String word, int isEmail) throws ClassNotFoundException, SQLException {
-        Class.forName(CommandType.JdbcDriver);
-        Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
+        Class.forName(CommandType.JDBCDRIVER);
+        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
         /*        infoHTML(out, email);
         infoHTML(out, word);
         infoHTML(out, Integer.toString(isEmail)); */
