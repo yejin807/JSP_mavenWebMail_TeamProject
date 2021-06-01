@@ -4,6 +4,8 @@
  */
 package cse.maven_webmail.control;
 
+import javax.mail.Flags;
+
 public class CommandType {
 
     private CommandType() {
@@ -26,6 +28,7 @@ public class CommandType {
     public static final int MAIL_REMOVE_COMMAND = 71;
     public static final int VIN_DBDELETE_COMMAND = 72;
 
+      
     public static final int JOIN = 81;
     public static final int SECESSION = 82;
 
@@ -36,13 +39,13 @@ public class CommandType {
     public static final int CANCLE_BOOKMARK = 800;
 
     public static final int DELETE_SPAM_WORD_COMMAND = 901;
-    public static final int DELETE_SPAM_USERID_COMMAND = 902;
-
-    public static final int IS_USERID_TRUE = 1;
-    public static final int IS_USERID_FALSE = 0;
-
-    public static final String JDBCDRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String JDBCURL = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
-    public static final String JDBCUSER = "jdbctester";
-    public static final String JDBCPASSWORD = "1895";
+    public static final int DELETE_SPAM_EMAIL_COMMAND = 902;
+    
+    public static final int IS_EMAIL_TRUE = 1;
+    public static final int IS_EMAIL_FALSE = 0;
+    
+    public static final String JdbcDriver = "com.mysql.cj.jdbc.Driver";
+    public static final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";
+    public static final String JdbcUser = "jdbctester";
+    public static final String JdbcPassword = "1895";
 }

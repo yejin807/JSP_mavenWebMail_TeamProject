@@ -10,10 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.Message;
 
 /**
@@ -49,7 +46,6 @@ public class BookmarkMessageAgent extends MessageAgent {
 
         boolean status = false;
         System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 시도.");
-        String sql = "select msgid from webmail.bookmark_list where email = ?";
 
         //만약 유저아이디 값이 설정이 안되어있다면 return fale;
         if (isUserIdNull()) {
@@ -57,21 +53,28 @@ public class BookmarkMessageAgent extends MessageAgent {
             System.out.println("userid setting =" + userid);
             return status;
         }
-        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD); 
-                PreparedStatement pstmt = conn.prepareStatement(sql); 
-                ResultSet rs = pstmt.executeQuery();) {
+
+        try {
             super.setNeedUpdate(false);
             super.resetMsgIdList();
             System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
-            Class.forName(CommandType.JDBCDRIVER);
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
+            String sql = "select msgid from webmail.bookmark_list where email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
                 super.addMsgId(buf_msgid);
             }
+
+            rs.close();
+            pstmt.close();
+            conn.close();
 
             System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 성공. 생성된 MsgID크기=" + super.getMsgIdList().size());
 
@@ -81,9 +84,7 @@ public class BookmarkMessageAgent extends MessageAgent {
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.setMsgIdList Error : " + ex);
         }
-
         return status;
-
     }
 
     public ArrayList<Message> getMessageList(Message[] messages) {
@@ -137,35 +138,39 @@ public class BookmarkMessageAgent extends MessageAgent {
 
     protected boolean insertMsgId(int msgid) {
         boolean status = false;
-            String sql = "INSERT INTO `webmail`.`bookmark_list` (`email`, `msgid`) VALUES (?,?)";
 
-try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD); PreparedStatement pstmt = conn.prepareStatement(sql);){
+        try {
+
             if (isUserIdNull()) {
                 System.out.println("BookmarkMessageAgent.insertMsgId에서 유저아이디 설정이 안되어있음.");
                 System.out.println("userid setting =" + userid);
 
                 return status;
             }
-            Class.forName(CommandType.JDBCDRIVER);
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
+            String sql = "INSERT INTO `webmail`.`bookmark_list` (`email`, `msgid`) VALUES (?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
             //sql문 완성
 
             status = true;
             return status;
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.insertMsgId error : " + ex);
-        } 
+        }
         return status;
     }
 
     protected boolean deleteMsgId(int msgid) {
         boolean status = false;
-        String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
 
         if (isUserIdNull()) {
             System.out.println("BookmarkMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
@@ -174,10 +179,12 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
             return status;
         }
 
-        try {Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            Class.forName(CommandType.JDBCDRIVER);
+        try {
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
+            String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
@@ -192,7 +199,7 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.deleteMsgId error : " + ex);
-        } 
+        }
         return status;
     }
 
@@ -261,7 +268,6 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
     private boolean updateBookmarkListDB(int deletedMsgId) {
         boolean status = false;
-        String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
         if (isUserIdNull()) {
             System.out.println("BookmarkMessageAgent.updateBookmarkListDB 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
@@ -269,10 +275,12 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
             return status;
         }
 
-        try {Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            Class.forName(CommandType.JDBCDRIVER);
+        try {
+            Class.forName(CommandType.JdbcDriver);
+            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, CommandType.JdbcPassword);
 
+            String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, deletedMsgId);
@@ -287,7 +295,7 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.updateBookmarkListDB error : " + ex);
-        } 
+        }
         return status;
     }
 
