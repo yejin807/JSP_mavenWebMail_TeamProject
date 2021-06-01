@@ -130,6 +130,7 @@
 
                     <%
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
+                        String encodedto = org.owasp.encoder.Encode.forHtml(to);
                         String cc = request.getParameter("cc") == null ? "" : request.getParameter("cc");
                         String subj = request.getParameter("subj") == null ? "" : request.getParameter("subj");
                         String text = request.getParameter("text") == null ? "" : request.getParameter("text");
@@ -139,7 +140,7 @@
                     <tr>
                         <td> 수신 </td>
                         <td> <input type="text" id="to" name="to" size="80"
-                                    value=<%=to%>>  </td>
+                                    value=<%=encodedto%>>  </td>
                     </tr>
                     <tr>
                         <td>참조</td>

@@ -1,0 +1,74 @@
+
+dorg.apache.jsp.header_005fspam_005fmail_jspf#_jsp_getExpressionFactory()Ljavax/el/ExpressionFactory;s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java3$ 3(="5*á
+2s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7" 7(.ª
+§
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7" 7(."
+%2javax.servlet.jsp.JspFactory"__id*
+""¨¥
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7H 7(Z!
+%3javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;*0.
+,org.apache.jsp.header_005fspam_005fmail_jspf2getServletConfig()¥¢
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7H 7(n"
+%4javax.servlet.ServletContext"Mjavax.servlet.ServletConfig#getServletContext()Ljavax/servlet/ServletContext;*#
+!
+%3javax.servlet.ServletConfig2getServletContext()­ª
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7" 7(o-
+%5'javax.servlet.jsp.JspApplicationContext"~javax.servlet.jsp.JspFactory#getJspApplicationContext(Ljavax/servlet/ServletContext;)Ljavax/servlet/jsp/JspApplicationContext;*$
+"
+%2javax.servlet.jsp.JspFactory*$
+"
+%4javax.servlet.ServletContext28getJspApplicationContext(Ljavax/servlet/ServletContext;)À½
+t
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7" 7(† 
+%6javax.el.ExpressionFactory"Zjavax.servlet.jsp.JspApplicationContext#getExpressionFactory()Ljavax/el/ExpressionFactory;*/
+-
+%5'javax.servlet.jsp.JspApplicationContext2getExpressionFactory()î
+ë
+t
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java7
+ 7(†I.
+,org.apache.jsp.header_005fspam_005fmail_jspf"
+_el_expressionfactory"__id*"
+ 
+%6javax.el.ExpressionFactory*
+1*ð
+3s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java6 6(!í
+ê
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java6 6(! 
+%1javax.el.ExpressionFactory"__id*K*I.
+,org.apache.jsp.header_005fspam_005fmail_jspf"
+_el_expressionfactory*
+2
+1*ð
+5s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java4 4(í
+ê
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java4 4( 
+%0javax.el.ExpressionFactory"__id*K*I.
+,org.apache.jsp.header_005fspam_005fmail_jspf"
+_el_expressionfactory*
+3
+1*„
+1s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java; ;( í
+ê
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java; ;(  
+%7javax.el.ExpressionFactory"__id*K*I.
+,org.apache.jsp.header_005fspam_005fmail_jspf"
+_el_expressionfactory"™
+s
+iD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fspam_005fmail_jspf.java; ;(!"
+ 
+%7javax.el.ExpressionFactory:
+%jsp_contextB0.
+,org.apache.jsp.header_005fspam_005fmail_jspf

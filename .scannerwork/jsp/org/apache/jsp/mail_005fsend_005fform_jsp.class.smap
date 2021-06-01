@@ -1,0 +1,15 @@
+SMAP
+mail_005fsend_005fform_jsp.java
+JSP
+*S JSP
+*F
++ 0 mail_send_form.jsp
+mail_send_form.jsp
+*L
+4,15:118,0
+18:119
+19,5:120,0
+23:121
+24,13:122,0
+36,18:123,0
+*E

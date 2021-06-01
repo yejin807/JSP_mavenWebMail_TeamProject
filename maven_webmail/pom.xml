@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+  
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -65,6 +65,12 @@
             <type>jar</type>
         </dependency>
         
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version>
+        </dependency>       
+        
     </dependencies>
 
     <build>
@@ -113,24 +119,8 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            
-            <!-- Mandatory plugins for using Spock -->
-      <plugin>
-        <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin, 
-          visit https://github.com/groovy/GMavenPlus/wiki -->
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.12.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+            </plugin> 
+      
             
         </plugins>
     </build>

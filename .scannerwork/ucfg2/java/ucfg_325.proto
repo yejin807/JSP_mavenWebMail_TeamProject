@@ -1,0 +1,59 @@
+
+_org.apache.jsp.footer_005fhwi_jspf#_jsp_getInstanceManager()Lorg/apache/tomcat/InstanceManager;i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.java>+ >(B"5*é
+2i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaB! B($”‘
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaBe B(w!
+%2javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;*&$
+"org.apache.jsp.footer_005fhwi_jspf2getServletConfig()ú
+÷
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaB! B(x'
+%3!org.apache.tomcat.InstanceManager"…org.apache.jasper.runtime.InstanceManagerFactory#getInstanceManager(Ljavax/servlet/ServletConfig;)Lorg/apache/tomcat/InstanceManager;*4"2
+0org.apache.jasper.runtime.InstanceManagerFactory*#
+!
+%2javax.servlet.ServletConfigß
+Ü
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaB
+ B(x>$
+"org.apache.jsp.footer_005fhwi_jspf"
+_jsp_instancemanager"__id*)
+'
+%3!org.apache.tomcat.InstanceManager*
+1*Ø
+3i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaA A( ß
+Ü
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaA A( '
+%1!org.apache.tomcat.InstanceManager"__id*@*>$
+"org.apache.jsp.footer_005fhwi_jspf"
+_jsp_instancemanager*
+2
+1*Ø
+5i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.java? ?(ß
+Ü
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.java? ?('
+%0!org.apache.tomcat.InstanceManager"__id*@*>$
+"org.apache.jsp.footer_005fhwi_jspf"
+_jsp_instancemanager*
+3
+1*é
+1i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaF F(ß
+Ü
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaF F('
+%4!org.apache.tomcat.InstanceManager"__id*@*>$
+"org.apache.jsp.footer_005fhwi_jspf"
+_jsp_instancemanager"–
+i
+_D:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_005fhwi_jspf.javaF F( )
+'
+%4!org.apache.tomcat.InstanceManager:
+%jsp_contextB&$
+"org.apache.jsp.footer_005fhwi_jspf
