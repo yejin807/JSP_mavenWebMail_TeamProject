@@ -29,7 +29,7 @@
             <table border="0" align="left">
                 <caption> 회원탈퇴 </caption>
                 <tr>
-                    <th colspan="2">정보입력</th>
+                    <th colspan="2" scope="col">정보입력</th>
                 </tr>
                 <tr>
                     <td>ID</td>
