@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.FormParser;
 import cse.maven_webmail.model.SmtpAgent;
+import org.apache.log4j.Logger;
 /**
  *
  * @author jongmin
@@ -26,6 +27,8 @@ public class WriteMailHandler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    static Logger log = Logger.getLogger(WriteMailHandler.class);
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -77,7 +80,7 @@ public class WriteMailHandler extends HttpServlet {
         agent.setSubj(parser.getSubject());
         agent.setBody(parser.getBody());
         String fileName = parser.getFileName();
-        System.out.println("WriteMailHandler.sendMessage() : fileName = " + fileName);
+        log.info("WriteMailHandler.sendMessage() : fileName = " + fileName);
         if (fileName != null) {
             agent.setFile1(fileName);
         }

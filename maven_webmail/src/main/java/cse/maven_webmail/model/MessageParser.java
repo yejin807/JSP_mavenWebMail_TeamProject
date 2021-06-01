@@ -6,7 +6,6 @@ package cse.maven_webmail.model;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.List;
 import javax.activation.DataHandler;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -14,7 +13,7 @@ import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author jongmin
@@ -32,7 +31,8 @@ public class MessageParser {
     private String downloadTempDir; //= "/WEB-INF/download/"; // temp 폴더 필요
     private String userid;
     private String fnames = ""; //추가
-
+    static Logger log = Logger.getLogger(MessageParser.class);
+    
     public MessageParser(Message message, String userid) {
         this.message = message;
         this.userid = userid;
@@ -40,7 +40,7 @@ public class MessageParser {
 
     public MessageParser(Message message, String userid, HttpServletRequest request) {
         this(message, userid);
-        //if (System.getProperty("os.name").equals("Linux")) {
+        
         downloadTempDir = request.getServletContext().getRealPath("/WEB-INF")
                 + File.separator + "download";
         File f = new File(downloadTempDir);
@@ -146,7 +146,7 @@ public class MessageParser {
             System.out.println("---------------------------------");
             System.out.println("첨부파일: " + fileName);
             for (String i : fnames.split("\\?")) {
-                System.out.println("this is message parser" + i);
+                log.info("this is message parser" + i);
             }
         }
     }

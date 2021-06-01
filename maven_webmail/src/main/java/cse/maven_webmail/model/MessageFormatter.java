@@ -223,7 +223,7 @@ public class MessageFormatter {
         buffer.append("제 &nbsp;&nbsp;&nbsp;  목: " + parser.getSubject() + " <br> <hr>");
 
         buffer.append(parser.getBody());
-        //String attachedFile =  parser.getFileName();
+       
         for (String attachedFile : parser.getFilenames().split("\\?")) {
             if (attachedFile != null) {
                 buffer.append("<br> <hr> 첨부파일: <a href=ReadMail.do?menu="

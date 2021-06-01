@@ -1,8 +1,3 @@
-/*
-
-- To change this template, choose Tools | Templates
-- and open the template in the editor.
- */
 package cse.maven_webmail.model;
 
 import java.io.File;
@@ -27,11 +22,11 @@ public class FormParser {
     private String subject = null;
     private String body = null;
     private String fileName = "";
-    private static final String uploadDir = "WEB-INF/upload/";
-    private static final String uploadTempDir = "WEB-INF/temp/";
-    private static final int maxMemorySize = 20 * 1024 * 1024;
-    private static final int maxUploadSize = 50 * 1024 * 1024; // 50MB
-    private static final String chEncode = "UTF-8";
+    private static final String UPLOADDIR = "WEB-INF/upload/";
+    private static final String UPLOADTEMPDIR = "WEB-INF/temp/";
+    private static final int MAXMEMORYSIZE = 20 * 1024 * 1024;
+    private static final int MAXUPLOADSIZE = 50 * 1024 * 1024; // 50MB
+    private static final String CHENCODE = "UTF-8";
     static Logger log = Logger.getLogger(FormParser.class);
     
     public FormParser(HttpServletRequest request) {
@@ -39,14 +34,14 @@ public class FormParser {
     }
 
     private void checkFolder(String baseFolder) {
-        System.out.println("baseFolder = " + baseFolder);
+        log.info("baseFolder = " + baseFolder);
 
-        File uf = new File(baseFolder + uploadDir);
+        File uf = new File(baseFolder + UPLOADDIR);
         if (!uf.exists()) {
             uf.mkdir();
         }
 
-        File tf = new File(baseFolder + uploadTempDir);
+        File tf = new File(baseFolder + UPLOADTEMPDIR);
         if (!tf.exists()) {
             tf.mkdir();
         }
@@ -104,7 +99,7 @@ public class FormParser {
     public void parse() {
         try {
 
-            request.setCharacterEncoding(chEncode);
+            request.setCharacterEncoding(CHENCODE);
             String currentFolder = request.getServletContext().getRealPath("/");
 
             if (currentFolder.matches(".*\\.*")) {
@@ -119,11 +114,11 @@ public class FormParser {
                 // 1. 디스크 기반 파일 항목에 대한 팩토리 생성
                 DiskFileItemFactory diskFactory = new DiskFileItemFactory();
                 // 2. 팩토리 제한사항 설정
-                diskFactory.setSizeThreshold(maxMemorySize);
-                diskFactory.setRepository(new File(uploadTempDir));
+                diskFactory.setSizeThreshold(MAXMEMORYSIZE);
+                diskFactory.setRepository(new File(UPLOADTEMPDIR));
                 // 3. 파일 업로드 핸들러 생성
                 ServletFileUpload upload = new ServletFileUpload(diskFactory);
-                upload.setSizeMax(maxUploadSize);
+                upload.setSizeMax(MAXUPLOADSIZE);
 
                 // 4. request 객체 파싱
                 List<FileItem> fileItems = upload.parseRequest(request); // List -> List<FileItem>
@@ -133,11 +128,10 @@ public class FormParser {
 
                     if (fi.isFormField()) {  // 5. 폼 필드 처리
                         log.info("filename = " + fi.getFieldName());
-                        log.info(":" + fi.getString(chEncode) + "<br>");
+                        log.info(":" + fi.getString(CHENCODE) + "<br>");
                         String fieldName = fi.getFieldName();
 
-                        //todo 주석처리
-                        String item = fi.getString(chEncode);
+                        String item = fi.getString(CHENCODE);
 
                         if (fieldName.equals("to")) {
                             setToAddress(item);  // 200102 LJM - @ 이후의 서버 주소 제거
@@ -153,11 +147,11 @@ public class FormParser {
                         if (fi.getName() != null && !fi.getName().equals("")) {
                             log.info("읽어 들인 파일 이름  = " + fi.getName());
                             // 절대 경로 저장
-                            String abpath = currentFolder + uploadDir + fi.getName() + "?";
+                            String abpath = currentFolder + UPLOADDIR + fi.getName() + "?";
                             fileName += abpath; // 파일에 추가된 전체 경로  
                             log.info("파일 경로 앞에 파일과 이어서 저장 = " + fileName);
 
-                            File file = new File(currentFolder + uploadDir + fi.getName());
+                            File file = new File(currentFolder + UPLOADDIR + fi.getName());
                             log.info("파일 저장 경로 = " + file.getCanonicalPath());
                             // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
                             fi.write(file);

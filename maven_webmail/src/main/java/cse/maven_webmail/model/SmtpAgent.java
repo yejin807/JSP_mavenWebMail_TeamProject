@@ -15,7 +15,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author jongmin
@@ -29,7 +29,8 @@ public class SmtpAgent {
     protected String subj = null;
     protected String body = null;
     protected String file1 = null;
-
+    static Logger log = Logger.getLogger(SmtpAgent.class);
+    
     public SmtpAgent(String host, String userid) {
         this.host = host;
         this.userid = userid;
@@ -100,7 +101,7 @@ public class SmtpAgent {
         // 1. property 설정
         Properties props = System.getProperties();
         props.put("mail.smtp.host", this.host);
-        System.out.println("SMTP host : " + props.get("mail.smtp.host"));
+        log.info("SMTP host : " + props.get("mail.smtp.host"));
 
         // 2. session 가져오기
         Session session = Session.getDefaultInstance(props, null);
@@ -141,9 +142,7 @@ public class SmtpAgent {
                 for (String f : this.file1.split("\\?")) {// 파싱
                     MimeBodyPart a1 = new MimeBodyPart();
                     a1.attachFile(f);
-                    int index = f.lastIndexOf('/');
-                    String fileName = f.substring(index + 1);
-                    System.out.println("add file in messasge  " + f);
+                    log.info("add file in messasge  " + f);
                     mp.addBodyPart(a1);
                 }
             }
@@ -159,13 +158,13 @@ public class SmtpAgent {
                 for (String n : this.file1.split("\\?")) {
                     File f = new File(n);
                     if (!f.delete()) {
-                        System.err.println(this.file1 + " 파일 삭제가 제대로 안 됨.");
+                       log.error(this.file1 + " 파일 삭제가 제대로 안 됨.");
                     }
                 }
             }
             status = true;
         } catch (Exception ex) {
-            System.out.println("sendMessage() error: " + ex);
+            log.error("sendMessage() error: " + ex);
         } finally {
             return status;
         }
