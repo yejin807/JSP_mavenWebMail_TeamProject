@@ -126,6 +126,10 @@
                   action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" 
                   onsubmit ="return check_file_size()">
                 <table>
+=======
+                  action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" >
+                <table> <!-- 메일쓰기 폼 설정 -->
+>>>>>>> Stashed changes
                     <%
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
                         String cc = request.getParameter("cc") == null ? "" : request.getParameter("cc");
