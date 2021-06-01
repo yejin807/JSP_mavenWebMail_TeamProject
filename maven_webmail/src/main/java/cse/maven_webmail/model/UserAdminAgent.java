@@ -103,7 +103,7 @@ public class UserAdminAgent {
         } catch (Exception ex) {
             System.out.println(ex.toString());
             status = false;
-        } 
+        }
         // 5: 상태 반환
         return status;
     }
@@ -246,7 +246,8 @@ public class UserAdminAgent {
             // read the result for verify command
             // <-- User userid exists   or
             // <-- User userid does not exist
-            is.read(messageBuffer);
+            int count = is.read(messageBuffer);
+
             String recvMessage = new String(messageBuffer);
             if (recvMessage.contains("exists")) {
                 status = true;
@@ -254,9 +255,8 @@ public class UserAdminAgent {
 
             quit();  // quit command
         } catch (IOException ex) {
-        } finally {
-            return status;
         }
+        return status;
     }
 
     private boolean connect() throws Exception {
@@ -278,7 +278,7 @@ public class UserAdminAgent {
 
         // 3: Password message 수신
         java.util.Arrays.fill(messageBuffer, (byte) 0);
-        is.read(messageBuffer);
+        int count = is.read(messageBuffer);
         recvMessage = new String(messageBuffer);
         System.out.println(recvMessage);
 
@@ -289,7 +289,8 @@ public class UserAdminAgent {
         // 5: welcome message 수신
         java.util.Arrays.fill(messageBuffer, (byte) 0);
         // if (is.available() > 0) {
-        is.read(messageBuffer);
+
+        int count2 = is.read(messageBuffer);
         recvMessage = new String(messageBuffer);
         System.out.println(recvMessage);
 
@@ -312,7 +313,8 @@ public class UserAdminAgent {
             // 2: quit 명령에 대한 응답 수신
             java.util.Arrays.fill(messageBuffer, (byte) 0);
             //if (is.available() > 0) {
-            is.read(messageBuffer);
+
+            int count = is.read(messageBuffer);
             // 3: 메시지 분석
             String recvMessage = new String(messageBuffer);
             System.out.println(recvMessage);
@@ -323,8 +325,7 @@ public class UserAdminAgent {
             }
         } catch (IOException ex) {
             System.err.println("UserAdminAgent.quit() " + ex);
-        } finally {
-            return status;
         }
+        return status;
     }
 }
