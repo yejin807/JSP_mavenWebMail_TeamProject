@@ -1,5 +1,5 @@
 <%-- 
-    Document   : sign_up
+    Document   : join
     Created on : 2021. 5. 8., 오후 9:11:19
     Author     : kwangmin
 --%>
