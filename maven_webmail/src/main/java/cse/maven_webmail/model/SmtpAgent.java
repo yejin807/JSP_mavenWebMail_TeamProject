@@ -165,8 +165,8 @@ public class SmtpAgent {
             status = true;
         } catch (Exception ex) {
             log.error("sendMessage() error: " + ex);
-        } finally {
+        } 
             return status;
-        }
+        
     }  // sendMessage()
 }

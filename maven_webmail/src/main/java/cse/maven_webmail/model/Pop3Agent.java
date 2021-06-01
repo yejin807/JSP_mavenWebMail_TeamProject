@@ -66,9 +66,9 @@ public class Pop3Agent {
         } catch (Exception ex) {
             System.out.println("Pop3Agent.validate() error : " + ex);
             status = false;  // for clarity
-        } finally {
+        } 
             return status;
-        }
+        
     }
 
     public boolean deleteMessage(int msgid, boolean really_delete) {
@@ -96,9 +96,9 @@ public class Pop3Agent {
             status = true;
         } catch (Exception ex) {
             System.out.println("deleteMessage() error: " + ex);
-        } finally {
+        } 
             return status;
-        }
+        
     }
 
     /*
@@ -140,9 +140,9 @@ public class Pop3Agent {
         } catch (Exception ex) {
             System.out.println("Pop3Agent.getMessageList() : exception = " + ex);
             result = "Pop3Agent.getMessageList() : exception = " + ex;
-        } finally {
+        } 
             return result;
-        }
+        
     }
 
 // 메인 화면에있는 삭제 버튼 누를시 그 메일을 DB로 보내고
@@ -224,9 +224,9 @@ public class Pop3Agent {
         } catch (Exception ex) {
             System.out.println("Pop3Agent.getMessageList() : exception = " + ex);
             result = "Pop3Agent.getMessageList() : exception = " + ex;
-        } finally {
+        } 
             return result;
-        }
+        
     }
 
     public String getMessage(int n) {
@@ -252,9 +252,9 @@ public class Pop3Agent {
         } catch (Exception ex) {
             System.out.println("Pop3Agent.getMessageList() : exception = " + ex);
             result = "Pop3Agent.getMessage() : exception = " + ex;
-        } finally {
+        } 
             return result;
-        }
+        
     }
 
     private boolean connectToStore() {
@@ -275,9 +275,9 @@ public class Pop3Agent {
             status = true;
         } catch (Exception ex) {
             exceptionType = ex.toString();
-        } finally {
+        } 
             return status;
-        }
+        
     }
 
     public String getHost() {
@@ -345,9 +345,9 @@ public class Pop3Agent {
         } catch (Exception ex) {
             System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
             result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
-        } finally {
+        } 
             return result;
-        }
+        
     }
 
     public String getSpamMessageList() {
