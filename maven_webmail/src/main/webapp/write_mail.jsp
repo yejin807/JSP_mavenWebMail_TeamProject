@@ -142,20 +142,20 @@
                         %>
                         
                     <tr>
-                        <td> 수신 </td>
+                        <th> 수신 </th>
                         <td> <input type="text" id="to" name="to" size="80"
                                     value=<%=encodedto%>>  </td>
                     </tr>
                     <tr>
-                        <td>참조</td>
+                        <th>참조</th>
                         <td> <input type="text" id="cc" name="cc" size="80" value="<%=encodedcc%>">  </td>
                     </tr>
                     <tr>
-                        <td> 메일 제목 </td>
+                        <th> 메일 제목 </th>
                         <td> <input type="text" id="subj" name="subj" size="80" value="<%=encodedsubj%>">  </td>
                     </tr>
                     <tr>
-                        <td colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</td>
+                        <th colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</th>
                     </tr>
                     <tr>  <%-- TextArea    --%>
                         <td colspan="2">
@@ -163,7 +163,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>첨부 파일</td>
+                        <th>첨부 파일</th>
                         <td> <input type="file" name="file1" id="input_file" multiple size="80" > 
                     </tr>
                     <input type="text" name="temp" id="temp" value="temp" value="<%=encodedtemp%>" hidden>

@@ -30,7 +30,7 @@ public class LoginHandler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private final static String administrator = "admin";
+    private final static String ADMINISTRATOR = "admin";
     Logger logger = Logger.getLogger(LoginHandler.class.getName());
 
     
@@ -91,7 +91,7 @@ public class LoginHandler extends HttpServlet {
     protected boolean isAdmin(String userid) {
         boolean status = false;
 
-        if (userid.equals(this.administrator)) {
+        if (userid.equals(this.ADMINISTRATOR)) {
             status = true;
         }
 

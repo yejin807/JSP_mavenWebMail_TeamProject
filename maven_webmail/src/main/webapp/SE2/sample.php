@@ -12,7 +12,7 @@
 	
 	<hr>
 	<p>
-		<b><span style="color:#FF0000">주의: </span>sample.php는 샘플 파일로 정상 동작하지 않을 수 있습니다. 이 점 주의바랍니다.</b>
+		<strong><span style="color:#FF0000">주의: </span>sample.php는 샘플 파일로 정상 동작하지 않을 수 있습니다. 이 점 주의바랍니다.</strong>
 	</p>
 	
 	<?php echo(htmlspecialchars_decode('&lt;img id="test" width="0" height="0"&gt;'))?>
