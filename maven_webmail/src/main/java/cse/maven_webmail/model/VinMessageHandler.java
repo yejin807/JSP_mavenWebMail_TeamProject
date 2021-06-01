@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import javax.mail.Message;
 import java.sql.SQLException;
+import org.apache.log4j.Logger;
+
 
 /**
  *
@@ -24,7 +26,8 @@ public class VinMessageHandler {
     private Message newMsg = null;
     private String send_person;
     private String m_title;
-
+    static Logger log = Logger.getLogger(VinMessageHandler.class);
+    
     public VinMessageHandler() {
 
     }
@@ -60,7 +63,8 @@ public class VinMessageHandler {
 
             }
         } catch (Exception ex) { //에러띄움
-            System.out.println("VinMessageHandler.AddMessageBin error : " + ex);
+           log.error("VinMessageHandler.AddMessageBin error : " + ex);
+            
         }
     }
 
@@ -79,7 +83,7 @@ public class VinMessageHandler {
             pstmt.executeUpdate();
 
         } catch (Exception ex) {
-            System.out.println("deletevinmessage error " + ex);
+            log.error("deletevinmessage error " + ex);
 
         }
         return status;
