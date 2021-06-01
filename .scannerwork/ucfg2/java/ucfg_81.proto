@@ -188,7 +188,7 @@ JSpamMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìˆìŒ.2pri
 pstmtjava.sql.PreparedStatement*2*
 
 %14java.lang.String2setString(ILjava/lang/String;)*
-19*Á
+19*À
 21
 „C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.javaG G(sÁ
 ¾
@@ -196,12 +196,12 @@ JSpamMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìˆìŒ.2pri
 „C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.javaG G(s
 connjava.sql.Connection"__id*
 
-%12í
-ê
+%12ì
+é
 
-„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.javaI I(O
-sqljava.lang.String"__id*75
-3select msgid from webmail.spam_list where email = ?îë
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.javaI I(N
+sqljava.lang.String"__id*64
+2select msgid from webmail.spam_list where userid=?îë
 
 „C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.javaJ J(.!
 %13java.sql.PreparedStatement"Tjava.sql.Connection#prepareStatement(Ljava/lang/String;)Ljava/sql/PreparedStatement;*

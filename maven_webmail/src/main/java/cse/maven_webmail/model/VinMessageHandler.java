@@ -45,28 +45,23 @@ public class VinMessageHandler {
         try {
             MessageParser messageparser = new MessageParser(newMsg, userid);
             messageparser.parse(false);
+            String sql = "insert into goto_bin.bin ( send_person, send_date, m_title) VALUES (?,?,?)";
 
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
-            //집어넣을값 -  보낸사람, 보낸날짜, 제목
-            String sql = "insert into goto_bin.bin ( send_person, send_date, m_title) VALUES (?,?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
+                    PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
             if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
-                pstmt.setString(1, messageparser.getFromAddress().trim()); //보낸사람
-                pstmt.setString(2, messageparser.getSentDate().trim()); //보낸날짜
-                pstmt.setString(3, messageparser.getSubject().trim()); //제목
+                pstmt.setString(1, messageparser.getFromAddress()); //보낸사람
+                pstmt.setString(2, messageparser.getSentDate()); //보낸날짜
+                pstmt.setString(3, messageparser.getSubject()); //제목
             }
             pstmt.executeUpdate();
 
-            pstmt.close();
-            conn.close();
-            //sql문 완성
-
+            }
         } catch (Exception ex) { //에러띄움
             System.out.println("VinMessageHandler.AddMessageBin error : " + ex);
         }
-
     }
 
     public boolean deleteVinMessage(String send_person, String m_title) throws ClassNotFoundException, SQLException {
@@ -78,7 +73,7 @@ public class VinMessageHandler {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, send_person);
             pstmt.setString(2, m_title);
-         
+
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();

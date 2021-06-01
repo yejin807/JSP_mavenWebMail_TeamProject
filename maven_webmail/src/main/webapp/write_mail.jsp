@@ -62,7 +62,7 @@
         });
         
         function check_file_size(){
-            var size_limit = 100*1024*1024; //100MB
+            var size_limit = 50*1024*1024; //50MB
             var oFiles = document.getElementById("input_file").files;
             var nFiles = oFiles.length;
             var nBytes = 0;
@@ -70,7 +70,7 @@
                 nBytes += oFiles[nFileId].size;
             }
             if( nBytes > size_limit){
-                alert('파일 크기가 100MB를 초과하여 전송을 할 수 없습니다.');
+                alert('파일 크기가 50MB를 초과하여 전송을 할 수 없습니다.');
                 return false;
             }else{
                 return true;
@@ -123,9 +123,14 @@
             
         <div id="main">
             <form id="frm" enctype="multipart/form-data" method="POST" name="frm"
+<<<<<<< Updated upstream
                   action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" 
                   onsubmit ="return check_file_size()">
                 <table>
+=======
+                  action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" >
+                <table> <!-- 메일쓰기 폼 설정 -->
+>>>>>>> Stashed changes
                     <%
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
                         String cc = request.getParameter("cc") == null ? "" : request.getParameter("cc");
