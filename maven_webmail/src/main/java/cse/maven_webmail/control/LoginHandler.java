@@ -4,6 +4,7 @@
  */
 package cse.maven_webmail.control;
 
+import static com.mysql.cj.conf.PropertyKey.logger;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.Pop3Agent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +31,9 @@ public class LoginHandler extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String ADMINISTRATOR = "admin";
+    Logger logger = Logger.getLogger(LoginHandler.class.getName());
 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -65,20 +70,18 @@ public class LoginHandler extends HttpServlet {
                     } else {
                         RequestDispatcher view = request.getRequestDispatcher("login_fail.jsp");
                         view.forward(request, response);
-//                        response.sendRedirect("login_fail.jsp");
                     }
                     break;
                 case CommandType.LOGOUT:
                     out = response.getWriter();
                     session.invalidate();
-//                    response.sendRedirect(homeDirectory);
                     response.sendRedirect(getServletContext().getInitParameter("HomeDirectory"));
                     break;
                 default:
                     break;
             }
         } catch (Exception ex) {
-            System.err.println("LoginCheck - LOGIN error : " + ex);
+            logger.log(Level.SEVERE, "LoginCheck - LOGIN error : ", ex);
         } finally {
             out.close();
         }

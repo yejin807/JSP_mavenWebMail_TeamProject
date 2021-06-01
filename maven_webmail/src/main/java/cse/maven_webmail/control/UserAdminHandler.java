@@ -16,6 +16,8 @@ import cse.maven_webmail.model.UserAdminAgent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,6 +45,8 @@ public class UserAdminHandler extends HttpServlet {
 
     Connection conn = null;
     PreparedStatement pstmt = null;
+
+    Logger logger = Logger.getLogger(UserAdminHandler.class.getName());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -89,7 +93,7 @@ public class UserAdminHandler extends HttpServlet {
 
             }
         } catch (Exception ex) {
-            System.err.println(ex.toString());
+            logger.log(Level.SEVERE, "LoginCheck - LOGIN error : ", ex.getMessage());
         }
     }
 
@@ -109,8 +113,7 @@ public class UserAdminHandler extends HttpServlet {
             out.println("birth = " + birth + "<br>");
             out.println("phone = " + phone + "<br>");
             out.flush();
-            // if (addUser successful)  사용자 등록 성공 팦업창
-            // else 사용자 등록 실패 팝업창
+
             if (userid.equals("") || userid == null || password.equals("") || password == null
                     || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
                 out.println(getPopUp("모든 정보를 입력해주세요.", "add_user.jsp"));
@@ -127,7 +130,7 @@ public class UserAdminHandler extends HttpServlet {
             }
             out.flush();
         } catch (Exception ex) {
-            out.println(getPopUp("시스템 접속에 실패했습니다.", "add_user.jsp"));
+            logger.log(Level.SEVERE, "시스템 접속에 실패했습니다. : ", ex.getMessage());
         }
     }
 
@@ -168,7 +171,7 @@ public class UserAdminHandler extends HttpServlet {
             }
             out.flush();
         } catch (Exception ex) {
-            out.println("시스템 접속에 실패했습니다. : " + ex);
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         }
     }
 
@@ -204,20 +207,20 @@ public class UserAdminHandler extends HttpServlet {
                 status = true;
             }
         } catch (Exception ex) {
-            out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         } finally { //6. 자원해제
             if (pstmt != null) {
                 try {
                     pstmt.close();
                 } catch (Exception ex) {
-                    out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (Exception ex) {
-                    out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
                 }
             }
         }
@@ -235,7 +238,7 @@ public class UserAdminHandler extends HttpServlet {
                 out.println(getPopUp("유저 삭제에 실패했습니다.", "delete_user.jsp"));
             }
         } catch (Exception ex) {
-            System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
+            logger.log(Level.SEVERE, " UserAdminHandler.deleteUser : exception = ", ex.getMessage());
         }
     }
 
@@ -265,20 +268,20 @@ public class UserAdminHandler extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-            out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         } finally { //6. 자원해제
             if (pstmt != null) {
                 try {
                     pstmt.close();
                 } catch (Exception ex) {
-                    out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (Exception ex) {
-                    out.println("오류 : " + ex.getMessage());
+                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
                 }
             }
         }
