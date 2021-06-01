@@ -93,7 +93,7 @@ public class ReadMailHandler extends HttpServlet {
                 }
             }
             break;
-            //-------------
+
             case CommandType.MAIL_REMOVE_COMMAND: //메일 이동 커맨드 메인메뉴 ->휴지통
                 try (PrintWriter out = response.getWriter()) {
                 moveMsgBin(request);
@@ -225,7 +225,6 @@ public class ReadMailHandler extends HttpServlet {
         Message binMessage = pop3.Go_to_trash(msgid);
         System.out.println(pop3.checkMsgAlive(binMessage));
         return pop3.checkMsgAlive(binMessage);
-        //return newMsg;
 
     }
     private boolean delete_inDBMessage(HttpServletRequest request) {
@@ -236,7 +235,6 @@ public class ReadMailHandler extends HttpServlet {
             String send_person = request.getParameter("sendPerson");
             String m_title = request.getParameter("mTitle");
             VinMessageHandler vinMessageHandler = new VinMessageHandler(send_person, m_title);
-            System.out.println("sendperson " + send_person + " m_title=" + m_title);
             boolean vinStatus = vinMessageHandler.deleteVinMessage(send_person, m_title);
             if (vinStatus) {
                 status = true;

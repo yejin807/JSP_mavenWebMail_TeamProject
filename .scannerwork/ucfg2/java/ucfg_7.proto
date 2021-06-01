@@ -1,7 +1,7 @@
 
 Bcse.maven_webmail.model.BookmarkMessageAgent#getMsgIdListFromDB()Z“
-ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java0 0(("30*ž
-24“
+ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java0 0(("41*ž
+35“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaD D(û
 ø
 “
@@ -9,8 +9,8 @@ Bcse.maven_webmail.model.BookmarkMessageAgent#getMsgIdListFromDB()Z“
 %11"<java.lang.Class#forName(Ljava/lang/String;)Ljava/lang/Class;*"
 java.lang.Class*
 ""*
-23*Ï
-25“
+34*Ï
+36“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaB B(Â
 ¿
 “
@@ -23,16 +23,16 @@ Bcse.maven_webmail.model.BookmarkMessageAgent#getMsgIdListFromDB()Z“
 
 %9java.io.PrintStream*SQ
 OBookmarkMessageAgent.SetMsgIdì—ì„œ msgId ì´ˆê¸°í™” í›„ ìƒˆ Arrayìƒì„± ì‹œë„.2println(Ljava/lang/String;)*
-24*æ
-14“
+35*æ
+25“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaQ Q(Ã
 À
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaQ Q(
 %19java.io.PrintStream"__id*
 ""*
-12*»
-16“
+23*»
+27“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaM  M("˜•
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaM  M(2
@@ -41,8 +41,17 @@ OBookmarkMessageAgent.SetMsgIdì—ì„œ msgId ì´ˆê¸°í™” í›„ ìƒˆ Arrayìƒì„± ì‹œë„.
 
 rsjava.sql.ResultSet*	
 msgid2getInt(Ljava/lang/String;)*
-18*Á
+29*
 29“
+ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaL L(éæ
+“
+ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaL L(
+%17boolean"java.sql.ResultSet#next()Z*
+
+rsjava.sql.ResultSet2next()*
+25
+27*Á
+40“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java; ;(Â
 ¿
 “
@@ -84,26 +93,8 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 %7java.lang.String2println(Ljava/lang/String;)"ž
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java= =(
-""*
-18“
-ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaL L(éæ
-“
-ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaL L(
-%17boolean"java.sql.ResultSet#next()Z*
-
-rsjava.sql.ResultSet2next()*
-14
-16*ù
-19“
-ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(%Ö
-Ó
-“
-ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(%
-rsjava.sql.ResultSet"__id*
-
-%16java.sql.ResultSet*
-18*µ
-30“
+""*µ
+41“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java2 2(Â
 ¿
 “
@@ -137,17 +128,26 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.java: :(
 %2boolean"<cse.maven_webmail.model.BookmarkMessageAgent#isUserIdNull()Z*0.
 ,cse.maven_webmail.model.BookmarkMessageAgent*
-25
+36
+40*ù
+30“
+ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(%Ö
+Ó
+“
+ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(%
+rsjava.sql.ResultSet"__id*
+
+%16java.sql.ResultSet*
 29*Í
-20“
+31“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(ª§
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaK K(%
 %16java.sql.ResultSet"=java.sql.PreparedStatement#executeQuery()Ljava/sql/ResultSet;*%
 #
 pstmtjava.sql.PreparedStatement2executeQuery()*
-19*Ò
-21“
+30*Ò
+32“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaH H(.é
 æ
 “
@@ -168,8 +168,8 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 pstmtjava.sql.PreparedStatement*2*
 
 %14java.lang.String2setString(ILjava/lang/String;)*
-20*Õ
-22“
+31*Õ
+33“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaE E(sÅ
 Â
 “
@@ -189,13 +189,13 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 connjava.sql.Connection*
 
 sqljava.lang.String2$prepareStatement(Ljava/lang/String;)*
-21*»
-11“
+32*»
+22“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaS S("ž
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaT T(
 ""*ê
-23“
+34“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaE E( Ç
 Ä
 “
@@ -205,8 +205,8 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 ""*
 ""*
 ""*
-22*˜
-12“
+33*˜
+23“
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaQ Q(}õò
 “
 ˆC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/BookmarkMessageAgent.javaQ Q(~
@@ -214,5 +214,5 @@ NBookmarkMessageAgent.SetMsgIdì—ì„œ ìœ ì €ì•„ì´ë”” ì„¤ì •ì´ ì•ˆë˜ì–´ìžˆìŒ.2
 
 %19java.io.PrintStream*
 ""2println([C)*
-11B0.
+22B0.
 ,cse.maven_webmail.model.BookmarkMessageAgent

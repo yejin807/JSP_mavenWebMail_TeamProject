@@ -49,10 +49,7 @@ public class BookmarkMessageAgent extends MessageAgent {
 
         boolean status = false;
         System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId Array생성 시도.");
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        String sql = "select msgid from webmail.bookmark_list where email = ?";
 
         //만약 유저아이디 값이 설정이 안되어있다면 return fale;
         if (isUserIdNull()) {
@@ -60,19 +57,15 @@ public class BookmarkMessageAgent extends MessageAgent {
             System.out.println("userid setting =" + userid);
             return status;
         }
-        try {
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery();) {
             super.setNeedUpdate(false);
             super.resetMsgIdList();
             System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
             Class.forName(CommandType.JDBCDRIVER);
-            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
-            String sql = "select msgid from webmail.bookmark_list where email = ?";
-            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
-            rs = pstmt.executeQuery();
             while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
                 int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
                 super.addMsgId(buf_msgid);
@@ -85,32 +78,10 @@ public class BookmarkMessageAgent extends MessageAgent {
 
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.setMsgIdList Error : " + ex);
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    if (pstmt != null) {
-                        pstmt.close();
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    try {
-                        if (conn != null) {
-                            conn.close();
-                        }
-                    } catch (SQLException ex) {
-                        Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                return status;
-            }
         }
+
+        return status;
+
     }
 
     public ArrayList<Message> getMessageList(Message[] messages) {
