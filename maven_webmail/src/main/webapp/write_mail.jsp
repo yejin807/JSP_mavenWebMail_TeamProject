@@ -123,6 +123,7 @@
             
         <div id="main">
             <form id="frm" enctype="multipart/form-data" method="POST" name="frm"
+<<<<<<< Updated upstream
                   action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" 
                   onsubmit ="return check_file_size()">
                 <table>
