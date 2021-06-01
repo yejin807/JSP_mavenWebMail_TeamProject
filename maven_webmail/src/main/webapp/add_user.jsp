@@ -68,7 +68,7 @@
                 <span style="color:red">* 다음의 형식으로 입력하세요.</span> <br>
                 &nbsp;&nbsp;ID: 5자 이상 <br>
                 &nbsp;&nbsp;암호: 6자 이상 <br>
-                &nbsp;&nbsp;생일: 예)900202 <br>
+                &nbsp;&nbsp;생일: 주민번호 앞자리 6자리 예)900202 <br>
                 &nbsp;&nbsp;전화번호: 010-xxxx-xxxx <br> <br>
             </div>
         </div>
