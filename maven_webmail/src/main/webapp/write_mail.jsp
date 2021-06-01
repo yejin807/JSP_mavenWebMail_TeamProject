@@ -132,9 +132,13 @@
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
                         String encodedto = org.owasp.encoder.Encode.forHtml(to);
                         String cc = request.getParameter("cc") == null ? "" : request.getParameter("cc");
+                        String encodedcc = org.owasp.encoder.Encode.forHtml(cc);
                         String subj = request.getParameter("subj") == null ? "" : request.getParameter("subj");
+                        String encodedsubj = org.owasp.encoder.Encode.forHtml(subj);
                         String text = request.getParameter("text") == null ? "" : request.getParameter("text");
+                        String encodedtext = org.owasp.encoder.Encode.forHtml(text);
                         String temp = request.getParameter("temp") == null ? "" : request.getParameter("temp");
+                        String encodedtemp = org.owasp.encoder.Encode.forHtml(temp);
                         %>
                         
                     <tr>
@@ -144,25 +148,25 @@
                     </tr>
                     <tr>
                         <td>참조</td>
-                        <td> <input type="text" id="cc" name="cc" size="80" value="<%=cc%>">  </td>
+                        <td> <input type="text" id="cc" name="cc" size="80" value="<%=encodedcc%>">  </td>
                     </tr>
                     <tr>
                         <td> 메일 제목 </td>
-                        <td> <input type="text" id="subj" name="subj" size="80" value="<%=subj%>">  </td>
+                        <td> <input type="text" id="subj" name="subj" size="80" value="<%=encodedsubj%>">  </td>
                     </tr>
                     <tr>
                         <td colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</td>
                     </tr>
                     <tr>  <%-- TextArea    --%>
                         <td colspan="2">
-                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; " ><%=text%><%=DBcont%></textarea>
+                            <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; " ><%=encodedtext%><%=DBcont%></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>첨부 파일</td>
                         <td> <input type="file" name="file1" id="input_file" multiple size="80" > 
                     </tr>
-                    <input type="text" name="temp" id="temp" value="temp" value="<%=temp%>" hidden>
+                    <input type="text" name="temp" id="temp" value="temp" value="<%=encodedtemp%>" hidden>
                     <tr>
                         <td colspan="4">
                             <input type="submit" id="submit" value="메일 보내기" onclick="sendSubmit()">
@@ -178,7 +182,7 @@
                 var DBemail = "<%=DBemail%>";
                 var DBtitle = "<%=DBtitle%>";
                 var DBcontent = "<%=DBcont%>";
-                var text = "<%=text%>";
+                var text = "<%=encodedtext%>";
                 
                 function saveSubmit() {
                     frm.action = "temp_mail_save.jsp";
