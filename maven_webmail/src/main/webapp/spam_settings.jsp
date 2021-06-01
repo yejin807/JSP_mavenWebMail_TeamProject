@@ -33,7 +33,7 @@
         </div>
         
         <c:catch var="error">
-                <spamtag:spam_setting user="<%=CommandType.JdbcUser%>" password="<%=CommandType.JdbcPassword%>" schema="webmail" table="spam_setting" email="${sessionScope.userid}"/>
+                <spamtag:spam_setting user="<%=CommandType.JDBCUSER%>" password="<%=CommandType.JDBCPASSWORD%>" schema="webmail" table="spam_setting" email="${sessionScope.userid}"/>
         </c:catch>
         ${empty error? "<noerror/>":error}
 
