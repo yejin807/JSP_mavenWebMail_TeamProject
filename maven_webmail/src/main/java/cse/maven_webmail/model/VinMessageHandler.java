@@ -9,10 +9,8 @@ import cse.maven_webmail.control.CommandType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.mail.Message;
-import cse.maven_webmail.model.MessageParser;
 import java.sql.SQLException;
 
 /**
@@ -48,16 +46,16 @@ public class VinMessageHandler {
             MessageParser messageparser = new MessageParser(newMsg, userid);
             messageparser.parse(false);
 
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, "12345*");
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
             //집어넣을값 -  보낸사람, 보낸날짜, 제목
             String sql = "insert into goto_bin.bin ( send_person, send_date, m_title) VALUES (?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             if (userid != null || !(userid.equals(""))) { //email 값이 null이 아니면.
-                pstmt.setString(1, messageparser.getFromAddress()); //보낸사람
-                pstmt.setString(2, messageparser.getSentDate()); //보낸날짜
-                pstmt.setString(3, messageparser.getSubject()); //제목
+                pstmt.setString(1, messageparser.getFromAddress().trim()); //보낸사람
+                pstmt.setString(2, messageparser.getSentDate().trim()); //보낸날짜
+                pstmt.setString(3, messageparser.getSubject().trim()); //제목
             }
             pstmt.executeUpdate();
 
@@ -74,19 +72,19 @@ public class VinMessageHandler {
     public boolean deleteVinMessage(String send_person, String m_title) throws ClassNotFoundException, SQLException {
         boolean status = false;
         try {
-            Class.forName(CommandType.JdbcDriver);
-            Connection conn = DriverManager.getConnection(CommandType.JdbcUrl, CommandType.JdbcUser, "12345*");
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
             String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, send_person);
             pstmt.setString(2, m_title);
-            //  pstmt.setString(3, send_date);
+         
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
             //sql문 완성
         } catch (Exception ex) {
-            System.out.println("88888888왜않대 " + ex);
+            System.out.println("deletevinmessage error " + ex);
 
         }
         return status;

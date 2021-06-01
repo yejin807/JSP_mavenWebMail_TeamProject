@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>사용자 추가 화면</title>
@@ -33,6 +33,10 @@
             <form name="AddUser" action="UserAdmin.do?menu=<%= CommandType.ADD_USER_COMMAND%>"
                   method="POST">
                 <table border="0" align="left">
+                    <caption> admin 사용자 추가 </caption>
+                    <tr>
+                        <th colspan="2">정보입력</th>
+                    </tr>
                     <tr>
                         <td>사용자 ID</td>
                         <td> <input type="text" name="userid" maxlength="20"/>  </td>
@@ -56,13 +60,12 @@
                     <tr>
                         <td colspan="2">
                             <input type="submit" value="저장" name="register"/>&nbsp;&nbsp;&nbsp;
-                            <input type="button" value="나가기" onClick="location.href = '<%= getServletContext().getInitParameter("HomeDirectory")%>'"/>
                         </td>
                     </tr>
                 </table>
             </form>
             <div id="constraint_text">
-                <font color="red">* 다음의 형식으로 입력하세요.</font> <br>
+                <span style="color:red">* 다음의 형식으로 입력하세요.</span> <br>
                 &nbsp;&nbsp;ID: 5자 이상 <br>
                 &nbsp;&nbsp;암호: 6자 이상 <br>
                 &nbsp;&nbsp;생일: 예)900202 <br>

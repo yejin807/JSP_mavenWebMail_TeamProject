@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>회원탈퇴</title>
@@ -27,6 +27,10 @@
 
         <form  action="UserAdmin.do?menu=<%= CommandType.SECESSION%>" method="POST"> 
             <table border="0" align="left">
+                <caption> 회원탈퇴 </caption>
+                <tr>
+                    <th colspan="2">정보입력</th>
+                </tr>
                 <tr>
                     <td>ID</td>
                     <td> <input type="text" name="userid" value="<%= session.getAttribute("userid")%>" readonly/>  </td>

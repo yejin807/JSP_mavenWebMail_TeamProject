@@ -1,16 +1,17 @@
 
-Acse.maven_webmail.model.FormParser#getSubject()Ljava/lang/String;ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaT T("1*š
+Bcse.maven_webmail.model.FormParser#getFileName()Ljava/lang/String;ˆ
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaF F("1*›
 1ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaU U(á
-Þ
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaG G(â
+ß
 ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaU U(
-%0java.lang.String"__id*3*1$
-"cse.maven_webmail.model.FormParser"	
-subject"¥
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaG G(
+%0java.lang.String"__id*4*2$
+"cse.maven_webmail.model.FormParser"
+
+fileName"¥
 ˆ
-~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaU U(
+~C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/FormParser.javaG G(
 
 %0java.lang.StringB&$
 "cse.maven_webmail.model.FormParser

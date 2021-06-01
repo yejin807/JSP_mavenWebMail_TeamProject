@@ -1,74 +1,17 @@
 
-rorg.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp#_jsp_getExpressionFactory()Ljavax/el/ExpressionFactory;–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java3$ 3(="5*ù
-2–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7" 7(.Î
-Ë
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7" 7(."
-%2javax.servlet.jsp.JspFactory"__id*
-""Ú×
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7H 7(Z!
-%3javax.servlet.ServletConfig"Ejavax.servlet.Servlet#getServletConfig()Ljavax/servlet/ServletConfig;*><
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp2getServletConfig()ÉÆ
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7H 7(n"
-%4javax.servlet.ServletContext"Mjavax.servlet.ServletConfig#getServletContext()Ljavax/servlet/ServletContext;*#
-!
-%3javax.servlet.ServletConfig2getServletContext()ÑÎ
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7" 7(o-
-%5'javax.servlet.jsp.JspApplicationContext"~javax.servlet.jsp.JspFactory#getJspApplicationContext(Ljavax/servlet/ServletContext;)Ljavax/servlet/jsp/JspApplicationContext;*$
-"
-%2javax.servlet.jsp.JspFactory*$
-"
-%4javax.servlet.ServletContext28getJspApplicationContext(Ljavax/servlet/ServletContext;)äá
-—
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7" 7(† 
-%6javax.el.ExpressionFactory"Zjavax.servlet.jsp.JspApplicationContext#getExpressionFactory()Ljavax/el/ExpressionFactory;*/
--
-%5'javax.servlet.jsp.JspApplicationContext2getExpressionFactory() 
-
-—
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java7
- 7(†W<
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp"
-_el_expressionfactory"__id*"
- 
-%6javax.el.ExpressionFactory*
-1*Æ
-3–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java6 6(!Ÿ
-œ
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java6 6(! 
-%1javax.el.ExpressionFactory"__id*Y*W<
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp"
-_el_expressionfactory*
-2
-1*Æ
-5–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java4 4(Ÿ
-œ
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java4 4( 
-%0javax.el.ExpressionFactory"__id*Y*W<
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp"
-_el_expressionfactory*
-3
-1*þ
-1–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java; ;( Ÿ
-œ
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java; ;(  
-%7javax.el.ExpressionFactory"__id*Y*W<
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp"
-_el_expressionfactory"½
-–
-‹C:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java; ;(!"
- 
-%7javax.el.ExpressionFactory:
-%jsp_contextB><
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp
+Qorg.apache.jsp.header_005fbookmarked_005fmail_jspf#getDependants()Ljava/util/Map;Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java'8 '(E"1*¿
+1Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java( ((ý
+ú
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java( ((
+%0java.util.Map"__id*L*J4
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf"
+_jspx_dependants"¨
+Ž
+ƒC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\header_005fbookmarked_005fmail_jspf.java( ((
+
+%0java.util.Map:
+%jsp_contextB64
+2org.apache.jsp.header_005fbookmarked_005fmail_jspf

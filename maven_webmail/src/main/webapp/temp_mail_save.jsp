@@ -47,7 +47,7 @@
 
                 String sql = "INSERT INTO tempmail (user, email, title, content) VALUES('"
                         + userid + "','" + email + "','" + title + "','" + content + "')"
-                        + "ON DUPLICATE KEY UPDATE email='"+email+"', title='"+email+"', content='"+content+"';";
+                        + "ON DUPLICATE KEY UPDATE email='"+email+"', title='"+title+"', content='"+content+"';";
                 
                 stmt.executeUpdate(sql);
 

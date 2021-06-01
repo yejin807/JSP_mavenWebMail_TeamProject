@@ -26,9 +26,9 @@ public class UserAdminAgent {
     InputStream is = null;
     OutputStream os = null;
     boolean isConnected = false;
-    private String ROOT_ID="root";  //  = "root";
-    private String ROOT_PASSWORD="root";  // = "root";
-    private String ADMIN_ID="admin"; //  = "admin";
+    private String ROOT_ID = "root";  //  = "root";
+    private String ROOT_PASSWORD = "root";  // = "root";
+    private String ADMIN_ID = "admin"; //  = "admin";
     private final String EOL = "\r\n";
     String cwd;
 
@@ -39,7 +39,6 @@ public class UserAdminAgent {
         this.cwd = cwd;
 
 //        initialize();
-
         socket = new Socket(server, port);
         is = socket.getInputStream();
         os = socket.getOutputStream();
@@ -67,7 +66,6 @@ public class UserAdminAgent {
 //        }
 //
 //    }
-
     // return value:
     //   - true: addUser operation successful
     //   - false: addUser operation failed
@@ -88,7 +86,7 @@ public class UserAdminAgent {
             // 2: response for "adduser" command
             java.util.Arrays.fill(messageBuffer, (byte) 0);
 
-            is.read(messageBuffer);
+            int count = is.read(messageBuffer);
             String recvMessage = new String(messageBuffer);
             System.out.println(recvMessage);
 
@@ -105,10 +103,9 @@ public class UserAdminAgent {
         } catch (Exception ex) {
             System.out.println(ex.toString());
             status = false;
-        } finally {
-            // 5: 상태 반환
-            return status;
-        }
+        } 
+        // 5: 상태 반환
+        return status;
     }
 
 //    public List<String> getUserList() {
@@ -163,7 +160,6 @@ public class UserAdminAgent {
 //        }
 //        return userList;
 //    } // parseUserList()
-
     public boolean deleteUsers(String[] userList) {
         byte[] messageBuffer = new byte[1024];
         String command;
@@ -183,7 +179,8 @@ public class UserAdminAgent {
 
                 // 2: 응답 메시지 수신
                 java.util.Arrays.fill(messageBuffer, (byte) 0);
-                is.read(messageBuffer);
+
+                int count = is.read(messageBuffer);
 
                 // 3: 응답 메시지 분석
                 recvMessage = new String(messageBuffer);
@@ -195,12 +192,11 @@ public class UserAdminAgent {
             quit();
         } catch (Exception ex) {
             System.err.println(ex);
-        } finally {
-            return status;
         }
+        // 5: 상태 반환
+        return status;
     }
-    
-    
+
     public boolean secessionUser(String userId) {
         byte[] messageBuffer = new byte[1024];
         String command;
@@ -219,7 +215,8 @@ public class UserAdminAgent {
 
             // 2: 응답 메시지 수신
             java.util.Arrays.fill(messageBuffer, (byte) 0);
-            is.read(messageBuffer);
+
+            int count = is.read(messageBuffer);
 
             // 3: 응답 메시지 분석
             recvMessage = new String(messageBuffer);
@@ -232,9 +229,9 @@ public class UserAdminAgent {
             socket.close();
         } catch (Exception ex) {
             System.err.println(ex);
-        } finally {
-            return status;
         }
+        // 5: 상태 반환
+        return status;
     }
 
     public boolean verify(String userid) {

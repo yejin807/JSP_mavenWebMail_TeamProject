@@ -5,6 +5,8 @@
  */
 package cse.maven_webmail.model;
 
+import cse.maven_webmail.control.SpamSettingDatabaseHandler;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.mail.Message;
 
@@ -17,11 +19,21 @@ public abstract class MessageAgent {
     private boolean NeedUpdate = false;
     private ArrayList<Integer> msgIdList = new ArrayList<Integer>();
 
+    //todo 삭제
+    public void printMsgIdInfo() {
+        System.out.println("생성된 MSGID SIZE = " + getMsgIdSize());
+        System.out.print("현재 msgid List = ");
+        for (int i = 0; i < msgIdList.size(); i++) {
+            System.out.print(msgIdList.get(i) + " ");
+        }
+        System.out.print("\n");
+    }
+
     protected boolean isNeedUpdate() {
         return NeedUpdate;
     }
 
-    protected void setNeedUpdate(boolean status) {
+    public void setNeedUpdate(boolean status) {
         this.NeedUpdate = status;
     }
 
@@ -54,21 +66,17 @@ public abstract class MessageAgent {
         msgIdList = new ArrayList<Integer>();
     }
 
-    protected abstract boolean setMsgIdList();
+    protected abstract boolean getMsgIdListFromDB();
 
     public abstract ArrayList<Message> getMessageList(Message[] messages);
-    //public abstract void getMessageList(Message[] messages);
 
     protected abstract ArrayList<Message> filter(Message[] messages, ArrayList<Integer> msgIdList);
+
+    public abstract void updateMsgId(int msgid);
+
+    public abstract boolean removeMessage(int msgid);
 
     protected abstract boolean insertMsgId(int msgid);
 
     protected abstract boolean deleteMsgId(int msgid);
-
-    public abstract boolean addMessage(int msgid);
-
-    public abstract boolean removeMessage(int msgid);
-
-    public abstract void updateMsgId(int msgid);
-
 }

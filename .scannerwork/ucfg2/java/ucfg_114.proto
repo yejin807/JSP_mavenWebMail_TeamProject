@@ -1,16 +1,17 @@
 
-Dcse.maven_webmail.model.MessageParser#getSubject()Ljava/lang/String;é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java» »("1*Ø
+Ecse.maven_webmail.model.MessageParser#getSentDate()Ljava/lang/String;é
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java« «("1*∞
 1é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(Í
-Á
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java» »(Î
+Ë
 é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(
-%0java.lang.String"__id*6*4'
-%cse.maven_webmail.model.MessageParser"	
-subject"´
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java» »(
+%0java.lang.String"__id*7*5'
+%cse.maven_webmail.model.MessageParser"
+
+sentDate"´
 é
-ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java… …(
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java» »(
 
 %0java.lang.StringB)'
 %cse.maven_webmail.model.MessageParser
