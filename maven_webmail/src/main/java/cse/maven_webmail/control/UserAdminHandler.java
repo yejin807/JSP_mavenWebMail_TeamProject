@@ -168,7 +168,7 @@ public class UserAdminHandler extends HttpServlet {
             }
             out.flush();
         } catch (Exception ex) {
-            out.println(getPopUp("시스템 접속에 실패했습니다.", "join.jsp"));
+            out.println("시스템 접속에 실패했습니다. : " + ex);
         }
     }
 
@@ -297,7 +297,7 @@ public class UserAdminHandler extends HttpServlet {
                     out.println(getPopUp("회원탈퇴를 실패했습니다.", "secession.jsp"));
                 }
             } else {
-                out.println(getPopUp("회원탈퇴를 실패했습니다.", "secession.jsp"));
+                out.println(getPopUp("비밀번호가 올바르지 않습니다.", "secession.jsp"));
             }
         } catch (Exception ex) {
             System.out.println(" UserAdminHandler.deleteUser : exception = " + ex);
@@ -313,11 +313,11 @@ public class UserAdminHandler extends HttpServlet {
             Class.forName(JdbcDriver);
 
             //2. DB 연결
-            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             //3. PreparedStatement 생성
             String sql = "DELETE FROM webmail.userinfo WHERE USER_ID=(?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
 
             //4. SQL문 완성
             request.setCharacterEncoding("UTF-8"); // 한글 인식
