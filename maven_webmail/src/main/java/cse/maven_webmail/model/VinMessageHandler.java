@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class VinMessageHandler {
 
-    private ArrayList<Integer> VinMessageMsgid = new ArrayList<Integer>();
+   // private ArrayList<Integer> VinMessageMsgid = new ArrayList<Integer>();
     private String userid = null;
     private Message newMsg = null;
     private String send_person;
@@ -66,18 +66,18 @@ public class VinMessageHandler {
 
     public boolean deleteVinMessage(String send_person, String m_title) throws ClassNotFoundException, SQLException {
         boolean status = false;
-        try {
+         String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?)";
+ 
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
-            String sql = "DELETE FROM `goto_bin`.`bin` WHERE (`send_person` = ?) and (`m_title` = ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            
+          try(  Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
+            
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1, send_person);
             pstmt.setString(2, m_title);
 
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
-            //sql문 완성
+
         } catch (Exception ex) {
             System.out.println("deletevinmessage error " + ex);
 
