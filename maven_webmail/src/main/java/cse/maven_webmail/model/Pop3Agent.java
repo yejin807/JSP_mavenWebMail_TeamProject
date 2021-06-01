@@ -24,9 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 
-//https://pythonq.com/so/java/824272 javaflag 사용
-//todo : getBookmarkedMessageList 에서 북마크된 메일 추려내기.
-//q북마크디비agent삭제
 /**
  *
  * @author jongmin
@@ -311,8 +308,6 @@ public class Pop3Agent {
     public String getBookmarkedMessageList() {
         String result = "";
         Message[] messages = null;
-        //this.bookmarkMessageAgent = BookmarkMessageAgent.getInstance(userid);
-        System.out.println("pop3Agent.getBookmarkedMessageList BookmarkMessageAgent userid check == " + bookmarkMessageAgent.getUserid());
 
         if (!connectToStore()) {  // 3.1
             System.err.println("POP3 connection failed!");
@@ -338,7 +333,6 @@ public class Pop3Agent {
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             ArrayList<Message> bookmarkedMessages = bookmarkMessageAgent.getMessageList(messages);
-            System.out.println("bookmarkedMessages size : " + bookmarkedMessages.size());
             result = formatter.getBookmarkedMessageTable(bookmarkedMessages);   // 3.6
             folder.close(true);  // 3.7
             store.close();       // 3.8

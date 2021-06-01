@@ -19,7 +19,6 @@ public abstract class MessageAgent {
     private boolean needUpdate = false;
     private ArrayList<Integer> msgIdList = new ArrayList<Integer>();
 
-    //todo 삭제
     public void printMsgIdInfo() {
         System.out.println("생성된 MSGID SIZE = " + getMsgIdSize());
         System.out.print("현재 msgid List = ");

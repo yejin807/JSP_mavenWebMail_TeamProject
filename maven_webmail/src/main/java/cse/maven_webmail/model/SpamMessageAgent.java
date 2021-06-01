@@ -25,7 +25,6 @@ public class SpamMessageAgent extends MessageAgent {
     private boolean needInitialize = true;
 
     public String getUserid() {
-        System.out.println("SpamMessageAgent needInitialize setting =" + needInitialize);
         return userid;
     }
 
@@ -46,12 +45,7 @@ public class SpamMessageAgent extends MessageAgent {
     protected boolean getMsgIdListFromDB() {
         boolean status = false;
 
-        System.out.println("SpamMessageAgent.SetMsgId에서 msgId Array생성 시도.");
-
-        //만약 유저아이디 값이 설정이 안되어있다면 return fale;
         if (isUserIdNull()) {
-            System.out.println("SpamMessageAgent.SetMsgId에서 유저아이디 설정이 안되어있음.");
-            System.out.println("userid setting =" + userid);
             return status;
         }
 
@@ -68,16 +62,14 @@ public class SpamMessageAgent extends MessageAgent {
             pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
-                int buf_msgid = rs.getInt("msgid");	// 컬럼 값 받아오기
+            while (rs.next()) {
+                int buf_msgid = rs.getInt("msgid");
                 super.addMsgId(buf_msgid);
             }
 
             rs.close();
             pstmt.close();
             conn.close();
-
-            System.out.println("SpamMessageAgent.SetMsgId에서 msgId Array생성 성공. 생성된 MsgID크기=" + super.getMsgIdList().size());
 
             status = true;
             return status;
@@ -95,30 +87,19 @@ public class SpamMessageAgent extends MessageAgent {
         try {
             //처음실행이면 DB에 저장된 MsgIdList읽어들이기
             if (needInitialize) {
-                System.out.println("SpamMessageAgent.getMessageList need Initialize");
-                System.out.println("SpamMessageAgent.getMessageList userid=" + userid);
                 getMsgIdListFromDB();
                 needInitialize = false;
             }
-            System.out.println("SpamMessageAgent.getMessageList end Initialize");
-            System.out.println("SpamMessageAgent.getMessageList userid=" + userid);
 
             if (super.isNeedUpdate()) {     //스팸 메시지의 업데이트가 필요하면
-                System.out.println("SpamMessageAgent.getMessageList isNeedUpdate가 필요합니다. value=." + super.isNeedUpdate());
                 updateSpamMessageList(messages);
 
                 super.setNeedUpdate(false);
                 if (getMsgIdListFromDB()) {               //스팸 메시지 리스트를 세팅성공시
-                    System.out.println("setMsgId성공했음했음..");
-
                     spammedMessages = filter(messages, super.getMsgIdList());
                     return spammedMessages;
-                } else {                            //스팸 메시지들의 리스트를 세팅하는 것이 실패햇으면
-                    System.out.println("setMsgI 실패햇씁니다아아ㅏ했음했음..");
                 }
             } else {                         //스팸 메시지의 업데이트가 필요없으면
-                System.out.println("SpamMessageAgent.getMessageList isNeedUpdate가 필요없습합니다. value=." + super.isNeedUpdate());
-
                 spammedMessages = filter(messages, super.getMsgIdList());
                 return spammedMessages;
             }
@@ -134,10 +115,8 @@ public class SpamMessageAgent extends MessageAgent {
 
         ArrayList<Message> spammedMessages = new ArrayList<Message>();
         for (int i = 0; i < msgIdList.size(); i++) {
-            System.out.println("spammedMsgid=" + msgIdList.get(i) + " realMessageId=" + messages[msgIdList.get(i) - 1].getMessageNumber());
             spammedMessages.add(messages[msgIdList.get(i) - 1]);
         }
-        System.out.println("end filterling");
 
         return spammedMessages;
     }
@@ -151,31 +130,22 @@ public class SpamMessageAgent extends MessageAgent {
     }
 
     public void updateMsgId(int deletedMsgid) {
-        //    public abstract void updateMsgId(int msgid);
         for (int i = 0; i > getMsgIdSize(); i++) {
             if (getMsgIdValue(i) > deletedMsgid) {
-                System.out.println("SpamMessageAgent.updateMsgId index " + i + " update 해야할 값: " + getMsgIdValue(i) + " 업데이트 된 값: " + (getMsgIdValue(i) - 1));
                 updateMsgId(i, getMsgIdValue(i) - 1);
-            } else {
-                System.out.println("SpamMessageAgent.updateMsgId index " + i + " update 안해도됨. " + getMsgIdValue(i));
             }
-        } //end for
+        }
 
-        boolean isSuccess = updateSpamListDB(deletedMsgid);
+        updateSpamListDB(deletedMsgid);
     }
 
     public boolean removeMessage(int msgid) {
         boolean status = false;
         try {
-            for (int i = 0; i < super.getMsgIdSize(); i++) {
-                System.out.println("SpamMessageAgent.removeMessage 삭제전 msgid = " + super.getMsgIdList().get(i));
-            }
-
             if (super.getMsgIdList().contains(Integer.valueOf(msgid))) {           //msgIdList에 존재하는 메시지번호이면
                 super.removeMsgId(msgid);
                 status = deleteMsgId(msgid);
                 super.setNeedUpdate(true);
-                System.out.println("SpamMessageAgent.removeMessage message번호 지웠어요.");
                 status = true;
                 return status;
             }
@@ -190,11 +160,7 @@ public class SpamMessageAgent extends MessageAgent {
         boolean status = false;
 
         try {
-
             if (isUserIdNull()) {
-                System.out.println("SpamMessageAgent.insertMsgId에서 유저아이디 설정이 안되어있음.");
-                System.out.println("userid setting =" + userid);
-
                 return status;
             }
             Class.forName(CommandType.JDBCDRIVER);
@@ -209,7 +175,6 @@ public class SpamMessageAgent extends MessageAgent {
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            //sql문 완성
 
             status = true;
             return status;
@@ -223,9 +188,6 @@ public class SpamMessageAgent extends MessageAgent {
         boolean status = false;
 
         if (isUserIdNull()) {
-            System.out.println("SpamMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
-            System.out.println("userid setting =" + userid);
-
             return status;
         }
 
@@ -242,7 +204,6 @@ public class SpamMessageAgent extends MessageAgent {
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            //sql문 완성
 
             status = true;
             return status;
@@ -256,9 +217,6 @@ public class SpamMessageAgent extends MessageAgent {
     private boolean updateSpamListDB(int deletedMsgId) {
         boolean status = false;
         if (isUserIdNull()) {
-            System.out.println("SpamMessageAgent.updateSpamListDB 에서 유저아이디 설정이 안되어있음.");
-            System.out.println("userid setting =" + userid);
-
             return status;
         }
 
@@ -275,7 +233,6 @@ public class SpamMessageAgent extends MessageAgent {
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            //sql문 완성
 
             status = true;
             return status;
@@ -289,9 +246,6 @@ public class SpamMessageAgent extends MessageAgent {
     private boolean resetSpamDB() {
         boolean status = false;
         if (isUserIdNull()) {
-            System.out.println("SpamMessageAgent.updateSpamListDB 에서 유저아이디 설정이 안되어있음.");
-            System.out.println("userid setting =" + userid);
-
             return status;
         }
 
@@ -307,7 +261,6 @@ public class SpamMessageAgent extends MessageAgent {
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            //sql문 완성
 
             status = true;
             return status;
@@ -320,7 +273,6 @@ public class SpamMessageAgent extends MessageAgent {
 
     public void updateSpamMessageList(Message[] messages) {
         SpamSettingDatabaseHandler spamSettingData = new SpamSettingDatabaseHandler();
-        boolean overlap = false;
 
         try {
             super.printMsgIdInfo();
@@ -337,7 +289,6 @@ public class SpamMessageAgent extends MessageAgent {
             //전체 메시지에 대한 
             for (int i = 0; i < messages.length; i++) {
                 System.out.println(i + "번 메일 스팸 체크@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                overlap = false;
                 for (int j = 0; j < spamWord.size(); j++) {
                     if (messages[i].getSubject().contains(spamWord.get(j))) {//i번째 메일 제목에 j번째 스팸단어가 포함되어 있다Pop3Agent.filterSpamMessage.spamWord :" + spamWord.get(j) + " ㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅㅅ팸ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")면,
                         insertMsgId(messages[i].getMessageNumber());
@@ -355,14 +306,9 @@ public class SpamMessageAgent extends MessageAgent {
 
                     } else {
                         System.out.println(i + "번 메일 이메일 : " + (messages[i].getFrom()[0].toString()) + " 스팸이메일 : " + spamEmail.get(j) + " 스팸아닙니다.");
-
                     }
-                } //end for spamEmail
-
-            } //end for
-
-            System.out.println("SpamMessageAgent.updateSpamMessageList mid end filtering");
-            System.out.println("SpamMessageAgent.updateSpamMessageList bufMessages size : " + Integer.toString(super.getMsgIdSize()));
+                }
+            }
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.updateMsgId Exception " + ex);
@@ -385,13 +331,11 @@ public class SpamMessageAgent extends MessageAgent {
                         } else {
                             bufMessages.add(messages[i]);
                         }
-                    }//end msgid for
-//if(super.getMsgIdList().contains(bufMessages.get(i).getMessageNumber())){}
-                }//end messages for
+                    }
+                }
 
             }
         }
-        //ArrayList<Message> to Message[]
         messagesWithoutSpam = new Message[bufMessages.size()];
         for (int i = 0; i < bufMessages.size(); i++) {
             messagesWithoutSpam[i] = bufMessages.get(i);

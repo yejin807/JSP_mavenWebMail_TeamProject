@@ -41,7 +41,7 @@ public class UserAdminHandler extends HttpServlet {
     final String JdbcDriver = "com.mysql.cj.jdbc.Driver"; //cj추가
     final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTimezone=Asia/Seoul"; //중요
     final String User = "jdbctester";
-    final String Password = "43319521";
+    final String Password = "1895";
 
     Connection conn = null;
     PreparedStatement pstmt = null;
