@@ -36,10 +36,10 @@ public class CommandType {
     public static final int CANCLE_BOOKMARK = 800;
 
     public static final int DELETE_SPAM_WORD_COMMAND = 901;
-    public static final int DELETE_SPAM_EMAIL_COMMAND = 902;
+    public static final int DELETE_SPAM_USERID_COMMAND = 902;
 
-    public static final int IS_EMAIL_TRUE = 1;
-    public static final int IS_EMAIL_FALSE = 0;
+    public static final int IS_USERID_TRUE = 1;
+    public static final int IS_USERID_FALSE = 0;
 
     public static final String JDBCDRIVER = "com.mysql.cj.jdbc.Driver";
     public static final String JDBCURL = "jdbc:mysql://localhost:3306/webmail?serverTime=Asia/Seoul";

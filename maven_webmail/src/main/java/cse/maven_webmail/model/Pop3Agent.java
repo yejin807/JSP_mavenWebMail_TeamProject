@@ -101,8 +101,6 @@ public class Pop3Agent {
         }
     }
 
-    
-    
     /*
      * 페이지 단위로 메일 목록을 보여주어야 함.
      */
@@ -136,7 +134,7 @@ public class Pop3Agent {
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
             //result = formatter.getMessageTable(spamMessageAgent.getMessagesWithoutSpamMsg(messages));   // 3.6
             result = formatter.getMessageTable(messages);   // 3.6
-            
+
             folder.close(true);  // 3.7
             store.close();       // 3.8
         } catch (Exception ex) {
@@ -219,7 +217,6 @@ public class Pop3Agent {
             fp.add(FetchProfile.Item.FLAGS);
             folder.fetch(messages, fpFlags);
 
-            
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
 
             folder.close(true);  // 3.7
@@ -388,11 +385,10 @@ public class Pop3Agent {
             folder.close(true);  // 3.7
             store.close();       // 3.8
         } catch (Exception ex) {
-            System.out.println("Pop3Agent.getBookmarkMessageList() : exception = " + ex);
-            result = "Pop3Agent.getBookmarkMessageList() : exception = " + ex;
-        } finally {
-            return result;
+            System.out.println("Pop3Agent.getSpamMessageList() : exception = " + ex);
+            result = "Pop3Agent.getSpamMessageList() : exception = " + ex;
         }
+        return result;
     }
 
 }  // class Pop3Agent

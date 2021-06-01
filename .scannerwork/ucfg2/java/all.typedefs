@@ -242,7 +242,55 @@ println(C)java.io.PrintStream#println(C)VK
 1<init>(Ljava/io/OutputStream;ZLjava/lang/String;)Fjava.io.PrintStream#<init>(Ljava/io/OutputStream;ZLjava/lang/String;)VU
 <init>(Ljava/io/OutputStream;)3java.io.PrintStream#<init>(Ljava/io/OutputStream;)V/
 println([C) java.io.PrintStream#println([C)V‹
-9<init>(ZLjava/nio/charset/Charset;Ljava/io/OutputStream;)Njava.io.PrintStream#<init>(ZLjava/nio/charset/Charset;Ljava/io/OutputStream;)V‹
+9<init>(ZLjava/nio/charset/Charset;Ljava/io/OutputStream;)Njava.io.PrintStream#<init>(ZLjava/nio/charset/Charset;Ljava/io/OutputStream;)VÅ
+java.sql.DriverManagerjava.lang.Objectb
+#setLogWriter(Ljava/io/PrintWriter;);java.sql.DriverManager#setLogWriter(Ljava/io/PrintWriter;)Vb
+#deregisterDriver(Ljava/sql/Driver;);java.sql.DriverManager#deregisterDriver(Ljava/sql/Driver;)VL
+getLogStream():java.sql.DriverManager#getLogStream()Ljava/io/PrintStream;Ž
+9isDriverAllowed(Ljava/sql/Driver;Ljava/lang/ClassLoader;)Qjava.sql.DriverManager#isDriverAllowed(Ljava/sql/Driver;Ljava/lang/ClassLoader;)Zb
+#setLogStream(Ljava/io/PrintStream;);java.sql.DriverManager#setLogStream(Ljava/io/PrintStream;)VR
+println(Ljava/lang/String;)3java.sql.DriverManager#println(Ljava/lang/String;)VŒ
+8registerDriver(Ljava/sql/Driver;Ljava/sql/DriverAction;)Pjava.sql.DriverManager#registerDriver(Ljava/sql/Driver;Ljava/sql/DriverAction;)Vf
+getDriver(Ljava/lang/String;)Ejava.sql.DriverManager#getDriver(Ljava/lang/String;)Ljava/sql/Driver;J
+getDrivers():java.sql.DriverManager#getDrivers()Ljava/util/Enumeration;P
+ensureDriversInitialized()2java.sql.DriverManager#ensureDriversInitialized()V‚
+3isDriverAllowed(Ljava/sql/Driver;Ljava/lang/Class;)Kjava.sql.DriverManager#isDriverAllowed(Ljava/sql/Driver;Ljava/lang/Class;)Zr
+!getConnection(Ljava/lang/String;)Mjava.sql.DriverManager#getConnection(Ljava/lang/String;)Ljava/sql/Connection;º
+EgetConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)qjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection;ž
+7getConnection(Ljava/lang/String;Ljava/util/Properties;)cjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;@
+setLoginTimeout(I)*java.sql.DriverManager#setLoginTimeout(I)V^
+!registerDriver(Ljava/sql/Driver;)9java.sql.DriverManager#registerDriver(Ljava/sql/Driver;)V,
+<init>() java.sql.DriverManager#<init>()Ve
+getDrivers(Ljava/lang/Class;)Djava.sql.DriverManager#getDrivers(Ljava/lang/Class;)Ljava/util/List;L
+getLogWriter():java.sql.DriverManager#getLogWriter()Ljava/io/PrintWriter;F
+	drivers()9java.sql.DriverManager#drivers()Ljava/util/stream/Stream;>
+getLoginTimeout())java.sql.DriverManager#getLoginTimeout()IÀ
+HgetConnection(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/Class;)tjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/Class;)Ljava/sql/Connection;$
+java.sql.Wrapperjava.lang.ObjectÒ
+java.sql.Connectionjava.sql.Wrapperjava.lang.Objectjava.lang.AutoCloseableu
+.setShardingKeyIfValid(Ljava/sql/ShardingKey;I)Cjava.sql.Connection#setShardingKeyIfValid(Ljava/sql/ShardingKey;I)Z¡
+DsetShardingKeyIfValid(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;I)Yjava.sql.Connection#setShardingKeyIfValid(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;I)Z‘
+<setShardingKey(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;)Qjava.sql.Connection#setShardingKey(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;)Ve
+&setShardingKey(Ljava/sql/ShardingKey;);java.sql.Connection#setShardingKey(Ljava/sql/ShardingKey;)V5
+beginRequest()#java.sql.Connection#beginRequest()V1
+endRequest()!java.sql.Connection#endRequest()VÚ	
+java.sql.Statementjava.sql.Wrapperjava.lang.Objectjava.lang.AutoCloseablef
+'executeLargeUpdate(Ljava/lang/String;I);java.sql.Statement#executeLargeUpdate(Ljava/lang/String;I)Jd
+&executeLargeUpdate(Ljava/lang/String;):java.sql.Statement#executeLargeUpdate(Ljava/lang/String;)Jh
+(executeLargeUpdate(Ljava/lang/String;[I)<java.sql.Statement#executeLargeUpdate(Ljava/lang/String;[I)J:
+getLargeMaxRows()%java.sql.Statement#getLargeMaxRows()Jw
+'enquoteNCharLiteral(Ljava/lang/String;)Ljava.sql.Statement#enquoteNCharLiteral(Ljava/lang/String;)Ljava/lang/String;B
+getLargeUpdateCount())java.sql.Statement#getLargeUpdateCount()Jd
+&isSimpleIdentifier(Ljava/lang/String;):java.sql.Statement#isSimpleIdentifier(Ljava/lang/String;)ZŠ
+9executeLargeUpdate(Ljava/lang/String;[Ljava/lang/String;)Mjava.sql.Statement#executeLargeUpdate(Ljava/lang/String;[Ljava/lang/String;)J?
+executeLargeBatch()(java.sql.Statement#executeLargeBatch()[Jm
+"enquoteLiteral(Ljava/lang/String;)Gjava.sql.Statement#enquoteLiteral(Ljava/lang/String;)Ljava/lang/String;<
+setLargeMaxRows(J)&java.sql.Statement#setLargeMaxRows(J)Vu
+&enquoteIdentifier(Ljava/lang/String;Z)Kjava.sql.Statement#enquoteIdentifier(Ljava/lang/String;Z)Ljava/lang/String;”
+java.sql.PreparedStatementjava.sql.Statementjava.lang.ObjectH
+executeLargeUpdate()0java.sql.PreparedStatement#executeLargeUpdate()J€
+0setObject(ILjava/lang/Object;Ljava/sql/SQLType;)Ljava.sql.PreparedStatement#setObject(ILjava/lang/Object;Ljava/sql/SQLType;)V‚
+1setObject(ILjava/lang/Object;Ljava/sql/SQLType;I)Mjava.sql.PreparedStatement#setObject(ILjava/lang/Object;Ljava/sql/SQLType;I)V‹
 "java.lang.reflect.AnnotatedElementjava.lang.Object§
 /getDeclaredAnnotationsByType(Ljava/lang/Class;)tjava.lang.reflect.AnnotatedElement#getDeclaredAnnotationsByType(Ljava/lang/Class;)[Ljava/lang/annotation/Annotation;t
 &isAnnotationPresent(Ljava/lang/Class;)Jjava.lang.reflect.AnnotatedElement#isAnnotationPresent(Ljava/lang/Class;)Z˜
@@ -390,55 +438,7 @@ AcheckMemberAccess(Ljava/lang/SecurityManager;ILjava/lang/Class;Z)Rjava.lang.Cl
 toGenericString()3java.lang.Class#toGenericString()Ljava/lang/String;¬
 :getMethodsRecursive(Ljava/lang/String;[Ljava/lang/Class;Z)njava.lang.Class#getMethodsRecursive(Ljava/lang/String;[Ljava/lang/Class;Z)Ljava/lang/PublicMethods$MethodList;R
 getSimpleBinaryName0()8java.lang.Class#getSimpleBinaryName0()Ljava/lang/String;1
-isLocalClass()java.lang.Class#isLocalClass()ZÅ
-java.sql.DriverManagerjava.lang.Objectb
-#setLogWriter(Ljava/io/PrintWriter;);java.sql.DriverManager#setLogWriter(Ljava/io/PrintWriter;)Vb
-#deregisterDriver(Ljava/sql/Driver;);java.sql.DriverManager#deregisterDriver(Ljava/sql/Driver;)VL
-getLogStream():java.sql.DriverManager#getLogStream()Ljava/io/PrintStream;Ž
-9isDriverAllowed(Ljava/sql/Driver;Ljava/lang/ClassLoader;)Qjava.sql.DriverManager#isDriverAllowed(Ljava/sql/Driver;Ljava/lang/ClassLoader;)Zb
-#setLogStream(Ljava/io/PrintStream;);java.sql.DriverManager#setLogStream(Ljava/io/PrintStream;)VR
-println(Ljava/lang/String;)3java.sql.DriverManager#println(Ljava/lang/String;)VŒ
-8registerDriver(Ljava/sql/Driver;Ljava/sql/DriverAction;)Pjava.sql.DriverManager#registerDriver(Ljava/sql/Driver;Ljava/sql/DriverAction;)Vf
-getDriver(Ljava/lang/String;)Ejava.sql.DriverManager#getDriver(Ljava/lang/String;)Ljava/sql/Driver;J
-getDrivers():java.sql.DriverManager#getDrivers()Ljava/util/Enumeration;P
-ensureDriversInitialized()2java.sql.DriverManager#ensureDriversInitialized()V‚
-3isDriverAllowed(Ljava/sql/Driver;Ljava/lang/Class;)Kjava.sql.DriverManager#isDriverAllowed(Ljava/sql/Driver;Ljava/lang/Class;)Zr
-!getConnection(Ljava/lang/String;)Mjava.sql.DriverManager#getConnection(Ljava/lang/String;)Ljava/sql/Connection;º
-EgetConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)qjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection;ž
-7getConnection(Ljava/lang/String;Ljava/util/Properties;)cjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;@
-setLoginTimeout(I)*java.sql.DriverManager#setLoginTimeout(I)V^
-!registerDriver(Ljava/sql/Driver;)9java.sql.DriverManager#registerDriver(Ljava/sql/Driver;)V,
-<init>() java.sql.DriverManager#<init>()Ve
-getDrivers(Ljava/lang/Class;)Djava.sql.DriverManager#getDrivers(Ljava/lang/Class;)Ljava/util/List;L
-getLogWriter():java.sql.DriverManager#getLogWriter()Ljava/io/PrintWriter;F
-	drivers()9java.sql.DriverManager#drivers()Ljava/util/stream/Stream;>
-getLoginTimeout())java.sql.DriverManager#getLoginTimeout()IÀ
-HgetConnection(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/Class;)tjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/util/Properties;Ljava/lang/Class;)Ljava/sql/Connection;$
-java.sql.Wrapperjava.lang.ObjectÒ
-java.sql.Connectionjava.sql.Wrapperjava.lang.Objectjava.lang.AutoCloseableu
-.setShardingKeyIfValid(Ljava/sql/ShardingKey;I)Cjava.sql.Connection#setShardingKeyIfValid(Ljava/sql/ShardingKey;I)Z¡
-DsetShardingKeyIfValid(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;I)Yjava.sql.Connection#setShardingKeyIfValid(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;I)Z‘
-<setShardingKey(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;)Qjava.sql.Connection#setShardingKey(Ljava/sql/ShardingKey;Ljava/sql/ShardingKey;)Ve
-&setShardingKey(Ljava/sql/ShardingKey;);java.sql.Connection#setShardingKey(Ljava/sql/ShardingKey;)V5
-beginRequest()#java.sql.Connection#beginRequest()V1
-endRequest()!java.sql.Connection#endRequest()VÚ	
-java.sql.Statementjava.sql.Wrapperjava.lang.Objectjava.lang.AutoCloseablef
-'executeLargeUpdate(Ljava/lang/String;I);java.sql.Statement#executeLargeUpdate(Ljava/lang/String;I)Jd
-&executeLargeUpdate(Ljava/lang/String;):java.sql.Statement#executeLargeUpdate(Ljava/lang/String;)Jh
-(executeLargeUpdate(Ljava/lang/String;[I)<java.sql.Statement#executeLargeUpdate(Ljava/lang/String;[I)J:
-getLargeMaxRows()%java.sql.Statement#getLargeMaxRows()Jw
-'enquoteNCharLiteral(Ljava/lang/String;)Ljava.sql.Statement#enquoteNCharLiteral(Ljava/lang/String;)Ljava/lang/String;B
-getLargeUpdateCount())java.sql.Statement#getLargeUpdateCount()Jd
-&isSimpleIdentifier(Ljava/lang/String;):java.sql.Statement#isSimpleIdentifier(Ljava/lang/String;)ZŠ
-9executeLargeUpdate(Ljava/lang/String;[Ljava/lang/String;)Mjava.sql.Statement#executeLargeUpdate(Ljava/lang/String;[Ljava/lang/String;)J?
-executeLargeBatch()(java.sql.Statement#executeLargeBatch()[Jm
-"enquoteLiteral(Ljava/lang/String;)Gjava.sql.Statement#enquoteLiteral(Ljava/lang/String;)Ljava/lang/String;<
-setLargeMaxRows(J)&java.sql.Statement#setLargeMaxRows(J)Vu
-&enquoteIdentifier(Ljava/lang/String;Z)Kjava.sql.Statement#enquoteIdentifier(Ljava/lang/String;Z)Ljava/lang/String;”
-java.sql.PreparedStatementjava.sql.Statementjava.lang.ObjectH
-executeLargeUpdate()0java.sql.PreparedStatement#executeLargeUpdate()J€
-0setObject(ILjava/lang/Object;Ljava/sql/SQLType;)Ljava.sql.PreparedStatement#setObject(ILjava/lang/Object;Ljava/sql/SQLType;)V‚
-1setObject(ILjava/lang/Object;Ljava/sql/SQLType;I)Mjava.sql.PreparedStatement#setObject(ILjava/lang/Object;Ljava/sql/SQLType;I)Vœ
+isLocalClass()java.lang.Class#isLocalClass()Zœ
 java.sql.ResultSetjava.sql.Wrapperjava.lang.Objectjava.lang.AutoCloseable 
 DupdateObject(Ljava/lang/String;Ljava/lang/Object;Ljava/sql/SQLType;)Xjava.sql.ResultSet#updateObject(Ljava/lang/String;Ljava/lang/Object;Ljava/sql/SQLType;)V€
 4updateObject(ILjava/lang/Object;Ljava/sql/SQLType;I)Hjava.sql.ResultSet#updateObject(ILjava/lang/Object;Ljava/sql/SQLType;I)V¢
@@ -926,15 +926,15 @@ getCause()3java.lang.Throwable#getCause()Ljava/lang/Throwable;e
 <init>(Ljava/lang/String;)/java.lang.Exception#<init>(Ljava/lang/String;)Vw
 /<init>(Ljava/lang/String;Ljava/lang/Throwable;)Djava.lang.Exception#<init>(Ljava/lang/String;Ljava/lang/Throwable;)V{
 1<init>(Ljava/lang/String;Ljava/lang/Throwable;ZZ)Fjava.lang.Exception#<init>(Ljava/lang/String;Ljava/lang/Throwable;ZZ)VS
-<init>(Ljava/lang/Throwable;)2java.lang.Exception#<init>(Ljava/lang/Throwable;)Vè
+<init>(Ljava/lang/Throwable;)2java.lang.Exception#<init>(Ljava/lang/Throwable;)Vê
 4cse.maven_webmail.control.SpamSettingDatabaseHandlerHttpServletÌ
 IinsertSpamCommand(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)cse.maven_webmail.control.SpamSettingDatabaseHandler#insertSpamCommand(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V—
 &getSpamSettingData(Ljava/lang/String;)mcse.maven_webmail.control.SpamSettingDatabaseHandler#getSpamSettingData(Ljava/lang/String;)Ljava/lang/String;J
 <init>()>cse.maven_webmail.control.SpamSettingDatabaseHandler#<init>()Vh
 getSpamWord()Wcse.maven_webmail.control.SpamSettingDatabaseHandler#getSpamWord()Ljava/util/ArrayList;k
-getServletInfo()Wcse.maven_webmail.control.SpamSettingDatabaseHandler#getServletInfo()Ljava/lang/String;j
-getSpamEmail()Xcse.maven_webmail.control.SpamSettingDatabaseHandler#getSpamEmail()Ljava/util/ArrayList;ª
-8deleteSpamCommand(Ljava/lang/String;Ljava/lang/String;I)ncse.maven_webmail.control.SpamSettingDatabaseHandler#deleteSpamCommand(Ljava/lang/String;Ljava/lang/String;I)VÖ
+getServletInfo()Wcse.maven_webmail.control.SpamSettingDatabaseHandler#getServletInfo()Ljava/lang/String;ª
+8deleteSpamCommand(Ljava/lang/String;Ljava/lang/String;I)ncse.maven_webmail.control.SpamSettingDatabaseHandler#deleteSpamCommand(Ljava/lang/String;Ljava/lang/String;I)Vl
+getSpamUserId()Ycse.maven_webmail.control.SpamSettingDatabaseHandler#getSpamUserId()Ljava/util/ArrayList;Ö
 java.lang.Iterablejava.lang.Objectd
 &forEach(Ljava/util/function/Consumer;):java.lang.Iterable#forEach(Ljava/util/function/Consumer;)VH
 spliterator()7java.lang.Iterable#spliterator()Ljava/util/Spliterator;Œ
