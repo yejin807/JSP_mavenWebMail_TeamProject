@@ -140,7 +140,7 @@ public class UserAdminHandler extends HttpServlet {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             String userid = request.getParameter("userid");  // for test
             String password = request.getParameter("password");
-            String password_check = request.getParameter("password_check");
+            String passwordcheck = request.getParameter("password_check");
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
             String phone = request.getParameter("phone");
@@ -148,7 +148,7 @@ public class UserAdminHandler extends HttpServlet {
             out.println("회원 정보" + "<br>");
             out.println("userid = " + userid + "<br>");
             out.println("password = " + password + "<br>");
-            out.println("password_check = " + password_check + "<br>");
+            out.println("password_check = " + passwordcheck + "<br>");
             out.println("username = " + username + "<br>");
             out.println("birth = " + birth + "<br>");
             out.println("phone = " + phone + "<br>");
@@ -157,9 +157,9 @@ public class UserAdminHandler extends HttpServlet {
             if (userid.equals("") || userid == null || password.equals("") || password == null
                     || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
                 out.println(getPopUp("모든 정보를 입력해주세요.", "join.jsp"));
-            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && password_check != null && username != null
+            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && passwordcheck != null && username != null
                     && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
-                if (!password.equals(password_check)) {
+                if (!password.equals(passwordcheck)) {
                     out.println(getPopUp("암호가 일치하지 않습니다.", "join.jsp"));
                 } else if (agent.addUser(userid, password) && addDBUser(request, response, out)) {
                     out.println(getPopUp("회원가입에 성공했습니다.", "index.jsp"));

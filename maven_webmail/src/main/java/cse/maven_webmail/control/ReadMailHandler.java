@@ -233,11 +233,11 @@ public class ReadMailHandler extends HttpServlet {
                         try {
             System.out.println("delete_inDBMessage ON");
             HttpSession httpSession = request.getSession();
-            String send_person = request.getParameter("sendPerson");
-            String m_title = request.getParameter("mTitle");
-            VinMessageHandler vinMessageHandler = new VinMessageHandler(send_person, m_title);
-            System.out.println("sendperson " + send_person + " m_title=" + m_title);
-            boolean vinStatus = vinMessageHandler.deleteVinMessage(send_person, m_title);
+            String sendperson = request.getParameter("sendPerson");
+            String mtitle = request.getParameter("mTitle");
+            VinMessageHandler vinMessageHandler = new VinMessageHandler(sendperson, mtitle);
+ 
+            boolean vinStatus = vinMessageHandler.deleteVinMessage(sendperson, mtitle);
             if (vinStatus) {
                 status = true;
             }
@@ -248,8 +248,6 @@ public class ReadMailHandler extends HttpServlet {
         return status;
     }
 
-
-    //----------
 /*
     
     case CommandType.SET_BOOKMARK: // 북마크설정

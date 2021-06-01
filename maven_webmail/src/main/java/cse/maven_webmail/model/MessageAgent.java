@@ -16,7 +16,7 @@ import javax.mail.Message;
  */
 public abstract class MessageAgent {
 
-    private boolean NeedUpdate = false;
+    private boolean needUpdate = false;
     private ArrayList<Integer> msgIdList = new ArrayList<Integer>();
 
     //todo 삭제
@@ -30,11 +30,11 @@ public abstract class MessageAgent {
     }
 
     protected boolean isNeedUpdate() {
-        return NeedUpdate;
+        return needUpdate;
     }
 
     public void setNeedUpdate(boolean status) {
-        this.NeedUpdate = status;
+        this.needUpdate = status;
     }
 
     protected ArrayList<Integer> getMsgIdList() {

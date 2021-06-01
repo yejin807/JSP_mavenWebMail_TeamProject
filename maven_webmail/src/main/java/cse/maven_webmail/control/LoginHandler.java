@@ -41,11 +41,11 @@ public class LoginHandler extends HttpServlet {
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        int selected_menu = Integer.parseInt((String) request.getParameter("menu"));
+        int selectedMenu = Integer.parseInt((String) request.getParameter("menu"));
 
 
         try {
-            switch (selected_menu) {
+            switch (selectedMenu) {
                 case CommandType.LOGIN:
                     String host = (String) request.getSession().getAttribute("host");
                     String userid = request.getParameter("userid");
