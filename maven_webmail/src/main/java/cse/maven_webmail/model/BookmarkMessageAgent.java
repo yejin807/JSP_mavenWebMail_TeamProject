@@ -57,7 +57,9 @@ public class BookmarkMessageAgent extends MessageAgent {
             System.out.println("userid setting =" + userid);
             return status;
         }
-        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery();) {
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD); 
+                PreparedStatement pstmt = conn.prepareStatement(sql); 
+                ResultSet rs = pstmt.executeQuery();) {
             super.setNeedUpdate(false);
             super.resetMsgIdList();
             System.out.println("BookmarkMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
@@ -163,9 +165,7 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
     protected boolean deleteMsgId(int msgid) {
         boolean status = false;
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
+        String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
 
         if (isUserIdNull()) {
             System.out.println("BookmarkMessageAgent.deleteMsgId에서 유저아이디 설정이 안되어있음.");
@@ -174,12 +174,10 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
             return status;
         }
 
-        try {
+        try {Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             Class.forName(CommandType.JDBCDRIVER);
-            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
-            String sql = "DELETE FROM `webmail`.`bookmark_list` WHERE (`email` = ?) and (`msgid` = ?)";
-            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
@@ -194,14 +192,7 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.deleteMsgId error : " + ex);
-        } finally {
-            try {
-                pstmt.close();
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        } 
         return status;
     }
 
@@ -270,20 +261,18 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
     private boolean updateBookmarkListDB(int deletedMsgId) {
         boolean status = false;
+        String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
         if (isUserIdNull()) {
             System.out.println("BookmarkMessageAgent.updateBookmarkListDB 유저아이디 설정이 안되어있음.");
             System.out.println("userid setting =" + userid);
 
             return status;
         }
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        try {
-            Class.forName(CommandType.JDBCDRIVER);
-            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
-            String sql = "update webmail.bookmark_list set msgid=msgid-1 where email=? and msgid>?;";
-            pstmt = conn.prepareStatement(sql);
+        try {Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            Class.forName(CommandType.JDBCDRIVER);
+
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, deletedMsgId);
@@ -298,14 +287,7 @@ try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandT
 
         } catch (Exception ex) {
             System.out.println("BookmarkMessageAgent.updateBookmarkListDB error : " + ex);
-        } finally {
-            try {
-                pstmt.close();
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        } 
         return status;
     }
 
