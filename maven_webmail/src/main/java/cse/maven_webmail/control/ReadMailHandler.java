@@ -103,11 +103,11 @@ public class ReadMailHandler extends HttpServlet {
             case CommandType.VIN_DBDELETE_COMMAND: //휴지통에서 선택한메일 데이터베이스에서 메일 삭제
                 try (PrintWriter out = response.getWriter()) {
                 System.out.println("VIN_DBDELETE_COMMAND ON");
-                delete_inDBMessage(request); // <-----------
+                deleteInDBMessage(request);
                 response.sendRedirect("trash_can.jsp"); //수행 후 돌아가는 화면
             }
             break;
-            //-----
+
             case CommandType.DOWNLOAD_COMMAND: // 파일 다운로드 처리
                 download(request, response);
                 break;
@@ -228,7 +228,7 @@ public class ReadMailHandler extends HttpServlet {
         //return newMsg;
 
     }
-    private boolean delete_inDBMessage(HttpServletRequest request) {
+    private boolean deleteInDBMessage(HttpServletRequest request) {
         boolean status = false;
                         try {
             System.out.println("delete_inDBMessage ON");
