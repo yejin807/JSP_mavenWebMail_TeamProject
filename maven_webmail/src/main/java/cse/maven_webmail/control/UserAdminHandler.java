@@ -293,7 +293,7 @@ public class UserAdminHandler extends HttpServlet {
         String userid = request.getParameter("userid");  // for test
         try {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
-            if (checkPassword(request, response, out)) {
+            if (checkPassword(request, out)) {
                 if (agent.secessionUser(userid) && delDBUser(request, response, out)) {
                     out.println(getPopUp("회원탈퇴가 완료됐습니다.", "index.jsp"));
                 } else {
@@ -353,7 +353,7 @@ public class UserAdminHandler extends HttpServlet {
     }
 
     //탈퇴 전 비밀번호 체크
-    private boolean checkPassword(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
+    private boolean checkPassword(HttpServletRequest request, PrintWriter out) {
         String host = (String) request.getSession().getAttribute("host");
         String userid = request.getParameter("userid");
         String password = request.getParameter("password");
@@ -380,7 +380,6 @@ public class UserAdminHandler extends HttpServlet {
         successPopUp.append("alert(\"");
         successPopUp.append(alertMessage);
         successPopUp.append("\"); ");
-//        successPopUp.append("window.location = \"admin_menu.jsp\"; ");
         successPopUp.append("window.location = \"");
         successPopUp.append(send);
         successPopUp.append("\"; ");
