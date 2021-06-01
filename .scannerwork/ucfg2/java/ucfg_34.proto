@@ -1,95 +1,0 @@
-
-3cse.maven_webmail.model.Pop3Agent#connectToStore()Zu
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÅ Å(""7*Í
-5u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaé é(,…
-∆
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaè è(
-%8java.lang.String"__id*/*-#
-!cse.maven_webmail.model.Pop3Agent"
-hostÀ
-»
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaè  è(&
-%9java.lang.String"__id*1*/#
-!cse.maven_webmail.model.Pop3Agent"
-useridŒ
-À
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaè( è(0
-%10java.lang.String"__id*3*1#
-!cse.maven_webmail.model.Pop3Agent"
-
-password*
-1*–
-7u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÇ Ç(‰
-·
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÉ É(1
-%0java.util.Properties"6java.lang.System#getProperties()Ljava/util/Properties;*"
-java.lang.SystemΩ
-∫
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÉ É(2
-propsjava.util.Properties"__id*
-
-%0java.util.Properties…
-∆
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÑ, Ñ(0
-%1java.lang.String"__id*/*-#
-!cse.maven_webmail.model.Pop3Agent"
-hostÓÎ
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÑ Ñ(1
-%2java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
-
-propsjava.util.Properties*
-mail.pop3.host*
-
-%1java.lang.String21setProperty(Ljava/lang/String;Ljava/lang/String;)À
-»
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÖ, Ö(2
-%3java.lang.String"__id*1*/#
-!cse.maven_webmail.model.Pop3Agent"
-useridÓÎ
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÖ Ö(3
-%4java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
-
-propsjava.util.Properties*
-mail.pop3.user*
-
-%3java.lang.String21setProperty(Ljava/lang/String;Ljava/lang/String;)Ê„
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÜ Ü(;
-%5java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
-
-propsjava.util.Properties*
-mail.pop3.apop.enable*	
-false21setProperty(Ljava/lang/String;Ljava/lang/String;)Â‚
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaá á(:
-%6java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
-
-propsjava.util.Properties*
-mail.pop3.disablecapa*
-true21setProperty(Ljava/lang/String;Ljava/lang/String;)⁄◊
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaà à(/
-%7java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
-
-propsjava.util.Properties*
-
-mail.debug*
-true21setProperty(Ljava/lang/String;Ljava/lang/String;)*
-5*˚
-1u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaî î("
-u
-iD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaî î(
-""B%#
-!cse.maven_webmail.model.Pop3Agent

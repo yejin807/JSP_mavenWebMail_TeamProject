@@ -56,15 +56,11 @@ public class ReadMailHandler extends HttpServlet {
                 try (PrintWriter out = response.getWriter()) {
                 deleteMessage(request);
                 int msgid = Integer.parseInt(request.getParameter("msgid"));
-                System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 boolean isSuccess = bookmarkMessageAgent.removeMessage(msgid);
                 if (isSuccess) {
                     out.println("<script>alert('북마크된 메시지가 삭제되었습니다.');location.href='bookmarked_mail.jsp'</script>");
-                    System.out.println(" msgID update하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     bookmarkMessageAgent.updateMsgId(msgid);
-                    System.out.println(" msgID update끝났어요~~~~~~~~갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                    //스팸에도 있다면 지우기
                     spamMessageAgent.removeMessage(msgid);
                         spamMessageAgent.updateMsgId(msgid);
                 } else {
@@ -78,14 +74,11 @@ public class ReadMailHandler extends HttpServlet {
                 spamMessageAgent.setNeedUpdate(true);
 
                 int msgid = Integer.parseInt(request.getParameter("msgid"));
-                System.out.println(" msgID 지우러갑니당.하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
                 boolean isSuccess = spamMessageAgent.removeMessage(msgid);
                 if (isSuccess) {
                     out.println("<script>alert('스팸 메시지가 삭제되었습니다.');location.href='spam_mail_list.jsp'</script>");
-                    System.out.println(" msgID update하러갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     spamMessageAgent.updateMsgId(msgid);
-                    System.out.println(" msgID update끝났어요~~~~~~~~갑니당~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     bookmarkMessageAgent.removeMessage(msgid);
                         bookmarkMessageAgent.updateMsgId(msgid);
                 } else {
@@ -140,7 +133,6 @@ public class ReadMailHandler extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("ReadmailHandler.cancelBookmarking error : " + ex);
             }
-            //response.sendRedirect("bookmarked_mail.jsp");
             break;
             default:
                 try (PrintWriter out = response.getWriter()) {
@@ -151,13 +143,12 @@ public class ReadMailHandler extends HttpServlet {
         }
     }
 
-    private void download(HttpServletRequest request, HttpServletResponse response) { //throws IOException {
+    private void download(HttpServletRequest request, HttpServletResponse response) { 
         response.setContentType("application/octet-stream");
 
         ServletOutputStream sos = null;
 
         try {
-            /* TODO output your page here */
             request.setCharacterEncoding("UTF-8");
             // LJM 041203 - 아래와 같이 해서 한글파일명 제대로 인식되는 것 확인했음.
             String fileName = request.getParameter("filename");
@@ -247,49 +238,6 @@ public class ReadMailHandler extends HttpServlet {
         }
         return status;
     }
-
-/*
-    
-    case CommandType.SET_BOOKMARK: // 북마크설정
-                try (PrintWriter out = response.getWriter()) {
-                bookmarkMessage(request);
-                //response.sendRedirect("main_menu.jsp");
-            } catch (Exception ex) {
-                PrintWriter out = response.getWriter();
-                out.println("ReadmailHandler.cancelBookmarking error : " + ex);
-            }
-            break;
-
-    private boolean bookmarkMessage(HttpServletRequest request) {
-        int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-
-        HttpSession httpSession = request.getSession();
-        String host = (String) httpSession.getAttribute("host");
-        String userid = (String) httpSession.getAttribute("userid");
-        String password = (String) httpSession.getAttribute("password");
-
-        Pop3Agent pop3 = new Pop3Agent(host, userid, password);
-        boolean status = pop3.bookmarkMessage(msgid);
-        return status;
-        //return false;
-    }
-
-    
-    private boolean cancelBookmarking(HttpServletRequest request) {
-        int msgid = Integer.parseInt((String) request.getParameter("msgid"));
-
-        HttpSession httpSession = request.getSession();
-        String host = (String) httpSession.getAttribute("host");
-        String userid = (String) httpSession.getAttribute("userid");
-        String password = (String) httpSession.getAttribute("password");
-
-        Pop3Agent pop3 = new Pop3Agent(host, userid, password);
-        //boolean status = pop3.cancelBookmarking(msgid);
-        //return status;
-        return false;
-    }
-
-     */
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

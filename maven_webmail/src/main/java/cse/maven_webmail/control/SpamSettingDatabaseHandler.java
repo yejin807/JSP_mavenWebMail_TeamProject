@@ -53,18 +53,16 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
 
         HttpSession session = request.getSession();
         userid = (String) session.getAttribute("userid");
-        //word가 아니라 command 추가로 바꿔야할듯.
         String word = request.getParameter("word").replaceAll(" ", "");
         String spamword = request.getParameter("spamword");
         String isEmail = request.getParameter("isEmail");
-        String sql = "null이에요.";
         spamMessageAgent = SpamMessageAgent.getInstance(userid);
 
         PrintWriter out = response.getWriter();
 
         try {
 
-            if (!(word == null) && !(word.trim().length() == 0)) {
+            if ((word != null) && (word.trim().length() != 0)) {
                 insertSpamCommand(userid, word, isEmail);
                 spamMessageAgent.setNeedUpdate(true);
                 System.out.println("추가된문자열=" + word + "=");

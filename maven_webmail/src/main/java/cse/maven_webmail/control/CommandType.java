@@ -4,8 +4,6 @@
  */
 package cse.maven_webmail.control;
 
-import javax.mail.Flags;
-
 public class CommandType {
 
     private CommandType() {

@@ -30,7 +30,7 @@ public class LoginHandler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private final String ADMINISTRATOR = "admin";
+    private final static String administrator = "admin";
     Logger logger = Logger.getLogger(LoginHandler.class.getName());
 
     
@@ -47,8 +47,9 @@ public class LoginHandler extends HttpServlet {
         try {
             switch (selectedMenu) {
                 case CommandType.LOGIN:
+                    String userIdParameter = "userid";
                     String host = (String) request.getSession().getAttribute("host");
-                    String userid = request.getParameter("userid");
+                    String userid = request.getParameter(userIdParameter);
                     String password = request.getParameter("passwd");
 
                     // Check the login information is valid using <<model>>Pop3Agent.
@@ -59,11 +60,11 @@ public class LoginHandler extends HttpServlet {
                     if (isLoginSuccess) {
                         if (isAdmin(userid)) {
                             // HttpSession 객체에 userid를 등록해 둔다.
-                            session.setAttribute("userid", userid);
+                            session.setAttribute(userIdParameter, userid);
                             response.sendRedirect("admin_menu.jsp");
                         } else {
                             // HttpSession 객체에 userid와 password를 등록해 둔다.
-                            session.setAttribute("userid", userid);
+                            session.setAttribute(userIdParameter, userid);
                             session.setAttribute("password", password);
                             response.sendRedirect("main_menu.jsp");
                         }
@@ -90,7 +91,7 @@ public class LoginHandler extends HttpServlet {
     protected boolean isAdmin(String userid) {
         boolean status = false;
 
-        if (userid.equals(this.ADMINISTRATOR)) {
+        if (userid.equals(this.administrator)) {
             status = true;
         }
 

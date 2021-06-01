@@ -49,9 +49,6 @@ public class Pop3Agent {
         this.bookmarkMessageAgent = BookmarkMessageAgent.getInstance(userid);
         this.spamMessageAgent = SpamMessageAgent.getInstance(userid);
 
-        System.out.println("pop3Agent.생성자 BookmarkMessageAgent userid check == " + bookmarkMessageAgent.getUserid());
-        System.out.println("pop3Agent.생성자 SpamMessageAgent userid check == " + spamMessageAgent.getUserid());
-
     }
 
     public boolean validate() {
@@ -129,7 +126,6 @@ public class Pop3Agent {
             folder.fetch(messages, fpFlags);
 
             MessageFormatter formatter = new MessageFormatter(userid);  //3.5
-            //result = formatter.getMessageTable(spamMessageAgent.getMessagesWithoutSpamMsg(messages));   // 3.6
             result = formatter.getMessageTable(messages);   // 3.6
 
             folder.close(true);  // 3.7
@@ -385,4 +381,4 @@ public class Pop3Agent {
         return result;
     }
 
-}  // class Pop3Agent
+} 
