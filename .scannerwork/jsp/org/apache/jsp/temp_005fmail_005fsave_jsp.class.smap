@@ -1,0 +1,14 @@
+SMAP
+temp_005fmail_005fsave_jsp.java
+JSP
+*S JSP
+*F
++ 0 temp_mail_save.jsp
+temp_mail_save.jsp
+*L
+5,5:119,0
+9:120
+10,20:121,0
+30,32:123
+61,5:155,0
+*E

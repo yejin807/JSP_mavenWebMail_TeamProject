@@ -1,0 +1,95 @@
+
+3cse.maven_webmail.model.Pop3Agent#connectToStore()Zâ
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java˝ ˝(""7*æ
+5â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaä ä(,ﬁ
+€
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaã ã(
+%8java.lang.String"__id*/*-#
+!cse.maven_webmail.model.Pop3Agent"
+host‡
+›
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaã  ã(&
+%9java.lang.String"__id*1*/#
+!cse.maven_webmail.model.Pop3Agent"
+userid„
+‡
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaã( ã(0
+%10java.lang.String"__id*3*1#
+!cse.maven_webmail.model.Pop3Agent"
+
+password*
+1*¢
+7â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.java˛ ˛(˘
+ˆ
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaˇ ˇ(1
+%0java.util.Properties"6java.lang.System#getProperties()Ljava/util/Properties;*"
+java.lang.System“
+œ
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaˇ ˇ(2
+propsjava.util.Properties"__id*
+
+%0java.util.Propertiesﬁ
+€
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÄ, Ä(0
+%1java.lang.String"__id*/*-#
+!cse.maven_webmail.model.Pop3Agent"
+hostÉÄ
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÄ Ä(1
+%2java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
+
+propsjava.util.Properties*
+mail.pop3.host*
+
+%1java.lang.String21setProperty(Ljava/lang/String;Ljava/lang/String;)‡
+›
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÅ, Å(2
+%3java.lang.String"__id*1*/#
+!cse.maven_webmail.model.Pop3Agent"
+useridÉÄ
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÅ Å(3
+%4java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
+
+propsjava.util.Properties*
+mail.pop3.user*
+
+%3java.lang.String21setProperty(Ljava/lang/String;Ljava/lang/String;)˚¯
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÇ Ç(;
+%5java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
+
+propsjava.util.Properties*
+mail.pop3.apop.enable*	
+false21setProperty(Ljava/lang/String;Ljava/lang/String;)˙˜
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÉ É(:
+%6java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
+
+propsjava.util.Properties*
+mail.pop3.disablecapa*
+true21setProperty(Ljava/lang/String;Ljava/lang/String;)ÔÏ
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaÑ Ñ(/
+%7java.lang.Object"Xjava.util.Properties#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;*
+
+propsjava.util.Properties*
+
+mail.debug*
+true21setProperty(Ljava/lang/String;Ljava/lang/String;)*
+5*¶
+1â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaê ê("î
+â
+}C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/Pop3Agent.javaê ê(
+""B%#
+!cse.maven_webmail.model.Pop3Agent

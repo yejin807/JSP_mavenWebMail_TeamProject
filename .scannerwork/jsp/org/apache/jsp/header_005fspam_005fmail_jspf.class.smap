@@ -1,0 +1,10 @@
+SMAP
+header_005fspam_005fmail_jspf.java
+JSP
+*S JSP
+*F
++ 0 header_spam_mail.jspf
+header_spam_mail.jspf
+*L
+1,4:116,0
+*E

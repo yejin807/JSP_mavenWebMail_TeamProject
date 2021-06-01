@@ -1,0 +1,50 @@
+
+rcse.maven_webmail.model.SpamMessageAgent#getInstance(Ljava/lang/String;)Lcse/maven_webmail/model/SpamMessageAgent;
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java)# )(."1*¶
+1
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java* *(ñ
+î
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java* *((6*
+(cse.maven_webmail.model.SpamMessageAgent"
+userid"__id*
+
+useridjava.lang.String¾
+»
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java+ +(
+%0java.io.PrintStream"__id*
+""í
+ê
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java+A +(X
+%1java.lang.String"__id*8*6*
+(cse.maven_webmail.model.SpamMessageAgent"
+useridø
+õ
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java+ +(X
+%2java.lang.String"__concat*%#
+!SpamMessageAgent userid setting =*
+
+%1java.lang.String§¤
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java+ +(Y
+
+%3void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%0java.io.PrintStream*
+
+%2java.lang.String2println(Ljava/lang/String;)
+Š
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java, ,(.
+%4(cse.maven_webmail.model.SpamMessageAgent"__id*@*>*
+(cse.maven_webmail.model.SpamMessageAgent"
+uniqueInstance"Ä
+
+„C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/SpamMessageAgent.java, ,(0
+.
+%4(cse.maven_webmail.model.SpamMessageAgent:
+useridjava.lang.StringB,"*
+(cse.maven_webmail.model.SpamMessageAgent

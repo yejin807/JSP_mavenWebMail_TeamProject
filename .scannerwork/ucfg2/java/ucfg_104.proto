@@ -1,0 +1,39 @@
+
+/cse.maven_webmail.model.MessageParser#parse(Z)Zå
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java5 5("8*£
+5å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java= =(â
+Ü
+å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java= =(#
+
+%2void"6cse.maven_webmail.model.MessageParser#printMessage(Z)V*)'
+%cse.maven_webmail.model.MessageParser*
+""*
+1*ù
+6å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java; ;(É
+Ä
+å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java; ;( 
+%1"6cse.maven_webmail.model.MessageParser#getPart(LPart;)V*)'
+%cse.maven_webmail.model.MessageParser*
+""*
+5*ß
+8å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java9 9(ä
+á
+å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.java9 9( 
+%0"=cse.maven_webmail.model.MessageParser#getEnvelope(LMessage;)V*)'
+%cse.maven_webmail.model.MessageParser*
+""*
+5
+6*¨
+1å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaD D("ó
+å
+ÅC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageParser.javaD D(
+"":
+""B)'
+%cse.maven_webmail.model.MessageParser

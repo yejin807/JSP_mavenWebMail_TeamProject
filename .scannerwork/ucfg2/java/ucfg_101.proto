@@ -1,0 +1,20 @@
+
+4cse.maven_webmail.model.MessageAgent#getMsgIdSize()I‹
+€C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageAgent.java7 7("1*ù
+1‹
+€C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageAgent.java8 8(ë
+è
+‹
+€C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageAgent.java8 8(
+%0java.util.ArrayList"__id*7*5&
+$cse.maven_webmail.model.MessageAgent"
+	msgIdListÞÛ
+‹
+€C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageAgent.java8 8(	
+%1int"java.util.ArrayList#size()I*
+
+%0java.util.ArrayList2size()"–
+‹
+€C:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/java/cse/maven_webmail/model/MessageAgent.java8 8( 
+""B(&
+$cse.maven_webmail.model.MessageAgent

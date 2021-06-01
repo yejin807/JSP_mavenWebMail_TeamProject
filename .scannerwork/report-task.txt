@@ -1,0 +1,7 @@
+organization=nega0619
+projectKey=Nega0619_JSP_mavenWebMail_TeamProject
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.20583
+dashboardUrl=https://sonarcloud.io/dashboard?id=Nega0619_JSP_mavenWebMail_TeamProject
+ceTaskId=AXnH0d_SthSTtT7HcD57
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXnH0d_SthSTtT7HcD57
