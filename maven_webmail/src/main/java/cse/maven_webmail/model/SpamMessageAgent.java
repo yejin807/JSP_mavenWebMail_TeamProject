@@ -11,7 +11,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 
 /**
@@ -158,16 +161,17 @@ public class SpamMessageAgent extends MessageAgent {
 
     protected boolean insertMsgId(int msgid) {
         boolean status = false;
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             if (isUserIdNull()) {
                 return status;
             }
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "INSERT INTO `webmail`.`spam_list` (`email`, `msgid`) VALUES (?,?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
@@ -180,6 +184,21 @@ public class SpamMessageAgent extends MessageAgent {
             return status;
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.insertMsgId error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
@@ -190,26 +209,40 @@ public class SpamMessageAgent extends MessageAgent {
         if (isUserIdNull()) {
             return status;
         }
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "DELETE FROM `webmail`.`spam_list` WHERE (`email` = ?) and (`msgid` = ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, msgid);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
 
             status = true;
             return status;
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.deleteMsgId error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
@@ -219,26 +252,40 @@ public class SpamMessageAgent extends MessageAgent {
         if (isUserIdNull()) {
             return status;
         }
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "update webmail.spam_list set msgid=msgid-1 where email=? and msgid>?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
                 pstmt.setInt(2, deletedMsgId);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
 
             status = true;
             return status;
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.updateSpamListDB error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }
@@ -248,25 +295,39 @@ public class SpamMessageAgent extends MessageAgent {
         if (isUserIdNull()) {
             return status;
         }
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "delete from webmail.spam_list where email=?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
                 pstmt.setString(1, userid);
             }
             pstmt.executeUpdate();
-            pstmt.close();
-            conn.close();
 
             status = true;
             return status;
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.updateSpamListDB error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return status;
     }

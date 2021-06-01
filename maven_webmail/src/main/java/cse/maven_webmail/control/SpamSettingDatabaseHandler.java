@@ -5,6 +5,7 @@
  */
 package cse.maven_webmail.control;
 
+import cse.maven_webmail.model.BookmarkMessageAgent;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.SpamMessageAgent;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,19 +63,17 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            
-            if (!(word == null) && !(word.trim().length()==0)){
+
+            if (!(word == null) && !(word.trim().length() == 0)) {
                 insertSpamCommand(userid, word, isEmail);
                 spamMessageAgent.setNeedUpdate(true);
-                System.out.println("추가된문자열="+word+"=");
+                System.out.println("추가된문자열=" + word + "=");
                 response.sendRedirect("spam_settings.jsp");
             } else {
                 out.println("<script>alert('스팸처리할 단어나 이메일을 입력하세요!');location.href='spam_settings.jsp'</script>");
 
             }
-            //스팸단어 삭제 기능
             if ((request.getParameter("command") != null) && (request.getParameter("spamword") != null)) {
-                //int select = Integer.parseInt((String) request.getParameter("delete"));
                 int select = Integer.parseInt((String) request.getParameter("command"));
 
                 switch (select) {
@@ -88,8 +89,8 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
                         break;
                 }
                 request.setAttribute("command", null);
-            } //end 스팸단어 조건 
-        } catch (Exception ex) {// end try
+            }
+        } catch (Exception ex) {
             out.println("exception : " + ex);
         }
     }
@@ -106,20 +107,22 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         this.userid = userid;
         spamWord = new ArrayList<String>();
         spamEmail = new ArrayList<String>();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             //spam단어 읽어오기
             String sql = "select word from webmail.spam_setting where email =? and is_email=0";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+            while (rs.next()) {
                 spamWord.add(rs.getString("word"));
             }
-            
+
             //spam 이메일 읽어오기
             sql = "select word from webmail.spam_setting where email =? and is_email=1";
             pstmt = conn.prepareStatement(sql);
@@ -131,50 +134,105 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
             }
 
             rs.close();
-            pstmt.close();
-            conn.close();
 
         } catch (Exception ex) {
             System.out.println("SpamSettingDatabaseHandler.getSpamSettingData Error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
-        Class.forName(CommandType.JDBCDRIVER);
-        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
-        String sql = "INSERT INTO `webmail`.`spam_setting` (`email`, `word`, `is_email`) VALUES (?,?,?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        if (isEmail == null) { //스팸 단어를 추가하는 것이면
-            pstmt.setString(1, userid);
-            pstmt.setString(2, word);
-            pstmt.setInt(3, 0);
-        } else {
-            pstmt.setString(1, userid);
-            pstmt.setString(2, word);
-            pstmt.setInt(3, 1);
+            String sql = "INSERT INTO `webmail`.`spam_setting` (`email`, `word`, `is_email`) VALUES (?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+            if (isEmail == null) { //스팸 단어를 추가하는 것이면
+                pstmt.setString(1, userid);
+                pstmt.setString(2, word);
+                pstmt.setInt(3, 0);
+            } else {
+                pstmt.setString(1, userid);
+                pstmt.setString(2, word);
+                pstmt.setInt(3, 1);
+            }
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            conn.close();
+            getSpamSettingData(userid);
+        } catch (Exception ex) {
+            System.out.println("SpamSettingDatabaseHandler.insertSpamCommand error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        pstmt.executeUpdate();
-
-        pstmt.close();
-        conn.close();
-        getSpamSettingData(userid);
     }
 
     private void deleteSpamCommand(String userid, String word, int isEmail) throws ClassNotFoundException, SQLException {
-        Class.forName(CommandType.JDBCDRIVER);
-        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName(CommandType.JDBCDRIVER);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
-        String sql = "DELETE FROM `webmail`.`spam_setting` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, userid);
-        pstmt.setString(2, word);
-        pstmt.setInt(3, isEmail);
+            String sql = "DELETE FROM `webmail`.`spam_setting` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userid);
+            pstmt.setString(2, word);
+            pstmt.setInt(3, isEmail);
 
-        pstmt.executeUpdate();
-        pstmt.close();
-        conn.close();
-        getSpamSettingData(userid);
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            getSpamSettingData(userid);
+        } catch (Exception ex) {
+            System.out.println("SpamSettingDatabaseHandler.deleteSpamCommand error : " + ex);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
