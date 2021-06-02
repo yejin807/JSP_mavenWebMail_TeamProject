@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <td>생일</td>
-                            <td> <input type="text" name="birth" maxlength="8"/> </td>
+                            <td> <input type="text" name="birth" maxlength="6"/> </td>
                         </tr>
                         <tr>
                             <td>전화번호</td>
