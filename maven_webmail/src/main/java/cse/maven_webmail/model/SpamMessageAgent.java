@@ -51,17 +51,18 @@ public class SpamMessageAgent extends MessageAgent {
         if (isUserIdNull()) {
             return status;
         }
-
+        Connection conn = null;
+        PreparedStatement pstmt = null;
         try {
             super.setNeedUpdate(false);
             super.resetMsgIdList();
             System.out.println("SpamMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
             Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+             conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "select msgid from webmail.spam_list where email = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
@@ -79,6 +80,21 @@ public class SpamMessageAgent extends MessageAgent {
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.setMsgIdList Error : " + ex);
+        }finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BookmarkMessageAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return status;

@@ -83,18 +83,18 @@
     <body>
         <%
         String userid = (String) session.getAttribute("userid");
-        final String JdbcDriver = "com.mysql.jdbc.Driver";
+        /*final String JdbcDriver = "com.mysql.jdbc.Driver";
         String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
         final String User = "jdbctester";
-        final String Password = "0000";
+        final String Password = "0000";*/
         response.setContentType("text/html;charset=UTF-8");
         String DBemail = null;
         String DBtitle = null;
         String DBcont = null;
 
         try{
-            Class.forName(JdbcDriver);
-            Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            Class.forName(CommandType.JDBCDRIVER);
+            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
             Statement stmt = conn.createStatement();
             String sql = "SELECT * FROM tempmail WHERE user='"+userid+"';";
 

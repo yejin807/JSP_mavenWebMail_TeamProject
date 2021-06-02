@@ -4,6 +4,7 @@
     Author     : Angel
 --%>
 
+<%@page import="cse.maven_webmail.control.CommandType"%>
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <% request.setCharacterEncoding("utf-8"); %>
@@ -31,16 +32,17 @@
             String email = request.getParameter("to");
             String title = request.getParameter("subj");
             String content = request.getParameter("body");
+            /*
             final String JdbcDriver = "com.mysql.jdbc.Driver";
             String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
             final String User = "jdbctester";
-            final String Password = "0000";
+            final String Password = "0000";*/
             response.setContentType("text/html;charset=UTF-8");
             
             try{
-                Class.forName(JdbcDriver);
+                Class.forName(CommandType.JDBCDRIVER);
                 
-                Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+                Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
                 
                 Statement stmt = conn.createStatement();
                 

@@ -30,7 +30,7 @@ public class LoginHandler extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private final static String ADMINISTRATOR = "admin";
+    private static final String ADMINISTRATOR = "admin";
     Logger logger = Logger.getLogger(LoginHandler.class.getName());
 
     

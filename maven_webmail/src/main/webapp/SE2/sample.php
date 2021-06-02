@@ -6,7 +6,7 @@
 </head>
 <body class="smartOutput">
 	<p>
-		<b><u>에디터 내용:</u></b>
+		<strong><u>에디터 내용:</u></strong>
 	</p>
 	<?= $_POST["ir1"] ?>
 	
