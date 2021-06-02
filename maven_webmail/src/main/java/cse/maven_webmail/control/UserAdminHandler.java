@@ -38,7 +38,7 @@ public class UserAdminHandler extends HttpServlet {
     final String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?serverTimezone=Asia/Seoul"; //중요
     final String User = "jdbctester";
     final String Password = "43319521";
-*/
+     */
     Connection conn = null;
     PreparedStatement pstmt = null;
 
@@ -110,19 +110,23 @@ public class UserAdminHandler extends HttpServlet {
             out.println("phone = " + phone + "<br>");
             out.flush();
 
-            if (userid.equals("") || userid == null || password.equals("") || password == null
-                    || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
-                out.println(getPopUp("모든 정보를 입력해주세요.", "add_user.jsp"));
-            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && username != null
-                    && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
-                if (agent.addUser(userid, password) && addDBUser(request, response, out)) {
-                    out.println(getPopUp("정보 추가에 성공했습니다.", "admin_menu.jsp"));
+            if (!userid.equals("admin")) {
+                if (userid.equals("") || userid == null || password.equals("") || password == null
+                        || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
+                    out.println(getPopUp("모든 정보를 입력해주세요.", "add_user.jsp"));
+                } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && username != null
+                        && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
+                    if (agent.addUser(userid, password) && addDBUser(request, response, out)) {
+                        out.println(getPopUp("정보 추가에 성공했습니다.", "admin_menu.jsp"));
+                    } else {
+                        out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
+                    }
                 } else {
-                    out.println(getPopUp("사용자 등록에 실패했습니다.", "add_user.jsp"));
+                    //양식에 맞지않음
+                    out.println(getPopUp("정보를 정확하게 입력해주세요.", "add_user.jsp"));
                 }
             } else {
-                //양식에 맞지않음
-                out.println(getPopUp("정보를 정확하게 입력해주세요.", "add_user.jsp"));
+                out.println(getPopUp("등록할 수 없는 ID입니다.", "add_user.jsp"));
             }
             out.flush();
         } catch (Exception ex) {
@@ -150,24 +154,29 @@ public class UserAdminHandler extends HttpServlet {
             out.println("phone = " + phone + "<br>");
             out.flush();
 
-            if (userid.equals("") || userid == null || password.equals("") || password == null
-                    || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
-                out.println(getPopUp("모든 정보를 입력해주세요.", "join.jsp"));
-            } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && passwordcheck != null && username != null
-                    && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
-                if (!password.equals(passwordcheck)) {
-                    out.println(getPopUp("암호가 일치하지 않습니다.", "join.jsp"));
-                } else if (agent.addUser(userid, password) && addDBUser(request, response, out)) {
-                    out.println(getPopUp("회원가입에 성공했습니다.", "index.jsp"));
+            if (!userid.equals("admin")) {
+                if (userid.equals("") || userid == null || password.equals("") || password == null
+                        || username.equals("") || username == null || birth.equals("") || birth == null || phone.equals("") || phone == null) {
+                    out.println(getPopUp("모든 정보를 입력해주세요.", "join.jsp"));
+                } else if (userid != null && userid.length() > 4 && password != null && password.length() > 5 && passwordcheck != null && username != null
+                        && username.length() > 2 && birth != null && birth.length() == 6 && phone != null && phone.length() > 11) {
+                    if (!password.equals(passwordcheck)) {
+                        out.println(getPopUp("암호가 일치하지 않습니다.", "join.jsp"));
+                    } else if (agent.addUser(userid, password) && addDBUser(request, response, out)) {
+                        out.println(getPopUp("회원가입에 성공했습니다.", "index.jsp"));
+                    } else {
+                        out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
+                    }
                 } else {
-                    out.println(getPopUp("회원가입에 실패했습니다.", "join.jsp"));
+                    out.println(getPopUp("정보를 정확하게 입력해주세요.", "join.jsp"));
                 }
             } else {
-                out.println(getPopUp("정보를 정확하게 입력해주세요.", "join.jsp"));
+                out.println(getPopUp("등록할 수 없는 ID입니다.", "join.jsp"));
             }
+
             out.flush();
         } catch (Exception ex) {
-                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
+            logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         }
     }
 
@@ -203,7 +212,7 @@ public class UserAdminHandler extends HttpServlet {
                 status = true;
             }
         } catch (Exception ex) {
-                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
+            logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         } finally { //6. 자원해제
             if (pstmt != null) {
                 try {
@@ -264,7 +273,7 @@ public class UserAdminHandler extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-                    logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
+            logger.log(Level.SEVERE, "오류 : ", ex.getMessage());
         } finally { //6. 자원해제
             if (pstmt != null) {
                 try {
