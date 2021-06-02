@@ -519,15 +519,15 @@ gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/ma
 tempjava.lang.String"__id*
 
 %70java.lang.String*
-40*¸
+40*£
 86q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa a(·
-´
+gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa a(¢
+Ÿ
 q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa a(
-connjava.sql.Connection"__id*
-
-%30java.sql.Connectionþû
+connjava.sql.Connection"__id*
+
+%30þû
 q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspb" b(1
 %31java.sql.Statement"9java.sql.Connection#createStatement()Ljava/sql/Statement;*
@@ -548,20 +548,17 @@ gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/ma
 %70java.lang.String"__id*
 
 %72java.lang.String*
-41*ü
+41*¤
 87q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa a(+ü
-ù
+gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa a(+¤
+¡
 q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa, a(9
-%30java.sql.Connection"qjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection;*"
-java.sql.DriverManager*
-
-JdbcUrljava.lang.String*
-
-Userjava.lang.String*
-
-Passwordjava.lang.String*
+gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspa, a(9
+%30"qjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection;*"
+java.sql.DriverManager*
+""*
+""*
+""*
 86*´
 43s
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspŒ Œ(o²
@@ -571,17 +568,15 @@ gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/ma
 %70java.lang.String"__id*
 
 %71java.lang.String*
-41*ƒ
+41*Ø
 88q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jsp` `(ƒ
-€
+gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jsp` `(Ø
+Õ
 q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jsp` `(
-%29java.lang.Class"<java.lang.Class#forName(Ljava/lang/String;)Ljava/lang/Class;*"
-java.lang.Class* 
-
-
-JdbcDriverjava.lang.String*
+gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jsp` `(
+%29"<java.lang.Class#forName(Ljava/lang/String;)Ljava/lang/Class;*"
+java.lang.Class*
+""*
 87*è
 89q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jsp[ [(¡
@@ -717,8 +712,7 @@ rC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org
 %1javax.servlet.DispatcherType2equals(Ljava/lang/Object;)*
 
 112
-106*é
-
+106*ó
 90q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspU U(@³
 °
@@ -726,29 +720,7 @@ q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspU U(
 useridjava.lang.String"__id*
 
-%27java.lang.Object·
-´
-q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspV V(
-
-JdbcDriverjava.lang.String"__id*
-com.mysql.jdbc.Driveré
-æ
-q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspW W(
-JdbcUrljava.lang.String"__id*NL
-Jjdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8¦
-£
-q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspX X(
-Userjava.lang.String"__id*
-
-jdbctester¤
-¡
-q
-gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspY Y(
-Passwordjava.lang.String"__id*
-0000½º
+%27java.lang.Object½º
 q
 gC:/Users/gleyd/Desktop/Github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/write_mail.jspZ Z(
 %28void"Ajavax.servlet.ServletResponse#setContentType(Ljava/lang/String;)V*4
