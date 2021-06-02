@@ -32,8 +32,8 @@
             String email = request.getParameter("to");
             String title = request.getParameter("subj");
             String content = request.getParameter("body");
-            /*
-            final String JdbcDriver = "com.mysql.jdbc.Driver";
+            
+            /*final String JdbcDriver = "com.mysql.jdbc.Driver";
             String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
             final String User = "jdbctester";
             final String Password = "0000";*/
@@ -43,6 +43,7 @@
                 Class.forName(CommandType.JDBCDRIVER);
                 
                 Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+                //Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
                 
                 Statement stmt = conn.createStatement();
                 

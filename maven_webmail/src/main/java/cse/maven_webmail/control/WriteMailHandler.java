@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import cse.maven_webmail.model.FormParser;
 import cse.maven_webmail.model.SmtpAgent;
+import java.sql.DriverManager;
+import java.util.logging.Level;
 import org.apache.log4j.Logger;
+import java.sql.*;
 /**
  *
  * @author jongmin
@@ -42,6 +45,7 @@ public class WriteMailHandler extends HttpServlet {
                 case CommandType.SEND_MAIL_COMMAND: // 실제 메일 전송하기
                     out = response.getWriter();
                     boolean status = sendMessage(request);
+                    boolean del = TempMailDel(request);
                     out.print(getMailTransportPopUp(status));
                     break;
 
@@ -119,6 +123,39 @@ public class WriteMailHandler extends HttpServlet {
         return successPopUp.toString();
     }
 
+    private boolean TempMailDel(HttpServletRequest request) {
+        
+        HttpSession session = (HttpSession) request.getSession();
+        String userid = (String) session.getAttribute("userid");
+        
+        Connection conn = null;
+        Statement stmt = null;
+            
+        boolean del = false;
+        try {
+            //1. JDBC 드라이버 객체
+            Class.forName(CommandType.JDBCDRIVER);
+
+            //2. DB 연결
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            //Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+
+            //3. PreparedStatement 생성
+            String sql = "DELETE FROM tempmail WHERE user='"+userid+"';";
+            stmt = conn.createStatement();
+
+            //4. SQL문 완성
+            request.setCharacterEncoding("UTF-8"); // 한글 인식
+            stmt.executeUpdate(sql);
+
+                    stmt.close();
+                    conn.close();
+
+            } catch (Exception ex) {
+                System.out.println("오류가 발생했습니다. (발생 오류: "+ ex.getMessage() + ")");
+        }
+        return del;
+    }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

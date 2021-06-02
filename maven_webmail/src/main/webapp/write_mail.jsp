@@ -95,6 +95,7 @@
         try{
             Class.forName(CommandType.JDBCDRIVER);
             Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            //Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
             Statement stmt = conn.createStatement();
             String sql = "SELECT * FROM tempmail WHERE user='"+userid+"';";
 
@@ -203,6 +204,7 @@
                     text = DBcontent;
                     frm.submit();
                 }
+                
             </script>   
         </div>
                     
