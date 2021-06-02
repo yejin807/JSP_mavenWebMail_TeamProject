@@ -45,7 +45,9 @@ public class WriteMailHandler extends HttpServlet {
                 case CommandType.SEND_MAIL_COMMAND: // 실제 메일 전송하기
                     out = response.getWriter();
                     boolean status = sendMessage(request);
-                    boolean del = TempMailDel(request);
+                    if(status==true){
+                        boolean del = TempMailDel(request);
+                    }
                     out.print(getMailTransportPopUp(status));
                     break;
 
