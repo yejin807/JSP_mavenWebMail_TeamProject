@@ -160,6 +160,11 @@
                     </tr>
                     <tr>  <%-- TextArea    --%>
                         <td colspan="2">
+                            <%
+                                if(DBcont==null){
+                                    DBcont="";
+                                }
+                                %>
                             <textarea rows="10" cols="30" id="cont" name="body" style="width:675px; height:350px; " ><%=encodedtext%><%=DBcont%></textarea>
                         </td>
                     </tr>

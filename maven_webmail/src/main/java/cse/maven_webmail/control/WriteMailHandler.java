@@ -125,6 +125,11 @@ public class WriteMailHandler extends HttpServlet {
 
     private boolean TempMailDel(HttpServletRequest request) {
         
+        /*final String JdbcDriver = "com.mysql.jdbc.Driver";
+        String JdbcUrl = "jdbc:mysql://localhost:3306/webmail?useUnicode=true&characterEncoding=utf8";
+        final String User = "jdbctester";
+        final String Password = "0000";*/
+            
         HttpSession session = (HttpSession) request.getSession();
         String userid = (String) session.getAttribute("userid");
         
@@ -133,18 +138,14 @@ public class WriteMailHandler extends HttpServlet {
             
         boolean del = false;
         try {
-            //1. JDBC 드라이버 객체
             Class.forName(CommandType.JDBCDRIVER);
 
-            //2. DB 연결
             conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
-            //Connection conn = DriverManager.getConnection(JdbcUrl, User, Password);
+            //conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
-            //3. PreparedStatement 생성
             String sql = "DELETE FROM tempmail WHERE user='"+userid+"';";
             stmt = conn.createStatement();
 
-            //4. SQL문 완성
             request.setCharacterEncoding("UTF-8"); // 한글 인식
             stmt.executeUpdate(sql);
 
