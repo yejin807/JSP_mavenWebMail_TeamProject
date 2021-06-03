@@ -64,11 +64,11 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            
-            if (!(word == null) && !(word.trim().length()==0)){
+
+            if (!(word == null) && !(word.trim().length() == 0)) {
                 insertSpamCommand(userid, word, isEmail);
                 spamMessageAgent.setNeedUpdate(true);
-                System.out.println("추가된문자열="+word+"=");
+                System.out.println("추가된문자열=" + word + "=");
                 response.sendRedirect("spam_settings.jsp");
             } else {
                 out.println("<script>alert('스팸처리할 단어나 이메일을 입력하세요!');location.href='spam_settings.jsp'</script>");
@@ -106,46 +106,52 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         return spamEmail;
     }
 
-    public String getSpamSettingData(String userid) {
+    public String getSpamSettingData(String userid) throws ClassNotFoundException {
         String result = "";
         this.userid = userid;
         spamWord = new ArrayList<String>();
         spamEmail = new ArrayList<String>();
-        try {
-            Class.forName(CommandType.JDBCDRIVER);
-            Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+
+        Class.forName(CommandType.JDBCDRIVER);
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD)) {
 
             //spam단어 읽어오기
             String sql = "select word from webmail.spam_setting where email =? and is_email=0";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userid);
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, userid);
 
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
-                spamWord.add(rs.getString("word"));
-                result += "<br><br>getSpamSettingData , word : " + rs.getString("word");
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+                    spamWord.add(rs.getString("word"));
+                    result += "<br><br>getSpamSettingData , word : " + rs.getString("word");
+                }
+                System.out.println("getSpamSettingData.userid : " + userid);
+                System.out.println("getSpamSettingData : " + result);
             }
-            System.out.println("getSpamSettingData.userid : " + userid);
-            System.out.println("getSpamSettingData : " + result);
+        } catch (Exception ex) {
+            System.out.println("SpamSettingDatabaseHandler.getSpamSettingData Error : " + ex);
+        }
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD)) {
 
             //spam이메일 읽어오기
             //spam단어 읽어오기
-            sql = "select word from webmail.spam_setting where email =? and is_email=1";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userid);
+            String sql = "select word from webmail.spam_setting where email =? and is_email=1";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            rs = pstmt.executeQuery();
-            while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
-                spamEmail.add(rs.getString("word"));
-                result += "<br><br>getSpamSettingData , email : " + rs.getString("word");
+                pstmt.setString(1, userid);
+
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) { // ResultSet에 다음 값이 없을때까지 출력
+                    spamEmail.add(rs.getString("word"));
+                    result += "<br><br>getSpamSettingData , email : " + rs.getString("word");
+                }
+                System.out.println("getSpamSettingData.userid : " + userid);
+                System.out.println("getSpamSettingData : " + result);
+
+                rs.close();
+                pstmt.close();
+                conn.close();
             }
-            System.out.println("getSpamSettingData.userid : " + userid);
-            System.out.println("getSpamSettingData : " + result);
-
-            rs.close();
-            pstmt.close();
-            conn.close();
-
         } catch (Exception ex) {
             System.out.println("SpamSettingDatabaseHandler.getSpamSettingData Error : " + ex);
         } finally {
@@ -155,10 +161,10 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
 
     private void insertSpamCommand(String userid, String word, String isEmail) throws ClassNotFoundException, SQLException {
         Class.forName(CommandType.JDBCDRIVER);
-        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD)){
 
         String sql = "INSERT INTO `webmail`.`spam_setting` (`email`, `word`, `is_email`) VALUES (?,?,?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
         if (isEmail == null) { //스팸 단어를 추가하는 것이면
             pstmt.setString(1, userid);
             pstmt.setString(2, word);
@@ -174,17 +180,19 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         conn.close();
         //sql문 완성
         getSpamSettingData(userid);
+        }
+        }
     }
 
     private void deleteSpamCommand(String userid, String word, int isEmail) throws ClassNotFoundException, SQLException {
         Class.forName(CommandType.JDBCDRIVER);
-        Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+        try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD)){
         /*        infoHTML(out, email);
         infoHTML(out, word);
         infoHTML(out, Integer.toString(isEmail)); */
 
         String sql = "DELETE FROM `webmail`.`spam_setting` WHERE (`email` = ?) and (`word` = ?) and (`is_email` = ?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)){
         pstmt.setString(1, userid);
         pstmt.setString(2, word);
         pstmt.setInt(3, isEmail);
@@ -194,6 +202,9 @@ public class SpamSettingDatabaseHandler extends HttpServlet {
         conn.close();
         //sql문 완성
         getSpamSettingData(userid);
+        
+        }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

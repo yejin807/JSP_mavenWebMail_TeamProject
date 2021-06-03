@@ -135,14 +135,14 @@ public class WriteMailHandler extends HttpServlet {
         HttpSession session = (HttpSession) request.getSession();
         String userid = (String) session.getAttribute("userid");
         
-        Connection conn = null;
+        //Connection conn = null;
         Statement stmt = null;
             
         boolean del = false;
         try {
             Class.forName(CommandType.JDBCDRIVER);
 
-            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            try(Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD)){
             //conn = DriverManager.getConnection(JdbcUrl, User, Password);
 
             String sql = "DELETE FROM tempmail WHERE user='"+userid+"';";
@@ -150,10 +150,9 @@ public class WriteMailHandler extends HttpServlet {
 
             request.setCharacterEncoding("UTF-8"); // 한글 인식
             stmt.executeUpdate(sql);
-
+            
                     stmt.close();
-                    conn.close();
-
+            }
             } catch (Exception ex) {
                 System.out.println("오류가 발생했습니다. (발생 오류: "+ ex.getMessage() + ")");
         }

@@ -23,7 +23,7 @@ public class FormParser {
     private String body = null;
     private String fileName = "";
     private static final String UPLOADDIR = "WEB-INF/upload/";
-    private static final String UPLOADTEMPDIR = "WEB-INF/temp/";
+    private static final String UPLOADTEMPDIR = "WEB-INF/upload/";
     private static final int MAXMEMORYSIZE = 20 * 1024 * 1024;
     private static final int MAXUPLOADSIZE = 50 * 1024 * 1024; // 50MB
     private static final String CHENCODE = "UTF-8";
@@ -143,16 +143,16 @@ public class FormParser {
                             setBody(item);
                         }
                     } else {  // 6. 첨부 파일 처리
-                        log.info("첨부파일  처리 시작");
+                        log.info("FormParse.parse start");
                         if (fi.getName() != null && !fi.getName().equals("")) {
-                            log.info("읽어 들인 파일 이름  = " + fi.getName());
+                            log.info("FormParser.parse : getname  = " + fi.getName());
                             // 절대 경로 저장
                             String abpath = currentFolder + UPLOADDIR + fi.getName() + "?";
                             fileName += abpath; // 파일에 추가된 전체 경로  
-                            log.info("파일 경로 앞에 파일과 이어서 저장 = " + fileName);
+                            log.info("FormParser.parse : fileName = " + fileName);
 
                             File file = new File(currentFolder + UPLOADDIR + fi.getName());
-                            log.info("파일 저장 경로 = " + file.getCanonicalPath());
+                            log.info("FormParser.parse : file Canonial Path = " + file.getCanonicalPath());
                             // upload 완료. 추후 메일 전송후 해당 파일을 삭제하도록 해야 함.
                             fi.write(file);
                         } else {

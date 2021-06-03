@@ -1,17 +1,17 @@
 
-Yorg.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp#getDependants()Ljava/util/Map;ñ
-ãC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java'8 '(E"1*ﬂ
-1ñ
-ãC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java( ((ç
-ä
-ñ
-ãC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java( ((
-%0java.util.Map"__id*T*R<
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp"
-_jspx_dependants"∞
-ñ
-ãC:\Users\gleyd\Desktop\Github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\sidebar_005fadmin_005fprevious_005fmenu_jsp.java( ((
+8org.apache.jsp.footer_jsp#getDependants()Ljava/util/Map;`
+VD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jsp.java'8 '(E"1*ò
+1`
+VD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jsp.java( ((µ
+≤
+`
+VD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jsp.java( ((
+%0java.util.Map"__id*3*1
+org.apache.jsp.footer_jsp"
+_jspx_dependants"y
+`
+VD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\footer_jsp.java( ((
 
 %0java.util.Map:
-%jsp_contextB><
-:org.apache.jsp.sidebar_005fadmin_005fprevious_005fmenu_jsp
+%jsp_contextB
+org.apache.jsp.footer_jsp

@@ -142,7 +142,7 @@ public class SmtpAgent {
                 for (String f : this.file1.split("\\?")) {// 파싱
                     MimeBodyPart a1 = new MimeBodyPart();
                     a1.attachFile(f);
-                    log.info("add file in messasge  " + f);
+                    log.info("SmtpAgent.sendMessage() : add file in messasge  " + f);
                     mp.addBodyPart(a1);
                 }
             }

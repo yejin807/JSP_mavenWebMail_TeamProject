@@ -152,7 +152,8 @@ public class ReadMailHandler extends HttpServlet {
             request.setCharacterEncoding("UTF-8");
             // LJM 041203 - 아래와 같이 해서 한글파일명 제대로 인식되는 것 확인했음.
             String fileName = request.getParameter("filename");
-            System.out.println(">>>>>> DOWNLOAD: file name = " + fileName);
+            
+            System.out.println(">>>>>> ReadMailHandler.download : file name = " + fileName);
 
             String userid = request.getParameter("userid");
             //String fileName = URLDecoder.decode(request.getParameter("filename"), "utf-8");
@@ -166,9 +167,8 @@ public class ReadMailHandler extends HttpServlet {
                 f.mkdir();
             }
 
-            response.setHeader("Content-Disposition", "attachment; filename="
-                    + URLEncoder.encode(fileName, "UTF-8") + ";");
-
+            response.setHeader("Content-Disposition", "attachment; filename=\""+  URLEncoder.encode(fileName, "UTF-8") + "\"");
+            
             File file = new File(downloadDir + File.separator + userid + File.separator + fileName);
             byte[] b = new byte[(int) file.length()];
             // try-with-resource 문은 fis를 명시적으로 close해 주지 않아도 됨.

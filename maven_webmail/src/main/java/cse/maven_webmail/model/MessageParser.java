@@ -28,7 +28,7 @@ public class MessageParser {
     private String subject;
     private String body;
     private String fileName;
-    private String downloadTempDir; //= "/WEB-INF/download/"; // temp 폴더 필요
+    private String downloadTempDir;
     private String userid;
     private String fnames = ""; //추가
     static Logger log = Logger.getLogger(MessageParser.class);
@@ -42,7 +42,7 @@ public class MessageParser {
         this(message, userid);
         
         downloadTempDir = request.getServletContext().getRealPath("/WEB-INF")
-                + File.separator + "download";
+                + File.separator + "tempdownload";
         File f = new File(downloadTempDir);
         if (!f.exists()) {
             f.mkdir();
@@ -146,7 +146,7 @@ public class MessageParser {
             System.out.println("---------------------------------");
             System.out.println("첨부파일: " + fileName);
             for (String i : fnames.split("\\?")) {
-                log.info("this is message parser" + i);
+                log.info("MessagePaser.printMessage() file = " + i);
             }
         }
     }
