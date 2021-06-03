@@ -46,7 +46,7 @@ public class WriteMailHandler extends HttpServlet {
                     out = response.getWriter();
                     boolean status = sendMessage(request);
                     if(status==true){
-                        boolean del = TempMailDel(request);
+                        TempMailDel(request);
                     }
                     out.print(getMailTransportPopUp(status));
                     break;
