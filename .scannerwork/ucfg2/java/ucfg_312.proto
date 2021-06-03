@@ -1,156 +1,156 @@
 
-zorg.apache.jsp.secession_jsp#_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Vc
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaV V("44*¥
-24\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (L…∆
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (L
-%25"&javax.servlet.jsp.JspWriter#print([C)V*$
+Ñorg.apache.jsp.bookmarked_005fmail_jsp#_jspService(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)Vm
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaU U("startingBlock*õ
+24b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (3™ß
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (3
+%40void")java.io.Writer#write(Ljava/lang/String;)V*$
 "
-outjavax.servlet.jsp.JspWriter*
-""2	print([C)*
-23*À
-25\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (L‡›
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (L
-%24void")java.io.Writer#write(Ljava/lang/String;)V*$
-"
-outjavax.servlet.jsp.JspWriter*ÉÄ
-˝ <br>\r\n\r\n        &nbsp;&nbsp;&nbsp;ÌöåÏõêÌÉàÌá¥Î•º ÏßÑÌñâÌï©ÎãàÎã§. ÎπÑÎ∞ÄÎ≤àÌò∏Î•º Îã§Ïãú ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.\r\n\r\n        <div id=\"sidebar\">\r\n            <a href=\"main_menu.jsp\"> ÎèåÏïÑÍ∞ÄÍ∏∞ </a>\r\n            <p><a href=\"Login.do?menu=2write(Ljava/lang/String;)*
-24*“
-26X
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf (ÎË
-X
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf (
-%23void")java.io.Writer#write(Ljava/lang/String;)V*$
-"
-outjavax.servlet.jsp.JspWriter*
-)\r\n</div>\r\n2write(Ljava/lang/String;)*
-25*È
-27Z
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf
- 
-((Ä˝
-Z
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf
- 
-(
-%22void"6javax.servlet.jsp.JspWriter#print(Ljava/lang/Object;)V*$
-"
-outjavax.servlet.jsp.JspWriter*
-
-%21java.lang.Object2print(Ljava/lang/Object;)*
-26*á
-28Z
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf
- 
-((û
-õ
-Z
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf
- 
-(
+outjavax.servlet.jsp.JspWriter*HF
+D\r\n        <hr>\r\n\r\n        <div id=\"sidebar\">\r\n            2write(Ljava/lang/String;)*
+23*ó
+47`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O~
+|
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
+
+%20int"__id*
+""§
+°
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
 %21java.lang.Object"__mapGet*
 
 %jsp_context*
-host*
-27*ó
-29X
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf 
-((∞≠
-X
-PD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header.jspf 
-((
-%20void")java.io.Writer#write(Ljava/lang/String;)V*$
+pop3*
+44
+34*é
+25h
+`D:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header_bookmarked_mail.jspf (óî
+h
+`D:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/header_bookmarked_mail.jspf (
+%39void")java.io.Writer#write(Ljava/lang/String;)V*$
 "
-outjavax.servlet.jsp.JspWriter*XV
-T\r\n\r\n\r\n\r\n<div id=\"login_header\">\r\n    ÏõπÎ©îÏùº ÏãúÏä§ÌÖú <br />\r\n    (2write(Ljava/lang/String;)*
-28*¢
-30c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javax x( ∏
-µ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javax x( "
+outjavax.servlet.jsp.JspWriter*/-
++\r\n\r\n<h1>Î∂ÅÎßàÌÅ¨ Î©îÏãúÏßÄÌï®</h1>\r\n2write(Ljava/lang/String;)*
+24*ó
+48m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaw w( ¬
+ø
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaw w( "
 outjavax.servlet.jsp.JspWriter"__id*$
 "
-%18javax.servlet.jsp.JspWriteræ
-ª
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javay y((
+%18javax.servlet.jsp.JspWriter»
+≈
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javax x((
 	_jspx_outjavax.servlet.jsp.JspWriter"__id*$
 "
-outjavax.servlet.jsp.JspWriter¥±
-Z
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (,
+outjavax.servlet.jsp.JspWriterãà
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
 %19void")java.io.Writer#write(Ljava/lang/String;)V*$
 "
-outjavax.servlet.jsp.JspWriter*Ÿ÷
-”\r\n\r\n\r\n\r\n\r\n<!DOCTYPE html>\r\n\r\n<html lang=\"en\" xml:lang=\"en\">\r\n    <head>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <title>ÌöåÏõêÌÉàÌá¥</title>\r\n        <link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />\r\n    </head>\r\n    <body>\r\n        2write(Ljava/lang/String;)*
-29*¡
-31c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaw w((¬
-ø
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaw w(()
+outjavax.servlet.jsp.JspWriter*+)
+'\r\n\r\n\r\n\r\n<!DOCTYPE html>\r\n\r\n2write(Ljava/lang/String;)*
+47*˚
+26`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (Dåâ
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (D
+%38void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*´®
+•\r\n\r\n<html>\r\n    <head lang=\"kor\">\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n        <title>Ï£ºÎ©îÎâ¥ ÌôîÎ©¥</title>\r\n        <link type=\"text/css\" rel=\"stylesheet\" href=\"css/main_style.css\" />\r\n    </head>\r\n    <body>\r\n        2write(Ljava/lang/String;)*
+25*ﬂ
+49m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javav v((Ã
+…
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javav v(()
 sessionjavax.servlet.http.HttpSession"__id*'
 %
-%17javax.servlet.http.HttpSessionäá
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javax x( "
+%17javax.servlet.http.HttpSessionîë
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaw w( "
 %18javax.servlet.jsp.JspWriter"Bjavax.servlet.jsp.JspContext#getOut()Ljavax/servlet/jsp/JspWriter;*.
 ,
 pageContextjavax.servlet.jsp.PageContext2getOut()*
-30*ã
-32c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javav v(-ôñ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaw w((%
+48*õ
+28b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (™
+ß
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp& (2
+%37java.lang.Object"__mapGet*
+
+%jsp_context*
+
+password*
+26*ü
+50m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javau u(-£†
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javav v((%
 %17javax.servlet.http.HttpSession"Jjavax.servlet.jsp.PageContext#getSession()Ljavax/servlet/http/HttpSession;*.
 ,
 pageContextjavax.servlet.jsp.PageContext2getSession()*
-31*ë
-33c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javau u(3üú
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javav v(-"
+49*•
+51m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javat t(3©¶
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javau u(-"
 %16javax.servlet.ServletConfig"Mjavax.servlet.jsp.PageContext#getServletConfig()Ljavax/servlet/ServletConfig;*.
 ,
 pageContextjavax.servlet.jsp.PageContext2getServletConfig()*
-32*≤
-34c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javar s( ƒ
-¡
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javar s( ,
+50*⁄
+52m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaq r( Œ
+À
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaq r( ,
 pageContextjavax.servlet.jsp.PageContext"__id*&
 $
-%14javax.servlet.jsp.PageContext”
-–
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javat t(&3
+%14javax.servlet.jsp.PageContext›
+⁄
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javas s(&3
 _jspx_page_contextjavax.servlet.jsp.PageContext"__id*.
 ,
-pageContextjavax.servlet.jsp.PageContext£†
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javau u(3#
+pageContextjavax.servlet.jsp.PageContext≠™
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javat t(3#
 %15javax.servlet.ServletContext"Ojavax.servlet.jsp.PageContext#getServletContext()Ljavax/servlet/ServletContext;*.
 ,
 pageContextjavax.servlet.jsp.PageContext2getServletContext()*
-33*£
-35c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javar r( õ
-ò
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javar r( #
+51*ô
+30b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (®
+•
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp$ (0
+%36java.lang.Object"__mapGet*
+
+%jsp_context*
+
+userid*
+28*À
+53m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaq q( •
+¢
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaq q( #
 %13javax.servlet.jsp.JspFactory"__id*
-""ìê
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javar s( $
+""ß§
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaq r( $
 %14javax.servlet.jsp.PageContext"µjavax.servlet.jsp.JspFactory#getPageContext(Ljavax/servlet/Servlet;Ljavax/servlet/ServletRequest;Ljavax/servlet/ServletResponse;Ljava/lang/String;ZIZ)Ljavax/servlet/jsp/PageContext;*%
 #
-%13javax.servlet.jsp.JspFactory* 
-org.apache.jsp.secession_jsp*2
+%13javax.servlet.jsp.JspFactory**(
+&org.apache.jsp.bookmarked_005fmail_jsp*2
 0
 request%javax.servlet.http.HttpServletRequest*4
 2
@@ -158,261 +158,326 @@ YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secessio
 ""*
 ""*2Ä@*
 ""2ygetPageContext(Ljavax/servlet/Servlet;Ljavax/servlet/ServletRequest;Ljavax/servlet/ServletResponse;Ljava/lang/String;ZIZ)*
-34*°
-36c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaq q(Ø¨
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaq q(8
+52*µ
+54m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javap p(π∂
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javap p(8
 %12void"Ajavax.servlet.ServletResponse#setContentType(Ljava/lang/String;)V*4
 2
 response&javax.servlet.http.HttpServletResponse*
 text/html;charset=UTF-82"setContentType(Ljava/lang/String;)*
-35*®
-37c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaf f(4§
-°
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaf f(4,
+53*ó
+32b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (¶
+£
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp" (.
+%35java.lang.Object"__mapGet*
+
+%jsp_context*
+host*
+30*‰
+55m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javae e(4Æ
+´
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javae e(4,
 pageContextjavax.servlet.jsp.PageContext"__id*
-""°
-û
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javag g(2)
-sessionjavax.servlet.http.HttpSession"__id*
-""ö
-ó
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaj j(+"
-outjavax.servlet.jsp.JspWriter"__id*
-""†
-ù
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javal l(1(
-	_jspx_outjavax.servlet.jsp.JspWriter"__id*
 ""´
 ®
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javam m(<3
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaf f(2)
+sessionjavax.servlet.http.HttpSession"__id*
+""§
+°
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javai i(+"
+outjavax.servlet.jsp.JspWriter"__id*
+""™
+ß
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javak k(1(
+	_jspx_outjavax.servlet.jsp.JspWriter"__id*
+""µ
+≤
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javal l(<3
 _jspx_page_contextjavax.servlet.jsp.PageContext"__id*
 ""*
-36*¶
-38c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java` `(›⁄
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java` `(>
+54*—
+33o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaà à(	”–
+o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaà à(
+%34void"java.io.Writer#write(I)V*$
+"
+outjavax.servlet.jsp.JspWriter*
+\n2write(I)*
+32*Ÿ
+56m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java_ _(Á‰
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java_ _(>
 
 %9void"Wjavax.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V*4
 2
 response&javax.servlet.http.HttpServletResponse*	
 Allow*
-GET, HEAD, POST, OPTIONS2/setHeader(Ljava/lang/String;Ljava/lang/String;)Å
-
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaa a(D
+GET, HEAD, POST, OPTIONS2/setHeader(Ljava/lang/String;Ljava/lang/String;)å
+â
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java` `(D
 
 %10int"__id*
-""Á‰
-d
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaa a(à
+""ÒÓ
+n
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java` `(à
 %11void"Fjavax.servlet.http.HttpServletResponse#sendError(ILjava/lang/String;)V*4
 2
 response&javax.servlet.http.HttpServletResponse*
 
 
 %10int*CA
-?JSPs only permit GET, POST or HEAD. Jasper also permits OPTIONS2sendError(ILjava/lang/String;)"m
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javab b(
-""*‰
-16\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp3 4(˙˜
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp3 4(
-%33void")java.io.Writer#write(Ljava/lang/String;)V*$
+?JSPs only permit GET, POST or HEAD. Jasper also permits OPTIONS2sendError(ILjava/lang/String;)"w
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaa a(
+""*—
+34o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaá á(	”–
+o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaá á(
+%33void"java.io.Writer#write(I)V*$
 "
-outjavax.servlet.jsp.JspWriter*
-\r\n    </body>\r\n</html>2write(Ljava/lang/String;)*
-1*Â
-39c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_J _(PÔÏ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_J _(e
+outjavax.servlet.jsp.JspWriter*
+\r2write(I)*
+33*˘
+57m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^J ^(P˘ˆ
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^J ^(e
 %8boolean",java.lang.String#equals(Ljava/lang/Object;)Z*
 HEAD*"
  
 _jspx_methodjava.lang.String2equals(Ljava/lang/Object;)*
-37
-38*ÿ
-17\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp2 2()Ì
-Í
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp2 2(
-%32void"£org.apache.jasper.runtime.JspRuntimeLibrary#include(Ljavax/servlet/ServletRequest;Ljavax/servlet/ServletResponse;Ljava/lang/String;Ljavax/servlet/jsp/JspWriter;Z)V*/"-
-+org.apache.jasper.runtime.JspRuntimeLibrary*2
-0
-request%javax.servlet.http.HttpServletRequest*4
-2
-response&javax.servlet.http.HttpServletResponse*
+55
+56*â
+35`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O~
+|
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
 
-footer.jsp*$
-"
-outjavax.servlet.jsp.JspWriter*
+%31int"__id*
+""ö
+ó
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
+%32"__mapSet*
+
+%jsp_context*
+pop3*
 ""*
-16* 
-18\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp% 2()ﬂ‹
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp% 2()
-%31void")java.io.Writer#write(Ljava/lang/String;)V*$
-"
-outjavax.servlet.jsp.JspWriter*Çˇ
-¸\" readonly/>  </td>\r\n                </tr>\r\n                <tr>\r\n                    <td>ÎπÑÎ∞ÄÎ≤àÌò∏</td>\r\n                    <td> <input type=\"password\" name=\"password\" maxlength=\"20\"/> </td>\r\n                </tr>\r\n                <tr>\r\n                    <td colspan=\"2\">\r\n                        <input type=\"submit\" value=\"ÌöåÏõêÌÉàÌá¥\" name=\"secession\"/>\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n        </form>\r\n\r\n        2write(Ljava/lang/String;)*
-17*Ì
-19\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp$ $(xÇˇ
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp$M $(Y
-%30void"6javax.servlet.jsp.JspWriter#print(Ljava/lang/Object;)V*$
-"
-outjavax.servlet.jsp.JspWriter*
-
-%29java.lang.Object2print(Ljava/lang/Object;)*
-18*É
-0 "|
-e
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaô ô(
-implicit return*Ô
-1e
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaó ó(ù
-ö
-e
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaó ó(#
-%41javax.servlet.jsp.JspFactory"__id*
-""›⁄
-e
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaó ó(9
-%42void"Qjavax.servlet.jsp.JspFactory#releasePageContext(Ljavax/servlet/jsp/PageContext;)V*%
-#
-%41javax.servlet.jsp.JspFactory*5
-3
-_jspx_page_contextjavax.servlet.jsp.PageContext23releasePageContext(Ljavax/servlet/jsp/PageContext;)*
-0*Â
-40c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_* _(0ÔÏ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_* _(E
+34*˘
+58m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^* ^(0˘ˆ
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^* ^(E
 %7boolean",java.lang.String#equals(Ljava/lang/Object;)Z*
 POST*"
  
 _jspx_methodjava.lang.String2equals(Ljava/lang/Object;)*
-37
-39*‰
-41c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_ _(ÓÎ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java_ _(%
+57
+55*¯
+59m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^ ^(¯ı
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java^ ^(%
 %6boolean",java.lang.String#equals(Ljava/lang/Object;)Z*
 GET*"
  
 _jspx_methodjava.lang.String2equals(Ljava/lang/Object;)*
-37
-40*∏
-42c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java\ \(›⁄
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java\ \(>
+58
+55*
+16b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp& '(Ä˝
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp& '(
+%47void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*
+    </body>\r\n</html>\r\n2write(Ljava/lang/String;)*
+1*™
+17\
+TD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/footer_hwi.jspf 	(øº
+\
+TD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/footer_hwi.jspf 	(
+%46void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*‚ﬂ
+‹\r\n\r\n\r\n\r\n<div id=\"footer\">\r\n    &copy; 2021, Student Hwi Jeong Shin <br />\r\n    Dept. of Computer Software Engineering, Dong-eui University <br />\r\n    WebMail System - Spam mail, Bookmarked mail\r\n</div>2write(Ljava/lang/String;)*
+16*˘
+18b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp$ &(CàÖ
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp$ &(C
+%45void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*&$
+"\r\n        </div>\r\n\r\n        2write(Ljava/lang/String;)*
+17*¿
+19b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp# #(1œÃ
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp# #(1
+%44"&javax.servlet.jsp.JspWriter#print([C)V*$
+"
+outjavax.servlet.jsp.JspWriter*
+""2	print([C)*
+18*é
+0 "Ü
+o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java© ©(
+implicit return*ç
+1o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaß ß(ß
+§
+o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaß ß(#
+%55javax.servlet.jsp.JspFactory"__id*
+""Á‰
+o
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaß ß(9
+%56void"Qjavax.servlet.jsp.JspFactory#releasePageContext(Ljavax/servlet/jsp/PageContext;)V*%
+#
+%55javax.servlet.jsp.JspFactory*5
+3
+_jspx_page_contextjavax.servlet.jsp.PageContext23releasePageContext(Ljavax/servlet/jsp/PageContext;)*
+0*ù
+startingBlockn
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaU U(Öïí
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaU U(
+%jsp_context"java.util.HashMap*
+62*÷
+60m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java[ [(Á‰
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java[ [(>
 
 %5void"Wjavax.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V*4
 2
 response&javax.servlet.http.HttpServletResponse*	
 Allow*
-GET, HEAD, POST, OPTIONS2/setHeader(Ljava/lang/String;Ljava/lang/String;)"m
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java] ](
-""*ç
-20\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp$ $(x¢
-ü
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp$M $(Y
-%29java.lang.Object"__mapGet*
-
-%jsp_context*
-
-userid*
-19*û
-43c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaZ, Z(3ÜÉ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaZ, Z(?
+GET, HEAD, POST, OPTIONS2/setHeader(Ljava/lang/String;Ljava/lang/String;)"w
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.java\ \(
+""*∆
+61m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaY, Y(3êç
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaY, Y(?
 %3java.lang.String"Cjavax.servlet.http.HttpServletRequest#getMethod()Ljava/lang/String;*2
 0
-request%javax.servlet.http.HttpServletRequest2getMethod()™
-ß
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaZ Z(@ 
+request%javax.servlet.http.HttpServletRequest2getMethod()¥
+±
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaY Y(@ 
 _jspx_methodjava.lang.String"__id*
 
-%3java.lang.StringÚÔ
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.java[
- [((
+%3java.lang.String¸˘
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaZ
+ Z((
 %4boolean",java.lang.String#equals(Ljava/lang/Object;)Z*	
 OPTIONS*"
  
 _jspx_methodjava.lang.String2equals(Ljava/lang/Object;)*
-41
-42*…
-21\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp $(xﬁ€
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp $(x
-%28void")java.io.Writer#write(Ljava/lang/String;)V*$
-"
-outjavax.servlet.jsp.JspWriter*Å˛
-˚\" method=\"POST\"> \r\n            <table border=\"0\" align=\"left\">\r\n                <caption> ÌöåÏõêÌÉàÌá¥ </caption>\r\n                <tr>\r\n                    <th colspan=\"2\" scope=\"col\">Ï†ïÎ≥¥ÏûÖÎ†•</th>\r\n                </tr>\r\n                <tr>\r\n                    <td>ID</td>\r\n                    <td> <input type=\"text\" name=\"userid\" value=\"2write(Ljava/lang/String;)*
-20*∆
-44c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaY	 Y(ö
-ó
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaY	 Y(+"
+59
+60*Ó
+62m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaX	 X(§
+°
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaX	 X(+"
 %0javax.servlet.DispatcherType"__id*
-""•¢
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaY3 Y(N"
+""Ø¨
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaX3 X(N"
 %1javax.servlet.DispatcherType"Njavax.servlet.ServletRequest#getDispatcherType()Ljavax/servlet/DispatcherType;*2
 0
-request%javax.servlet.http.HttpServletRequest2getDispatcherType()ãà
-c
-YD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\secession_jsp.javaY	 Y(O
+request%javax.servlet.http.HttpServletRequest2getDispatcherType()ïí
+m
+cD:\github\JSP_mavenWebMail_TeamProject\.scannerwork\jsp\org\apache\jsp\bookmarked_005fmail_jsp.javaX	 X(O
 %2boolean"*java.lang.Enum#equals(Ljava/lang/Object;)Z*$
 "
 %0javax.servlet.DispatcherType*$
 "
 %1javax.servlet.DispatcherType2equals(Ljava/lang/Object;)*
-37
-43*¥
-22\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (U…∆
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (U
-%27"&javax.servlet.jsp.JspWriter#print([C)V*$
+61
+55*ß
+42b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp+ (L∂
+≥
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
+%24java.lang.Object"Yjava.beans.Beans#instantiate(Ljava/lang/ClassLoader;Ljava/lang/String;)Ljava/lang/Object;*"
+java.beans.Beans*
+
+%23java.lang.ClassLoader*%#
+!cse.maven_webmail.model.Pop3Agent*
+35*◊
+43`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (OËÂ
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
+%23java.lang.ClassLoader"7java.lang.Class#getClassLoader()Ljava/lang/ClassLoader;*
+
+%22java.lang.Class2getClassLoader()*
+42*à
+21b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp  #(1óî
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp  #(1
+%43void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*53
+1\r\n\r\n        <div id=\"main\">\r\n            2write(Ljava/lang/String;)*
+19*“
+44`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O„‡
+`
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (O
+%22java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;**(
+&org.apache.jsp.bookmarked_005fmail_jsp2
+getClass()*
+43*˘
+22b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp  (8àÖ
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp  (8
+%42void")java.io.Writer#write(Ljava/lang/String;)V*$
+"
+outjavax.servlet.jsp.JspWriter*&$
+"\r\n        </div>\r\n\r\n        2write(Ljava/lang/String;)*
+21*Í
+23b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (3˘
+ˆ
+b
+XD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/bookmarked_mail.jsp (
+%41void"£org.apache.jasper.runtime.JspRuntimeLibrary#include(Ljavax/servlet/ServletRequest;Ljavax/servlet/ServletResponse;Ljava/lang/String;Ljavax/servlet/jsp/JspWriter;Z)V*/"-
++org.apache.jasper.runtime.JspRuntimeLibrary*2
+0
+request%javax.servlet.http.HttpServletRequest*4
+2
+response&javax.servlet.http.HttpServletResponse*
+sidebar_menu.jsp*$
 "
 outjavax.servlet.jsp.JspWriter*
-""2	print([C)*
-21*¶
-23\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (Uª∏
-\
-RD:/github/JSP_mavenWebMail_TeamProject/maven_webmail/src/main/webapp/secession.jsp (U
-%26void")java.io.Writer#write(Ljava/lang/String;)V*$
-"
-outjavax.servlet.jsp.JspWriter*_]
-[\">Î°úÍ∑∏ÏïÑÏõÉ</a></p>\r\n        </div>\r\n\r\n        <form  action=\"UserAdmin.do?menu=2write(Ljava/lang/String;)*
+""*
 22:
 %jsp_context:0
 request%javax.servlet.http.HttpServletRequest:2
-response&javax.servlet.http.HttpServletResponseB 
-org.apache.jsp.secession_jsp
+response&javax.servlet.http.HttpServletResponseB*(
+&org.apache.jsp.bookmarked_005fmail_jsp

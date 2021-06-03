@@ -16,7 +16,7 @@
     pop3.setPassword((String) session.getAttribute("password"));
 %>
 
-<html>
+<html lang="kor">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>주메뉴 화면</title>

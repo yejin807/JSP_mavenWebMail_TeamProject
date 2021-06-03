@@ -128,7 +128,7 @@
                   action="WriteMail.do?menu=<%= CommandType.SEND_MAIL_COMMAND%>" 
                   onsubmit ="return check_file_size()">
                 <table> <!-- 메일쓰기 폼 설정 -->
-
+                    <caption> 메일 쓰기 폼 </caption>s 
                     <%
                         String to = request.getParameter("to") == null ? "" : request.getParameter("to");
                         String encodedto = org.owasp.encoder.Encode.forHtml(to);
@@ -143,23 +143,23 @@
                         %>
                         
                     <tr>
-                        <th> 수신 </th>
+                        <th scope="row"> 수신 </th>
                         <td> <input type="text" id="to" name="to" size="80"
                                     value=<%=encodedto%>>  </td>
                     </tr>
                     <tr>
-                        <th>참조</th>
+                        <th scope="row">참조</th>
                         <td> <input type="text" id="cc" name="cc" size="80" value="<%=encodedcc%>">  </td>
                     </tr>
                     <tr>
-                        <th> 메일 제목 </th>
+                        <th scope="row"> 메일 제목 </th>
                         <td> <input type="text" id="subj" name="subj" size="80" value="<%=encodedsubj%>">  </td>
                     </tr>
                     <tr>
-                        <th colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</th>
+                        <th scope="row" colspan="2">본  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 문</th>
                     </tr>
                     <tr>  <%-- TextArea    --%>
-                        <td colspan="2">
+                        <td scope="row" colspan="2">
                             <%
                                 if(DBcont==null){
                                     DBcont="";
@@ -169,7 +169,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>첨부 파일</th>
+                        <th scope="row" >첨부 파일</th>
                         <td> <input type="file" name="file1" id="input_file" multiple size="80" > 
                     </tr>
                     <input type="text" name="temp" id="temp" value="temp" value="<%=encodedtemp%>" hidden>

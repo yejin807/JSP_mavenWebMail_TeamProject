@@ -51,7 +51,7 @@ public class VinMessageHandler {
             String sql = "insert into goto_bin.bin ( send_person, send_date, m_title) VALUES (?,?,?)";
 
             Class.forName(CommandType.JDBCDRIVER);
-            try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
+            try (Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
                     PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
             if (userid != null && !(userid.equals(""))) { //email 값이 null이 아니면.
@@ -74,7 +74,7 @@ public class VinMessageHandler {
  
             Class.forName(CommandType.JDBCDRIVER);
             
-          try(  Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, "12345*");
+          try(  Connection conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
             
             PreparedStatement pstmt = conn.prepareStatement(sql);){
             pstmt.setString(1, sendPerson);

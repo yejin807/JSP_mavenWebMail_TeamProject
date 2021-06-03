@@ -14,16 +14,18 @@
 
 <!DOCTYPE HTML PUBLIC "-//w3c//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose,dtd">
-<script type="text/javascript">
 
-    function goread(){
-        window.location = "/maven_webmail/main_menu.jsp"
-    }
-
-</script>
-<html>
+<html lang="kor">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>임시 저장 페이지</title>
+        <script type="text/javascript">
+
+            function goread(){
+            window.location = "/maven_webmail/main_menu.jsp";
+            }
+
+        </script>
     </head>
     <body onload="setTimeout('goread()', 1000)">
         
