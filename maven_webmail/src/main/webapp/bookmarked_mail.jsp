@@ -16,7 +16,7 @@
 %>
 
 <html>
-    <head>
+    <head lang="kor">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>주메뉴 화면</title>
         <link type="text/css" rel="stylesheet" href="css/main_style.css" />
