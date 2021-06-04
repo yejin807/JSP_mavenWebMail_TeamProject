@@ -13,12 +13,12 @@
 <!DOCTYPE html>
 
 <script type="text/javascript">
-    <!--
+
     function getConfirmResult() {
         var result = confirm("사용자를 정말로 삭제하시겠습니까?");
         return result;
     }
--->
+
 </script>
 
 
@@ -35,7 +35,6 @@
             if (userid.equals("admin")) {
         %>
         <div id="sidebar">
-            <%-- 사용자 추가때와 동일하므로 같은 메뉴 사용함. --%>
             <jsp:include page="sidebar_admin_previous_menu.jsp" />
         </div>
 
@@ -45,7 +44,7 @@
                   method="POST">
                 <c:catch var="errorReason">
                     <mytags:dellistusers user="jdbctester" password="43319521"
-                                      schema="webmail" table="userinfo" />
+                                         schema="webmail" table="userinfo" />
                 </c:catch>
                 ${empty errorReason ? "<noerror/>" : errorReason}<br>
                 <input type="submit" value="제거" name="delete_command" onClick ="return getConfirmResult()"/>

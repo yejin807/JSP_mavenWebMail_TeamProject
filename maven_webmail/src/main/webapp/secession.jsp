@@ -47,6 +47,6 @@
             </table>
         </form>
 
-        <jsp:include page="footer.jsp" />
+        <%@include file="footer_kwang.jspf"%>
     </body>
 </html>

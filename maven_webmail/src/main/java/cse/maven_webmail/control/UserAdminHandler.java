@@ -57,7 +57,6 @@ public class UserAdminHandler extends HttpServlet {
             switch (select) {
                 case CommandType.ADD_USER_COMMAND:
                     if (userid == null || !userid.equals("admin")) {
-                        out.println("현재 사용자(" + userid + ")의 권한으로 수행 불가합니다.");
                         out.println("<a href=/WebMailSystem/> 초기 화면으로 이동 </a>");
                         return;
                     } else {
@@ -67,7 +66,6 @@ public class UserAdminHandler extends HttpServlet {
 
                 case CommandType.DELETE_USER_COMMAND:
                     if (userid == null || !userid.equals("admin")) {
-                        out.println("현재 사용자(" + userid + ")의 권한으로 수행 불가합니다.");
                         out.println("<a href=/WebMailSystem/> 초기 화면으로 이동 </a>");
                         return;
                     } else {
@@ -102,12 +100,6 @@ public class UserAdminHandler extends HttpServlet {
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
             String phone = request.getParameter("phone");
-
-            out.println("userid = " + userid + "<br>");
-            out.println("password = " + password + "<br>");
-            out.println("username = " + username + "<br>");
-            out.println("birth = " + birth + "<br>");
-            out.println("phone = " + phone + "<br>");
             out.flush();
 
             if (!userid.equals("admin")) {
@@ -144,14 +136,6 @@ public class UserAdminHandler extends HttpServlet {
             String username = request.getParameter("username");
             String birth = request.getParameter("birth");
             String phone = request.getParameter("phone");
-
-            out.println("회원 정보" + "<br>");
-            out.println("userid = " + userid + "<br>");
-            out.println("password = " + password + "<br>");
-            out.println("password_check = " + passwordcheck + "<br>");
-            out.println("username = " + username + "<br>");
-            out.println("birth = " + birth + "<br>");
-            out.println("phone = " + phone + "<br>");
             out.flush();
 
             if (!userid.equals("admin")) {
@@ -295,7 +279,7 @@ public class UserAdminHandler extends HttpServlet {
 
     //회원탈퇴
     private void secessionUser(HttpServletRequest request, HttpServletResponse response, PrintWriter out) {
-        String userid = request.getParameter("userid");  // for test
+        String userid = request.getParameter("userid");
         try {
             UserAdminAgent agent = new UserAdminAgent(server, port, this.getServletContext().getRealPath("."));
             if (checkPassword(request, out)) {
@@ -362,9 +346,7 @@ public class UserAdminHandler extends HttpServlet {
         String host = (String) request.getSession().getAttribute("host");
         String userid = request.getParameter("userid");
         String password = request.getParameter("password");
-        out.println(userid); //test
-        out.println(password);
-        // Check the login information is valid using <<model>>Pop3Agent.
+        
         Pop3Agent pop3Agent = new Pop3Agent(host, userid, password);
         boolean status = pop3Agent.validate();
 

@@ -5,15 +5,10 @@
 package cse.maven_webmail.model;
 
 import cse.maven_webmail.control.UserAdminHandler;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
 import java.util.logging.Logger;
 
 /**

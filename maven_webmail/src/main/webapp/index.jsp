@@ -49,7 +49,6 @@
 
 
         <%@include file="footer.jspf"%>
-        <%-- <jsp:include page="footer.jspf" /> --%>
 
     </body>
 </html>
