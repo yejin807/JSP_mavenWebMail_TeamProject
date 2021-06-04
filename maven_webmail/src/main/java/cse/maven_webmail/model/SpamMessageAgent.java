@@ -59,10 +59,10 @@ public class SpamMessageAgent extends MessageAgent {
             System.out.println("SpamMessageAgent.SetMsgId에서 msgId 초기화 후 새 Array생성 시도.");
 
             Class.forName(CommandType.JDBCDRIVER);
-             conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
+            conn = DriverManager.getConnection(CommandType.JDBCURL, CommandType.JDBCUSER, CommandType.JDBCPASSWORD);
 
             String sql = "select msgid from webmail.spam_list where email = ?";
-             pstmt = conn.prepareStatement(sql);
+            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userid);
 
             ResultSet rs = pstmt.executeQuery();
@@ -80,7 +80,7 @@ public class SpamMessageAgent extends MessageAgent {
 
         } catch (Exception ex) {
             System.out.println("SpamMessageAgent.setMsgIdList Error : " + ex);
-        }finally {
+        } finally {
             try {
                 if (pstmt != null) {
                     pstmt.close();
